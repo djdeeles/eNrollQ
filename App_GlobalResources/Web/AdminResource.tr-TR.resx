@@ -1,0 +1,1997 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="comfirmDeleteMenu" xml:space="preserve">
+    <value>Menü, varsa bütün alt menüleriyle beraber silinecektir. Devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="lbAdd" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
+  <data name="lbAddModul" xml:space="preserve">
+    <value>Sayfaya Modül eklemek için</value>
+  </data>
+  <data name="lbBanner" xml:space="preserve">
+    <value>Reklam</value>
+  </data>
+  <data name="lbBannerFieldManagement" xml:space="preserve">
+    <value>Reklam Alan Yönetimi</value>
+  </data>
+  <data name="lbBannerManagement" xml:space="preserve">
+    <value>Reklam Yönetimi</value>
+  </data>
+  <data name="lbCalender" xml:space="preserve">
+    <value>Etkinlik Takvimi</value>
+  </data>
+  <data name="lbCancel" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="lbCategory" xml:space="preserve">
+    <value>Kategori</value>
+  </data>
+  <data name="lbChoose" xml:space="preserve">
+    <value>Seçiniz</value>
+  </data>
+  <data name="lbContactForm" xml:space="preserve">
+    <value>İletişim Formu</value>
+  </data>
+  <data name="lbContent" xml:space="preserve">
+    <value>İçerik</value>
+  </data>
+  <data name="lbCurrency" xml:space="preserve">
+    <value>Doviz</value>
+  </data>
+  <data name="lbDelete" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="lbDesc" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
+  <data name="lbDynamicFields" xml:space="preserve">
+    <value>Dinamik Alanlar</value>
+  </data>
+  <data name="lbDynamicListManagement" xml:space="preserve">
+    <value>Dinamik Liste Yönetimi</value>
+  </data>
+  <data name="lbEdit" xml:space="preserve">
+    <value>Düzenle</value>
+  </data>
+  <data name="lbEmailAdd" xml:space="preserve">
+    <value>E-Posta Üyelik</value>
+  </data>
+  <data name="lbError" xml:space="preserve">
+    <value>Hatalar</value>
+  </data>
+  <data name="lbErrorDate" xml:space="preserve">
+    <value>Hata Tarihi</value>
+  </data>
+  <data name="lbErrorSummary" xml:space="preserve">
+    <value>Hata Özeti</value>
+  </data>
+  <data name="lbEventManagement" xml:space="preserve">
+    <value>Etkinlik Yönetimi</value>
+  </data>
+  <data name="lbEvents" xml:space="preserve">
+    <value>Etkinlikler</value>
+  </data>
+  <data name="lbExit" xml:space="preserve">
+    <value>Çıkış</value>
+  </data>
+  <data name="lbFAQCategoryManagement" xml:space="preserve">
+    <value>Sıkça Sorulanlar Kat. Yönetimi</value>
+  </data>
+  <data name="lbFAQManagement" xml:space="preserve">
+    <value>Sıkça Sorulanlar Yönetimi</value>
+  </data>
+  <data name="lbFileManager" xml:space="preserve">
+    <value>Dosya Yöneticisi</value>
+  </data>
+  <data name="lbGalleryManagement" xml:space="preserve">
+    <value>Galeri Yönetimi</value>
+  </data>
+  <data name="lbGeneralSettings" xml:space="preserve">
+    <value>Genel Ayarlar</value>
+  </data>
+  <data name="lbHelp" xml:space="preserve">
+    <value>Yardım</value>
+  </data>
+  <data name="lbHideInMenu" xml:space="preserve">
+    <value>Menude gösterme</value>
+  </data>
+  <data name="lbHideMenuTitle" xml:space="preserve">
+    <value>Menu ismini gizle</value>
+  </data>
+  <data name="lbHigh" xml:space="preserve">
+    <value>Yüksek</value>
+  </data>
+  <data name="lbHome" xml:space="preserve">
+    <value>Ana Sayfa</value>
+  </data>
+  <data name="lbImage" xml:space="preserve">
+    <value>Resim</value>
+  </data>
+  <data name="lbImageSelect" xml:space="preserve">
+    <value>Görsel Ekle</value>
+  </data>
+  <data name="lbInterfaceSettings" xml:space="preserve">
+    <value>Arayüz Ayarları</value>
+  </data>
+  <data name="lbJobForm" xml:space="preserve">
+    <value>İş Başvuru Formu</value>
+  </data>
+  <data name="lbKeyWords" xml:space="preserve">
+    <value>Anahtar Kelimeler</value>
+  </data>
+  <data name="lbLeftMenuManagement" xml:space="preserve">
+    <value>Yan Menü Yönetimi</value>
+  </data>
+  <data name="lbLow" xml:space="preserve">
+    <value>Düşük</value>
+  </data>
+  <data name="lbMainMenu" xml:space="preserve">
+    <value>Ana Menu</value>
+  </data>
+  <data name="lbMainMenuManagement" xml:space="preserve">
+    <value>Ana Menü Yönetimi</value>
+  </data>
+  <data name="lbMenuContentManagement" xml:space="preserve">
+    <value>Menü Yönetimi</value>
+  </data>
+  <data name="lbMessage" xml:space="preserve">
+    <value>Mesajınız</value>
+  </data>
+  <data name="lbNew" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="lbNewPage" xml:space="preserve">
+    <value>Yeni Sayfa</value>
+  </data>
+  <data name="lbNewPageUrl" xml:space="preserve">
+    <value>Yeni Pencerede Adres</value>
+  </data>
+  <data name="lbNews" xml:space="preserve">
+    <value>Haberler</value>
+  </data>
+  <data name="lbNewsGroupMember" xml:space="preserve">
+    <value>Haber Grubu Üyeleri</value>
+  </data>
+  <data name="lbNewsList" xml:space="preserve">
+    <value>Haber Liste</value>
+  </data>
+  <data name="lbNewsManagement" xml:space="preserve">
+    <value>Haber Yönetimi</value>
+  </data>
+  <data name="lbNewsScroller" xml:space="preserve">
+    <value>Manşet Haber</value>
+  </data>
+  <data name="lbNormal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="lbNotice" xml:space="preserve">
+    <value>Duyurular</value>
+  </data>
+  <data name="lbNoticeManagement" xml:space="preserve">
+    <value>Duyuru Yönetimi</value>
+  </data>
+  <data name="lbNoticeScroller" xml:space="preserve">
+    <value>Kayan Duyurular</value>
+  </data>
+  <data name="lbOnlyTitle" xml:space="preserve">
+    <value>Sadece Başlık</value>
+  </data>
+  <data name="lbOptions" xml:space="preserve">
+    <value>Seçenekler</value>
+  </data>
+  <data name="lbPage" xml:space="preserve">
+    <value>Sayfa</value>
+  </data>
+  <data name="lbPageTemplates" xml:space="preserve">
+    <value>Sayfa Şablonları</value>
+  </data>
+  <data name="lbPhotoGallery" xml:space="preserve">
+    <value>Fotoğraf Galeri</value>
+  </data>
+  <data name="lbPhotoGalleryManagement" xml:space="preserve">
+    <value>Fotoğraf Galeri Yönetimi</value>
+  </data>
+  <data name="lbProduct" xml:space="preserve">
+    <value>Ürün</value>
+  </data>
+  <data name="lbProductManagement" xml:space="preserve">
+    <value>Ürün Yönetimi</value>
+  </data>
+  <data name="lbProductScroller" xml:space="preserve">
+    <value>Kayan Ürünler</value>
+  </data>
+  <data name="lbSliderImageManagement" xml:space="preserve">
+    <value>Kayan Görsel Yönetimi</value>
+  </data>
+  <data name="lbSliderImages" xml:space="preserve">
+    <value>Kayan Görseller</value>
+  </data>
+  <data name="lbRoot" xml:space="preserve">
+    <value>Ana Dizin</value>
+  </data>
+  <data name="lbSave" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="lbSend" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="lbSettings" xml:space="preserve">
+    <value>Kullanıcı Ayarları</value>
+  </data>
+  <data name="lbSeverityRating" xml:space="preserve">
+    <value>Önem Derecesi</value>
+  </data>
+  <data name="lbShowSubMenuInDropdownMenu" xml:space="preserve">
+    <value>Alt Menüleri Açılan Menüde Göster</value>
+  </data>
+  <data name="lbShowSubMenuInLeft" xml:space="preserve">
+    <value>Alt Menuleri Sol Menude Göster</value>
+  </data>
+  <data name="lbShowSubMenuInPage" xml:space="preserve">
+    <value>Alt Menüleri Sayfada Göster</value>
+  </data>
+  <data name="lbSideMenu" xml:space="preserve">
+    <value>Yan Menu</value>
+  </data>
+  <data name="lbSiteGeneralSettings" xml:space="preserve">
+    <value>Site Genel Ayarları</value>
+  </data>
+  <data name="lbSiteMap" xml:space="preserve">
+    <value>Site Haritası</value>
+  </data>
+  <data name="lbSocialShare" xml:space="preserve">
+    <value>Sosyal Paylaşım</value>
+  </data>
+  <data name="lbStartPage" xml:space="preserve">
+    <value>Başlangıç sayfası</value>
+  </data>
+  <data name="lbState" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="lbStaticField" xml:space="preserve">
+    <value>Statik Alan</value>
+  </data>
+  <data name="lbStaticFields" xml:space="preserve">
+    <value>Statik Alanlar</value>
+  </data>
+  <data name="lbSteSpecificFieldManagement" xml:space="preserve">
+    <value>Site Özel Alan Yönetimi</value>
+  </data>
+  <data name="lbSubject" xml:space="preserve">
+    <value>Konu</value>
+  </data>
+  <data name="lbSubMenu" xml:space="preserve">
+    <value>Alt Menu</value>
+  </data>
+  <data name="lbSubMenuManagement" xml:space="preserve">
+    <value>Alt Menü Yönetimi</value>
+  </data>
+  <data name="lbSummary" xml:space="preserve">
+    <value>Özet</value>
+  </data>
+  <data name="lbSupport" xml:space="preserve">
+    <value>Destek</value>
+  </data>
+  <data name="lbSurvey" xml:space="preserve">
+    <value>Anket</value>
+  </data>
+  <data name="lbSurveyManagement" xml:space="preserve">
+    <value>Anket Yönetimi</value>
+  </data>
+  <data name="lbTemplate" xml:space="preserve">
+    <value>Şablon</value>
+  </data>
+  <data name="lbTitle" xml:space="preserve">
+    <value>Başlık</value>
+  </data>
+  <data name="lbTitleHoverImage" xml:space="preserve">
+    <value>Başlık Hover Görseli</value>
+  </data>
+  <data name="lbTitleImage" xml:space="preserve">
+    <value>Başlık Görseli</value>
+  </data>
+  <data name="lbTopMenu" xml:space="preserve">
+    <value>Üst Menu</value>
+  </data>
+  <data name="lbTopMenuManagement" xml:space="preserve">
+    <value>Üst Menü Yönetimi</value>
+  </data>
+  <data name="lbType" xml:space="preserve">
+    <value>Tip</value>
+  </data>
+  <data name="lbVideoGallery" xml:space="preserve">
+    <value>Video Galeri</value>
+  </data>
+  <data name="lbVideoGalleryManagement" xml:space="preserve">
+    <value>Video Galeri Yönetimi</value>
+  </data>
+  <data name="lbViewSite" xml:space="preserve">
+    <value>Siteyi Görüntüle</value>
+  </data>
+  <data name="msgReply" xml:space="preserve">
+    <value>Sayın Yetkili,&lt;br /&gt; Destek Talebiniz bize iletilmiştir. &lt;br /&gt; Teşekkür ederiz</value>
+  </data>
+  <data name="msgSaved" xml:space="preserve">
+    <value>Kaydedildi</value>
+  </data>
+  <data name="msgSendErr" xml:space="preserve">
+    <value>Hata oluştu, daha sonra tekrar deneyiniz.</value>
+  </data>
+  <data name="msgSendSucces" xml:space="preserve">
+    <value>Mesajınız iletilmiştir. Birazdan destek talebinizle ilgili bir E-Posta alacaksınız. İlginize Teşekkür ederiz.</value>
+  </data>
+  <data name="lbEPosta" xml:space="preserve">
+    <value>E-Posta</value>
+  </data>
+  <data name="lbNewPwd" xml:space="preserve">
+    <value>Yeni Şifre</value>
+  </data>
+  <data name="lbNewPwdAgain" xml:space="preserve">
+    <value>Yeni Şifre(Tekrar)</value>
+  </data>
+  <data name="lbOldPwd" xml:space="preserve">
+    <value>Eski Şifre</value>
+  </data>
+  <data name="msgEmailChangeSucces" xml:space="preserve">
+    <value>E-Posta adresiniz güncellenmiştir.</value>
+  </data>
+  <data name="msgEMailError" xml:space="preserve">
+    <value>Geçerli bir E-Posta adresi giriniz.</value>
+  </data>
+  <data name="msgOldPwdErr" xml:space="preserve">
+    <value>Eski şifrenizi hatalı girdiniz.</value>
+  </data>
+  <data name="msgPwdChangeSucces" xml:space="preserve">
+    <value>Şifreniz başarıyla değiştirilmiştir.</value>
+  </data>
+  <data name="msgPwdLength" xml:space="preserve">
+    <value>Şifre en az 8 karakter olmalıdır.</value>
+  </data>
+  <data name="msgWrongPwd" xml:space="preserve">
+    <value>Şifreyi hatalı girdiniz. Lütfen tekrar giriniz.</value>
+  </data>
+  <data name="errMsgWrongEMailType" xml:space="preserve">
+    <value>Geçerli bir E-Posta adresi giriniz</value>
+  </data>
+  <data name="lbActions" xml:space="preserve">
+    <value>İşlemler</value>
+  </data>
+  <data name="lbCounter" xml:space="preserve">
+    <value>Sayaç</value>
+  </data>
+  <data name="lbDate" xml:space="preserve">
+    <value>Tarih</value>
+  </data>
+  <data name="lbDeletingQuestion" xml:space="preserve">
+    <value>Silmek istediğinizden emin misiniz?</value>
+  </data>
+  <data name="lbDetail" xml:space="preserve">
+    <value>Detay</value>
+  </data>
+  <data name="lbDynamicFieldManagement" xml:space="preserve">
+    <value>Dinamik Alan Yönetimi</value>
+  </data>
+  <data name="lbEditStaticField" xml:space="preserve">
+    <value>Statik Alan Düzenle</value>
+  </data>
+  <data name="lbEmails" xml:space="preserve">
+    <value>E-Posta Adresleri</value>
+  </data>
+  <data name="lbExcelExport" xml:space="preserve">
+    <value>Excel'e Aktar</value>
+  </data>
+  <data name="lbFieldName" xml:space="preserve">
+    <value>Alan Adı</value>
+  </data>
+  <data name="lbHeadLine" xml:space="preserve">
+    <value>Manşet</value>
+  </data>
+  <data name="lbName" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="lbNewContent" xml:space="preserve">
+    <value>Yeni İçerik</value>
+  </data>
+  <data name="lbNewField" xml:space="preserve">
+    <value>Yeni Alan</value>
+  </data>
+  <data name="lbNewNews" xml:space="preserve">
+    <value>Yeni Haber</value>
+  </data>
+  <data name="lbNewSurvey" xml:space="preserve">
+    <value>Yeni Anket</value>
+  </data>
+  <data name="lbNewSurveyOption" xml:space="preserve">
+    <value>Yeni Seçenek</value>
+  </data>
+  <data name="lbNewTemplate" xml:space="preserve">
+    <value>Yeni Şablon</value>
+  </data>
+  <data name="lbNoRecord" xml:space="preserve">
+    <value>Kayıt Bulunamadı.</value>
+  </data>
+  <data name="lbResult" xml:space="preserve">
+    <value>Sonuç</value>
+  </data>
+  <data name="lbStaticFieldManagement" xml:space="preserve">
+    <value>Statik Alan Yönetimi</value>
+  </data>
+  <data name="lbSurveyQuestion" xml:space="preserve">
+    <value>Anket Sorusu</value>
+  </data>
+  <data name="lbTemplateManagement" xml:space="preserve">
+    <value>Şablon Yönetimi</value>
+  </data>
+  <data name="lbTemplateName" xml:space="preserve">
+    <value>Şablon Adı</value>
+  </data>
+  <data name="lbAlbumName" xml:space="preserve">
+    <value>Albüm Adı</value>
+  </data>
+  <data name="lbAlbums" xml:space="preserve">
+    <value>Albümler</value>
+  </data>
+  <data name="lbCategoryName" xml:space="preserve">
+    <value>Kategori Adı</value>
+  </data>
+  <data name="lbEndDate" xml:space="preserve">
+    <value>Bitiş Tarihi</value>
+  </data>
+  <data name="lbImages" xml:space="preserve">
+    <value>Görseller</value>
+  </data>
+  <data name="lbNewNotice" xml:space="preserve">
+    <value>Yeni Duyuru</value>
+  </data>
+  <data name="lbStartDate" xml:space="preserve">
+    <value>Başlangıç Tarihi</value>
+  </data>
+  <data name="lbImagePath" xml:space="preserve">
+    <value>Görsel Yolu</value>
+  </data>
+  <data name="lbMsgDeleteAlbum" xml:space="preserve">
+    <value>Albüm ve albüme ait görseller silindi</value>
+  </data>
+  <data name="lbMsgDeleteCategory" xml:space="preserve">
+    <value>Kategori ve kategoriye ait albümler ve görseller silindi</value>
+  </data>
+  <data name="lbMsgDeletePhoto" xml:space="preserve">
+    <value>Görsel silindi</value>
+  </data>
+  <data name="lbNewAlbum" xml:space="preserve">
+    <value>Yeni Albüm</value>
+  </data>
+  <data name="lbNewCategory" xml:space="preserve">
+    <value>Yeni Kategori</value>
+  </data>
+  <data name="lbNewImage" xml:space="preserve">
+    <value>Yeni Görsel</value>
+  </data>
+  <data name="lbChange" xml:space="preserve">
+    <value>Değiştir</value>
+  </data>
+  <data name="lbAnsver" xml:space="preserve">
+    <value>Cevap</value>
+  </data>
+  <data name="lbConfirmDeleteVideo" xml:space="preserve">
+    <value>Video silinecektir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="lbConfirmDeleteVideoCategory" xml:space="preserve">
+    <value>Kategori ve kategoriye ait videolar silinecektir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="lbConfirmMsgExit" xml:space="preserve">
+    <value>Siteye yönlendirilceksiniz, çıkış yapmak istiyor musunuz?</value>
+  </data>
+  <data name="lbEndDateError" xml:space="preserve">
+    <value>Bitiş tarihi başlangıç tarihinden önce olamaz!</value>
+  </data>
+  <data name="lbFileActions" xml:space="preserve">
+    <value>Dosya İşlemleri</value>
+  </data>
+  <data name="lbFileName" xml:space="preserve">
+    <value>Dosya Adı</value>
+  </data>
+  <data name="lbFileSizeByte" xml:space="preserve">
+    <value>Boyut(byte)</value>
+  </data>
+  <data name="lbFileUpload" xml:space="preserve">
+    <value>Dosya Yükleme</value>
+  </data>
+  <data name="lbFolderActions" xml:space="preserve">
+    <value>Dizin İşlemleri</value>
+  </data>
+  <data name="lbIndex" xml:space="preserve">
+    <value>Sıra No</value>
+  </data>
+  <data name="lbLink" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="lbMsgDeleteVideo" xml:space="preserve">
+    <value>Video silindi.</value>
+  </data>
+  <data name="lbMsgDeleteVideoCategory" xml:space="preserve">
+    <value>Kategori ve kategoriye ait videolar silindi.</value>
+  </data>
+  <data name="lbNewFolder" xml:space="preserve">
+    <value>Yeni Klasör</value>
+  </data>
+  <data name="lbNewVideo" xml:space="preserve">
+    <value>Yeni Video</value>
+  </data>
+  <data name="lbNoFileFound" xml:space="preserve">
+    <value>Hiçbir dosya bulunamadı.</value>
+  </data>
+  <data name="lbPreview" xml:space="preserve">
+    <value>Önizle</value>
+  </data>
+  <data name="lbQuestion" xml:space="preserve">
+    <value>Soru</value>
+  </data>
+  <data name="lbSelectedFolder" xml:space="preserve">
+    <value>Bulunduğunuz Klasör</value>
+  </data>
+  <data name="lbUILanguage" xml:space="preserve">
+    <value>Arayüz Dili</value>
+  </data>
+  <data name="lbUpload" xml:space="preserve">
+    <value>Yükle</value>
+  </data>
+  <data name="lbVideoUrl" xml:space="preserve">
+    <value>Video Adresi</value>
+  </data>
+  <data name="msgDeleted" xml:space="preserve">
+    <value>Silindi</value>
+  </data>
+  <data name="msgEventSaved" xml:space="preserve">
+    <value>Etkinlik başarıyla kaydedildi</value>
+  </data>
+  <data name="msgFolderRenameError" xml:space="preserve">
+    <value>Farklı bir klasör ismi giriniz.</value>
+  </data>
+  <data name="msgNewCategoryAdded" xml:space="preserve">
+    <value>Yeni kategori eklendi.</value>
+  </data>
+  <data name="msgNotFoundAlbum" xml:space="preserve">
+    <value>Albüm Bulunamadı.</value>
+  </data>
+  <data name="msgNotFoundCategory" xml:space="preserve">
+    <value>Kategori Bulunamadı.</value>
+  </data>
+  <data name="msgNotFoundPhoto" xml:space="preserve">
+    <value>Görsel Bulunamadı.</value>
+  </data>
+  <data name="msgRootDelete" xml:space="preserve">
+    <value>Kök Dizin silinemez.</value>
+  </data>
+  <data name="msgRootRename" xml:space="preserve">
+    <value>Kök Dizin ismi değiştirilemez.</value>
+  </data>
+  <data name="msgUpdated" xml:space="preserve">
+    <value>Güncellendi</value>
+  </data>
+  <data name="lbActive" xml:space="preserve">
+    <value>Aktif</value>
+  </data>
+  <data name="lbBannerField" xml:space="preserve">
+    <value>Reklam Alanı</value>
+  </data>
+  <data name="lbClickTAG" xml:space="preserve">
+    <value>ClickTAG</value>
+  </data>
+  <data name="lbFileType" xml:space="preserve">
+    <value>Dosya Tipi</value>
+  </data>
+  <data name="lbHeight" xml:space="preserve">
+    <value>Yükseklik</value>
+  </data>
+  <data name="lbNewFlash" xml:space="preserve">
+    <value>Yeni Flash  Ekle</value>
+  </data>
+  <data name="lbPublised" xml:space="preserve">
+    <value>Yayında</value>
+  </data>
+  <data name="lbSelectFileType" xml:space="preserve">
+    <value>Eklemek istediğiniz dosya tipini seçiniz.</value>
+  </data>
+  <data name="lbUnpublised" xml:space="preserve">
+    <value>Yayında Değil</value>
+  </data>
+  <data name="lbViewCount" xml:space="preserve">
+    <value>Gösterim Sayısı</value>
+  </data>
+  <data name="lbViewLimit" xml:space="preserve">
+    <value>Gösterim Limiti</value>
+  </data>
+  <data name="lbWidth" xml:space="preserve">
+    <value>Genişlik</value>
+  </data>
+  <data name="lbCategories" xml:space="preserve">
+    <value>Kategoriler</value>
+  </data>
+  <data name="lbFeaturedItem" xml:space="preserve">
+    <value>Öne çıkan ürün</value>
+  </data>
+  <data name="lbMainImage" xml:space="preserve">
+    <value>Ana görsel</value>
+  </data>
+  <data name="lbNoCategoryForProduct" xml:space="preserve">
+    <value>Ürün eklemek için önce kategori eklemelisiniz.</value>
+  </data>
+  <data name="lbPrice" xml:space="preserve">
+    <value>Fiyat</value>
+  </data>
+  <data name="lbProductImage" xml:space="preserve">
+    <value>Ürün görseli</value>
+  </data>
+  <data name="lbSelectCategory" xml:space="preserve">
+    <value>Kategori Seçiniz.</value>
+  </data>
+  <data name="lbSelectedCategory" xml:space="preserve">
+    <value>İncelemekte olduğunuz kategori</value>
+  </data>
+  <data name="lbProductCategories" xml:space="preserve">
+    <value>Ürün Kategorileri</value>
+  </data>
+  <data name="lbAddProperty" xml:space="preserve">
+    <value>Özellik ekle</value>
+  </data>
+  <data name="lbAnalytics" xml:space="preserve">
+    <value>Analytics Kodu</value>
+  </data>
+  <data name="lbBackgroundColor" xml:space="preserve">
+    <value>Arka Plan Rengi</value>
+  </data>
+  <data name="lbBody" xml:space="preserve">
+    <value>Gövde</value>
+  </data>
+  <data name="lbClose" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="lbEditingPlace" xml:space="preserve">
+    <value>Düzenlemekte olduğunuz alan</value>
+  </data>
+  <data name="lbEfect" xml:space="preserve">
+    <value>Efekt</value>
+  </data>
+  <data name="lbFooter" xml:space="preserve">
+    <value>Alt</value>
+  </data>
+  <data name="lbFooterText" xml:space="preserve">
+    <value>Dip Yazı</value>
+  </data>
+  <data name="lbHead" xml:space="preserve">
+    <value>Başlık</value>
+  </data>
+  <data name="lbHeadImage" xml:space="preserve">
+    <value>Ana Görsel</value>
+  </data>
+  <data name="lbHeadImageSettings" xml:space="preserve">
+    <value>Ana Görsel Ayarları</value>
+  </data>
+  <data name="lbMsgInvalidInput" xml:space="preserve">
+    <value>Geçersiz değer.</value>
+  </data>
+  <data name="lbNoticeTitle" xml:space="preserve">
+    <value>Duyuru Başlık</value>
+  </data>
+  <data name="lbOtherSettings" xml:space="preserve">
+    <value>Diğer ayarlar</value>
+  </data>
+  <data name="lbProperty" xml:space="preserve">
+    <value>Özellik</value>
+  </data>
+  <data name="lbSiteMainLanguage" xml:space="preserve">
+    <value>Site Ana Dili</value>
+  </data>
+  <data name="lbSlide" xml:space="preserve">
+    <value>Slayt</value>
+  </data>
+  <data name="lbSlideSettings" xml:space="preserve">
+    <value>Slayt Ayarları</value>
+  </data>
+  <data name="lbSurveyTitle" xml:space="preserve">
+    <value>Anket Başlık</value>
+  </data>
+  <data name="lbTiming" xml:space="preserve">
+    <value>Zamanlama</value>
+  </data>
+  <data name="lbValue" xml:space="preserve">
+    <value>Değer</value>
+  </data>
+  <data name="msgfillAllSiteSettings" xml:space="preserve">
+    <value>Lütfen site ayarlarınızı eksiksiz bir doldurunuz.</value>
+  </data>
+  <data name="lbControl" xml:space="preserve">
+    <value>Kontrol</value>
+  </data>
+  <data name="lbItemField" xml:space="preserve">
+    <value>Bulunduğu alan</value>
+  </data>
+  <data name="lbRememberMe" xml:space="preserve">
+    <value>Beni hatırla</value>
+  </data>
+  <data name="lbAdminPanel" xml:space="preserve">
+    <value>Yönetim Paneli</value>
+  </data>
+  <data name="msgAnErrorOccurred" xml:space="preserve">
+    <value>An error occurred, please try again later</value>
+  </data>
+  <data name="msgSentEMailInfo" xml:space="preserve">
+    <value>Bilgileriniz mail adresinize gönderildi.</value>
+  </data>
+  <data name="lbList" xml:space="preserve">
+    <value>Liste</value>
+  </data>
+  <data name="lbLeftMenu" xml:space="preserve">
+    <value>Yan Menü</value>
+  </data>
+  <data name="lbCapthcaMessage" xml:space="preserve">
+    <value>Resimdeki kodu yazın.</value>
+  </data>
+  <data name="lbRoles" xml:space="preserve">
+    <value>Roller</value>
+  </data>
+  <data name="lbSurname" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="lbUserManagement" xml:space="preserve">
+    <value>Kullanıcı Yönetimi</value>
+  </data>
+  <data name="lbUsers" xml:space="preserve">
+    <value>Kullanıcılar</value>
+  </data>
+  <data name="lbAuthAreas" xml:space="preserve">
+    <value>Yetki Alanları</value>
+  </data>
+  <data name="lbEmail" xml:space="preserve">
+    <value>E-Posta</value>
+  </data>
+  <data name="lbErrorOccurred" xml:space="preserve">
+    <value>Bir hata oluştu. Lütfen tekrar deneyiniz.</value>
+  </data>
+  <data name="lbPassword" xml:space="preserve">
+    <value>Parola</value>
+  </data>
+  <data name="lbRoleName" xml:space="preserve">
+    <value>Rol Adı</value>
+  </data>
+  <data name="lbUserInformationNotValid" xml:space="preserve">
+    <value>Kullanıcı bilgileriniz geçersizdir</value>
+  </data>
+  <data name="msgUnauthorizedUser" xml:space="preserve">
+    <value>Bu bölümü görüntülemek için yetkiniz bulunmamaktadır.</value>
+  </data>
+  <data name="lbWelcomeMessage" xml:space="preserve">
+    <value>Hoşgeldin</value>
+  </data>
+  <data name="lbSiteDefaultLanguage" xml:space="preserve">
+    <value>Site Anadili</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>tr</value>
+  </data>
+  <data name="PageDirection" xml:space="preserve">
+    <value>ltr</value>
+  </data>
+  <data name="msgSelectCategory" xml:space="preserve">
+    <value>Lütfen kategori seçiniz.</value>
+  </data>
+  <data name="msgNoActiveBanner" xml:space="preserve">
+    <value>Bu alanda hiç aktif reklam bulunmuyor.</value>
+  </data>
+  <data name="lbConfirmMsgDeleteCategory" xml:space="preserve">
+    <value>Kategori ile birlikte bu kategorideki albüm ve resimleriniz de silinecektir, silmek istiyor musunuz?</value>
+  </data>
+  <data name="msgEndDateCanNotBeBeforeStartDate" xml:space="preserve">
+    <value>Bitiş tarihi başlangıç tarihinden önce olamaz.</value>
+  </data>
+  <data name="lbChangeMenuOrderToolTip" xml:space="preserve">
+    <value>Sıralamayı değiştirmek için sürükleyin ve bırakın.</value>
+  </data>
+  <data name="lbRssManagement" xml:space="preserve">
+    <value>Harici Rss Yönetimi</value>
+  </data>
+  <data name="lbMaxItem" xml:space="preserve">
+    <value>Maks İçerik</value>
+  </data>
+  <data name="lbRss" xml:space="preserve">
+    <value>Rss</value>
+  </data>
+  <data name="lbRssField" xml:space="preserve">
+    <value>Rss Alanı</value>
+  </data>
+  <data name="lbRssUrl" xml:space="preserve">
+    <value>Rss Adresi</value>
+  </data>
+  <data name="lbScrollRssNames" xml:space="preserve">
+    <value>Kayan RSS</value>
+  </data>
+  <data name="lbMansetNewsList" xml:space="preserve">
+    <value>Haber Liste (Manset)</value>
+  </data>
+  <data name="lbIpAdress" xml:space="preserve">
+    <value>Ip Adresi</value>
+  </data>
+  <data name="lbDeleteAll" xml:space="preserve">
+    <value>Tümünü Sil</value>
+  </data>
+  <data name="lbLogs" xml:space="preserve">
+    <value>Loglar</value>
+  </data>
+  <data name="lbIcerik" xml:space="preserve">
+    <value>İçerik</value>
+  </data>
+  <data name="lbModule" xml:space="preserve">
+    <value>Modül</value>
+  </data>
+  <data name="lbOperation" xml:space="preserve">
+    <value>İşlem</value>
+  </data>
+  <data name="lbUser" xml:space="preserve">
+    <value>Kulanıcı</value>
+  </data>
+  <data name="lbAlbum" xml:space="preserve">
+    <value>Albüm</value>
+  </data>
+  <data name="lbPhoto" xml:space="preserve">
+    <value>Görsel</value>
+  </data>
+  <data name="lbVideo" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="lbSurveyAnsver" xml:space="preserve">
+    <value>Anket Cevabı</value>
+  </data>
+  <data name="lbConfirmMsgDeleteAlbum" xml:space="preserve">
+    <value>Albüm ve tüm alt görselleri silinecektir, silmek istiyor musunuz?</value>
+  </data>
+  <data name="lbConfirmMsgDeletePhoto" xml:space="preserve">
+    <value>Görsel silinecektir, silmek istiyor musunuz?</value>
+  </data>
+  <data name="lbDynamicFieldGroup" xml:space="preserve">
+    <value>Dinamik Grup</value>
+  </data>
+  <data name="lbDynamicFieldItem" xml:space="preserve">
+    <value>Dinamik Öge</value>
+  </data>
+  <data name="lbDynamicFieldReferance" xml:space="preserve">
+    <value>Dinamik Referans</value>
+  </data>
+  <data name="lbLatestUpdatesManagement" xml:space="preserve">
+    <value>Son Güncellenenler Yönetimi</value>
+  </data>
+  <data name="lbLatestUpdatesTitle" xml:space="preserve">
+    <value>En Son Eklenenlerde gözükmesini istediğiniz modülleri seçiniz.</value>
+  </data>
+  <data name="lbLatestUpdates" xml:space="preserve">
+    <value>Son Güncellenenler</value>
+  </data>
+  <data name="lbBackupRestore" xml:space="preserve">
+    <value>Yedekle / Geri yükle</value>
+  </data>
+  <data name="lbDbBackUp" xml:space="preserve">
+    <value>Db Yedekle</value>
+  </data>
+  <data name="lbFileBackUp" xml:space="preserve">
+    <value>Dosyaları Yedekle</value>
+  </data>
+  <data name="lbBackupSuccessful" xml:space="preserve">
+    <value>Yedekleme başarılı bir şekilde yapıldı.</value>
+  </data>
+  <data name="lbMaxBackupReached" xml:space="preserve">
+    <value>Maksimum yedek sayısına ulaşıldı. Yedek almak için mevcut yedeklerden biriniz siliniz.</value>
+  </data>
+  <data name="lbRecoverySuccessful" xml:space="preserve">
+    <value>Geriyükleme başarılı bir şekilde yepıldı.</value>
+  </data>
+  <data name="lbRestore" xml:space="preserve">
+    <value>Geri yükle</value>
+  </data>
+  <data name="lbRestoreQuestion" xml:space="preserve">
+    <value>Bu işlem şu an kullanılan veritabanınızı değiştirecektir; bunun için şu anki veritabanınızın yedeğini almanızı öneririz. İşleme devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="lbErrorsAndNotes" xml:space="preserve">
+    <value>Hatalar ve Notlar</value>
+  </data>
+  <data name="lbMenuHoverImage" xml:space="preserve">
+    <value>Menü Görseli Hover</value>
+  </data>
+  <data name="lbMenuImage" xml:space="preserve">
+    <value>Menü Görseli</value>
+  </data>
+  <data name="lbScriptCode" xml:space="preserve">
+    <value>Script Kodu</value>
+  </data>
+  <data name="lbFormManagement" xml:space="preserve">
+    <value>Form Yönetimi</value>
+  </data>
+  <data name="lbRequiredField" xml:space="preserve">
+    <value>Zorunlu Alan</value>
+  </data>
+  <data name="lbAddForm" xml:space="preserve">
+    <value>Sayfaya Form eklemek için</value>
+  </data>
+  <data name="lbCheckBox" xml:space="preserve">
+    <value>Onay Kutusu</value>
+  </data>
+  <data name="lbDropDownList" xml:space="preserve">
+    <value>Açılır Liste</value>
+  </data>
+  <data name="lbForm" xml:space="preserve">
+    <value>Form</value>
+  </data>
+  <data name="lbFormContent" xml:space="preserve">
+    <value>Form İçeriği</value>
+  </data>
+  <data name="lbFormContentOption" xml:space="preserve">
+    <value>Form İçerik Öğesi</value>
+  </data>
+  <data name="lbMultiLineTextBox" xml:space="preserve">
+    <value>Çok Satırlı Metin Alanı</value>
+  </data>
+  <data name="lbRadioButton" xml:space="preserve">
+    <value>Radyo Butonu</value>
+  </data>
+  <data name="lbTextBox" xml:space="preserve">
+    <value>Metin Alanı</value>
+  </data>
+  <data name="lbListsManagement" xml:space="preserve">
+    <value>Liste Yönetimi</value>
+  </data>
+  <data name="lbListContent" xml:space="preserve">
+    <value>Liste İçeriği</value>
+  </data>
+  <data name="lbNewList" xml:space="preserve">
+    <value>Yeni Liste</value>
+  </data>
+  <data name="lbNewRole" xml:space="preserve">
+    <value>Yeni Kullanıcı Rolü</value>
+  </data>
+  <data name="lbNewRss" xml:space="preserve">
+    <value>Yeni Rss</value>
+  </data>
+  <data name="lbNewSliderImage" xml:space="preserve">
+    <value>Yeni Kayan Görsel</value>
+  </data>
+  <data name="lbNewSss" xml:space="preserve">
+    <value>Yeni SSS</value>
+  </data>
+  <data name="lbNewSssCategory" xml:space="preserve">
+    <value>Yeni SSS Kategori</value>
+  </data>
+  <data name="lbNewUser" xml:space="preserve">
+    <value>Yeni Kullanıcı</value>
+  </data>
+  <data name="lbNewBanner" xml:space="preserve">
+    <value>Yeni Reklam</value>
+  </data>
+  <data name="lbNewEvent" xml:space="preserve">
+    <value>Yeni Etkinlik</value>
+  </data>
+  <data name="lbNewForm" xml:space="preserve">
+    <value>Yeni Form</value>
+  </data>
+  <data name="lbPublishNewBanner" xml:space="preserve">
+    <value>Yeni Reklam Yayınla</value>
+  </data>
+  <data name="lbNewListItem" xml:space="preserve">
+    <value>Yeni Liste Elemanı</value>
+  </data>
+  <data name="lbUrl" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="lbExceptionOccured" xml:space="preserve">
+    <value>Hata oluştu.</value>
+  </data>
+  <data name="lbSiteMaintenanceMode" xml:space="preserve">
+    <value>Site Bakım Modu</value>
+  </data>
+  <data name="msgNoAuth" xml:space="preserve">
+    <value>Bu işlem için yetkiniz bulunmamaktadır.</value>
+  </data>
+  <data name="lbBlackList" xml:space="preserve">
+    <value>Kara Liste</value>
+  </data>
+  <data name="lbGeneratePassword" xml:space="preserve">
+    <value>Parola üret</value>
+  </data>
+  <data name="lbIpFilterManagement" xml:space="preserve">
+    <value>Ip Filtreleme Yönetimi</value>
+  </data>
+  <data name="lbWhiteList" xml:space="preserve">
+    <value>Beyaz Liste</value>
+  </data>
+  <data name="lbNewIp" xml:space="preserve">
+    <value>Yeni Ip</value>
+  </data>
+  <data name="lbFilterType" xml:space="preserve">
+    <value>Filte Tipi</value>
+  </data>
+  <data name="lbCopyMyIpAddress" xml:space="preserve">
+    <value>Ip adresimi kopyala</value>
+  </data>
+  <data name="lbIpFilter" xml:space="preserve">
+    <value>Ip Filtreleme</value>
+  </data>
+  <data name="lbOff" xml:space="preserve">
+    <value>Kapalı</value>
+  </data>
+  <data name="msgWrongIpAddress" xml:space="preserve">
+    <value>Hatalı Ip Adresi Girdiniz!</value>
+  </data>
+  <data name="lbFaq" xml:space="preserve">
+    <value>Sıkça Sorulan Sorular</value>
+  </data>
+  <data name="lbWelcome" xml:space="preserve">
+    <value>&lt;p&gt;eNroll İçerik Yönetim Sistemi’nin zengin yapısına hoş geldiniz.&lt;/p&gt;
+
+&lt;p&gt;Ekranınızın sol tarafında yer alan bölümler aracılığı ile web sitenize içerik girebilir, girilen içerikleri görüntüleyebilir, güncelleyebilir veya silebilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;İçerik Yönetim Sistemimizin üst kısmında bulunan alanlarda ise eNroll İçerik Yönetim Sistemi’ni kullanırken yararlanacağız bir doküman bulabilir, herhangi bir hatayla karşılaştığınızda bize ulaşabilir, mevcut olan verilerinizi yedekleyebilir veya geri yükleyebilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;Eğer içerik gireceğiniz bölümle ilgili olarak destek ihtiyacınız olur ise sayfanın sağ üst köşesindeki yardım bağlantısından Yardım belgesine ulaşabilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;Web sitenizde doğacak yeni ihtiyaçlar, yeni uygulamalar ve özellikler için Müşteri Hizmetleri birimimiz ile iletişime geçebilirsiniz.&lt;/p&gt;</value>
+  </data>
+  <data name="lbMemberSearch" xml:space="preserve">
+    <value>Üye Arama ve Yönetimi</value>
+  </data>
+  <data name="lbSearch" xml:space="preserve">
+    <value>Ara</value>
+  </data>
+  <data name="lbUpdate" xml:space="preserve">
+    <value>Güncelle</value>
+  </data>
+  <data name="lbFoundSearchResult" xml:space="preserve">
+    <value>Sonuç bulundu.</value>
+  </data>
+  <data name="lbNoResult" xml:space="preserve">
+    <value>Sonuç Bulunamadı.</value>
+  </data>
+  <data name="lbShowResults" xml:space="preserve">
+    <value>Sonuçları Göster</value>
+  </data>
+  <data name="lbClearSearchCriterias" xml:space="preserve">
+    <value>Arama Kriterlerini Temizle</value>
+  </data>
+  <data name="lbCommunityManagement" xml:space="preserve">
+    <value>Topluluk Yönetimi</value>
+  </data>
+  <data name="lbNo" xml:space="preserve">
+    <value>Hayır</value>
+  </data>
+  <data name="lbYes" xml:space="preserve">
+    <value>Evet</value>
+  </data>
+  <data name="lbMailAddressTakenAlready" xml:space="preserve">
+    <value>Mail adresi kullanılıyor, lütfen başka bir mail adresi giriniz.</value>
+  </data>
+  <data name="msgMailAddressNotActivated" xml:space="preserve">
+    <value>Mail adresi henüz doğrulanmamış. Lütfen önce onay kodu ile doğrulama işlemini yapınız.</value>
+  </data>
+  <data name="msgQuestionChangeEmailComfirm" xml:space="preserve">
+    <value>Bu işlemle birlikte kullanıcı adı da değişmiş olacaktır. İşleme devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="lbMainEmail" xml:space="preserve">
+    <value>Ana e-posta</value>
+  </data>
+  <data name="lbNewEmail" xml:space="preserve">
+    <value>Yeni E-posta</value>
+  </data>
+  <data name="lbReceiveEmail" xml:space="preserve">
+    <value>E-posta almak istiyorum</value>
+  </data>
+  <data name="lbSendActivationCode" xml:space="preserve">
+    <value>Onay kodu gönder</value>
+  </data>
+  <data name="msgAccountActivationEMailSent" xml:space="preserve">
+    <value>Aktivasyon kodu gönderildi.</value>
+  </data>
+  <data name="lbAdmin" xml:space="preserve">
+    <value>Yönetici</value>
+  </data>
+  <data name="lbBirthDate" xml:space="preserve">
+    <value>Doğum Günü</value>
+  </data>
+  <data name="lbBloodType" xml:space="preserve">
+    <value>Kan Grubu</value>
+  </data>
+  <data name="lbDecease" xml:space="preserve">
+    <value>Vefat</value>
+  </data>
+  <data name="lbDeceaseDate" xml:space="preserve">
+    <value>Vefat Tarihi</value>
+  </data>
+  <data name="lbDownloadAsExcel" xml:space="preserve">
+    <value>Excel olarak indir</value>
+  </data>
+  <data name="lbFatherName" xml:space="preserve">
+    <value>Baba Adı</value>
+  </data>
+  <data name="lbGender" xml:space="preserve">
+    <value>Cinsiyet</value>
+  </data>
+  <data name="lbGsmNo" xml:space="preserve">
+    <value>Cep Telefonu</value>
+  </data>
+  <data name="lbHobby" xml:space="preserve">
+    <value>Hobi</value>
+  </data>
+  <data name="lbHomeAddress" xml:space="preserve">
+    <value>&lt;ev&gt; Adresi</value>
+  </data>
+  <data name="lbHomeCity" xml:space="preserve">
+    <value>&lt;ev&gt; Şehir</value>
+  </data>
+  <data name="lbHomeCountry" xml:space="preserve">
+    <value>&lt;ev&gt; Ülke</value>
+  </data>
+  <data name="lbHomePhone" xml:space="preserve">
+    <value>Ev Telefonu</value>
+  </data>
+  <data name="lbHomeTown" xml:space="preserve">
+    <value>&lt;ev&gt; İlçe</value>
+  </data>
+  <data name="lbHomeZipCode" xml:space="preserve">
+    <value>&lt;ev&gt; Zip kod</value>
+  </data>
+  <data name="lbJob" xml:space="preserve">
+    <value>Meslek</value>
+  </data>
+  <data name="lbJobSector" xml:space="preserve">
+    <value>Sektör</value>
+  </data>
+  <data name="lbLastSchool" xml:space="preserve">
+    <value>Son Okul</value>
+  </data>
+  <data name="lbLastSchoolGraduateDate" xml:space="preserve">
+    <value>Son Okul Mezuniyet Tarihi</value>
+  </data>
+  <data name="lbMarriageDate" xml:space="preserve">
+    <value>Evlilik Tarihi</value>
+  </data>
+  <data name="lbMartialStatus" xml:space="preserve">
+    <value>Medeni Durum</value>
+  </data>
+  <data name="lbMemberFoundation" xml:space="preserve">
+    <value>Üye olduğu kuruluşlar</value>
+  </data>
+  <data name="lbMemberNo" xml:space="preserve">
+    <value>Üye Numarası</value>
+  </data>
+  <data name="lbMemberRelType" xml:space="preserve">
+    <value>Üye İlişki Tipi</value>
+  </data>
+  <data name="lbMembershipDate" xml:space="preserve">
+    <value>Üyelik Tarihi</value>
+  </data>
+  <data name="lbMemberState" xml:space="preserve">
+    <value>Üyelik Durumu</value>
+  </data>
+  <data name="lbMotherName" xml:space="preserve">
+    <value>Anne Adı</value>
+  </data>
+  <data name="lbSpecialNo" xml:space="preserve">
+    <value>Özel Numara</value>
+  </data>
+  <data name="lbTerm" xml:space="preserve">
+    <value>Dönem</value>
+  </data>
+  <data name="lbTermLeader" xml:space="preserve">
+    <value>Dönem Lideri</value>
+  </data>
+  <data name="lbVip" xml:space="preserve">
+    <value>Özel</value>
+  </data>
+  <data name="lbWeb" xml:space="preserve">
+    <value>Web</value>
+  </data>
+  <data name="lbWorkAddress" xml:space="preserve">
+    <value>&lt;iş&gt; Adresi</value>
+  </data>
+  <data name="lbWorkCity" xml:space="preserve">
+    <value>&lt;iş&gt; Şehir</value>
+  </data>
+  <data name="lbWorkCorporation" xml:space="preserve">
+    <value>Bağlı olduğu kurumlar</value>
+  </data>
+  <data name="lbWorkCountry" xml:space="preserve">
+    <value>&lt;iş&gt; Ülke</value>
+  </data>
+  <data name="lbWorkFax" xml:space="preserve">
+    <value>&lt;iş&gt; Faks</value>
+  </data>
+  <data name="lbWorkPhone" xml:space="preserve">
+    <value>&lt;iş&gt; Telefonu</value>
+  </data>
+  <data name="lbWorkTitle" xml:space="preserve">
+    <value>Ünvan</value>
+  </data>
+  <data name="lbWorkTown" xml:space="preserve">
+    <value>&lt;iş&gt; İlçe</value>
+  </data>
+  <data name="lbWorkZipCode" xml:space="preserve">
+    <value>&lt;iş&gt; Posta kodu</value>
+  </data>
+  <data name="lbMan" xml:space="preserve">
+    <value>Erkek</value>
+  </data>
+  <data name="lbMarried" xml:space="preserve">
+    <value>Evli</value>
+  </data>
+  <data name="lbPassive" xml:space="preserve">
+    <value>Pasif</value>
+  </data>
+  <data name="lbSingle" xml:space="preserve">
+    <value>Bekar</value>
+  </data>
+  <data name="lbWoman" xml:space="preserve">
+    <value>Kadın</value>
+  </data>
+  <data name="lbAdminNote" xml:space="preserve">
+    <value>Yönetici Notu</value>
+  </data>
+  <data name="lbSendEmail" xml:space="preserve">
+    <value>E-Posta Gönder</value>
+  </data>
+  <data name="lbDontWantTo" xml:space="preserve">
+    <value>İstemiyorum</value>
+  </data>
+  <data name="lbWantTo" xml:space="preserve">
+    <value>İstiyorum</value>
+  </data>
+  <data name="lbClubNumber" xml:space="preserve">
+    <value>Kurum Numarası</value>
+  </data>
+  <data name="lbSendSms" xml:space="preserve">
+    <value>Sms Gönder</value>
+  </data>
+  <data name="lbMailTemplateManagement" xml:space="preserve">
+    <value>E-Posta Şablon Yönetimi</value>
+  </data>
+  <data name="lbNewMailTemplate" xml:space="preserve">
+    <value>Yeni E-Posta Şablonu</value>
+  </data>
+  <data name="lbMemberActivation" xml:space="preserve">
+    <value>Üye Aktivasyon</value>
+  </data>
+  <data name="lbNewMember" xml:space="preserve">
+    <value>Yeni Üye</value>
+  </data>
+  <data name="lbScheduledJobs" xml:space="preserve">
+    <value>Zamanlandırılmış Görevler</value>
+  </data>
+  <data name="lbAddInfoToContent" xml:space="preserve">
+    <value>İçeriğe kişi bilgisi eklemek için</value>
+  </data>
+  <data name="lbEmailReadReport" xml:space="preserve">
+    <value>E-Posta Okundu Raporu</value>
+  </data>
+  <data name="lbEmailTaskCreated" xml:space="preserve">
+    <value>E-Posta görevi oluşturuldu.</value>
+  </data>
+  <data name="lbEmailTaskSavedInfo" xml:space="preserve">
+    <value>E-Posta görevi {0}'da gönderilmek üzere başarıyla kayıt edildi.</value>
+  </data>
+  <data name="lbGraduation" xml:space="preserve">
+    <value>Mezuniyet</value>
+  </data>
+  <data name="lbJobName" xml:space="preserve">
+    <value>Görev Adı</value>
+  </data>
+  <data name="lbSaveEmailAsTemplate" xml:space="preserve">
+    <value>E-Postayı şablon taslak olarak kaydet</value>
+  </data>
+  <data name="lbSendTime" xml:space="preserve">
+    <value>Gönderim Zamanı</value>
+  </data>
+  <data name="lbSmsTaskCreated" xml:space="preserve">
+    <value>Sms görevi oluşturuldu.</value>
+  </data>
+  <data name="lbSmsTaskSavedInfo" xml:space="preserve">
+    <value>Sms görevi {0}'da gönderilmek üzere başarıyla kayıt edildi.</value>
+  </data>
+  <data name="lbConfirmActivateMember" xml:space="preserve">
+    <value>Üye aktifleştirilecek, devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="lbConfirmPassiveMember" xml:space="preserve">
+    <value>Üye aktifliği iptal edilecek, devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="lbSetActive" xml:space="preserve">
+    <value>Üyeliği Aktif Yap</value>
+  </data>
+  <data name="lbSetPassive" xml:space="preserve">
+    <value>Üyeliği Pasif Yap</value>
+  </data>
+  <data name="lbNotFound" xml:space="preserve">
+    <value>Bulunamadı.</value>
+  </data>
+  <data name="lbDefinitions" xml:space="preserve">
+    <value>Tanımlamalar</value>
+  </data>
+  <data name="lbCity" xml:space="preserve">
+    <value>Şehir</value>
+  </data>
+  <data name="lbCorporationRelTypes" xml:space="preserve">
+    <value>Kişi-Kurum İlişki Tipleri</value>
+  </data>
+  <data name="lbTown" xml:space="preserve">
+    <value>İlçe</value>
+  </data>
+  <data name="lbCountry" xml:space="preserve">
+    <value>Ülke</value>
+  </data>
+  <data name="msgSelectAtLeastOneElement" xml:space="preserve">
+    <value>*Listeden en az bir eleman seçmeniz gerekiyor!</value>
+  </data>
+  <data name="lbDefinitionIntro" xml:space="preserve">
+    <value>Düzenlemek istediğiniz tanımlama kategorisini yukarıdaki menüden seçiniz.</value>
+  </data>
+  <data name="lbConfirmMsgDeleteCity" xml:space="preserve">
+    <value>Şehir ile birlikte bu şehire ait ilçeler de silinecektir, silmek istiyor musunuz?</value>
+  </data>
+  <data name="lbConfirmMsgDeleteCountry" xml:space="preserve">
+    <value>Ülke ile birlikte bu bu ülkeye ait şehir ve ilçeler de silinecektir, silmek istiyor musunuz?</value>
+  </data>
+  <data name="lbLeft" xml:space="preserve">
+    <value>Sol</value>
+  </data>
+  <data name="lbRight" xml:space="preserve">
+    <value>Sağ</value>
+  </data>
+  <data name="lbSymbol" xml:space="preserve">
+    <value>Sembol</value>
+  </data>
+  <data name="lbSymbolPosition" xml:space="preserve">
+    <value>Sembol Pozisyonu</value>
+  </data>
+  <data name="lbConfirmMsgDeleteMember" xml:space="preserve">
+    <value>Kullanıcı silinmesi işlemi sonucunda bu kullanıcıya ait tüm bilgiler sistemden silinecektir. Devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="lbReadReport" xml:space="preserve">
+    <value>Okundu Raporu</value>
+  </data>
+  <data name="lbSendReport" xml:space="preserve">
+    <value>Gönderim Raporu</value>
+  </data>
+  <data name="lbSendType" xml:space="preserve">
+    <value>Gönderim Tipi</value>
+  </data>
+  <data name="lbShowMail" xml:space="preserve">
+    <value>E-Posta Görüntüle</value>
+  </data>
+  <data name="lbAll" xml:space="preserve">
+    <value>Hepsi</value>
+  </data>
+  <data name="lbNotKnown" xml:space="preserve">
+    <value>Bilinmiyor</value>
+  </data>
+  <data name="lbNotSent" xml:space="preserve">
+    <value>Gönderilmedi</value>
+  </data>
+  <data name="lbSent" xml:space="preserve">
+    <value>Gönderildi</value>
+  </data>
+  <data name="lbRead" xml:space="preserve">
+    <value>Okundu</value>
+  </data>
+  <data name="lbNotRead" xml:space="preserve">
+    <value>Okunmadı</value>
+  </data>
+  <data name="lbOtherEmail" xml:space="preserve">
+    <value>Diğer E-Posta Adresleri</value>
+  </data>
+  <data name="lbCode" xml:space="preserve">
+    <value>Kod</value>
+  </data>
+  <data name="lbDues" xml:space="preserve">
+    <value>Aidat</value>
+  </data>
+  <data name="lbDuesType" xml:space="preserve">
+    <value>Aidat Tipi</value>
+  </data>
+  <data name="lbFinanceManager" xml:space="preserve">
+    <value>Finans Yönetimi</value>
+  </data>
+  <data name="lbAddDept" xml:space="preserve">
+    <value>Borçlandır</value>
+  </data>
+  <data name="lbBack" xml:space="preserve">
+    <value>Geri</value>
+  </data>
+  <data name="lbChargesForDues" xml:space="preserve">
+    <value>Aidat Borçlandırmaları</value>
+  </data>
+  <data name="lbCorporationNumber" xml:space="preserve">
+    <value>Kurum Numarası</value>
+  </data>
+  <data name="lbCurrentDebtAmount" xml:space="preserve">
+    <value>Güncel Bakiye</value>
+  </data>
+  <data name="lbGraduateDate" xml:space="preserve">
+    <value>Mezuniyet Dönemi</value>
+  </data>
+  <data name="lbPaymentDues" xml:space="preserve">
+    <value>Aidat Ödemeleri</value>
+  </data>
+  <data name="lbSearchPage" xml:space="preserve">
+    <value>Arama Sayfası</value>
+  </data>
+  <data name="lbMemberInfo" xml:space="preserve">
+    <value>Üye Bilgileri</value>
+  </data>
+  <data name="lbPaymentAmount" xml:space="preserve">
+    <value>Ödeme Tutarı</value>
+  </data>
+  <data name="lbPaymentDate" xml:space="preserve">
+    <value>Ödeme Tarihi</value>
+  </data>
+  <data name="lbPaymentInfo" xml:space="preserve">
+    <value>Ödeme Bilgileri</value>
+  </data>
+  <data name="lbPaymentType" xml:space="preserve">
+    <value>Ödeme Tipi</value>
+  </data>
+  <data name="lbProvisionNumber" xml:space="preserve">
+    <value>Provizyon No</value>
+  </data>
+  <data name="lbReceiptInvoiceDate" xml:space="preserve">
+    <value>Makbuz/Fatura Tarihi</value>
+  </data>
+  <data name="lbReceiptInvoiceNumber" xml:space="preserve">
+    <value>Makbuz/Fatura No</value>
+  </data>
+  <data name="lbRelationType" xml:space="preserve">
+    <value>İlişki Tipi</value>
+  </data>
+  <data name="lbScheduledJobsStatusReport" xml:space="preserve">
+    <value>Zamanlandırılmış Görevler Durum Raporu</value>
+  </data>
+  <data name="lbShowReports" xml:space="preserve">
+    <value>Rapor Görüntüle</value>
+  </data>
+  <data name="msgTheReceiptInvoiceNumberUsedBefore" xml:space="preserve">
+    <value>Bu makbuz/fatura numarası sisteme daha önceden kayıtlı.</value>
+  </data>
+  <data name="lbDuesDate" xml:space="preserve">
+    <value>Borçlandırılma Tarihi</value>
+  </data>
+  <data name="lbHide" xml:space="preserve">
+    <value>Gizle</value>
+  </data>
+  <data name="lbOpen" xml:space="preserve">
+    <value>Aç</value>
+  </data>
+  <data name="lbShow" xml:space="preserve">
+    <value>Göster</value>
+  </data>
+  <data name="lbDirectoryDeleteFailed" xml:space="preserve">
+    <value>Klasör boş olmadığı için silme işlemi yapılamıyor!</value>
+  </data>
+  <data name="lbConfirmUnBlockMember" xml:space="preserve">
+    <value>Üyenin engellemesi iptal edilecek ve üyeliği aktifleşecektir, işleme devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="lbUnBlockMember" xml:space="preserve">
+    <value>Engellemeyi Kaldır</value>
+  </data>
+  <data name="lbBlocked" xml:space="preserve">
+    <value>Engellenmiş</value>
+  </data>
+  <data name="msgNoMemberFound" xml:space="preserve">
+    <value>Üye bulunamadı.</value>
+  </data>
+  <data name="msgVerificationCodeSentMember" xml:space="preserve">
+    <value>{0} kişiye onay maili gönderildi.</value>
+  </data>
+  <data name="lbConfirmMember" xml:space="preserve">
+    <value>Üyeliği Onayla</value>
+  </data>
+  <data name="lbWaitingForApproval" xml:space="preserve">
+    <value>Onay Bekleyenler</value>
+  </data>
+  <data name="lbAmount" xml:space="preserve">
+    <value>Tutar</value>
+  </data>
+  <data name="lbCreatedUser" xml:space="preserve">
+    <value>İşlem Yapan Kişi</value>
+  </data>
+  <data name="lbDuesPaymentDate" xml:space="preserve">
+    <value>Borçlandırılma/Ödeme Tarihi</value>
+  </data>
+  <data name="lbProcess" xml:space="preserve">
+    <value>İşlem</value>
+  </data>
+  <data name="msgMemberActivated" xml:space="preserve">
+    <value>Üyelik aktifleştirildi.</value>
+  </data>
+  <data name="msgMemberDeactivated" xml:space="preserve">
+    <value>Üyelik pasifleştirildi.</value>
+  </data>
+  <data name="lbProcessDate" xml:space="preserve">
+    <value>İşlem Tarihi</value>
+  </data>
+  <data name="lbDept" xml:space="preserve">
+    <value>Borçlandırılma</value>
+  </data>
+  <data name="lbPayment" xml:space="preserve">
+    <value>Ödeme</value>
+  </data>
+  <data name="lbProcessUser" xml:space="preserve">
+    <value>İşlem Yapan Kişi</value>
+  </data>
+  <data name="lbUniqeDues" xml:space="preserve">
+    <value>Her üye sadece bir kez borçlandırılabilir.</value>
+  </data>
+  <data name="lbAllMembersBeforeChargedDues" xml:space="preserve">
+    <value>Üyeler daha önce borçlandırılmış.</value>
+  </data>
+  <data name="lbAllMembersChargedDues" xml:space="preserve">
+    <value>Üyeler borçlandırıldı.</value>
+  </data>
+  <data name="lbNoMembersFound" xml:space="preserve">
+    <value>Üye bulunamadı.</value>
+  </data>
+  <data name="lbSomeMembersBeforeChargedDues" xml:space="preserve">
+    <value>Üyelerden bazıları daha önce borçlandırılmış.</value>
+  </data>
+  <data name="lbCurrencyUnit" xml:space="preserve">
+    <value>Para Birimi</value>
+  </data>
+  <data name="lbSiteMainCurrencyUnit" xml:space="preserve">
+    <value>Site Ana Para Birimi</value>
+  </data>
+  <data name="lbCanNotDeleteDefaultCurrency" xml:space="preserve">
+    <value>Sitenin ana para birimi olarak seçildiği için silemezsiniz.</value>
+  </data>
+  <data name="lbAddDeptMember" xml:space="preserve">
+    <value>Üye Borçlandırma</value>
+  </data>
+  <data name="lbAddPaymentData" xml:space="preserve">
+    <value>Ödeme Bilgisi Gir</value>
+  </data>
+  <data name="lbDebiting" xml:space="preserve">
+    <value>Borçlandırma</value>
+  </data>
+  <data name="lbDuesHistory" xml:space="preserve">
+    <value>Aidat Geçmişi</value>
+  </data>
+  <data name="lbEmailCount" xml:space="preserve">
+    <value>E-Posta Sayısı</value>
+  </data>
+  <data name="lbFilterByEmail" xml:space="preserve">
+    <value>E-Posta Ara</value>
+  </data>
+  <data name="lbFilterResults" xml:space="preserve">
+    <value>Sonuçları Filtrele</value>
+  </data>
+  <data name="lbGraphReport" xml:space="preserve">
+    <value>Grafik Raporu</value>
+  </data>
+  <data name="lbJobCreated" xml:space="preserve">
+    <value>Görev Oluşturuldu</value>
+  </data>
+  <data name="lbSms" xml:space="preserve">
+    <value>Sms</value>
+  </data>
+  <data name="lbWaiting" xml:space="preserve">
+    <value>Beklemede</value>
+  </data>
+  <data name="msgNoUnpaidDept" xml:space="preserve">
+    <value>Ödenmemiş borç kalmamıştır.</value>
+  </data>
+  <data name="msgUpdateGeneralDept" xml:space="preserve">
+    <value>Ödenmemiş borçlar {0}{1}{2} olarak güncellendi.</value>
+  </data>
+  <data name="lbEmailInfo" xml:space="preserve">
+    <value>E-posta Bilgileri</value>
+  </data>
+  <data name="lbHomeInfo" xml:space="preserve">
+    <value>Ev Bilgileri</value>
+  </data>
+  <data name="lbMembershipInfo" xml:space="preserve">
+    <value>Üyelik Bilgileri</value>
+  </data>
+  <data name="lbPersonalInfo" xml:space="preserve">
+    <value>Kişisel Bilgileri</value>
+  </data>
+  <data name="lbResendActivationMail" xml:space="preserve">
+    <value>Aktivasyon Mailini Gönder</value>
+  </data>
+  <data name="lbTC" xml:space="preserve">
+    <value>Kimlik Numarası</value>
+  </data>
+  <data name="lbWorkInfo" xml:space="preserve">
+    <value>İş Bilgileri</value>
+  </data>
+  <data name="lbPaymentType1" xml:space="preserve">
+    <value>Web Üzerinden Kredi Kartı</value>
+  </data>
+  <data name="lbPaymentType2" xml:space="preserve">
+    <value>Kredi Kartı</value>
+  </data>
+  <data name="lbPaymentType3" xml:space="preserve">
+    <value>Havale</value>
+  </data>
+  <data name="lbPaymentType4" xml:space="preserve">
+    <value>Nakit</value>
+  </data>
+  <data name="lbInvalidMembers" xml:space="preserve">
+    <value>Geçersiz Üyelikler</value>
+  </data>
+  <data name="lbUnverifiedMembers" xml:space="preserve">
+    <value>Mail adresi onaylanmamış üyeler.</value>
+  </data>
+  <data name="lbGeneralDebt" xml:space="preserve">
+    <value>Genel Borç</value>
+  </data>
+  <data name="lbAutoPaymentOrder" xml:space="preserve">
+    <value>Otomatik Ödeme Talimatı</value>
+  </data>
+  <data name="lbEducationInfo" xml:space="preserve">
+    <value>Eğitim Bilgileri</value>
+  </data>
+  <data name="lbMember" xml:space="preserve">
+    <value>Üye</value>
+  </data>
+  <data name="lbOtherInfo" xml:space="preserve">
+    <value>Diğer Bilgiler</value>
+  </data>
+  <data name="lbAddress" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="lbBirthPlace" xml:space="preserve">
+    <value>Doğum Yeri</value>
+  </data>
+  <data name="lbEnterDate" xml:space="preserve">
+    <value>Giriş Tarihi</value>
+  </data>
+  <data name="lbFax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="lbHideJobInfo" xml:space="preserve">
+    <value>İş Bilgilerini Gizle</value>
+  </data>
+  <data name="lbHidePersonalInfo" xml:space="preserve">
+    <value>Kişisel Bilgileri Gizle</value>
+  </data>
+  <data name="lbMemberNumber" xml:space="preserve">
+    <value>Üye Numarası</value>
+  </data>
+  <data name="lbMemberType" xml:space="preserve">
+    <value>Üye Tipi</value>
+  </data>
+  <data name="lbPhone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="lbPhotoUrl" xml:space="preserve">
+    <value>Fotoğraf</value>
+  </data>
+  <data name="lbSpecialNumber" xml:space="preserve">
+    <value>Özel Numara</value>
+  </data>
+  <data name="lbZipCode" xml:space="preserve">
+    <value>Posta Kodu</value>
+  </data>
+  <data name="lbActiveToolTip" xml:space="preserve">
+    <value>Aktif üyeler.</value>
+  </data>
+  <data name="lbInvalidMembersToolTip" xml:space="preserve">
+    <value>E-Posta adresini onaylanmayan üyeler.</value>
+  </data>
+  <data name="lbPassiveToolTip" xml:space="preserve">
+    <value>Pasif üyeler.</value>
+  </data>
+  <data name="lbWaitingForApprovalToolTip" xml:space="preserve">
+    <value>Üyeliği onaylanması için bekleyen üyeler.</value>
+  </data>
+  <data name="msgConfirmRemoveOwnRole" xml:space="preserve">
+    <value>Kendi rolünü kaldırmak üzeresin, bu işlemi geri alamazsınız!</value>
+  </data>
+  <data name="msgReceiptNumberAlreadySaved" xml:space="preserve">
+    <value>Girmiş olduğunuz Fatura/Makbuz numarası sistemde kayıtlı. \nLütfen kontrol ediniz.</value>
+  </data>
+  <data name="lbNumber" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="lbEMailManagement" xml:space="preserve">
+    <value>E-Posta Yönetimi</value>
+  </data>
+  <data name="lbFinanceManagement" xml:space="preserve">
+    <value>Finans Yönetimi</value>
+  </data>
+  <data name="lbNewRandomField" xml:space="preserve">
+    <value>Yeni Rastgele Alan</value>
+  </data>
+  <data name="lbRandomFields" xml:space="preserve">
+    <value>Rastgele Alanlar</value>
+  </data>
+  <data name="lbSmsManagement" xml:space="preserve">
+    <value>Sms Yönetimi</value>
+  </data>
+  <data name="lbRandomField" xml:space="preserve">
+    <value>Rastgele Alan</value>
+  </data>
+  <data name="lbCorporationManagement" xml:space="preserve">
+    <value>Kurum Yönetimi</value>
+  </data>
+  <data name="lbNewCorporation" xml:space="preserve">
+    <value>Yeni Kurum</value>
+  </data>
+  <data name="lbAddressDetail" xml:space="preserve">
+    <value>Açık Adres</value>
+  </data>
+  <data name="lbAddNew" xml:space="preserve">
+    <value>Yeni Ekle</value>
+  </data>
+  <data name="lbAddNewAddress" xml:space="preserve">
+    <value>Yeni Adres Ekle</value>
+  </data>
+  <data name="lbAddNewUsers" xml:space="preserve">
+    <value>Yeni Kişi Ekle</value>
+  </data>
+  <data name="lbAddUsers" xml:space="preserve">
+    <value>Kişi Ekle</value>
+  </data>
+  <data name="lbContactAddress" xml:space="preserve">
+    <value>İletişim Adresi</value>
+  </data>
+  <data name="lbCorporation" xml:space="preserve">
+    <value>Kurum</value>
+  </data>
+  <data name="lbCorporationInfo" xml:space="preserve">
+    <value>Kuruma Ait Bilgiler</value>
+  </data>
+  <data name="lbCorporationUsers" xml:space="preserve">
+    <value>Kurumdaki Kişiler</value>
+  </data>
+  <data name="lbInvoiceAddress" xml:space="preserve">
+    <value>Fatura Adresi</value>
+  </data>
+  <data name="lbNewContactEMail" xml:space="preserve">
+    <value>Yeni İletişim Maili</value>
+  </data>
+  <data name="lbNewInvoiceEMail" xml:space="preserve">
+    <value>Yeni Fatura Maili</value>
+  </data>
+  <data name="lbTaxNumber" xml:space="preserve">
+    <value>Vergi Numarası</value>
+  </data>
+  <data name="lbUserCount" xml:space="preserve">
+    <value>Kişi Sayısı</value>
+  </data>
+  <data name="lbTaxDept" xml:space="preserve">
+    <value>Vergi Dairesi</value>
+  </data>
+  <data name="lbCorporationSearch" xml:space="preserve">
+    <value>Kurum Arama ve Yönetimi</value>
+  </data>
+  <data name="lbFilterUsers" xml:space="preserve">
+    <value>Kişileri Filterele</value>
+  </data>
+  <data name="lbFinanceHistory" xml:space="preserve">
+    <value>Finans Geçmişi</value>
+  </data>
+  <data name="lbAddDeptCorporation" xml:space="preserve">
+    <value>Kurum Borçlandırma</value>
+  </data>
+  <data name="lbAboutCorporationInfo" xml:space="preserve">
+    <value>Kurum Bilgileri</value>
+  </data>
+  <data name="lbAllCorporationsChargedDues" xml:space="preserve">
+    <value>Kurumlar borçlandırıldı.</value>
+  </data>
+  <data name="lbInvoice" xml:space="preserve">
+    <value>Faturalandır</value>
+  </data>
+  <data name="lbServiceInvoice" xml:space="preserve">
+    <value>Hizmet Faturası</value>
+  </data>
+  <data name="lbNotInvoiced" xml:space="preserve">
+    <value>Faturalandırılmamış</value>
+  </data>
+  <data name="lbNote" xml:space="preserve">
+    <value>Not</value>
+  </data>
+  <data name="lbServiceType" xml:space="preserve">
+    <value>Hizmet Tipi</value>
+  </data>
+  <data name="lbService" xml:space="preserve">
+    <value>Hizmet</value>
+  </data>
+  <data name="lbConfirmDeleteCorporation" xml:space="preserve">
+    <value>Kurum ve bu kuruma ait tüm bilgiler silinecektir. İşleme devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="lbInvoiced" xml:space="preserve">
+    <value>Faturalandırılmış</value>
+  </data>
+  <data name="msgServiceInvoicedSuccesfully" xml:space="preserve">
+    <value>Hizmet faturalandırma işlemi başarılı bir şekilde yapıldı.</value>
+  </data>
+  <data name="lbTaxType" xml:space="preserve">
+    <value>Vergi Tipi</value>
+  </data>
+  <data name="confirmMessageInvoicing" xml:space="preserve">
+    <value>{0} ile borçlandırılıyor, onaylıyor musunuz?</value>
+  </data>
+  <data name="lbFinanceLogs" xml:space="preserve">
+    <value>Hesap Hareketleri</value>
+  </data>
+  <data name="lbMemberManagement" xml:space="preserve">
+    <value>Kişi Yönetimi</value>
+  </data>
+  <data name="lbEnd" xml:space="preserve">
+    <value>Bitiş</value>
+  </data>
+  <data name="lbStart" xml:space="preserve">
+    <value>Başlangıç</value>
+  </data>
+  <data name="lbFilterOptions" xml:space="preserve">
+    <value>Filtreleme Seçenekleri</value>
+  </data>
+  <data name="msgNewMemberCreated" xml:space="preserve">
+    <value>Yeni üye başarılı bir şekilde oluşturuldu.</value>
+  </data>
+  <data name="lbDefault" xml:space="preserve">
+    <value>Varsayılan</value>
+  </data>
+  <data name="msgTemplateUsing" xml:space="preserve">
+    <value>Bu şablon kullanıldığı için silinemez.</value>
+  </data>
+  <data name="lbConfirmCancelInvoice" xml:space="preserve">
+    <value>Fatura iptal edilecek ve bakiye güncellenecektir. Devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="lbCorporationName" xml:space="preserve">
+    <value>Kurum Adı</value>
+  </data>
+  <data name="msgConfirmOperationWillNotGetBack" xml:space="preserve">
+    <value>Bu işlem geri alınamaz. Devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="lbInvoiceDate" xml:space="preserve">
+    <value>Fatura Tarihi</value>
+  </data>
+  <data name="lbServiceAmount" xml:space="preserve">
+    <value>İşlem Tutarı</value>
+  </data>
+  <data name="lbCorporationChargedDues" xml:space="preserve">
+    <value>Kurum borçlandırıldı.</value>
+  </data>
+  <data name="lbConfirmDeleteDuesLog" xml:space="preserve">
+    <value>İşlem henüz faturalandırılmamış. Silmek istiyor musunuz?</value>
+  </data>
+  <data name="lbCancelInvoice" xml:space="preserve">
+    <value>Fatura İptali</value>
+  </data>
+  <data name="lbDeleteDebiting" xml:space="preserve">
+    <value>Borçlandırma İşlemi Silme</value>
+  </data>
+  <data name="lbDeletePayment" xml:space="preserve">
+    <value>Ödeme İşlemi Silme</value>
+  </data>
+  <data name="lbInvoicing" xml:space="preserve">
+    <value>Faturalandırma</value>
+  </data>
+  <data name="lbConfirmDeletePayment" xml:space="preserve">
+    <value>Ödeme silinecektir, bu işlem geri alınamaz! Devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="AlreadyExistInSystem" xml:space="preserve">
+    <value>sistemde daha önceden kayıtlı.</value>
+  </data>
+</root>

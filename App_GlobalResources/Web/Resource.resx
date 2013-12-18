@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btGenderFemale" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="btGenderMale" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="btSend" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="details" xml:space="preserve">
+    <value>details »</value>
+  </data>
+  <data name="errEmail" xml:space="preserve">
+    <value>Invalid Mail Address.</value>
+  </data>
+  <data name="errEmailRequired" xml:space="preserve">
+    <value>Please enter the e-mail address.</value>
+  </data>
+  <data name="first" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="last" xml:space="preserve">
+    <value>Last</value>
+  </data>
+  <data name="lbActivitiesPast" xml:space="preserve">
+    <value>Past Activities</value>
+  </data>
+  <data name="lbActivitiesTitle" xml:space="preserve">
+    <value>Activities</value>
+  </data>
+  <data name="lbActivityDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="lbActivityDesc" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="lbActivityEndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="lbActivityName" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="lbActivityStartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="lbAllGalleries" xml:space="preserve">
+    <value>All Galleries »</value>
+  </data>
+  <data name="lbAllNews" xml:space="preserve">
+    <value>All News</value>
+  </data>
+  <data name="lbAllNotices" xml:space="preserve">
+    <value>All Notices</value>
+  </data>
+  <data name="lbAllPhotos" xml:space="preserve">
+    <value>All Photos »</value>
+  </data>
+  <data name="lbBack" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="lbBirthDate" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="lbBirthPlace" xml:space="preserve">
+    <value>Place of Birth</value>
+  </data>
+  <data name="lbCalenderTitle" xml:space="preserve">
+    <value>Activities</value>
+  </data>
+  <data name="lbClaim" xml:space="preserve">
+    <value>Amount of Claim</value>
+  </data>
+  <data name="lbComputer" xml:space="preserve">
+    <value>Computer Knowledge</value>
+  </data>
+  <data name="lbContactForm" xml:space="preserve">
+    <value>Contact Form</value>
+  </data>
+  <data name="lbDriveL" xml:space="preserve">
+    <value>Driver License</value>
+  </data>
+  <data name="lbEducation" xml:space="preserve">
+    <value>Educational Attainment</value>
+  </data>
+  <data name="lbEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="lbEmailAdd" xml:space="preserve">
+    <value>Join our e-mail list.</value>
+  </data>
+  <data name="lbEmailAddSuccess" xml:space="preserve">
+    <value>Thank you for participating in e-mail list.</value>
+  </data>
+  <data name="lbExcBuy" xml:space="preserve">
+    <value>Buy</value>
+  </data>
+  <data name="lbExcSale" xml:space="preserve">
+    <value>Sale</value>
+  </data>
+  <data name="lbExcTitle" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="lbFLang" xml:space="preserve">
+    <value>Foreign Language</value>
+  </data>
+  <data name="lbHealth" xml:space="preserve">
+    <value>Health Problem</value>
+  </data>
+  <data name="lbHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="lbHomeAddr" xml:space="preserve">
+    <value>Home Address</value>
+  </data>
+  <data name="lbJobForm" xml:space="preserve">
+    <value>Job Application Form</value>
+  </data>
+  <data name="lbMarriage" xml:space="preserve">
+    <value>Marital Status</value>
+  </data>
+  <data name="lbMessage" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="lbMessageFail" xml:space="preserve">
+    <value>Your message could not be sent. Please fill in all fields and try again. Thank you.</value>
+  </data>
+  <data name="lbMessageSend" xml:space="preserve">
+    <value>Message sent. Thank you.</value>
+  </data>
+  <data name="lbMessageTitle" xml:space="preserve">
+    <value>Contact Form</value>
+  </data>
+  <data name="lbName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="lbNation" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
+  <data name="lbPastWorks" xml:space="preserve">
+    <value>Job History</value>
+  </data>
+  <data name="lbPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="lbReferences" xml:space="preserve">
+    <value>References</value>
+  </data>
+  <data name="lbSex" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="lbSoldiery" xml:space="preserve">
+    <value>Military Service</value>
+  </data>
+  <data name="lbSSSNoCategory" xml:space="preserve">
+    <value>No category found.</value>
+  </data>
+  <data name="lbViewAll" xml:space="preserve">
+    <value>View All</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="phEmailAdd" xml:space="preserve">
+    <value>~/App_Themes/mainTheme/images/mailadd.png</value>
+  </data>
+  <data name="prev" xml:space="preserve">
+    <value>Prev</value>
+  </data>
+  <data name="titlePhotoGalleryMain" xml:space="preserve">
+    <value>Photo Gallery</value>
+  </data>
+  <data name="titleVideoGalleryMain" xml:space="preserve">
+    <value>Video Gallery</value>
+  </data>
+  <data name="lbCategoryOtherProducts" xml:space="preserve">
+    <value>Other products in this category :</value>
+  </data>
+  <data name="lbPrice" xml:space="preserve">
+    <value>Price:</value>
+  </data>
+  <data name="lbPriceCurrency" xml:space="preserve">
+    <value>$</value>
+  </data>
+  <data name="titleProductCategoryMain" xml:space="preserve">
+    <value>Product Category</value>
+  </data>
+  <data name="imgDetails" xml:space="preserve">
+    <value>~/App_Themes/mainTheme/images/details.png</value>
+  </data>
+  <data name="errResultNotFound" xml:space="preserve">
+    <value>Result Not Found.</value>
+  </data>
+  <data name="lbAddNew" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="lbChoose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="lbSearchWordMinLength" xml:space="preserve">
+    <value>Must consist of at least 3 letters and the words you want to call must not contain special characters.</value>
+  </data>
+  <data name="lbSearchInSite" xml:space="preserve">
+    <value>Search In Site</value>
+  </data>
+  <data name="lbSearchNoResult" xml:space="preserve">
+    <value>No result found.</value>
+  </data>
+  <data name="lbSearchResult" xml:space="preserve">
+    <value>results found.</value>
+  </data>
+  <data name="PageDirection" xml:space="preserve">
+    <value>ltr</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>en</value>
+  </data>
+  <data name="lbNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="lbLogin" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="lbLostPassWord" xml:space="preserve">
+    <value>Lost Password?</value>
+  </data>
+  <data name="lbPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="lbSend" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="lbUILanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="lbUserName" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="lbSelectFileType" xml:space="preserve">
+    <value>Select the type of file you want to add.</value>
+  </data>
+  <data name="lbMenu" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="lbViewFullSite" xml:space="preserve">
+    <value>View Full Site</value>
+  </data>
+  <data name="lbSearchResultEvents" xml:space="preserve">
+    <value>In Events;</value>
+  </data>
+  <data name="lbSearchResultMenu" xml:space="preserve">
+    <value>In Pages;</value>
+  </data>
+  <data name="lbSearchResultNews" xml:space="preserve">
+    <value>In News;</value>
+  </data>
+  <data name="lbSearchResultNotices" xml:space="preserve">
+    <value>In Notices;</value>
+  </data>
+  <data name="lbSearchResultProducts" xml:space="preserve">
+    <value>In Products;</value>
+  </data>
+  <data name="lbSearchTotal" xml:space="preserve">
+    <value>total</value>
+  </data>
+  <data name="lbNameSurname" xml:space="preserve">
+    <value>Name Surname</value>
+  </data>
+  <data name="lbSurname" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="lb404msg" xml:space="preserve">
+    <value>The page you requested may have been moved or removed.&lt;br /&gt;Search for the page you want to access from the search box below.</value>
+  </data>
+  <data name="lb404Title" xml:space="preserve">
+    <value>404</value>
+  </data>
+  <data name="lbCapthcaErrorMessage" xml:space="preserve">
+    <value>Wrong code</value>
+  </data>
+  <data name="lbCapthcaMessage" xml:space="preserve">
+    <value>Verify Code</value>
+  </data>
+  <data name="lbEvent" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="lbNews" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="lbNotice" xml:space="preserve">
+    <value>Notice</value>
+  </data>
+  <data name="lbPage" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="lbPhoto" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="lbPhotoAlbum" xml:space="preserve">
+    <value>Photo Album</value>
+  </data>
+  <data name="lbPhotoAlbumCategory" xml:space="preserve">
+    <value>Photo Album Category</value>
+  </data>
+  <data name="lbProduct" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="lbProductCategory" xml:space="preserve">
+    <value>Product Category</value>
+  </data>
+  <data name="lbVideo" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="lbVideoCategory" xml:space="preserve">
+    <value>Video Album</value>
+  </data>
+  <data name="lbnoticeHeader" xml:space="preserve">
+    <value>Notices</value>
+  </data>
+  <data name="lbsurveyHeader" xml:space="preserve">
+    <value>Survey</value>
+  </data>
+  <data name="lbRequiredFieldMessage" xml:space="preserve">
+    <value>required field!</value>
+  </data>
+  <data name="lbIpAdress" xml:space="preserve">
+    <value>Ip Adress</value>
+  </data>
+  <data name="lbUploadErrorFileType" xml:space="preserve">
+    <value>File type you uploaded inconvenient, transaction was canceled.</value>
+  </data>
+  <data name="lbAsc" xml:space="preserve">
+    <value>Ascending</value>
+  </data>
+  <data name="lbDesc" xml:space="preserve">
+    <value>Descending</value>
+  </data>
+  <data name="lbByDate" xml:space="preserve">
+    <value>By Date</value>
+  </data>
+  <data name="lbByTitle" xml:space="preserve">
+    <value>By Title</value>
+  </data>
+  <data name="lbSort" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="lbNewMembership" xml:space="preserve">
+    <value>New Membership</value>
+  </data>
+  <data name="lbAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="lbAdminNote" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="lbAllowSms" xml:space="preserve">
+    <value>Sms gönderilsin mi?</value>
+  </data>
+  <data name="lbBloodType" xml:space="preserve">
+    <value>Blood Type</value>
+  </data>
+  <data name="lbCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="lbCountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="lbDecease" xml:space="preserve">
+    <value>Decease</value>
+  </data>
+  <data name="lbDeceaseDate" xml:space="preserve">
+    <value>Decease Date</value>
+  </data>
+  <data name="lbFatherName" xml:space="preserve">
+    <value>Father Name</value>
+  </data>
+  <data name="lbFax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="lbGender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="lbGsmNo" xml:space="preserve">
+    <value>Cell Number</value>
+  </data>
+  <data name="lbHideJobInfo" xml:space="preserve">
+    <value>Hide my job details</value>
+  </data>
+  <data name="lbHidePersonalInfo" xml:space="preserve">
+    <value>Hide my personal information</value>
+  </data>
+  <data name="lbHobby" xml:space="preserve">
+    <value>Hobbies</value>
+  </data>
+  <data name="lbJob" xml:space="preserve">
+    <value>Job</value>
+  </data>
+  <data name="lbJobSector" xml:space="preserve">
+    <value>Sector</value>
+  </data>
+  <data name="lbLastSchool" xml:space="preserve">
+    <value>Last Graduated School</value>
+  </data>
+  <data name="lbLastSchoolGraduateDate" xml:space="preserve">
+    <value>Last Graduate Date</value>
+  </data>
+  <data name="lbMaidenName" xml:space="preserve">
+    <value>Maiden Name</value>
+  </data>
+  <data name="lbMaritalStatus" xml:space="preserve">
+    <value>Martial Status</value>
+  </data>
+  <data name="lbMarriageDate" xml:space="preserve">
+    <value>Marriage Date</value>
+  </data>
+  <data name="lbMemberFoundation" xml:space="preserve">
+    <value>MemberFoundation</value>
+  </data>
+  <data name="lbMotherName" xml:space="preserve">
+    <value>Mother Name</value>
+  </data>
+  <data name="lbPhotoUrl" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="lbTown" xml:space="preserve">
+    <value>Town</value>
+  </data>
+  <data name="lbWeb" xml:space="preserve">
+    <value>Web</value>
+  </data>
+  <data name="lbWorkCorporation" xml:space="preserve">
+    <value>Corporation</value>
+  </data>
+  <data name="lbWorkTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="lbZipCode" xml:space="preserve">
+    <value>Zip Code</value>
+  </data>
+  <data name="msgFileSizeTooLarge" xml:space="preserve">
+    <value>File size too large!</value>
+  </data>
+  <data name="msgPhotoNotSaved" xml:space="preserve">
+    <value>Photo not saved!</value>
+  </data>
+  <data name="msgAccountActivationEMailInfo" xml:space="preserve">
+    <value>Activation code sent to the e-mail address.</value>
+  </data>
+  <data name="msgMembershipActivatedClickLogin" xml:space="preserve">
+    <value>Your subscription activated. &lt;a href='{0}'&gt;Click&lt;/a&gt; to login.</value>
+  </data>
+  <data name="msgMembershipIsActivatedClickLogin" xml:space="preserve">
+    <value>Your membership is active. &lt;a href='{0}'&gt;Click&lt;/a&gt; to login.</value>
+  </data>
+  <data name="msgMembershipNotAvaliable" xml:space="preserve">
+    <value>User can not be found.</value>
+  </data>
+  <data name="lbNext" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="lbSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="msgError" xml:space="preserve">
+    <value>An error occured.</value>
+  </data>
+  <data name="msgMembershipCreated" xml:space="preserve">
+    <value>Your information is succesfully saved and activation code sent to your email address. Please check your email.</value>
+  </data>
+  <data name="lbMan" xml:space="preserve">
+    <value>Man</value>
+  </data>
+  <data name="lbMarried" xml:space="preserve">
+    <value>Married</value>
+  </data>
+  <data name="lbSingle" xml:space="preserve">
+    <value>Single</value>
+  </data>
+  <data name="lbWoman" xml:space="preserve">
+    <value>Woman</value>
+  </data>
+  <data name="lbCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="lbEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="lbHide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="lbShow" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="msgQuestionChangeEmail" xml:space="preserve">
+    <value>After you change the active e-mail address, will be logout on the system, you can log in again with active email address. Do you want to continue?</value>
+  </data>
+  <data name="lbUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="lbActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="lbMemberProfile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="lbAddNewEmail" xml:space="preserve">
+    <value>Add New E-mail</value>
+  </data>
+  <data name="lbEmailInfo" xml:space="preserve">
+    <value>E-mail Info</value>
+  </data>
+  <data name="lbEnterDate" xml:space="preserve">
+    <value>Enter Date</value>
+  </data>
+  <data name="lbHomeInfo" xml:space="preserve">
+    <value>Home Info</value>
+  </data>
+  <data name="lbMemberNumber" xml:space="preserve">
+    <value>Member Number</value>
+  </data>
+  <data name="lbMembershipInfo" xml:space="preserve">
+    <value>Membership Info</value>
+  </data>
+  <data name="lbPersonalInfo" xml:space="preserve">
+    <value>Personal Info</value>
+  </data>
+  <data name="lbRelationType" xml:space="preserve">
+    <value>Member Relation Type</value>
+  </data>
+  <data name="lbSpecialNumber" xml:space="preserve">
+    <value>Special Number</value>
+  </data>
+  <data name="lbTerm" xml:space="preserve">
+    <value>Term</value>
+  </data>
+  <data name="lbTermLeader" xml:space="preserve">
+    <value>Term Leader</value>
+  </data>
+  <data name="lbVip" xml:space="preserve">
+    <value>Vip?</value>
+  </data>
+  <data name="lbWorkInfo" xml:space="preserve">
+    <value>Work Info</value>
+  </data>
+  <data name="msgPasswordGood" xml:space="preserve">
+    <value>Good</value>
+  </data>
+  <data name="msgPasswordStrong" xml:space="preserve">
+    <value>Strong</value>
+  </data>
+  <data name="msgPasswordTooShort" xml:space="preserve">
+    <value>Too Short</value>
+  </data>
+  <data name="msgPasswordWeak" xml:space="preserve">
+    <value>Weak</value>
+  </data>
+  <data name="lbEducationInfo" xml:space="preserve">
+    <value>Education Info</value>
+  </data>
+  <data name="lbOtherInfo" xml:space="preserve">
+    <value>Other Info</value>
+  </data>
+  <data name="lbMailAddressTakenAlready" xml:space="preserve">
+    <value>This email address is already registered. Please try again with a different email address.</value>
+  </data>
+  <data name="msgUpdated" xml:space="preserve">
+    <value>Updated</value>
+  </data>
+  <data name="lbMemberLogin" xml:space="preserve">
+    <value>Member Login</value>
+  </data>
+  <data name="lbPasswordReminder" xml:space="preserve">
+    <value>Password Reminder</value>
+  </data>
+  <data name="lbDues" xml:space="preserve">
+    <value>Dues</value>
+  </data>
+  <data name="lbDuesDate" xml:space="preserve">
+    <value>Dues Date</value>
+  </data>
+  <data name="lbDuesInfo" xml:space="preserve">
+    <value>Payment Info</value>
+  </data>
+  <data name="lbDuesType" xml:space="preserve">
+    <value>Dues Type</value>
+  </data>
+  <data name="lbPayAllAmount" xml:space="preserve">
+    <value>Pay All Debt</value>
+  </data>
+  <data name="lbPayCertainAmount" xml:space="preserve">
+    <value>Pay Certain Amount</value>
+  </data>
+  <data name="lbPaymentAmount" xml:space="preserve">
+    <value>Payment Amount</value>
+  </data>
+  <data name="lbPaymentType" xml:space="preserve">
+    <value>Payment Type</value>
+  </data>
+  <data name="lbReceiptInvoiceDate" xml:space="preserve">
+    <value>Receipt/Invoice Date</value>
+  </data>
+  <data name="lbAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="lbCreatedUser" xml:space="preserve">
+    <value>Created User</value>
+  </data>
+  <data name="lbDuesPaymentDate" xml:space="preserve">
+    <value>Dues/Payment Date</value>
+  </data>
+  <data name="lbPay" xml:space="preserve">
+    <value>Pay</value>
+  </data>
+  <data name="lbProcess" xml:space="preserve">
+    <value>Process</value>
+  </data>
+  <data name="lbWillPayYourAllAmount" xml:space="preserve">
+    <value>Will pay your all amount of dept.</value>
+  </data>
+  <data name="lbWillPayYourSpecificAmount" xml:space="preserve">
+    <value>Will Pay choosen a specific amount of dept.</value>
+  </data>
+  <data name="lbAdminPanel" xml:space="preserve">
+    <value>Admin Panel</value>
+  </data>
+  <data name="lbLogout" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="lbProcessDate" xml:space="preserve">
+    <value>Process Date</value>
+  </data>
+  <data name="lbGuest" xml:space="preserve">
+    <value>Guest</value>
+  </data>
+  <data name="lbMyProfileInfo" xml:space="preserve">
+    <value>Profile Info</value>
+  </data>
+  <data name="lbWelcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="lbDebiting" xml:space="preserve">
+    <value>Debit</value>
+  </data>
+  <data name="lbPayment" xml:space="preserve">
+    <value>Payment</value>
+  </data>
+  <data name="lbTotalDept" xml:space="preserve">
+    <value>Total Debt</value>
+  </data>
+  <data name="lbResendActivationMail" xml:space="preserve">
+    <value>Resend Activation Mail</value>
+  </data>
+  <data name="lbTC" xml:space="preserve">
+    <value>Identification Number</value>
+  </data>
+  <data name="lbCurrentDebtAmount" xml:space="preserve">
+    <value>Current Debt Amount</value>
+  </data>
+  <data name="lbPaymentType1" xml:space="preserve">
+    <value>Credit Card Online</value>
+  </data>
+  <data name="lbPaymentType2" xml:space="preserve">
+    <value>Credit Card</value>
+  </data>
+  <data name="lbPaymentType3" xml:space="preserve">
+    <value>Money Order</value>
+  </data>
+  <data name="lbPaymentType4" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="lbAutoPaymentOrder" xml:space="preserve">
+    <value>Auto Payment Order</value>
+  </data>
+  <data name="lbYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="msgConfirmAutoPaymentOrderRemember" xml:space="preserve">
+    <value>There are automatic debit authorization. you want to continue processing</value>
+  </data>
+  <data name="msgPayAmountIsRequired" xml:space="preserve">
+    <value>Enter the amount of payment.</value>
+  </data>
+  <data name="lbRandomField" xml:space="preserve">
+    <value>Testimonials;</value>
+  </data>
+</root>

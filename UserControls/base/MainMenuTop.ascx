@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="UserControls_MainMenuTop" EnableViewState="false" Codebehind="MainMenuTop.ascx.cs" %>
+<asp:Menu ID="MainMenuTop" runat="server" Orientation="Horizontal" CssClass="menustatic" RenderingMode="List" SkipLinkText=""></asp:Menu>

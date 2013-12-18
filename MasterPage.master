@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="eNroll.MasterPage" ViewStateMode="Disabled"
+    CodeBehind="MasterPage.master.cs" %>
+
+<%@ Register Src="UserControls/base/Analytics.ascx" TagName="Analytics_" TagPrefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<%= Resources.Resource.language %>"
+xml:lang="<%= Resources.Resource.language %>" dir="<%= Resources.Resource.PageDirection %>">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="App_Themes/mainTheme/css/mainTheme.css" type="text/css" />
+    <link rel="stylesheet" href="App_Themes/mainTheme/css/userTheme.css" type="text/css" />
+    <link rel="stylesheet" href="App_Themes/mainTheme/css/layout.css" type="text/css" />
+    <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js" type="text/javascript"></script>
+    <script src="App_Themes/mainTheme/js/jquery.jcarousel.js" type="text/javascript"></script>
+    <script src="App_Themes/mainTheme/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+    <link rel="alternate" href="feed" type="application/rss+xml" />
+    <uc1:Analytics_ runat="server" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try {
+                $("a[rel^='prettyPhoto']").prettyPhoto({ social_tools: false });
+            } catch(e) {
+            } 
+        });
+    </script>
+</head>
+<body style="direction: <%= Resources.Resource.PageDirection %>">
+    <form id="form1" name="Form" runat="server" enctype="multipart/form-data">
+    <telerik:RadScriptManager ID="RadScriptManager_Web" ScriptMode="Auto" EnableCdn="true"
+        runat="server" />
+    <div id="container">
+        <div id="tepe" runat="server" class="mainTepe">
+            <asp:PlaceHolder ID="phTepe" runat="server" />
+        </div>
+        <div id="govde" runat="server" class="mainGovde">
+            <asp:PlaceHolder ID="phGovde" runat="server">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+            </asp:PlaceHolder>
+        </div>
+        <div id="alt" runat="server" class="mainAlt">
+            <asp:PlaceHolder ID="phAlt" runat="server" />
+        </div>
+        <div id="eNroll">
+            <a href="http://www.enroll.com.tr" target="_blank">
+                <img src="App_Themes/mainTheme/images/q.png" alt="eNroll Web Çözümleri" />eNroll
+                Web &Ccedil;&ouml;z&uuml;mleri </a>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

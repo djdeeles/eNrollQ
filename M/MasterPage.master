@@ -1,0 +1,63 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="m_MasterPage"
+           ViewStateMode="Disabled" Codebehind="MasterPage.master.cs" %>
+
+<%@ Register Src="UserControls/base/MainMenu.ascx" TagName="MainMenu" TagPrefix="uc2" %>
+<%@ Register Src="UserControls/base/bottomText.ascx" TagName="bottomText" TagPrefix="uc3" %>
+<%@ Register Src="~/UserControls/base/Analytics.ascx" TagName="Analytics_" TagPrefix="uc4" %>
+<%@ Register Src="UserControls/base/SearchControl.ascx" TagName="SearchControl" TagPrefix="uc5" %>
+<%@ Register Src="UserControls/base/MainHeader1.ascx" TagName="MainHeader1" TagPrefix="uc6" %>
+<%@ Register Src="UserControls/base/MainHeader2.ascx" TagName="MainHeader2" TagPrefix="uc7" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<%= Resources.Resource.language %>"
+      xml:lang="<%= Resources.Resource.language %>" dir="<%= Resources.Resource.PageDirection %>">
+    <head runat="server">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" />
+        <link href="App_Themes/mainTheme/css/mainTheme.css" rel="stylesheet" type="text/css" />
+        <link href="App_Themes/mainTheme/css/userTheme.css" rel="stylesheet" type="text/css" />
+        <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js" type="text/javascript"></script>
+        <link rel="alternate" href="../feed" type="application/rss+xml" />
+        <uc4:Analytics_ runat="server" />
+    </head>
+    <body style="direction: <%= Resources.Resource.PageDirection %>">
+        <form id="form1" runat="server">
+            <telerik:RadScriptManager ID="RadScriptManager_M" ScriptMode="Auto" EnableCdn="false"
+                                      runat="server" />
+            <div data-role="page">
+                <div data-theme="c" data-role="header">
+                    <div style="width: 100%; text-align: center; position: relative;">
+                        <uc6:MainHeader1 ID="MainHeader_M" runat="server" />
+                    </div>
+                </div>
+                <div data-role="content" data-theme="d">
+                    <div style="width: 100%; text-align: center; position: relative;">
+                        <uc7:MainHeader2 ID="MainHeader_M2" runat="server" />
+                    </div>
+                    <uc5:SearchControl ID="SearchControl_M" runat="server" />
+                    <uc2:MainMenu ID="MainMenu1" runat="server" />
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder_M" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <input type="button" value="<%= Resources.Resource.lbBack %>" data-corners="false"
+                           data-role="button" onclick="parent.history.back(); return false;">
+                    <asp:LinkButton OnClick="ViewFullSite_Click" runat="server" data-ajax="false" data-corners="false"
+                                    data-role="button" data-icon="arrow-l"><%= Resources.Resource.lbViewFullSite %></asp:LinkButton>
+                </div>
+                <div data-theme="c" data-role="footer">
+                    <h3>
+                        <uc3:bottomText ID="bottomText_M" runat="server" />
+                    </h3>
+		    <div id="eNroll">
+			<a href="http://www.enroll.com.tr" target="_blank">
+			<img src="/App_Themes/mainTheme/images/q.png" alt="eNroll Web Çözümleri" />eNroll Web &Ccedil;&ouml;z&uuml;mleri
+			</a>
+		</div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

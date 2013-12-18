@@ -1,0 +1,1 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="UserControls_base_SiteMapGenerator" Codebehind="SiteMapGenerator.ascx.cs" %>

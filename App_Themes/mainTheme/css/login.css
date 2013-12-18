@@ -1,0 +1,12 @@
+﻿body { background-color: #2e4f70; background-image: url(../images/login/back.jpg); background-repeat: no-repeat; font-family: Calibri; font-size: 12px; font-weight: bold; margin-left: auto; margin-right: auto; margin-top: 0px; }
+.loginust { background-image: url(../images/login/panel_ust.png); background-repeat: no-repeat;height: 19px; margin-left: auto; margin-right: auto; margin-top: 5%; width: 344px; }
+.logincontainer { background-image: url(../images/login/panel.png); background-repeat: no-repeat; margin-left: auto; margin-right: auto; width: 344px; }
+.loginalt { background-image: url(../images/login/panel_alt.png); background-repeat: no-repeat; height: 19px; margin-left: auto; margin-right: auto; width: 344px; }
+.musterilogo { padding: 15px 0; height: 80px; background-image: url(../images/musterilogo.png); background-position:center center;  background-repeat: no-repeat;  }
+.loginpanel { padding: 0px 27px 10px 27px; }
+.SaveCancelBtn { -moz-box-shadow: inset 0px 1px 0px 0px #97c4fe; -webkit-box-shadow: inset 0px 1px 0px 0px #97c4fe; box-shadow: inset 0px 1px 0px 0px #97c4fe; background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #4e81c9), color-stop(1, #285ea0) ); background: -moz-linear-gradient( center top, #4e81c9 5%, #285ea0 100% ); filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e81c9', endColorstr='#285ea0');
+background-color: #4e81c9; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #337fed; display: inline-block; color: #ffffff; font-weight: bold; font-size: 11px; padding: 2px 7px; text-shadow: 1px 1px 0px #1570cd; }
+.SaveCancelBtn:hover { background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #285ea0), color-stop(1, #4e81c9) ); background: -moz-linear-gradient( center top, #285ea0 5%, #4e81c9 100% ); filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#285ea0', endColorstr='#4e81c9');
+background-color: #285ea0; }
+.CaptchaTextBox { width: 180px; }
+#RadCaptcha1 p { margin: 6px 0 0 0; padding: 0; }

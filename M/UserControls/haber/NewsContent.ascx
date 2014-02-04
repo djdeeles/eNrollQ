@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="M_UserControls_NewsContent"
-    CodeBehind="NewsContent.ascx.cs" %>
+            CodeBehind="NewsContent.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <h1>
     <asp:Label ID="lblBaslik" runat="server"/>
@@ -11,4 +11,4 @@
     <asp:Label ID="lblYazi" runat="server"/></p>
 <a href="/m/" data-role="button" data-corners="false">
     <%= Resource.lbHome %></a> <a href="/m/haberler-1" data-role="button" data-corners="false">
-        <%= Resource.lbAllNews %></a>
+                                   <%= Resource.lbAllNews %></a>

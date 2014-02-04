@@ -11,8 +11,8 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_TemplatePageList : UserControl
 {
+    private readonly Entities _entities = new Entities();
 
-    Entities _entities = new Entities();
     protected override void OnInit(EventArgs e)
     {
         Session["currentPath"] = AdminResource.lbTemplateManagement;
@@ -25,16 +25,16 @@ public partial class Admin_adminUserControls_TemplatePageList : UserControl
             mvAuth.ActiveViewIndex = 0;
             mvTemplatePageList.SetActiveView(vGrid);
             gVTemplates.DataBind();
-            if(IsPostBack)
+            if (IsPostBack)
             {
                 txtName.Enabled = false;
-                if(!string.IsNullOrWhiteSpace(hdnId.Value))
+                if (!string.IsNullOrWhiteSpace(hdnId.Value))
                 {
                     var editId = Convert.ToInt32(hdnId.Value);
                     var page = _entities.TemplatePages.FirstOrDefault(p => p.id == editId);
-                    if(page!=null)
+                    if (page != null)
                     {
-                        BindDataProccess(page);        
+                        BindDataProccess(page);
                     }
                 }
             }
@@ -44,7 +44,7 @@ public partial class Admin_adminUserControls_TemplatePageList : UserControl
             mvAuth.ActiveViewIndex = 1;
         }
 
-        var panel = (Panel)Rtb1.FindControl("ChooseTemplate");
+        var panel = (Panel) Rtb1.FindControl("ChooseTemplate");
         panel.Visible = true;
 
         btnSave.Text = AdminResource.lbSave;
@@ -92,7 +92,7 @@ public partial class Admin_adminUserControls_TemplatePageList : UserControl
                 //myButton.OnClientClick = "window.open('EditContent.aspx?content=TemplatePageEdit&Id=" +
                 //                         myButton.CommandArgument +
                 //                         "','','width=800, height=680,scrollbars=yes,menubar=no,titlebar=no,resizable=yes');return false;";
-                var deleteButton = (ImageButton)e.Row.FindControl("imgBtnDelete");
+                var deleteButton = (ImageButton) e.Row.FindControl("imgBtnDelete");
 
                 if (deleteButton.CommandArgument != null)
                 {
@@ -100,7 +100,8 @@ public partial class Admin_adminUserControls_TemplatePageList : UserControl
                     var control = _entities.System_menu.Count(p => p.thema == tempId);
                     if (control > 0)
                     {
-                        deleteButton.OnClientClick = string.Format("javascript:{0}('{1}');return false;", MessageType.Notice, AdminResource.msgTemplateUsing);
+                        deleteButton.OnClientClick = string.Format("javascript:{0}('{1}');return false;",
+                                                                   MessageType.Notice, AdminResource.msgTemplateUsing);
                     }
                     else
                     {
@@ -117,7 +118,7 @@ public partial class Admin_adminUserControls_TemplatePageList : UserControl
 
     protected void ImgBtnDeleteClick(object sender, ImageClickEventArgs e)
     {
-        var myButton = (ImageButton)sender;
+        var myButton = (ImageButton) sender;
         var data = myButton.CommandArgument;
         if (!string.IsNullOrWhiteSpace(data))
         {
@@ -151,19 +152,18 @@ public partial class Admin_adminUserControls_TemplatePageList : UserControl
         {
             MessageBox.Show(MessageType.Error, AdminResource.msgAnErrorOccurred);
         }
-
     }
-    
+
     private void BindDataProccess(TemplatePages pages)
     {
         txtName.Text = pages.name;
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
         radEditor.Content = pages.Details;
     }
 
     private void SaveDataProccess(TemplatePages pages)
     {
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
         pages.Details = radEditor.Content;
         pages.UpdatedTime = DateTime.Now;
     }
@@ -184,7 +184,7 @@ public partial class Admin_adminUserControls_TemplatePageList : UserControl
 
     public void ClearForm()
     {
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
         radEditor.Content = string.Empty;
         txtName.Text = string.Empty;
     }
@@ -193,8 +193,8 @@ public partial class Admin_adminUserControls_TemplatePageList : UserControl
     {
         try
         {
-            var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
-                
+            var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
+
             if (String.IsNullOrEmpty(hdnId.Value)) //insert
             {
                 var oPages = new TemplatePages();
@@ -212,21 +212,21 @@ public partial class Admin_adminUserControls_TemplatePageList : UserControl
             else //update
             {
                 var id = Convert.ToInt32(hdnId.Value);
-                if(id>0)
+                if (id > 0)
                 {
                     TemplatePages oPages = _entities.TemplatePages.FirstOrDefault(p => p.id == id);
-                    if(oPages!=null)
+                    if (oPages != null)
                     {
                         SaveDataProccess(oPages);
                         _entities.SaveChanges();
                         Logger.Add(18, 0, oPages.id, 3);
                         MessageBox.Show(MessageType.Success, AdminResource.msgUpdated);
-                        gVTemplates.DataBind();        
+                        gVTemplates.DataBind();
                     }
                 }
                 else
                 {
-                    MessageBox.Show(MessageType.Warning,AdminResource.lbNotFound);
+                    MessageBox.Show(MessageType.Warning, AdminResource.lbNotFound);
                 }
             }
         }
@@ -234,6 +234,5 @@ public partial class Admin_adminUserControls_TemplatePageList : UserControl
         {
             ExceptionManager.ManageException(exception);
         }
-
     }
 }

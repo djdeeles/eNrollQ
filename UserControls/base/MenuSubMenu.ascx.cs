@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
 using Enroll.BaseObjects;
@@ -13,7 +12,7 @@ public partial class UserControls_MenuSubMenu : MenuControlBase
         var oMenuControlBase = (MenuControlBase) Parent;
         OMenuObject = oMenuControlBase.OMenuObject;
         var oentity = new Entities();
-        List<System_menu> oList =
+        var oList =
             oentity.System_menu.Where("it.MasterId=" + OMenuObject.menuId + " and it.languageId=" +
                                       EnrollContext.Current.WorkingLanguage.LanguageId.ToString() +
                                       " and it.state=true and it.location=" + OMenuObject.location.ToString() +

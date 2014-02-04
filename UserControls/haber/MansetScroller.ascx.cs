@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Enroll.WebParts;
 using Resources;
 using eNroll.App_Data;
@@ -13,7 +11,7 @@ public partial class UserControls_haber_MansetScroller : UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        List<News> mansetHaberler =
+        var mansetHaberler =
             ent.News.Where(p => p.manset == true && p.languageId == EnrollContext.Current.WorkingLanguage.LanguageId)
                 .OrderByDescending(p => p.enterDate)
                 .Take(20)
@@ -31,20 +29,19 @@ public partial class UserControls_haber_MansetScroller : UserControl
             else imgUrl = "/App_Themes/mainTheme/images/noimage.png";
 
             pnlPhoto.Controls.Add(new LiteralControl(
-
-                string.Format("<div><span class='mansetgorsel'><img src='{0}' alt='{1}' /></span>",
-                                                 imgUrl, UrlMapping.AltCevir(mansetHaber.header)) +
-
-                string.Format("<span class='mansetheader'>{0}</span><span class='mansetdate'>{1}</span>", 
-                    mansetHaber.header, mansetHaber.enterDate.Value.ToShortDateString() + " " +
-                    mansetHaber.enterDate.Value.ToShortTimeString())+
-
-                string.Format("<p class='mansetsummery'>{0}",
-                    HtmlRemoval.StripTagsRegexCompiled(mansetHaber.brief))+
-                
-                string.Format("<a class='mansetdevam' href='{0}://{1}/haberdetay-{2}-{3}'>{4}</a>",
-                                                 Request.Url.Scheme, Request.Url.Host, mansetHaber.newsId,
-                                                 UrlMapping.cevir(mansetHaber.header), Resource.details)));
+                                      string.Format(
+                                          "<div><span class='mansetgorsel'><img src='{0}' alt='{1}' /></span>",
+                                          imgUrl, UrlMapping.AltCevir(mansetHaber.header)) +
+                                      string.Format(
+                                          "<span class='mansetheader'>{0}</span><span class='mansetdate'>{1}</span>",
+                                          mansetHaber.header, mansetHaber.enterDate.Value.ToShortDateString() + " " +
+                                                              mansetHaber.enterDate.Value.ToShortTimeString()) +
+                                      string.Format("<p class='mansetsummery'>{0}",
+                                                    HtmlRemoval.StripTagsRegexCompiled(mansetHaber.brief)) +
+                                      string.Format(
+                                          "<a class='mansetdevam' href='{0}://{1}/haberdetay-{2}-{3}'>{4}</a>",
+                                          Request.Url.Scheme, Request.Url.Host, mansetHaber.newsId,
+                                          UrlMapping.cevir(mansetHaber.header), Resource.details)));
 
             pnlPhoto.Controls.Add(new LiteralControl("</p></div>"));
             pnlTabs.Controls.Add(new LiteralControl("<a href='#'></a>"));
@@ -52,5 +49,4 @@ public partial class UserControls_haber_MansetScroller : UserControl
         pnlPhoto.Controls.Add(new LiteralControl("</div>"));
         pnlTabs.Controls.Add(new LiteralControl("</div>"));
     }
-
 }

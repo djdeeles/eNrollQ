@@ -85,15 +85,6 @@ namespace eNroll.Admin.adminUserControls {
         protected global::System.Web.UI.WebControls.Button btnDuesType;
         
         /// <summary>
-        /// btnServiceType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnServiceType;
-        
-        /// <summary>
         /// btnTaxType control.
         /// </summary>
         /// <remarks>
@@ -227,24 +218,6 @@ namespace eNroll.Admin.adminUserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::eNroll.Admin.adminUserControls.DefDues cDefDues;
-        
-        /// <summary>
-        /// vDefServiceType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View vDefServiceType;
-        
-        /// <summary>
-        /// cDefServiceType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::eNroll.Admin.adminUserControls.DefServiceType cDefServiceType;
         
         /// <summary>
         /// vDefTax control.

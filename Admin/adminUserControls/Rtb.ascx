@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="adminUserControls_Rtb"
-    CodeBehind="Rtb.ascx.cs" %>
+            CodeBehind="Rtb.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <script language="javascript" type="text/javascript">
     var editor = null;
@@ -20,13 +20,13 @@
         <telerik:EditorCssFile Value="" />
     </CssFiles>
     <DocumentManager ViewPaths="~/FileManager" UploadPaths="~/FileManager"
-        DeletePaths="~/FileManager" MaxUploadFileSize="10240000" />
+                     DeletePaths="~/FileManager" MaxUploadFileSize="10240000" />
     <FlashManager ViewPaths="~/FileManager" UploadPaths="~/FileManager" DeletePaths="~/FileManager"
-        MaxUploadFileSize="10240000" />
+                  MaxUploadFileSize="10240000" />
     <ImageManager ViewPaths="~/FileManager" ViewMode="Grid" UploadPaths="~/FileManager"
-        DeletePaths="~/FileManager/Image" />
+                  DeletePaths="~/FileManager/Image" />
     <MediaManager ViewPaths="~/FileManager" UploadPaths="~/FileManager" DeletePaths="~/FileManager"
-        MaxUploadFileSize="10240000" />
+                  MaxUploadFileSize="10240000" />
     <Modules>
         <telerik:EditorModule Name="RadEditorHtmlInspector" Visible="false" />
         <telerik:EditorModule Name="RadEditorNodeInspector" Visible="true" />
@@ -135,7 +135,7 @@
                     <option value="[EmailAdd[">
                         <%= AdminResource.lbEmailAdd %></option>
                     <option value="[RefLogos[">
-                        <%= AdminResource.lbSliderImages%></option>
+                        <%= AdminResource.lbSliderImages %></option>
                     <option value="[Survey[">
                         <%= AdminResource.lbSurvey %></option>
                     <option value="[VideoGallery[">
@@ -144,8 +144,8 @@
                        {
                            foreach (var item in VCategoriesList)
                            {%>
-                    <option value='[vCategory-<%= item.id %>['>
-                        <%= item.name %>&nbsp;(<%=AdminResource.lbVideoGallery%>-<%=AdminResource.lbCategory%>)</option>
+                            <option value='[vCategory-<%= item.id %>['>
+                                <%= item.name %>&nbsp;(<%= AdminResource.lbVideoGallery %>-<%= AdminResource.lbCategory %>)</option>
                     <% }
                        }%>
                     <option value="[PhotoAlbum[">
@@ -154,16 +154,16 @@
                        {
                            foreach (var item in PCategoriesList)
                            {%>
-                    <option value='[pCategory-<%= item.photoAlbumCategoryId %>['>
-                        <%= item.categoryName %>&nbsp;(<%=AdminResource.lbPhotoGallery%>-<%=AdminResource.lbCategory%>)</option>
+                            <option value='[pCategory-<%= item.photoAlbumCategoryId %>['>
+                                <%= item.categoryName %>&nbsp;(<%= AdminResource.lbPhotoGallery %>-<%= AdminResource.lbCategory %>)</option>
                     <% }
                        }%>
                     <% if (PAlbumsList != null)
                        {
                            foreach (var item in PAlbumsList)
                            {%>
-                    <option value='[pAlbum-<%= item.photoAlbumId %>['>
-                        <%= item.albumName %>&nbsp;(<%=AdminResource.lbPhotoGallery%>-<%=AdminResource.lbAlbum%>)</option>
+                            <option value='[pAlbum-<%= item.photoAlbumId %>['>
+                                <%= item.albumName %>&nbsp;(<%= AdminResource.lbPhotoGallery %>-<%= AdminResource.lbAlbum %>)</option>
                     <% }
                        }%>
                     <option value="[Products[">
@@ -198,23 +198,23 @@
                        {
                            foreach (var item in RssList)
                            {%>
-                    <option value='[Rss-<%= item.Id %>['><%= item.Name%></option>
+                            <option value='[Rss-<%= item.Id %>['><%= item.Name %></option>
                     <% }
                        }%>
                     <% if (FormList != null)
                        {
                            foreach (var item in FormList)
                            {%>
-                    <option value='[DynamicForm-<%= item.Id %>['>
-                        <%= item.Name %></option>
+                            <option value='[DynamicForm-<%= item.Id %>['>
+                                <%= item.Name %></option>
                     <% }
                        }%>
                     <% if (LList != null)
                        {
                            foreach (var item in LList)
                            {%>
-                    <option value='[List-<%= item.Id %>['>
-                        <%= item.Name %></option>
+                            <option value='[List-<%= item.Id %>['>
+                                <%= item.Name %></option>
                     <% }
                        }%>
                 </select>

@@ -13,9 +13,9 @@ using eNroll.App_Data;
 public partial class UserControls_Rss : UserControl
 {
     private readonly Entities _entities = new Entities();
-    public Localizations _localizations = new Localizations();
     protected List<RssItem> RssItems = null;
     public Rss SelectedRss = null;
+    public Localizations _localizations = new Localizations();
     private int _rssId = -1;
 
     public int RssId

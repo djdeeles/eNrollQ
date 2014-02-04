@@ -13,7 +13,7 @@ public partial class UserControls_NoticeScroller : UserControl
     {
         int dilId = EnrollContext.Current.WorkingLanguage.LanguageId;
         DateTime tarih = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00.000");
-        IOrderedQueryable<Notices> duyurular =
+        var duyurular =
             ent.Notices.Where(
                 p =>
                 p.state == true && p.languageId == dilId && p.startDate <= tarih &&
@@ -24,7 +24,7 @@ public partial class UserControls_NoticeScroller : UserControl
         foreach (Notices item in duyurular)
         {
             txt.AppendLine("<li><div class='duyuruscroller'>");
-	    if (item.imagePath != "")
+            if (item.imagePath != "")
             {
                 txt.AppendFormat("<div class='duyuruimg'><img src='{0}' alt='{1}' /></div>",
                                  item.thumbnailPath.Replace("~", ""), UrlMapping.AltCevir(item.header));

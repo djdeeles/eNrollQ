@@ -31,7 +31,7 @@ public partial class UserControls_DynamicForm : UserControl
         RadCaptcha1.Style.Clear();
         RadCaptcha1.Enabled = true;
         RadCaptcha1.Visible = true;
-        RadCaptcha1.CaptchaTextBoxCssClass = "CaptchaTextBox";
+        RadCaptcha1.TextBoxDecoration.CssClass = "CaptchaTextBox";
         RadCaptcha1.EnableEmbeddedBaseStylesheet = false;
         RadCaptcha1.CaptchaTextBoxLabel = Resource.lbCapthcaMessage;
         RadCaptcha1.ErrorMessage = Resource.lbCapthcaErrorMessage;

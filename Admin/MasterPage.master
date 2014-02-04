@@ -1,473 +1,451 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="eNroll.Admin.MasterPage"
-    CodeBehind="MasterPage.master.cs" %>
-
+           CodeBehind="MasterPage.master.cs" %>
 <%@ Import Namespace="Resources" %>
 <%@ Register Src="adminUserControls/DataLanguageChooser.ascx" TagName="DataLanguageChooser"
-    TagPrefix="uc1" %>
+             TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<%= AdminResource.language %>" xml:lang="<%= AdminResource.language %>"
-dir="<%= AdminResource.PageDirection %>">
-<head runat="server">
-    <title>
-        <%= GetSiteTitle(EnrollAdminContext.Current.DataLanguage.LanguageId) %></title>
-    <link href="style/admin.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="../../App_Themes/mainTheme/css/mainTheme.css" type="text/css" />
-    <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js" type="text/javascript"></script>
-    <script src="../../App_Themes/mainTheme/js/jquery.prettyPhoto.js" type="text/javascript"></script>
-    <script src="js/admin.js" type="text/javascript"></script>
-    <script src="js/jquery.toastmessage-min.js" type="text/javascript"></script>
-    <asp:ContentPlaceHolder ID="head_Admin" runat="server">
-    </asp:ContentPlaceHolder>
-</head>
-<body style="direction: <%= AdminResource.PageDirection %>">
-    <form id="form_Admin" runat="server" enctype="multipart/form-data">
-        <telerik:RadScriptManager ID="RadScriptManager1" ScriptMode="Auto" EnableCdn="true"
-            runat="server" />
-        <div id="header">
-            <div class="title">
-                <asp:Label ID="LabelSiteTitle" runat="server" Text=""></asp:Label>
-                <br />
-                <span class="userinfo">
-                    <asp:Literal ID="ltWellcameMessage_Admin" runat="server"></asp:Literal></span>
+      dir="<%= AdminResource.PageDirection %>">
+    <head runat="server">
+        <title>
+            <%= GetSiteTitle(EnrollAdminContext.Current.DataLanguage.LanguageId) %></title>
+        <link href="style/admin.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="../../App_Themes/mainTheme/css/mainTheme.css" type="text/css" />
+        <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js" type="text/javascript"></script>
+        <script src="../../App_Themes/mainTheme/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+        <script src="js/admin.js" type="text/javascript"></script>
+        <script src="js/jquery.toastmessage-min.js" type="text/javascript"></script>
+        <asp:ContentPlaceHolder ID="head_Admin" runat="server">
+        </asp:ContentPlaceHolder>
+    </head>
+    <body style="direction: <%= AdminResource.PageDirection %>">
+        <form id="form_Admin" runat="server" enctype="multipart/form-data">
+            <telerik:RadScriptManager ID="RadScriptManager1" ScriptMode="Auto" EnableCdn="true"
+                                      runat="server" />
+            <div id="header">
+                <div class="title">
+                    <asp:Label ID="LabelSiteTitle" runat="server" Text=""></asp:Label>
+                    <br />
+                    <span class="userinfo">
+                        <asp:Literal ID="ltWellcameMessage_Admin" runat="server"></asp:Literal></span>
+                </div>
+                <div class="ustMenu">
+                    <asp:LinkButton ID="btnExit" CssClass="ustmenudiv" runat="server" OnClick="btnCikis_Click_Admin">
+                        <img src="images/icon/cikis.png" /><br />
+                        <%= AdminResource.lbExit %>
+                    </asp:LinkButton>
+                    <% if (CheckAuth(36))
+                       { %>
+                        <a class="ustmenudiv" href="enrolldestek.aspx">
+                            <img src="images/icon/destek.png" /><br />
+                            <%= AdminResource.lbSupport %>
+                        </a>
+                    <% }
+                       if (CheckAuth(21))
+                       { %>
+                        <a class="ustmenudiv" href="Logs.aspx">
+                            <img src="images/icon/logs.png" /><br />
+                            <%= AdminResource.lbLogs %>
+                        </a>
+                    <% }
+                       if (CheckAuth(23))
+                       { %>
+                        <a class="ustmenudiv" href="Content.aspx?content=BackupRestore">
+                            <img src="images/icon/yedek.png" /><br />
+                            <%= AdminResource.lbBackupRestore %>
+                        </a>
+                    <% }
+                       if (CheckAuth(13))
+                       { %>
+                        <a class="ustmenudiv" href="ErrorList.aspx">
+                            <img src="images/icon/hatalar.png" /><br />
+                            <%= AdminResource.lbError %>
+                        </a>
+                    <% }%>
+                    <a class="ustmenudiv" href="Content.aspx?content=CustomerManagement">
+                        <img src="images/icon/ayarlarim.png" /><br />
+                        <%= AdminResource.lbSettings %>
+                    </a><a class="ustmenudiv" target="_blank" href="../default.aspx">
+                            <img src="images/icon/site.png" /><br />
+                            <%= AdminResource.lbViewSite %>
+                        </a><a class="ustmenudiv" href="Default.aspx">
+                                <img src="images/icon/giris.png" /><br />
+                                <%= AdminResource.lbHome %>
+                            </a>
+                </div>
             </div>
-            <div class="ustMenu">
-                <asp:LinkButton ID="btnExit" CssClass="ustmenudiv" runat="server" OnClick="btnCikis_Click_Admin">
-                            <img src="images/icon/cikis.png" /><br />
-                            <%= AdminResource.lbExit %>
-                </asp:LinkButton>
-                <%if (CheckAuth(36))
-                  { %>
-                <a class="ustmenudiv" href="enrolldestek.aspx">
-                    <img src="images/icon/destek.png" /><br />
-                    <%= AdminResource.lbSupport %>
-                </a>
-                <%} if (CheckAuth(21))
-                  { %>
-                <a class="ustmenudiv" href="Logs.aspx">
-                    <img src="images/icon/logs.png" /><br />
-                    <%= AdminResource.lbLogs %>
-                </a>
-                <%} if (CheckAuth(23))
-                  { %>
-                <a class="ustmenudiv" href="Content.aspx?content=BackupRestore">
-                    <img src="images/icon/yedek.png" /><br />
-                    <%= AdminResource.lbBackupRestore %>
-                </a>
-                <%} if (CheckAuth(13))
-                  { %>
-                <a class="ustmenudiv" href="ErrorList.aspx">
-                    <img src="images/icon/hatalar.png" /><br />
-                    <%= AdminResource.lbError %>
-                </a>
-                <% }%>
-                <a class="ustmenudiv" href="Content.aspx?content=CustomerManagement">
-                    <img src="images/icon/ayarlarim.png" /><br />
-                    <%= AdminResource.lbSettings %>
-                </a><a class="ustmenudiv" target="_blank" href="../default.aspx">
-                    <img src="images/icon/site.png" /><br />
-                    <%= AdminResource.lbViewSite %>
-                </a><a class="ustmenudiv" href="Default.aspx">
-                    <img src="images/icon/giris.png" /><br />
-                    <%= AdminResource.lbHome %>
-                </a>
-            </div>
-        </div>
-        <div id="content">
-            <div id="left">
-                <div class="leftMenu">
-                    <div class="lefttop">
-                    </div>
-                    <div class="leftcontent">
-                        <dl id="nav">
-                            <%if (CheckAuth(1))
-                              { %>
-                            <dt><b>
-                                <img class="icon" src="images/menuicon/kullanici.png" />
-                                <%= AdminResource.lbUserManagement %></b></dt>
-                            <dd>
-                                <ul>
-                                    <a href="Content.aspx?content=Users">
-                                        <li>
-                                            <%= AdminResource.lbUsers %></li>
-                                    </a><a href="Content.aspx?content=UserRoles">
-                                        <li>
-                                            <%= AdminResource.lbRoles %></li>
-                                    </a>
-                                </ul>
-                            </dd>
-                            <% } %>
-                            <%if (CheckAuth(26))
-                              { %>
-                            <dt>
-                                <img class="icon" src="images/menuicon/ip.png" />
-                                <a href="Content.aspx?content=IpFilter">
-                                    <%= AdminResource.lbIpFilterManagement %>
-                                </a></dt>
-                            <% } %>
-                            <%if (CheckAuth(2) || CheckAuth(18))
-                              { %>
-                            <dt><b>
-                                <img class="icon" src="images/menuicon/menu.png" />
-                                <%= AdminResource.lbMenuContentManagement %></b></dt>
-                            <dd>
-                                <ul>
-                                    <a href="Content.aspx?content=MenuManager&location=3">
-                                        <li>
-                                            <%= AdminResource.lbTopMenu %></li>
-                                    </a><a href="Content.aspx?content=MenuManager&location=1">
-                                        <li>
-                                            <%= AdminResource.lbMainMenu %></li>
-                                    </a><a href="Content.aspx?content=MenuManager&location=0">
-                                        <li>
-                                            <%= AdminResource.lbLeftMenu %></li>
-                                    </a><a href="Content.aspx?content=MenuManager&location=2">
-                                        <li>
-                                            <%= AdminResource.lbSubMenu %></li>
-                                    </a>
-                                    <%if (CheckAuth(18))
-                                      { %>
-                                    <a href="Content.aspx?content=TemplatePageList">
-                                        <li>
-                                            <%= AdminResource.lbPageTemplates %></li>
-                                    </a>
-                                    <% } %>
-                                </ul>
-                            </dd>
-                            <%}
-                              if ((CheckAuth(16)) || CheckAuth(38) || CheckAuth(37))
-                              { %>
-                            <dt><b>
-                                <img class="icon" src="images/menuicon/alan.png" />
-                                <%= AdminResource.lbSteSpecificFieldManagement %>
-                            </b></dt>
-                            <dd>
-                                <ul>
-                                    <% if (CheckAuth(16))
-                                       { %>
-                                    <a href="Content.aspx?content=StaticField">
-                                        <li>
-                                            <%= AdminResource.lbStaticFields %></li>
-                                    </a>
-                                    <%} if (CheckAuth(38))
-                                       { %>
-                                    <a href="Content.aspx?content=DynamicField">
-                                        <li>
-                                            <%= AdminResource.lbDynamicFields %></li>
-                                    </a>
-                                    <%} if (CheckAuth(37))
-                                       { %>
-                                    <a href="Content.aspx?content=RandomFields">
-                                        <li>
-                                            <%= AdminResource.lbRandomFields %></li>
-                                    </a>
-                                    <% } %>
-                                </ul>
-                            </dd>
-                            <% } %>
-                            <%if (CheckAuth(3) || CheckAuth(19))
-                              { %>
-                            <dt><b>
-                                <img class="icon" src="images/menuicon/haber.png" />
-                                <%= AdminResource.lbNewsManagement %>
-                            </b></dt>
-                            <dd>
-                                <ul>
-                                    <%if (CheckAuth(3))
-                                      { %>
-                                    <a href="Content.aspx?content=NewsList">
-                                        <li>
-                                            <%= AdminResource.lbNewsManagement %></li>
-                                    </a>
-                                    <% } %>
-                                    <%if (CheckAuth(19))
-                                      { %>
-                                    <a href="Content.aspx?content=EmailList">
-                                        <li>
-                                            <%= AdminResource.lbNewsGroupMember %></li>
-                                    </a>
-                                    <% } %>
-                                </ul>
-                            </dd>
-                            <% } %>
-                            <%if (CheckAuth(17))
-                              { %>
-                            <dt>
-                                <img class="icon" src="images/menuicon/anket.png" />
-                                <a href="Content.aspx?content=SurveyList">
-                                    <%= AdminResource.lbSurveyManagement %>
-                                </a></dt>
-                            <% } %>
-                            <%if (CheckAuth(4))
-                              { %>
-                            <dt>
-                                <img class="icon" src="images/menuicon/duyuru.png" />
-                                <a href="Content.aspx?content=NoticesList">
-                                    <%= AdminResource.lbNoticeManagement %></a></dt>
-                            <% } %>
-                            <%if (CheckAuth(5) || CheckAuth(6))
-                              { %>
-                            <dt><b>
-                                <img class="icon" src="images/menuicon/gallery.png" />
-                                <%= AdminResource.lbGalleryManagement %></b></dt>
-                            <dd>
-                                <ul>
-                                    <% if (CheckAuth(5))
-                                       { %>
-                                    <a href="Content.aspx?content=GalleryManager">
-                                        <li>
-                                            <%= AdminResource.lbPhotoGalleryManagement %></li>
-                                    </a>
-                                    <% } %>
-                                    <% if (CheckAuth(6))
-                                       { %>
-                                    <a href="Content.aspx?content=VideoManager">
-                                        <li>
-                                            <%= AdminResource.lbVideoGalleryManagement %></li>
-                                    </a>
-                                    <% } %>
-                                </ul>
-                            </dd>
-                            <% } %>
-                            <% if (CheckAuth(6))
-                               { %>
-                            <dt>
-                                <img class="icon" src="images/menuicon/referans.png" />
-                                <a href="Content.aspx?content=SliderImageList">
-                                    <%= AdminResource.lbSliderImageManagement %></a> </dt>
-                            <% } %>
-                            <%if (CheckAuth(15) || CheckAuth(14))
-                              { %>
-                            <dt><b>
-                                <img class="icon" src="images/menuicon/genel.png" />
-                                <%= AdminResource.lbSiteGeneralSettings %></b></dt>
-                            <dd>
-                                <ul>
-                                    <%if (CheckAuth(15))
-                                      { %>
-                                    <a href="Content.aspx?content=SiteGeneralInfo">
-                                        <li>
-                                            <%= AdminResource.lbGeneralSettings %></li>
-                                    </a>
-                                    <% } if (CheckAuth(14))
-                                      { %>
-                                    <a href="Content.aspx?content=SiteLayout">
-                                        <li>
-                                            <%= AdminResource.lbInterfaceSettings %></li>
-                                    </a>
-                                    <% } if (CheckAuth(32))
-                                      { %>
-                                    <a href="Content.aspx?content=Definitions">
-                                        <li>
-                                            <%= AdminResource.lbDefinitions %></li>
-                                    </a>
-                                    <% } %>
-                                </ul>
-                            </dd>
-                            <% } %>
-                            <%if (CheckAuth(11))
-                              { %>
-                            <dt>
-                                <img class="icon" src="images/menuicon/dosya.png" />
-                                <a href="Content.aspx?content=FileManager">
-                                    <%= AdminResource.lbFileManager %></a></dt>
-                            <% } %>
-                            <%if (CheckAuth(8))
-                              { %>
-                            <dt>
-                                <img class="icon" src="images/menuicon/urun.png" />
-                                <a href="Content.aspx?content=ProductManager">
-                                    <%= AdminResource.lbProductManagement %>
-                                </a></dt>
-                            <% } %>
-                            <%if (CheckAuth(9))
-                              { %>
-                            <dt><b>
-                                <img class="icon" src="images/menuicon/banner.png" />
-                                <%= AdminResource.lbBannerManagement %></b></dt>
-                            <dd>
-                                <ul>
-                                    <a href="Content.aspx?content=addNewBanner">
-                                        <li>
-                                            <%= AdminResource.lbBanner %> <%= AdminResource.lbAdd %> & <%= AdminResource.lbEdit %></li>
-                                    </a><a href="Content.aspx?content=bannerManagement">
-                                        <li>
-                                            <%= AdminResource.lbBannerFieldManagement %></li>
-                                    </a>
-                                </ul>
-                            </dd>
-                            <% } %>
-                            <%if (CheckAuth(12))
-                              { %>
-                            <dt>
-                                <img class="icon" src="images/menuicon/siksorulan.png" />
-                                <a href="Content.aspx?content=SSS">
-                                    <%= AdminResource.lbFAQManagement %>
-                                </a></dt>
-                            <% } %>
-                            <%if (CheckAuth(10))
-                              { %>
-                            <dt>
-                                <img class="icon" src="images/menuicon/etkinlik.png" />
-                                <a href="Content.aspx?content=EventManager">
-                                    <%= AdminResource.lbEventManagement %>
-                                </a></dt>
-                            <% } %>
-                            <%if (CheckAuth(20))
-                              { %>
-                            <dt>
-                                <img class="icon" src="images/menuicon/rss.png" />
-                                <a href="Content.aspx?content=RssManagement">
-                                    <%= AdminResource.lbRssManagement %>
-                                </a></dt>
-                            <% } %>
-                            <%if (CheckAuth(22))
-                              { %>
-                            <dt>
-                                <img class="icon" src="images/menuicon/enguncel.png" />
-                                <a href="Content.aspx?content=LatestUpdatesManagement">
-                                    <%= AdminResource.lbLatestUpdatesManagement %>
-                                </a></dt>
-                            <% } %>
-                            <%if (CheckAuth(24))
-                              { %>
-                            <dt>
-                                <img class="icon" src="images/menuicon/form.png" />
-                                <a href="Content.aspx?content=FormManager">
-                                    <%= AdminResource.lbFormManagement %>
-                                </a></dt>
-                            <% } %>
-                            <%if (CheckAuth(25))
-                              { %>
-                            <dt>
-                                <img class="icon" src="images/menuicon/list.png" />
-                                <a href="Content.aspx?content=ListsManagement">
-                                    <%= AdminResource.lbListsManagement %>
-                                </a></dt>
-                            <% } %>
-                            <%if (CheckAuth(27) || CheckAuth(28)
-                                  || CheckAuth(29) || CheckAuth(30)
-                                  || CheckAuth(31))
-                              { %>
-                            <dt><b>
-                                <img class="icon" src="images/menuicon/cm.png" />
-                                <%= AdminResource.lbMemberManagement %></b> </dt>
-                            <dd>
-                                <ul>
-                                    <% 
-                                  if (CheckAuth(29))
-                                  { %>
-                                    <a href="Content.aspx?content=NewMember">
-                                        <li>
-                                            <%= AdminResource.lbNewMember %></li>
-                                    </a>
-                                    <% }
-                                  if (CheckAuth(27))
-                                  { %>
-                                    <a href="Content.aspx?content=MemberSearch">
-                                        <li>
-                                            <%= AdminResource.lbMemberSearch %></li>
-                                    </a>
-                                    <% }
-                                  if (CheckAuth(30))
-                                  { %>
-                                    <a href="Content.aspx?content=MemberActivation">
-                                        <li>
-                                            <%= AdminResource.lbMemberActivation %></li>
-                                    </a>
-                                    <% }
-                                  if (CheckAuth(28))
-                                  { %>
-                                    <a href="Content.aspx?content=MailTemplates">
-                                        <li>
-                                            <%= AdminResource.lbMailTemplateManagement %></li>
-                                    </a>
-                                    <% }
-                                        if (CheckAuth(31))
-                                        { %>
-                                    <a href="Content.aspx?content=ScheduledJobs">
-                                        <li>
-                                            <%= AdminResource.lbScheduledJobs %></li>
-                                    </a>
-                                    <% } %>
-                                </ul>
-                            </dd>
-                            <% if (CheckAuth(39))
-                               { %>
-                            <dt><b>
-                                <img class="icon" src="images/menuicon/cm.png" />
-                                <%= AdminResource.lbCorporationManagement %></b></dt>
-                            <dd>
-                                <ul>
-                                    <%
-                                   if (CheckAuth(39))
+            <div id="content">
+                <div id="left">
+                    <div class="leftMenu">
+                        <div class="lefttop">
+                        </div>
+                        <div class="leftcontent">
+                            <dl id="nav">
+                                <% if (CheckAuth(1))
                                    { %>
-                                    <a href="Content.aspx?content=CorporationAddEdit">
-                                        <li>
-                                            <%= AdminResource.lbNewCorporation %></li>
-                                    </a>
-                                    <% }
-                                   if (CheckAuth(39))
-                                        { %>
-                                    <a href="Content.aspx?content=CorporationSearch">
-                                        <li>
-                                            <%= AdminResource.lbCorporationSearch %></li>
-                                    </a>
-                                    <% }
-                                   if (CheckAuth(39))
-                                        { %>
-                                    <a href="Content.aspx?content=CorporationFinanceLogs">
-                                        <li>
-                                            <%= AdminResource.lbFinanceLogs %></li>
-                                    </a>
-                                    <% } %>
-                                </ul>
-                            </dd>
+                                    <dt><b>
+                                            <img class="icon" src="images/menuicon/kullanici.png" />
+                                            <%= AdminResource.lbUserManagement %></b></dt>
+                                    <dd>
+                                        <ul>
+                                            <a href="Content.aspx?content=Users">
+                                                <li>
+                                                    <%= AdminResource.lbUsers %></li>
+                                            </a><a href="Content.aspx?content=UserRoles">
+                                                    <li>
+                                                        <%= AdminResource.lbRoles %></li>
+                                                </a>
+                                        </ul>
+                                    </dd>
+                                <% } %>
+                                <% if (CheckAuth(26))
+                                   { %>
+                                    <dt>
+                                        <img class="icon" src="images/menuicon/ip.png" />
+                                        <a href="Content.aspx?content=IpFilter">
+                                            <%= AdminResource.lbIpFilterManagement %>
+                                        </a></dt>
+                                <% } %>
+                                <% if (CheckAuth(2) || CheckAuth(18))
+                                   { %>
+                                    <dt><b>
+                                            <img class="icon" src="images/menuicon/menu.png" />
+                                            <%= AdminResource.lbMenuContentManagement %></b></dt>
+                                    <dd>
+                                        <ul>
+                                            <a href="Content.aspx?content=MenuManager&location=3">
+                                                <li>
+                                                    <%= AdminResource.lbTopMenu %></li>
+                                            </a><a href="Content.aspx?content=MenuManager&location=1">
+                                                    <li>
+                                                        <%= AdminResource.lbMainMenu %></li>
+                                                </a><a href="Content.aspx?content=MenuManager&location=0">
+                                                        <li>
+                                                            <%= AdminResource.lbLeftMenu %></li>
+                                                    </a><a href="Content.aspx?content=MenuManager&location=2">
+                                                            <li>
+                                                                <%= AdminResource.lbSubMenu %></li>
+                                                        </a>
+                                            <% if (CheckAuth(18))
+                                               { %>
+                                                <a href="Content.aspx?content=TemplatePageList">
+                                                    <li>
+                                                        <%= AdminResource.lbPageTemplates %></li>
+                                                </a>
+                                            <% } %>
+                                        </ul>
+                                    </dd>
+                                <% }
+                                   if ((CheckAuth(16)) || CheckAuth(38) || CheckAuth(37))
+                                   { %>
+                                    <dt><b>
+                                            <img class="icon" src="images/menuicon/alan.png" />
+                                            <%= AdminResource.lbSteSpecificFieldManagement %>
+                                        </b></dt>
+                                    <dd>
+                                        <ul>
+                                            <% if (CheckAuth(16))
+                                               { %>
+                                                <a href="Content.aspx?content=StaticField">
+                                                    <li>
+                                                        <%= AdminResource.lbStaticFields %></li>
+                                                </a>
+                                            <% }
+                                               if (CheckAuth(38))
+                                               { %>
+                                                <a href="Content.aspx?content=DynamicField">
+                                                    <li>
+                                                        <%= AdminResource.lbDynamicFields %></li>
+                                                </a>
+                                            <% }
+                                               if (CheckAuth(37))
+                                               { %>
+                                                <a href="Content.aspx?content=RandomFields">
+                                                    <li>
+                                                        <%= AdminResource.lbRandomFields %></li>
+                                                </a>
+                                            <% } %>
+                                        </ul>
+                                    </dd>
+                                <% } %>
+                                <% if (CheckAuth(3) || CheckAuth(19))
+                                   { %>
+                                    <dt><b>
+                                            <img class="icon" src="images/menuicon/haber.png" />
+                                            <%= AdminResource.lbNewsManagement %>
+                                        </b></dt>
+                                    <dd>
+                                        <ul>
+                                            <% if (CheckAuth(3))
+                                               { %>
+                                                <a href="Content.aspx?content=NewsList">
+                                                    <li>
+                                                        <%= AdminResource.lbNewsManagement %></li>
+                                                </a>
+                                            <% } %>
+                                            <% if (CheckAuth(19))
+                                               { %>
+                                                <a href="Content.aspx?content=EmailList">
+                                                    <li>
+                                                        <%= AdminResource.lbNewsGroupMember %></li>
+                                                </a>
+                                            <% } %>
+                                        </ul>
+                                    </dd>
+                                <% } %>
+                                <% if (CheckAuth(17))
+                                   { %>
+                                    <dt>
+                                        <img class="icon" src="images/menuicon/anket.png" />
+                                        <a href="Content.aspx?content=SurveyList">
+                                            <%= AdminResource.lbSurveyManagement %>
+                                        </a></dt>
+                                <% } %>
+                                <% if (CheckAuth(4))
+                                   { %>
+                                    <dt>
+                                        <img class="icon" src="images/menuicon/duyuru.png" />
+                                        <a href="Content.aspx?content=NoticesList">
+                                            <%= AdminResource.lbNoticeManagement %></a></dt>
+                                <% } %>
+                                <% if (CheckAuth(5) || CheckAuth(6))
+                                   { %>
+                                    <dt><b>
+                                            <img class="icon" src="images/menuicon/gallery.png" />
+                                            <%= AdminResource.lbGalleryManagement %></b></dt>
+                                    <dd>
+                                        <ul>
+                                            <% if (CheckAuth(5))
+                                               { %>
+                                                <a href="Content.aspx?content=GalleryManager">
+                                                    <li>
+                                                        <%= AdminResource.lbPhotoGalleryManagement %></li>
+                                                </a>
+                                            <% } %>
+                                            <% if (CheckAuth(6))
+                                               { %>
+                                                <a href="Content.aspx?content=VideoManager">
+                                                    <li>
+                                                        <%= AdminResource.lbVideoGalleryManagement %></li>
+                                                </a>
+                                            <% } %>
+                                        </ul>
+                                    </dd>
+                                <% } %>
+                                <% if (CheckAuth(6))
+                                   { %>
+                                    <dt>
+                                        <img class="icon" src="images/menuicon/referans.png" />
+                                        <a href="Content.aspx?content=SliderImageList">
+                                            <%= AdminResource.lbSliderImageManagement %></a> </dt>
+                                <% } %>
+                                <% if (CheckAuth(15) || CheckAuth(14))
+                                   { %>
+                                    <dt><b>
+                                            <img class="icon" src="images/menuicon/genel.png" />
+                                            <%= AdminResource.lbSiteGeneralSettings %></b></dt>
+                                    <dd>
+                                        <ul>
+                                            <% if (CheckAuth(15))
+                                               { %>
+                                                <a href="Content.aspx?content=SiteGeneralInfo">
+                                                    <li>
+                                                        <%= AdminResource.lbGeneralSettings %></li>
+                                                </a>
+                                                <a href="Content.aspx?content=IntroLightBox">
+                                                    <li>
+                                                        <%= AdminResource.lbIntroLightBox %></li>
+                                                </a>
+                                            <% }
+                                               if (CheckAuth(14))
+                                               { %>
+                                                <a href="Content.aspx?content=SiteLayout">
+                                                    <li>
+                                                        <%= AdminResource.lbInterfaceSettings %></li>
+                                                </a>
+                                            <% }
+                                               if (CheckAuth(32))
+                                               { %>
+                                                <a href="Content.aspx?content=Definitions">
+                                                    <li>
+                                                        <%= AdminResource.lbDefinitions %></li>
+                                                </a>
+                                            <% } %>
+                                        </ul>
+                                    </dd>
+                                <% } %>
+                                <% if (CheckAuth(11))
+                                   { %>
+                                    <dt>
+                                        <img class="icon" src="images/menuicon/dosya.png" />
+                                        <a href="Content.aspx?content=FileManager">
+                                            <%= AdminResource.lbFileManager %></a></dt>
+                                <% } %>
+                                <% if (CheckAuth(8))
+                                   { %>
+                                    <dt>
+                                        <img class="icon" src="images/menuicon/urun.png" />
+                                        <a href="Content.aspx?content=ProductManager">
+                                            <%= AdminResource.lbProductManagement %>
+                                        </a></dt>
+                                <% } %>
+                                <% if (CheckAuth(9))
+                                   { %>
+                                    <dt><b>
+                                            <img class="icon" src="images/menuicon/banner.png" />
+                                            <%= AdminResource.lbBannerManagement %></b></dt>
+                                    <dd>
+                                        <ul>
+                                            <a href="Content.aspx?content=addNewBanner">
+                                                <li>
+                                                    <%= AdminResource.lbBanner %> <%= AdminResource.lbAdd %> & <%= AdminResource.lbEdit %></li>
+                                            </a><a href="Content.aspx?content=bannerManagement">
+                                                    <li>
+                                                        <%= AdminResource.lbBannerFieldManagement %></li>
+                                                </a>
+                                        </ul>
+                                    </dd>
+                                <% } %>
+                                <% if (CheckAuth(12))
+                                   { %>
+                                    <dt>
+                                        <img class="icon" src="images/menuicon/siksorulan.png" />
+                                        <a href="Content.aspx?content=SSS">
+                                            <%= AdminResource.lbFAQManagement %>
+                                        </a></dt>
+                                <% } %>
+                                <% if (CheckAuth(10))
+                                   { %>
+                                    <dt>
+                                        <img class="icon" src="images/menuicon/etkinlik.png" />
+                                        <a href="Content.aspx?content=EventManager">
+                                            <%= AdminResource.lbEventManagement %>
+                                        </a></dt>
+                                <% } %>
+                                <% if (CheckAuth(20))
+                                   { %>
+                                    <dt>
+                                        <img class="icon" src="images/menuicon/rss.png" />
+                                        <a href="Content.aspx?content=RssManagement">
+                                            <%= AdminResource.lbRssManagement %>
+                                        </a></dt>
+                                <% } %>
+                                <% if (CheckAuth(22))
+                                   { %>
+                                    <dt>
+                                        <img class="icon" src="images/menuicon/enguncel.png" />
+                                        <a href="Content.aspx?content=LatestUpdatesManagement">
+                                            <%= AdminResource.lbLatestUpdatesManagement %>
+                                        </a></dt>
+                                <% } %>
+                                <% if (CheckAuth(24))
+                                   { %>
+                                    <dt>
+                                        <img class="icon" src="images/menuicon/form.png" />
+                                        <a href="Content.aspx?content=FormManager">
+                                            <%= AdminResource.lbFormManagement %>
+                                        </a></dt>
+                                <% } %>
+                                <% if (CheckAuth(25))
+                                   { %>
+                                    <dt>
+                                        <img class="icon" src="images/menuicon/list.png" />
+                                        <a href="Content.aspx?content=ListsManagement">
+                                            <%= AdminResource.lbListsManagement %>
+                                        </a></dt>
+                                <% } %>
+                                <% if (CheckAuth(27) || CheckAuth(28)
+         || CheckAuth(29) || CheckAuth(30)
+         || CheckAuth(31))
+                                   { %>
+                                    <dt><b>
+                                            <img class="icon" src="images/menuicon/cm.png" />
+                                            <%= AdminResource.lbMemberManagement %></b> </dt>
+                                    <dd>
+                                        <ul>
+                                            <%
+                                                if (CheckAuth(29))
+                                                {%>
+                                                <a href="Content.aspx?content=NewMember">
+                                                    <li>
+                                                        <%= AdminResource.lbNewMember %></li>
+                                                </a>
+                                            <% }
+                                                if (CheckAuth(27))
+                                                { %>
+                                                <a href="Content.aspx?content=MemberSearch">
+                                                    <li>
+                                                        <%= AdminResource.lbMemberSearch %></li>
+                                                </a>
+                                            <% }
+                                                if (CheckAuth(30))
+                                                { %>
+                                                <a href="Content.aspx?content=MemberActivation">
+                                                    <li>
+                                                        <%= AdminResource.lbMemberActivation %></li>
+                                                </a>
+                                            <% }
+                                                if (CheckAuth(28))
+                                                { %>
+                                                <a href="Content.aspx?content=MailTemplates">
+                                                    <li>
+                                                        <%= AdminResource.lbMailTemplateManagement %></li>
+                                                </a>
+                                            <% }
+                                                if (CheckAuth(31))
+                                                { %>
+                                                <a href="Content.aspx?content=ScheduledJobs">
+                                                    <li>
+                                                        <%= AdminResource.lbScheduledJobs %></li>
+                                                </a>
+                                            <% } %>
+                                        </ul>
+                                    </dd> 
+                                    </dl>
                             <% } %>
-                        </dl>
-                        <% } %>
-                    </div>
-                    <div class="leftbottom">
+                        </div>
+                        <div class="leftbottom">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="right">
-                <div class="content">
-                    <div class="righttop">
-                        <asp:Panel runat="server">
-                            <div class="languagechooser">
-                                <uc1:DataLanguageChooser ID="DataLanguageChooser1" runat="server" />
+                <div id="right">
+                    <div class="content">
+                        <div class="righttop">
+                            <asp:Panel runat="server">
+                                <div class="languagechooser">
+                                    <uc1:DataLanguageChooser ID="DataLanguageChooser1" runat="server" />
+                                </div>
+                            </asp:Panel>
+                            <div class="help">
+                                <% if (DisplayHelp())
+                                   {%>
+                                    <img class="icon" src="images/menuicon/help.png" title='<%= AdminResource.lbHelp %>'
+                                         onclick="OpenHelpDialog();" />
+                                    <script type="text/javascript">
+                                        function OpenHelpDialog() {
+                                            var wnd = $find("<%= rWHelp.ClientID %>");
+                                            wnd.show();
+                                        }
+                                    </script>
+                                <% }%>
+                                <telerik:RadWindow runat="server" AutoSize="False" Height="600" Width="650" VisibleStatusbar="false"
+                                                   ShowContentDuringLoad="false" ID="rWHelp" Modal="true" Behaviors="Close,Move,Resize,Maximize">
+                                </telerik:RadWindow>
                             </div>
-                        </asp:Panel>
-                        <div class="help">
-                            <%if (DisplayHelp())
-                              {%>
-                            <img class="icon" src="images/menuicon/help.png" title='<%=AdminResource.lbHelp %>'
-                                onclick="OpenHelpDialog();" />
-                            <script type="text/javascript">
-                                function OpenHelpDialog() {
-                                    var wnd = $find("<%= rWHelp.ClientID %>");
-                                    wnd.show();
-                                }
-                            </script>
-                            <%}%>
-                            <telerik:RadWindow runat="server" AutoSize="False" Height="600" Width="650" VisibleStatusbar="false"
-                                ShowContentDuringLoad="false" ID="rWHelp" Modal="true" Behaviors="Close,Move,Resize,Maximize">
-                            </telerik:RadWindow>
+                            <div class="location">
+                                <asp:Label ID="lblLocation_Admin" runat="server" Text="Label"></asp:Label>
+                            </div>
                         </div>
-                        <div class="location">
-                            <asp:Label ID="lblLocation_Admin" runat="server" Text="Label"></asp:Label>
+                        <div class="rightcontent">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
                         </div>
-                    </div>
-                    <div class="rightcontent">
-                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                        </asp:ContentPlaceHolder>
-                    </div>
-                    <div class="rightbottom">
+                        <div class="rightbottom">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <asp:HiddenField runat="server" ID="hfUserRoleAuthAreas" />
-    </form>
-</body>
+            <asp:HiddenField runat="server" ID="hfUserRoleAuthAreas" />
+        </form>
+    </body>
 </html>

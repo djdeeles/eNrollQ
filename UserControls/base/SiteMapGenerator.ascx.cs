@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.UI;
@@ -22,7 +21,7 @@ public partial class UserControls_base_SiteMapGenerator : UserControl
 
         #region SMMenuler
 
-        List<System_menu> MList = ent.System_menu.Where(p => p.state == true && p.type == "2").ToList();
+        var MList = ent.System_menu.Where(p => p.state == true && p.type == "2").ToList();
         foreach (System_menu menu in MList)
         {
             SB.AppendLine("<url>");
@@ -42,7 +41,7 @@ public partial class UserControls_base_SiteMapGenerator : UserControl
 
         #region SMHaberler
 
-        List<News> news = ent.News.Where(p => p.state == true).ToList();
+        var news = ent.News.Where(p => p.state == true).ToList();
         foreach (News n in news)
         {
             SB.AppendLine("<url>");
@@ -65,7 +64,7 @@ public partial class UserControls_base_SiteMapGenerator : UserControl
 
         #region SMDuyurular
 
-        List<Notices> noticeses = ent.Notices.Where(p => p.state == true).ToList();
+        var noticeses = ent.Notices.Where(p => p.state == true).ToList();
         foreach (Notices notice in noticeses)
         {
             SB.AppendLine("<url>");
@@ -88,7 +87,7 @@ public partial class UserControls_base_SiteMapGenerator : UserControl
 
         #region SMEtkinlikler
 
-        List<Events> eventses = ent.Events.Where(p => p.State == true).ToList();
+        var eventses = ent.Events.Where(p => p.State == true).ToList();
         foreach (Events e in eventses)
         {
             SB.AppendLine("<url>");
@@ -111,7 +110,7 @@ public partial class UserControls_base_SiteMapGenerator : UserControl
 
         #region SMFotoğrafGalerisi
 
-        List<Def_photoAlbum> albums = ent.Def_photoAlbum.Where(p => p.state == true).ToList();
+        var albums = ent.Def_photoAlbum.Where(p => p.state == true).ToList();
         foreach (Def_photoAlbum album in albums)
         {
             SB.AppendLine("<url>");
@@ -131,7 +130,7 @@ public partial class UserControls_base_SiteMapGenerator : UserControl
 
         #region SMProducts
 
-        List<Products> productses = ent.Products.Where(p => p.State == true).ToList();
+        var productses = ent.Products.Where(p => p.State == true).ToList();
         foreach (Products product in productses)
         {
             SB.AppendLine("<url>");
@@ -151,7 +150,7 @@ public partial class UserControls_base_SiteMapGenerator : UserControl
 
         #region SMListDatas
 
-        List<ListData> listDatas = ent.ListData.Where(p => p.State == true).ToList();
+        var listDatas = ent.ListData.Where(p => p.State == true).ToList();
         foreach (ListData listData in listDatas)
         {
             SB.AppendLine("<url>");

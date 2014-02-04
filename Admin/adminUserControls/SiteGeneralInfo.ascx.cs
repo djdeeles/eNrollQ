@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,10 +13,11 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_SiteGeneralInfo : UserControl
 {
+    private readonly Entities _entities = new Entities();
     public string imgUrl;
-    Entities _entities = new Entities();
+
     protected void Page_Load(object sender, EventArgs e)
-    { 
+    {
         if (RoleControl.YetkiAlaniKontrol(HttpContext.Current.User.Identity.Name, 15))
         {
             mvAuth.ActiveViewIndex = 0;
@@ -91,12 +90,8 @@ public partial class Admin_adminUserControls_SiteGeneralInfo : UserControl
 
         #endregion
 
-
-
         try
         {
-
-
             #region site bakımı işlemi
 
             var siteInfoList = _entities.SiteGeneralInfo.ToList();
@@ -107,7 +102,6 @@ public partial class Admin_adminUserControls_SiteGeneralInfo : UserControl
             }
 
             #endregion
-
 
             info =
                 enroll.SiteGeneralInfo.FirstOrDefault(
@@ -128,7 +122,7 @@ public partial class Admin_adminUserControls_SiteGeneralInfo : UserControl
                 slide.languageId = EnrollAdminContext.Current.DataLanguage.LanguageId;
             }
 
-            
+
             info.title = txtBaslik.Text;
             info.description = txtAciklama.Text;
             info.keywords = txtKeywords.Text;
@@ -168,7 +162,7 @@ public partial class Admin_adminUserControls_SiteGeneralInfo : UserControl
             info.header2Heigth = txtTepeYukseklik1.Text;
             info.header2Width = txtTepeGenislik1.Text;
 
-            List<SiteGeneralInfo> infokontrol =
+            var infokontrol =
                 enroll.SiteGeneralInfo.Where(p => p.languageId == EnrollAdminContext.Current.DataLanguage.LanguageId).
                     ToList();
 
@@ -226,7 +220,7 @@ public partial class Admin_adminUserControls_SiteGeneralInfo : UserControl
     {
         var siteGeneralInfo = _entities.SiteGeneralInfo.Where(p => p.State == true).ToList();
         if (siteGeneralInfo.Count > 0) return true;
-             
+
         return false;
     }
 
@@ -396,6 +390,4 @@ public partial class Admin_adminUserControls_SiteGeneralInfo : UserControl
             slideShow.Visible = false;
         }
     }
-
-     
 }

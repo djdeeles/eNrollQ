@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Drawing;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -9,8 +8,8 @@ using eNroll.App_Data;
 
 public partial class Admin_adminUserControls_DataLanguageChooser : UserControl
 {
+    private readonly Entities ent = new Entities();
 
-    Entities ent = new Entities();
     protected void Page_Load(object sender, EventArgs e)
     {
         try
@@ -51,7 +50,7 @@ public partial class Admin_adminUserControls_DataLanguageChooser : UserControl
         try
         {
             var lb = (ImageButton) sender;
-            var langId = Convert.ToInt32(lb.CommandArgument); 
+            var langId = Convert.ToInt32(lb.CommandArgument);
             var dataLang = ent.System_language.FirstOrDefault(p => p.languageId == langId);
             if (dataLang != null)
                 EnrollAdminContext.Current.DataLanguage.LanguageId = Convert.ToInt32(dataLang.languageId);

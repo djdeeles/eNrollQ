@@ -2,13 +2,11 @@
 using System.Security.Principal;
 using System.Web;
 using System.Web.Security;
-using Enroll.Managers;
 
 namespace eNroll
 {
-    public class Global : System.Web.HttpApplication
+    public class Global : HttpApplication
     {
-	
         private void Application_Start(object sender, EventArgs e)
         {
         }
@@ -25,7 +23,7 @@ namespace eNroll
         {
             Exception exception = Server.GetLastError().GetBaseException();
             //ExceptionManager.ManageException(exception);
-            
+
             var httpEx = exception as HttpException;
             if (httpEx != null && httpEx.GetHttpCode() == 404)
             {
@@ -33,7 +31,7 @@ namespace eNroll
             }
             /*
             else
-                Response.Redirect("~/Error.html");*/ 
+                Response.Redirect("~/Error.html");*/
         }
 
         private void Session_Start(object sender, EventArgs e)
@@ -53,15 +51,14 @@ namespace eNroll
                 {
                     if (HttpContext.Current.User.Identity is FormsIdentity)
                     {
-                        var id = (FormsIdentity)HttpContext.Current.User.Identity;
+                        var id = (FormsIdentity) HttpContext.Current.User.Identity;
                         FormsAuthenticationTicket ticket = id.Ticket;
                         string userData = ticket.UserData;
-                        string[] roles = userData.Split(',');
+                        var roles = userData.Split(',');
                         HttpContext.Current.User = new GenericPrincipal(id, roles);
                     }
                 }
             }
         }
-	
     }
 }

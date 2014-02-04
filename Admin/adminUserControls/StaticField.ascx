@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_StaticField"
-    CodeBehind="StaticFields.ascx.cs" %>
+            CodeBehind="StaticFields.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <%@ Register Src="Rtb.ascx" TagName="Rtb" TagPrefix="uc1" %>
 <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=Entities"
-    DefaultContainerName="Entities" EntitySetName="Customer_Special">
+                      DefaultContainerName="Entities" EntitySetName="Customer_Special">
 </asp:EntityDataSource>
 <asp:MultiView runat="server" ID="mvAuth">
     <asp:View runat="server">
@@ -11,7 +11,7 @@
             <table class="rightcontenttable">
                 <tr>
                     <td>
-                        <%=AdminResource.lbFieldName %>:
+                        <%= AdminResource.lbFieldName %>:
                     </td>
                     <td>
                         <asp:TextBox ID="txtHeader" Width="300px" runat="server"></asp:TextBox>
@@ -31,7 +31,7 @@
                     </td>
                     <td>
                         <asp:Button ID="imBtSave" runat="server" ValidationGroup="vldGroup1" OnClick="imBtSave_Click"
-                            CssClass="SaveCancelBtn" />
+                                    CssClass="SaveCancelBtn" />
                         <asp:Button ID="imBtCancel" runat="server" OnClick="imgBtnCancel" CssClass="SaveCancelBtn" />
                     </td>
                 </tr>
@@ -50,12 +50,12 @@
                 <tr>
                     <td>
                         <asp:GridView ID="gvStaticFields" runat="server" AutoGenerateColumns="False" CssClass="GridViewStyle"
-                            PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
-                            SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
-                            SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
-                            SelectedRowStyle="selected" PageSize="15" DataKeyNames="specialId" DataSourceID="EntityDataSource1"
-                            AllowPaging="True" AllowSorting="True" CellPadding="4"
-                            Width="100%" ForeColor="#333333" GridLines="None">
+                                      PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
+                                      SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
+                                      SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
+                                      SelectedRowStyle="selected" PageSize="15" DataKeyNames="specialId" DataSourceID="EntityDataSource1"
+                                      AllowPaging="True" AllowSorting="True" CellPadding="4"
+                                      Width="100%" ForeColor="#333333" GridLines="None">
                             <EmptyDataTemplate>
                                 <%= AdminResource.lbNoRecord %>
                             </EmptyDataTemplate>
@@ -63,7 +63,8 @@
                                 <asp:TemplateField>
                                     <ItemTemplate>
                                         <asp:ImageButton ID="imgBtnEdit" runat="server" ImageUrl="~/Admin/images/icon/edit.png" OnClick="imgBtnEditClick"
-                                            CommandArgument='<%#Bind("specialId") %>' />
+                                                         CommandArgument='<%#Bind
+                                                                                                   ("specialId") %>' />
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Left" Width="50px" />
                                     <ItemStyle HorizontalAlign="Left" Width="50px" />

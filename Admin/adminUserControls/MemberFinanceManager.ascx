@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MemberFinanceManager.ascx.cs"
-    Inherits="eNroll.Admin.adminUserControls.MemberFinanceManager" %>
+            Inherits="eNroll.Admin.adminUserControls.MemberFinanceManager" %>
 <%@ Import Namespace="Resources" %>
 <%@ Import Namespace="eNroll.Helpers" %>
 <script type="text/javascript">
@@ -7,10 +7,10 @@
         var table = document.getElementById(data);
         if (table.style.display == "none") {
             table.style.display = "table";
-            control.attr("title", "<%=AdminResource.lbHide %>");
+            control.attr("title", "<%= AdminResource.lbHide %>");
         } else {
             table.style.display = "none";
-            control.attr("title", "<%=AdminResource.lbShow %>");
+            control.attr("title", "<%= AdminResource.lbShow %>");
         }
     }
 </script>
@@ -22,12 +22,12 @@
         <asp:MultiView runat="server" ID="mvFinanceManager">
             <asp:View runat="server" ID="vDept">
                 <fieldset>
-                    <legend><span style="cursor: pointer;" onclick="hideTable($(this),'tbChargeForDues')">
-                        <%=AdminResource.lbAddDeptMember %></span></legend>
+                    <legend><span style="cursor: pointer;" onclick=" hideTable($(this), 'tbChargeForDues') ">
+                                <%= AdminResource.lbAddDeptMember %></span></legend>
                     <table id="tbChargeForDues">
                         <tr>
                             <td style="width: 100px;">
-                                <%=AdminResource.lbDuesType %>
+                                <%= AdminResource.lbDuesType %>
                             </td>
                             <td style="width: 10px;">
                                 :
@@ -35,10 +35,10 @@
                             <td>
                                 <asp:DropDownList runat="server" ID="ddlDuesType" AutoPostBack="True" OnSelectedIndexChanged="ddlDuesType_OnSelectedIndexChanged" />
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlDuesType"
-                                    ForeColor="Red" ValidationGroup="g1" InitialValue="" ErrorMessage="!">
+                                                            ForeColor="Red" ValidationGroup="g1" InitialValue="" ErrorMessage="!">
                                 </asp:RequiredFieldValidator>
                                 <asp:Button runat="server" ID="btAddDues" CssClass="SaveCancelBtn" ValidationGroup="g1"
-                                    OnClick="BtnAddDuesClick" />
+                                            OnClick="BtnAddDuesClick" />
                             </td>
                         </tr>
                         <tr>
@@ -55,12 +55,12 @@
                     </table>
                 </fieldset>
                 <asp:GridView runat="server" ID="gvFinanceManagement" AllowSorting="False" AutoGenerateColumns="False"
-                    CellPadding="4" ForeColor="#333333" GridLines="None" Visible="True" CssClass="GridViewStyle"
-                    PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
-                    SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
-                    SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
-                    SelectedRowStyle="selected" PageSize="15" AllowPaging="True" OnRowDataBound="GvFinanceManagement_OnRowDataBound"
-                    Width="100%">
+                              CellPadding="4" ForeColor="#333333" GridLines="None" Visible="True" CssClass="GridViewStyle"
+                              PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
+                              SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
+                              SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
+                              SelectedRowStyle="selected" PageSize="15" AllowPaging="True" OnRowDataBound="GvFinanceManagement_OnRowDataBound"
+                              Width="100%">
                     <EmptyDataTemplate>
                         <%= AdminResource.lbNoRecord %>
                     </EmptyDataTemplate>
@@ -71,14 +71,14 @@
                                     <tr>
                                         <td>
                                             <asp:Button ID="btnGoFinanceDetail" runat="server" OnClick="BtnGoFinanceDetailClick"
-                                                CssClass="SaveCancelBtn" CommandArgument='<%#Eval("finId") %>' />
+                                                        CssClass="SaveCancelBtn" CommandArgument='<%#Eval("finId") %>' />
                                         </td>
                                         <td width="5px">
                                             &nbsp;
                                         </td>
                                         <td>
-                                            <asp:Button ID="btnGoPayment" runat="server" CommandArgument='<%#Eval("finId") %>'
-                                                CssClass="SaveCancelBtn" OnClick="BtnGoPaymentClick" />
+                                            <asp:Button ID="btnGoTakePayment" runat="server" CommandArgument='<%#Eval("finId") %>'
+                                                        CssClass="SaveCancelBtn" OnClick="BtnGoTakePaymentClick" />
                                         </td>
                                     </tr>
                                 </table>
@@ -88,14 +88,14 @@
                         </asp:TemplateField>
                         <asp:TemplateField ItemStyle-HorizontalAlign="Left">
                             <ItemTemplate>
-                                <%#GetUserName(Convert.ToInt32(Eval("uId")))%>
+                                <%#                GetUserName(Convert.ToInt32(Eval("uId"))) %>
                             </ItemTemplate>
                             <HeaderStyle HorizontalAlign="Left" />
                             <ItemStyle HorizontalAlign="Left" />
                         </asp:TemplateField>
                         <asp:TemplateField ItemStyle-Width="75" ItemStyle-HorizontalAlign="Left">
                             <ItemTemplate>
-                                <%#EnrollMembershipHelper.DebtValue(Convert.ToDecimal(Eval("finDept")))%>
+                                <%#                EnrollMembershipHelper.DebtValue(Convert.ToDecimal(Eval("finDept"))) %>
                             </ItemTemplate>
                             <HeaderStyle HorizontalAlign="Left" />
                             <ItemStyle HorizontalAlign="Left" Width="75px" />
@@ -116,7 +116,7 @@
                     <table style="float: left;" width="70%" cellpadding="0" cellspacing="5">
                         <tr>
                             <td width="120px">
-                                <%=AdminResource.lbRelationType %>
+                                <%= AdminResource.lbRelationType %>
                             </td>
                             <td width="10px">
                                 :
@@ -127,7 +127,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <%=AdminResource.lbMemberNo%>
+                                <%= AdminResource.lbMemberNo %>
                             </td>
                             <td>
                                 :
@@ -138,7 +138,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <%=AdminResource.lbGraduateDate %>
+                                <%= AdminResource.lbGraduateDate %>
                             </td>
                             <td>
                                 :
@@ -149,7 +149,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <%=AdminResource.lbCurrentDebtAmount %>
+                                <%= AdminResource.lbCurrentDebtAmount %>
                             </td>
                             <td>
                                 :
@@ -162,72 +162,74 @@
                     </table>
                 </fieldset>
                 <fieldset>
-                    <legend><span style="cursor: pointer;" onclick="hideTable($(this),'<%=gvChargesForDues.ClientID %>')"
-                        title='<%=AdminResource.lbHide %>'>
-                        <%=AdminResource.lbChargesForDues %>
-                    </span></legend>
+                    <legend><span style="cursor: pointer;" onclick=" hideTable($(this), '<%= gvChargesForDues.ClientID %>') "
+                                  title='<%= AdminResource.lbHide %>'>
+                                <%= AdminResource.lbChargesForDues %>
+                            </span></legend>
                     <asp:GridView runat="server" ID="gvChargesForDues" AllowSorting="False" AutoGenerateColumns="False"
-                        CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="edsChargesForDues"
-                        CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                        SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-                        SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
-                        EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
-                        PageSize="15" AllowPaging="True" Width="100%">
+                                  CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="edsChargesForDues"
+                                  CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                                  SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                                  SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
+                                  EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
+                                  PageSize="15" AllowPaging="True" Width="100%">
                         <EmptyDataTemplate>
                             <%= AdminResource.lbNoRecord %>
                         </EmptyDataTemplate>
                         <Columns>
                             <asp:TemplateField ItemStyle-Width="20" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
-                                    <img width="20" src="../../Admin/images/icon/zoom.png" style="cursor: pointer;" onclick="OpenHelpDialog(
-                                    <%#(Eval("LogType") != null && Convert.ToInt32(Eval("LogType")) == 0 ? "0":"1")%>,
-                                    <%#Eval("UserId").ToString()%>, 
-                                    '<%#Eval("Id").ToString()%>'); return false;" />
+                                    <img width="20" src="../../Admin/images/icon/zoom.png" style="cursor: pointer;" onclick=" OpenHelpDialog(
+    <%#                (Eval("LogType") != null && Convert.ToInt32(Eval("LogType")) == 0 ? "0" : "1") %>,
+    <%#Eval("UserId").ToString() %>,
+    '<%#Eval("Id").ToString() %>'); return false; " />
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Left" Width="20px" />
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-Width="75" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
-                                    <%#(Eval("LogType") != null && Convert.ToInt32(Eval("LogType")) ==0 ? 
-                            GetDuesType(Convert.ToInt32(Eval("DuesType"))):"")%>
+                                    <%#                                        (Eval("LogType") != null && Convert.ToInt32(Eval("LogType")) == 0
+                                             ? GetDuesType(Convert.ToInt32(Eval("DuesType")))
+                                             : "") %>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-Width="75" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
-                                    <%#(Eval("LogType") != null && Convert.ToInt32(Eval("LogType")) ==1 ? 
-                            GetPaymentType(Convert.ToInt32(Eval("PaymentTypeId"))) : "")%>
+                                    <%#                (Eval("LogType") != null && Convert.ToInt32(Eval("LogType")) == 1
+                     ? GetPaymentType(Convert.ToInt32(Eval("PaymentTypeId")))
+                     : "") %>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-Width="75" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
-                                    <%#EnrollMembershipHelper.AmountValue(Convert.ToDecimal(Eval("Amount")), Convert.ToInt32(Eval("LogType")))%>
+                                    <%#                EnrollMembershipHelper.AmountValue(Convert.ToDecimal(Eval("Amount")), Convert.ToInt32(Eval("LogType"))) %>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-Width="75" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
-                                    <%#Convert.ToDateTime(Eval("CreatedTime")).ToShortDateString() + " " + 
-                            Convert.ToDateTime(Eval("CreatedTime")).ToShortTimeString()%>
+                                    <%#                Convert.ToDateTime(Eval("CreatedTime")).ToShortDateString() + " " +
+                Convert.ToDateTime(Eval("CreatedTime")).ToShortTimeString() %>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-Width="75" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
-                                    <%#GetUserName(Convert.ToInt32(Eval("CreatedUser")))%>
+                                    <%#                GetUserName(Convert.ToInt32(Eval("CreatedUser"))) %>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-Width="75" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
-                                    <%#(Convert.ToInt32(Eval("LogType")) == 0 ? AdminResource.lbDebiting : AdminResource.lbPayment)%>
+                                    <%#                (Convert.ToInt32(Eval("LogType")) == 0 ? AdminResource.lbDebiting : AdminResource.lbPayment) %>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
@@ -235,8 +237,8 @@
                         </Columns>
                     </asp:GridView>
                     <asp:EntityDataSource ID="edsChargesForDues" runat="server" ConnectionString="name=Entities"
-                        DefaultContainerName="Entities" EntitySetName="UserDuesLog" Where="it.UserId=@UserId"
-                        OrderBy="it.CreatedTime desc">
+                                          DefaultContainerName="Entities" EntitySetName="UserDuesLog" Where="it.UserId=@UserId"
+                                          OrderBy="it.CreatedTime desc">
                         <WhereParameters>
                             <asp:ControlParameter ControlID="hfMemberId" Name="UserId" DbType="Int32" />
                         </WhereParameters>
@@ -250,14 +252,14 @@
                         }
                     </script>
                     <telerik:RadWindow runat="server" AutoSize="True" Width="330" VisibleStatusbar="false"
-                        ShowContentDuringLoad="false" ID="rWDetail" Modal="true" Behaviors="Close,Move,Resize,Maximize">
+                                       ShowContentDuringLoad="false" ID="rWDetail" Modal="true" Behaviors="Close,Move,Resize,Maximize">
                     </telerik:RadWindow>
                     <asp:Button runat="server" ID="btnExportExcel" CssClass="SaveCancelBtn" OnClick="BtnExportExcel" />
                 </fieldset>
                 <br />
                 <asp:Button runat="server" ID="btnBackToDept" CssClass="SaveCancelBtn" OnClick="BackToDept" />
             </asp:View>
-            <asp:View runat="server" ID="vPayment">
+            <asp:View runat="server" ID="vTakePayment">
                 <fieldset>
                     <legend>
                         <h1>
@@ -270,7 +272,7 @@
                     <table width="70%" cellpadding="0" cellspacing="5">
                         <tr>
                             <td width="120px;">
-                                <%=AdminResource.lbRelationType %>
+                                <%= AdminResource.lbRelationType %>
                             </td>
                             <td width="10px;">
                                 :
@@ -281,7 +283,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <%=AdminResource.lbMemberNo %>
+                                <%= AdminResource.lbMemberNo %>
                             </td>
                             <td>
                                 :
@@ -292,7 +294,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <%=AdminResource.lbGraduateDate %>
+                                <%= AdminResource.lbGraduateDate %>
                             </td>
                             <td>
                                 :
@@ -303,7 +305,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <%=AdminResource.lbCurrentDebtAmount %>
+                                <%= AdminResource.lbCurrentDebtAmount %>
                             </td>
                             <td>
                                 :
@@ -315,12 +317,12 @@
                     </table>
                 </fieldset>
                 <fieldset>
-                    <legend><span style="cursor: pointer;" onclick="hideTable($(this),'tbPaymentInfo')">
-                        <%=AdminResource.lbPaymentInfo%></span></legend>
+                    <legend><span style="cursor: pointer;" onclick=" hideTable($(this), 'tbPaymentInfo') ">
+                                <%= AdminResource.lbPaymentInfo %></span></legend>
                     <table width="100%" cellpadding="0" cellspacing="5" id="tbPaymentInfo">
                         <tr>
                             <td width="120px;">
-                                <%=AdminResource.lbPaymentType%>
+                                <%= AdminResource.lbPaymentType %>
                             </td>
                             <td width="10px;">
                                 :
@@ -328,13 +330,13 @@
                             <td>
                                 <asp:DropDownList runat="server" ID="ddlPymtPaymentType" Width="205px" />
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlPymtPaymentType"
-                                    ForeColor="Red" ValidationGroup="vldGroup1" InitialValue="" ErrorMessage="!">
+                                                            ForeColor="Red" ValidationGroup="vldGroup1" InitialValue="" ErrorMessage="!">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <%=AdminResource.lbPaymentDate%>
+                                <%= AdminResource.lbPaymentDate %>
                             </td>
                             <td>
                                 :
@@ -343,30 +345,34 @@
                                 <telerik:RadDatePicker ID="dpPymtPaymentDate" runat="server" Width="230px">
                                 </telerik:RadDatePicker>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="dpPymtPaymentDate"
-                                    ForeColor="Red" ValidationGroup="vldGroup1" ErrorMessage="!">
+                                                            ForeColor="Red" ValidationGroup="vldGroup1" ErrorMessage="!">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <%=AdminResource.lbPaymentAmount%>
+                                <%= AdminResource.lbPaymentAmount %>
                             </td>
                             <td>
                                 :
                             </td>
                             <td>
-                                <%=(EnrollCurrency.SiteDefaultCurrency().Position == "L" ? EnrollCurrency.SiteDefaultCurrencyUnit() : "") %>
+                                <%= (EnrollCurrency.SiteDefaultCurrency().Position == "L"
+                              ? EnrollCurrency.SiteDefaultCurrencyUnit()
+                              : "") %>
                                 <asp:TextBox runat="server" CssClass="deptAmount" onkeydown="return priceInputsCharacters(event);"
-                                    ID="tbPymtPaymentAmount" Width="200px" />
-                                <%=(EnrollCurrency.SiteDefaultCurrency().Position == "R" ? EnrollCurrency.SiteDefaultCurrencyUnit() : "") %>
+                                             ID="tbPymtPaymentAmount" Width="200px" />
+                                <%= (EnrollCurrency.SiteDefaultCurrency().Position == "R"
+                                     ? EnrollCurrency.SiteDefaultCurrencyUnit()
+                                     : "") %>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbPymtPaymentAmount"
-                                    ForeColor="Red" ValidationGroup="vldGroup1" ErrorMessage="!">
+                                                            ForeColor="Red" ValidationGroup="vldGroup1" ErrorMessage="!">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <%=AdminResource.lbReceiptInvoiceNumber%>
+                                <%= AdminResource.lbReceiptInvoiceNumber %>
                             </td>
                             <td>
                                 :
@@ -374,13 +380,13 @@
                             <td>
                                 <asp:TextBox runat="server" ID="tbPymtReceiptNumber" Width="200px" />
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbPymtReceiptNumber"
-                                    ForeColor="Red" ValidationGroup="vldGroup1" ErrorMessage="!">
+                                                            ForeColor="Red" ValidationGroup="vldGroup1" ErrorMessage="!">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <%=AdminResource.lbReceiptInvoiceDate%>
+                                <%= AdminResource.lbReceiptInvoiceDate %>
                             </td>
                             <td>
                                 :
@@ -392,7 +398,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <%=AdminResource.lbProvisionNumber%>
+                                <%= AdminResource.lbProvisionNumber %>
                             </td>
                             <td>
                                 :
@@ -405,7 +411,7 @@
                             <td colspan="3">
                                 <asp:Button runat="server" ID="btnBackToDept2" CssClass="SaveCancelBtn" OnClick="BackToDept" />
                                 <asp:Button runat="server" ID="btPymtAddNewPayment" ValidationGroup="vldGroup1" CssClass="SaveCancelBtn"
-                                    OnClick="BtPymtAddNewPaymentOnClick" />
+                                            OnClick="BtPymtAddNewPaymentOnClick" />
                             </td>
                         </tr>
                     </table>

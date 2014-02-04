@@ -1,35 +1,35 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="userControls_AlbumVideos" Codebehind="AlbumVideos.ascx.cs" %>
 <h1>
     <asp:Label ID="lblAlbumName" runat="server"></asp:Label></h1>
-    <table border="0" cellpadding="0" cellspacing="0">
+<table border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td>
-<asp:ListView ID="ListView1" runat="server" DataSourceID="EntityDataSource1" GroupPlaceholderID="groupPlaceHolder"
-              ItemPlaceholderID="itemPlaceHolder">
-    <LayoutTemplate>
-            <asp:PlaceHolder ID="groupPlaceHolder" runat="server"></asp:PlaceHolder>
-    </LayoutTemplate>
-    <GroupTemplate>
-        <asp:PlaceHolder runat="server" ID="itemPlaceHolder"></asp:PlaceHolder>
-    </GroupTemplate>
-    <ItemTemplate>
-        <div class="videos">
-            <div style="float: left; height: 87px; margin: 10px; overflow: hidden; width: 100px;">
-                <img src='/App_Themes/mainTheme/images/vid.png' alt='<%#Eval
+            <asp:ListView ID="ListView1" runat="server" DataSourceID="EntityDataSource1" GroupPlaceholderID="groupPlaceHolder"
+                          ItemPlaceholderID="itemPlaceHolder">
+                <LayoutTemplate>
+                    <asp:PlaceHolder ID="groupPlaceHolder" runat="server"></asp:PlaceHolder>
+                </LayoutTemplate>
+                <GroupTemplate>
+                    <asp:PlaceHolder runat="server" ID="itemPlaceHolder"></asp:PlaceHolder>
+                </GroupTemplate>
+                <ItemTemplate>
+                    <div class="videos">
+                        <div style="float: left; height: 87px; margin: 10px; overflow: hidden; width: 100px;">
+                            <img src='/App_Themes/mainTheme/images/vid.png' alt='<%#Eval
                                                                                                    ("Name") %>' width='100px'
-                     height='87px' />
-            </div>
-            <div style="float: left; margin: 10px; width: 500px;">
-                <a href='<%#                                        Eval("videoURL") %>' rel="prettyPhoto[pp_gal]" title='<%#Eval("Name") %>'>
-                    <b>
-                        <%#Eval("Name") %></b></a>
-                <br />
-                <br />
-                <%#Eval("Description") %>
-            </div>
-        </div>
-    </ItemTemplate>
-</asp:ListView>
+                                 height='87px' />
+                        </div>
+                        <div style="float: left; margin: 10px; width: 500px;">
+                            <a href='<%#                                        Eval("videoURL") %>' rel="prettyPhoto[pp_gal]" title='<%#Eval("Name") %>'>
+                                <b>
+                                    <%#Eval("Name") %></b></a>
+                            <br />
+                            <br />
+                            <%#                                        Eval("Description") %>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:ListView>
         </td>
     </tr>
 </table>

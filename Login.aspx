@@ -19,7 +19,7 @@
                                 <tr>
                                     <td width="75px">
                                         <!--<%= Resources.Resource.lbUILanguage %>!-->
-					<img src="App_Themes/mainTheme/images/login/language.png" height="25px" />
+                                        <img src="App_Themes/mainTheme/images/login/language.png" height="25px" />
                                     </td>
                                     <td>
                                         :

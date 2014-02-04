@@ -161,7 +161,7 @@ public partial class Admin_adminUserControls_TagEditor : UserControl
 
                     ddlCssAttValues.Visible = true;
                     int cssAttId = Convert.ToInt32(ddlAttList.SelectedValue);
-                    List<EnrollCssAttributeValues> attVal =
+                    var attVal =
                         ent.EnrollCssAttributeValues.Where(p => p.cssAttributeId == cssAttId).ToList();
                     ddlCssAttValues.DataSource = attVal;
                     ddlCssAttValues.DataValueField = "cssValue";

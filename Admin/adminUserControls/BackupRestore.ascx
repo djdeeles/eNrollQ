@@ -1,27 +1,28 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="BackupRestore.ascx.cs"
-    Inherits="eNroll.Admin.adminUserControls.BackupRestore" %>
+            Inherits="eNroll.Admin.adminUserControls.BackupRestore" %>
 <%@ Import Namespace="Resources" %>
 <asp:MultiView runat="server" ID="MultiView2">
     <asp:View ID="View1" runat="server">
         <asp:Button ID="btBackUp" runat="server" CssClass="SaveCancelBtn" OnClick="BackupDatabaseClick" />
         <asp:Button ID="btFullBackup" runat="server" CssClass="SaveCancelBtn" OnClick="BackupFilesClick" />
         <asp:GridView ID="grVFiles" runat="server" AutoGenerateColumns="False" CellPadding="4"
-            CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-            SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-            SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
-            EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle-CssClass="selected"
-            PageSize="15" AllowPaging="True" Width="100%" OnRowDataBound="GrVFilesRowDataBound"
-            ForeColor="#333333" GridLines="None">
+                      CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                      SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                      SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
+                      EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle-CssClass="selected"
+                      PageSize="15" AllowPaging="True" Width="100%" OnRowDataBound="GrVFilesRowDataBound"
+                      ForeColor="#333333" GridLines="None">
             <EmptyDataTemplate>
                 <%= AdminResource.lbNoRecord %>
             </EmptyDataTemplate>
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:ImageButton ID="btnFileDelete" runat="server" CommandArgument='<%#Bind("FullName") %>'
-                            ImageUrl="~/Admin/images/icon/cop.png" OnClick="BtnFileDelete" />
+                        <asp:ImageButton ID="btnFileDelete" runat="server" CommandArgument='<%#Bind
+                                                                                                   ("FullName") %>'
+                                         ImageUrl="~/Admin/images/icon/cop.png" OnClick="BtnFileDelete" />
                         <asp:ImageButton ID="btnDBRestore" runat="server" CommandArgument='<%#Bind("FullName") %>'
-                            ImageUrl="~/Admin/images/icon/geriyukle.png" OnClick="RestoreDatabase" />
+                                         ImageUrl="~/Admin/images/icon/geriyukle.png" OnClick="RestoreDatabase" />
                     </ItemTemplate>
                     <HeaderStyle HorizontalAlign="Left" Width="75px" />
                     <ItemStyle HorizontalAlign="Left" Width="75px" />

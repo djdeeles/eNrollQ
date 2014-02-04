@@ -22,7 +22,7 @@ public partial class UserControls_NewsContent : UserControl
                 {
                     lbDate.Text = haber.enterDate.Value.ToShortDateString() + " " +
                                   haber.enterDate.Value.ToShortTimeString();
-                } 
+                }
                 lblBaslik.Text = header;
                 lblYazi.Text = haber.details;
                 if (!String.IsNullOrEmpty(haber.imagePath))

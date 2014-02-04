@@ -19,18 +19,18 @@
 </asp:ListView>
 <% if (DataPager1.TotalRowCount > 5)
    { %>
-<asp:DataPager ID="DataPager1" runat="server" PagedControlID="ListView1" PageSize="5"
-    OnInit="DataPager1_Init" QueryStringField="page">
-    <Fields>
-        <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True" ShowNextPageButton="False"
-            ShowPreviousPageButton="True" FirstPageText="First" LastPageText="Last" NextPageText="Next"
-            PreviousPageText="Previous" />
-        <asp:NumericPagerField />
-        <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True" ShowNextPageButton="True"
-            ShowPreviousPageButton="False" FirstPageText="First" LastPageText="Last" NextPageText="Next"
-            PreviousPageText="Previous" />
-    </Fields>
-</asp:DataPager>
+    <asp:DataPager ID="DataPager1" runat="server" PagedControlID="ListView1" PageSize="5"
+                   OnInit="DataPager1_Init" QueryStringField="page">
+        <Fields>
+            <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True" ShowNextPageButton="False"
+                                        ShowPreviousPageButton="True" FirstPageText="First" LastPageText="Last" NextPageText="Next"
+                                        PreviousPageText="Previous" />
+            <asp:NumericPagerField />
+            <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True" ShowNextPageButton="True"
+                                        ShowPreviousPageButton="False" FirstPageText="First" LastPageText="Last" NextPageText="Next"
+                                        PreviousPageText="Previous" />
+        </Fields>
+    </asp:DataPager>
 <% } %>
 <asp:Literal ID="ltRssItemsScroll" runat="server">
 </asp:Literal>

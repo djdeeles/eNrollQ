@@ -12,8 +12,7 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_NoticeList : UserControl
 {
-
-    Entities oEntities = new Entities();
+    private readonly Entities oEntities = new Entities();
 
     protected override void OnInit(EventArgs e)
     {
@@ -51,7 +50,7 @@ public partial class Admin_adminUserControls_NoticeList : UserControl
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var deleteButton = (ImageButton)e.Row.FindControl("imgBtnDelete");
+                var deleteButton = (ImageButton) e.Row.FindControl("imgBtnDelete");
                 deleteButton.OnClientClick = " return confirm('" + AdminResource.lbDeletingQuestion + "');";
             }
         }
@@ -63,7 +62,7 @@ public partial class Admin_adminUserControls_NoticeList : UserControl
 
     protected void imgBtnDelete_Click(object sender, ImageClickEventArgs e)
     {
-        var myButton = (ImageButton)sender;
+        var myButton = (ImageButton) sender;
         try
         {
             var oEntities = new Entities();
@@ -77,7 +76,7 @@ public partial class Admin_adminUserControls_NoticeList : UserControl
                 oEntities.SaveChanges();
 
                 GridView1.DataBind();
-                MessageBox.Show(MessageType.Success, Resources.AdminResource.msgDeleted);
+                MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
             }
         }
         catch (Exception exception)
@@ -94,7 +93,8 @@ public partial class Admin_adminUserControls_NoticeList : UserControl
 
             EntityDataSource1.Where = "it.System_language.languageId=" +
                                       EnrollAdminContext.Current.DataLanguage.LanguageId.ToString() +
-                                      " and (it.header like '%" + aranan + "%' OR it.description like '%" + aranan + "%')";
+                                      " and (it.header like '%" + aranan + "%' OR it.description like '%" + aranan +
+                                      "%')";
             EntityDataSource1.DataBind();
             GridView1.DataBind();
         }
@@ -144,10 +144,9 @@ public partial class Admin_adminUserControls_NoticeList : UserControl
     }
 
 
-
     private void GetDataProccess(Notices notices)
     {
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
         TextBox1.Text = notices.imagePath;
         txtHeader.Text = notices.header;
         radEditor.Content = notices.details;
@@ -167,7 +166,7 @@ public partial class Admin_adminUserControls_NoticeList : UserControl
     {
         try
         {
-            var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+            var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
             notices.header = txtHeader.Text;
             notices.details = radEditor.Content;
             notices.state = chkState.Checked;
@@ -197,7 +196,7 @@ public partial class Admin_adminUserControls_NoticeList : UserControl
                 var i = ImageHelper.ResizeImage(orj, new Size(150, 150));
                 var thumbName = Guid.NewGuid().ToString("N").Substring(1, 8) + fi.Extension;
                 var dest = Server.MapPath("../FileManager/thumbnails/" + thumbName);
-                ImageHelper.SaveJpeg(dest, (Bitmap)i, 75);
+                ImageHelper.SaveJpeg(dest, (Bitmap) i, 75);
                 notices.thumbnailPath = "~/FileManager/thumbnails/" + thumbName;
             }
             else
@@ -229,7 +228,7 @@ public partial class Admin_adminUserControls_NoticeList : UserControl
 
     public void ClearFormInputs()
     {
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
         TextBox1.Text = string.Empty;
         txtHeader.Text = string.Empty;
         radEditor.Content = string.Empty;
@@ -258,14 +257,12 @@ public partial class Admin_adminUserControls_NoticeList : UserControl
 
                     pnlNoticeList.Visible = false;
                     pnlNoticeEdit.Visible = true;
-
                 }
             }
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
             ExceptionManager.ManageException(exception);
         }
-
     }
 }

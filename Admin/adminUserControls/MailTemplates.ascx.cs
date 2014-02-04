@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,9 +10,10 @@ using eNroll.App_Data;
 
 namespace eNroll.Admin.adminUserControls
 {
-    public partial class MailTemplates : System.Web.UI.UserControl
+    public partial class MailTemplates : UserControl
     {
-        Entities _entities = new Entities();
+        private readonly Entities _entities = new Entities();
+
         protected override void OnInit(EventArgs e)
         {
             Session["currentPath"] = AdminResource.lbMailTemplateManagement;
@@ -35,7 +35,6 @@ namespace eNroll.Admin.adminUserControls
             gVMailTemplates.Columns[1].HeaderText = AdminResource.lbTitle;
             gVMailTemplates.Columns[2].HeaderText = AdminResource.lbDate;
 
-            
 
             btSaveTemplate.Text = AdminResource.lbSave;
             btCancelSaveTemplate.Text = AdminResource.lbCancel;
@@ -66,16 +65,14 @@ namespace eNroll.Admin.adminUserControls
             }
             catch (Exception)
             {
-
             }
-
         }
 
         protected void ImgBtnMemberDeleteClick(object sender, ImageClickEventArgs e)
         {
             try
             {
-                var btnDelete = (ImageButton)sender;
+                var btnDelete = (ImageButton) sender;
                 var data = btnDelete.CommandArgument;
                 if (!string.IsNullOrWhiteSpace(data))
                 {
@@ -100,18 +97,18 @@ namespace eNroll.Admin.adminUserControls
             }
         }
 
-        public void BindForm(eNroll.App_Data.MailTemplates mailTemplate)
+        public void BindForm(App_Data.MailTemplates mailTemplate)
         {
             hfMailTemplate.Value = mailTemplate.Id.ToString();
             tbTemplateTitle.Text = mailTemplate.Title;
-            var radEditor = (RadEditor)RtbTemplateContent.FindControl("RadEditor1");
+            var radEditor = (RadEditor) RtbTemplateContent.FindControl("RadEditor1");
             radEditor.Content = mailTemplate.MailContent;
         }
 
         public void ClearForm()
         {
             hfMailTemplate.Value = string.Empty;
-            var radEditor = (RadEditor)RtbTemplateContent.FindControl("RadEditor1");
+            var radEditor = (RadEditor) RtbTemplateContent.FindControl("RadEditor1");
             radEditor.Content = string.Empty;
             tbTemplateTitle.Text = string.Empty;
         }
@@ -128,7 +125,7 @@ namespace eNroll.Admin.adminUserControls
                     if (templateId > 0)
                         template = _entities.MailTemplates.FirstOrDefault(p => p.Id == templateId);
                 }
-                var radEditor = (RadEditor)RtbTemplateContent.FindControl("RadEditor1");
+                var radEditor = (RadEditor) RtbTemplateContent.FindControl("RadEditor1");
                 if (template != null)
                 {
                     template.MailContent = radEditor.Content;
@@ -142,12 +139,12 @@ namespace eNroll.Admin.adminUserControls
                     template.UpdatedTime = DateTime.Now;
                     _entities.SaveChanges();
 
-                    MessageBox.Show(MessageType.Success, templateId > 0 ? AdminResource.msgUpdated : AdminResource.msgSaved);
+                    MessageBox.Show(MessageType.Success,
+                                    templateId > 0 ? AdminResource.msgUpdated : AdminResource.msgSaved);
 
                     gVMailTemplates.DataBind();
                     mvMailTemplates.SetActiveView(vGridTemplate);
                 }
-
             }
             catch (Exception exception)
             {
@@ -173,7 +170,7 @@ namespace eNroll.Admin.adminUserControls
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var btnDelete = (ImageButton)e.Row.FindControl("imgBtnMemberDelete");
+                var btnDelete = (ImageButton) e.Row.FindControl("imgBtnMemberDelete");
                 btnDelete.OnClientClick = " return confirm('" + AdminResource.lbDeletingQuestion + "'); ";
             }
         }

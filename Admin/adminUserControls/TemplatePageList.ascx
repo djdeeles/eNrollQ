@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_TemplatePageList"
-    CodeBehind="TemplatePageList.ascx.cs" %>
-<%@ Register Src="Rtb.ascx" TagName="Rtb" TagPrefix="uc1" %>
+            CodeBehind="TemplatePageList.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
+<%@ Register Src="Rtb.ascx" TagName="Rtb" TagPrefix="uc1" %>
 <asp:MultiView runat="server" ID="mvAuth">
     <asp:View runat="server">
         <asp:MultiView runat="server" ID="mvTemplatePageList">
@@ -23,7 +23,7 @@
                                         </td>
                                         <td style="width: 100px;">
                                             <asp:RequiredFieldValidator ID="rf" runat="server" ControlToValidate="txtName" ForeColor="Red"
-                                                ValidationGroup="vldGroup1" Display="Dynamic">(!)</asp:RequiredFieldValidator>
+                                                                        ValidationGroup="vldGroup1" Display="Dynamic">(!)</asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                 </table>
@@ -47,7 +47,7 @@
                             </td>
                             <td>
                                 <asp:Button ID="btnSave" runat="server" CssClass="SaveCancelBtn" ValidationGroup="vldGroup1"
-                                    OnClick="BtnSaveClick" />
+                                            OnClick="BtnSaveClick" />
                                 <asp:Button ID="btnCancel" runat="server" CssClass="SaveCancelBtn" OnClick="BtnCancelClick" />
                             </td>
                         </tr>
@@ -78,12 +78,12 @@
                     </tr>
                 </table>
                 <asp:GridView ID="gVTemplates" runat="server" AutoGenerateColumns="False" CssClass="GridViewStyle"
-                    PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
-                    SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
-                    SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
-                    SelectedRowStyle="selected" DataKeyNames="name" DataSourceID="EntityDataSource1"
-                    AllowPaging="True" AllowSorting="True" CellPadding="4" OnRowDataBound="GridView1RowDataBound"
-                    Width="100%" PageSize="15" ForeColor="#333333" GridLines="None">
+                              PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
+                              SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
+                              SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
+                              SelectedRowStyle="selected" DataKeyNames="name" DataSourceID="EntityDataSource1"
+                              AllowPaging="True" AllowSorting="True" CellPadding="4" OnRowDataBound="GridView1RowDataBound"
+                              Width="100%" PageSize="15" ForeColor="#333333" GridLines="None">
                     <EmptyDataTemplate>
                         <%= AdminResource.lbNoRecord %>
                     </EmptyDataTemplate>
@@ -94,11 +94,12 @@
                                     <tr>
                                         <td>
                                             <asp:ImageButton ID="btnEdit" runat="server" ImageUrl="~/Admin/images/icon/edit.png"
-                                                CommandArgument='<%#Bind("id") %>' OnClick="ImgBtnEditClick" />
+                                                             CommandArgument='<%#Bind
+                                                                                                   ("id") %>' OnClick="ImgBtnEditClick" />
                                         </td>
                                         <td>
                                             <asp:ImageButton ID="imgBtnDelete" runat="server" ImageUrl="~/Admin/images/icon/cop.png"
-                                                CommandArgument='<%#Bind("id") %>' OnClick="ImgBtnDeleteClick" />
+                                                             CommandArgument='<%#Bind("id") %>' OnClick="ImgBtnDeleteClick" />
                                         </td>
                                     </tr>
                                 </table>
@@ -113,8 +114,8 @@
                     </Columns>
                 </asp:GridView>
                 <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=Entities"
-                    DefaultContainerName="Entities" EntitySetName="TemplatePages" Where="" EntityTypeFilter=""
-                    Select="">
+                                      DefaultContainerName="Entities" EntitySetName="TemplatePages" Where="" EntityTypeFilter=""
+                                      Select="">
                 </asp:EntityDataSource>
             </asp:View>
         </asp:MultiView>

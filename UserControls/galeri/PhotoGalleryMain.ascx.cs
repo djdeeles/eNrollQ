@@ -77,7 +77,8 @@ public partial class UserControls_PhotoGalleryMain : UserControl
             int categoryId = Convert.ToInt32(Resim.ImageUrl);
             Def_photoAlbum defPhotoAlbum =
                 ent.Def_photoAlbum.Where(p => p.photoAlbumCategoryId == categoryId).FirstOrDefault();
-            var photoAlbum = ent.PhotoAlbum.FirstOrDefault(p => p.photoAlbumId == defPhotoAlbum.photoAlbumId && p.mainPhoto);
+            var photoAlbum =
+                ent.PhotoAlbum.FirstOrDefault(p => p.photoAlbumId == defPhotoAlbum.photoAlbumId && p.mainPhoto);
             if (photoAlbum == null) ent.PhotoAlbum.FirstOrDefault(p => p.photoAlbumId == defPhotoAlbum.photoAlbumId);
             if (photoAlbum != null) Resim.ImageUrl = "../../" + photoAlbum.thumbnailPath.Replace("~/", "");
         }
@@ -94,7 +95,8 @@ public partial class UserControls_PhotoGalleryMain : UserControl
         {
             int categoryId = Convert.ToInt32(myHyper.NavigateUrl);
             var defPhotoAlbum = ent.Def_photoAlbum.FirstOrDefault(p => p.photoAlbumCategoryId == categoryId);
-            var photoAlbum = ent.PhotoAlbum.FirstOrDefault(p => p.photoAlbumId == defPhotoAlbum.photoAlbumId && p.mainPhoto);
+            var photoAlbum =
+                ent.PhotoAlbum.FirstOrDefault(p => p.photoAlbumId == defPhotoAlbum.photoAlbumId && p.mainPhoto);
             if (photoAlbum == null) ent.PhotoAlbum.FirstOrDefault(p => p.photoAlbumId == defPhotoAlbum.photoAlbumId);
             //var photoAlbum = ent.PhotoAlbum.FirstOrDefault(p => p.photoAlbumId == defPhotoAlbum.photoAlbumId);
             myHyper.NavigateUrl = "/albumler-" + categoryId + "-1";

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
-using System.Net.Mail;
-using System.Text;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
@@ -24,7 +21,8 @@ public partial class Admin_Login : Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //login panelinden çıkış linki ile "sing out"
-        if (HttpContext.Current.Request.QueryString.Count > 0 && HttpContext.Current.Request.QueryString["process"] != null)
+        if (HttpContext.Current.Request.QueryString.Count > 0 &&
+            HttpContext.Current.Request.QueryString["process"] != null)
         {
             var process = HttpContext.Current.Request.QueryString["process"];
             if (process == "0")
@@ -53,7 +51,7 @@ public partial class Admin_Login : Page
             RadCaptcha1.Style.Clear();
             RadCaptcha1.Enabled = true;
             RadCaptcha1.Visible = true;
-            RadCaptcha1.CaptchaTextBoxCssClass = "CaptchaTextBox";
+            RadCaptcha1.TextBoxDecoration.CssClass = "CaptchaTextBox";
             RadCaptcha1.EnableEmbeddedBaseStylesheet = false;
         }
         else
@@ -96,82 +94,16 @@ public partial class Admin_Login : Page
         btnBack.Text = Resource.lbBack;
     }
 
-    #region IP filtreleme kontrolü
-
-    private void IpFilterControl()
-    {
-        var login = false;
-        var siteGeneralInfo = _oEntities.SiteGeneralInfo.First();
-        if (siteGeneralInfo.IpFilter > 0)
-        {
-            string userIp = ExceptionManager.GetUserIp();
-
-            #region Black List kontrolü
-            login = true;
-            if (siteGeneralInfo.IpFilter == 1)
-            {
-                var ipFilterList = _oEntities.IpFilterList.Where(p => p.BlackList && p.State).Select(p => p.IpAddress).ToList();
-                foreach (var item in ipFilterList)
-                {
-                    var ipAddress = ParseIpAddress(item);
-                    if (userIp.Contains(ipAddress))
-                    {
-                        login = false;
-                    }
-                }
-                if (!login) Response.Redirect("Default.aspx");
-                return;
-            }
-            #endregion
-
-            #region White List kontrolü
-            login = false;
-            if (siteGeneralInfo.IpFilter == 2)
-            {
-                var ipFilterList = _oEntities.IpFilterList.Where(p => p.BlackList == false && p.State).Select(p => p.IpAddress).ToList();
-                foreach (var item in ipFilterList)
-                {
-                    var ipAddress = ParseIpAddress(item);
-                    ipAddress = ipAddress.TrimEnd('.');
-                    if (userIp.Contains(ipAddress))
-                    {
-                        login = true;
-                        break;
-                    }
-                }
-                if (!login) Response.Redirect("Default.aspx");
-                return;
-            }
-            
-            #endregion
-
-        }
-    }
-    private string ParseIpAddress(string item)
-    {
-        string[] data = item.Split('.');
-        string ipAddress = string.Empty;
-        foreach (var s in data)
-        {
-            if (s == "*")
-                break;
-            ipAddress += s + ".";
-        }
-
-        ipAddress = ipAddress.TrimEnd('.');
-
-        return ipAddress;
-    }
-
-    #endregion
-
     protected void BtnWebLoginClick(object sender, EventArgs eventArgs)
     {
         try
         {
             var cookie = HttpContext.Current.Request.Cookies[CookieName];
             string encryptedPwd = Crypto.Encrypt(TextBoxPassword.Text);
-            var oSystemCustomer = _oEntities.Users.Where(x => x.EMail == TextBoxUserName.Text && x.Password == encryptedPwd && x.State && x.Admin.Value).ToList();
+            var oSystemCustomer =
+                _oEntities.Users.Where(
+                    x => x.EMail == TextBoxUserName.Text && x.Password == encryptedPwd && x.State && x.Admin.Value).
+                    ToList();
 
             if (oSystemCustomer.Count > 0)
             {
@@ -198,7 +130,8 @@ public partial class Admin_Login : Page
                 LoginContext.LogPasswordErrorCount(cookie);
                 LoginFailedCount = LoginContext.LoginFailedCount;
                 Page.ClientScript.RegisterStartupScript(GetType(), "vvv",
-                    string.Format("<script> alert('{0}');</script>", AdminResource.lbUserInformationNotValid));
+                                                        string.Format("<script> alert('{0}');</script>",
+                                                                      AdminResource.lbUserInformationNotValid));
             }
         }
         catch (Exception exception)
@@ -222,7 +155,8 @@ public partial class Admin_Login : Page
     private void LoginProccess(String userName, String encryptedPassword, bool isCookieAvaliable)
     {
         LoginContext.CookieName = CookieName;
-        LoginContext.LoginProccess(userName, encryptedPassword, isCookieAvaliable, ddlAdminLanguage.SelectedValue, cbRememberMe.Checked, LoginType.Admin);
+        LoginContext.LoginProccess(userName, encryptedPassword, isCookieAvaliable, ddlAdminLanguage.SelectedValue,
+                                   cbRememberMe.Checked, LoginType.Admin);
         Response.Redirect(LoginContext.GetRetrunUrl(LoginType.Admin), false);
     }
 
@@ -258,8 +192,9 @@ public partial class Admin_Login : Page
             try
             {
                 result = EnrollMembershipHelper.SendForgetPasswordMail(TextBox1UserName.Text,
-                                                              "App_Themes/mainTheme/mailtemplates/LoginMailContent.htm");
-                Page.ClientScript.RegisterStartupScript(GetType(), "dsadas2", "<script> alert('" + result + "');</script>");
+                                                                       "App_Themes/mainTheme/mailtemplates/LoginMailContent.htm");
+                Page.ClientScript.RegisterStartupScript(GetType(), "dsadas2",
+                                                        "<script> alert('" + result + "');</script>");
             }
             catch (Exception exception)
             {
@@ -271,7 +206,9 @@ public partial class Admin_Login : Page
         }
         else
         {
-            Page.ClientScript.RegisterStartupScript(GetType(), "vvvv", "<script> alert('" + AdminResource.lbUserInformationNotValid + ".');</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "vvvv",
+                                                    "<script> alert('" + AdminResource.lbUserInformationNotValid +
+                                                    ".');</script>");
         }
     }
 
@@ -306,4 +243,78 @@ public partial class Admin_Login : Page
             langIndex++;
         }
     }
+
+    #region IP filtreleme kontrolü
+
+    private void IpFilterControl()
+    {
+        var login = false;
+        var siteGeneralInfo = _oEntities.SiteGeneralInfo.First();
+        if (siteGeneralInfo.IpFilter > 0)
+        {
+            string userIp = ExceptionManager.GetUserIp();
+
+            #region Black List kontrolü
+
+            login = true;
+            if (siteGeneralInfo.IpFilter == 1)
+            {
+                var ipFilterList =
+                    _oEntities.IpFilterList.Where(p => p.BlackList && p.State).Select(p => p.IpAddress).ToList();
+                foreach (var item in ipFilterList)
+                {
+                    var ipAddress = ParseIpAddress(item);
+                    if (userIp.Contains(ipAddress))
+                    {
+                        login = false;
+                    }
+                }
+                if (!login) Response.Redirect("Default.aspx");
+                return;
+            }
+
+            #endregion
+
+            #region White List kontrolü
+
+            login = false;
+            if (siteGeneralInfo.IpFilter == 2)
+            {
+                var ipFilterList =
+                    _oEntities.IpFilterList.Where(p => p.BlackList == false && p.State).Select(p => p.IpAddress).ToList();
+                foreach (var item in ipFilterList)
+                {
+                    var ipAddress = ParseIpAddress(item);
+                    ipAddress = ipAddress.TrimEnd('.');
+                    if (userIp.Contains(ipAddress))
+                    {
+                        login = true;
+                        break;
+                    }
+                }
+                if (!login) Response.Redirect("Default.aspx");
+                return;
+            }
+
+            #endregion
+        }
+    }
+
+    private string ParseIpAddress(string item)
+    {
+        var data = item.Split('.');
+        string ipAddress = string.Empty;
+        foreach (var s in data)
+        {
+            if (s == "*")
+                break;
+            ipAddress += s + ".";
+        }
+
+        ipAddress = ipAddress.TrimEnd('.');
+
+        return ipAddress;
+    }
+
+    #endregion
 }

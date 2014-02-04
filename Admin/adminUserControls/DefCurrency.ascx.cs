@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Enroll.Managers;
@@ -11,14 +9,20 @@ using eNroll.Helpers;
 
 namespace eNroll.Admin.adminUserControls
 {
-    public partial class DefCurrency : System.Web.UI.UserControl
+    public partial class DefCurrency : UserControl
     {
+        #region Proccess enum
+
         public enum Proccess
         {
             Save = 1,
             Update = 2
         }
-        Entities _entities = new Entities();
+
+        #endregion
+
+        private readonly Entities _entities = new Entities();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             BindCurrency(lbCurrency);
@@ -43,7 +47,7 @@ namespace eNroll.Admin.adminUserControls
         protected void BtSaveCurrency_OnClick(object sender, EventArgs e)
         {
             var currency = new Currency();
-            SaveUpdateCurrency(currency, Proccess.Save); 
+            SaveUpdateCurrency(currency, Proccess.Save);
         }
 
         protected void BtUpdateCurrency_OnClick(object sender, EventArgs e)
@@ -58,7 +62,6 @@ namespace eNroll.Admin.adminUserControls
                     if (currency != null)
                     {
                         SaveUpdateCurrency(currency, Proccess.Update);
-                        
                     }
                 }
                 else
@@ -71,7 +74,6 @@ namespace eNroll.Admin.adminUserControls
                 ExceptionManager.ManageException(exception);
                 MessageBox.Show(MessageType.Error, AdminResource.lbErrorOccurred);
             }
-
         }
 
         protected void BtDeleteCurrency_OnClick(object sender, EventArgs e)
@@ -108,7 +110,8 @@ namespace eNroll.Admin.adminUserControls
             try
             {
                 tbEditCurrency.Text = string.Empty;
-                if (listBox != null && listBox.SelectedItem != null && !string.IsNullOrWhiteSpace(listBox.SelectedItem.Value))
+                if (listBox != null && listBox.SelectedItem != null &&
+                    !string.IsNullOrWhiteSpace(listBox.SelectedItem.Value))
                 {
                     hfSelectedCurrency.Value = Crypto.Encrypt(listBox.SelectedItem.Value);
                     var currencyId = Convert.ToInt32(listBox.SelectedItem.Value);
@@ -124,7 +127,9 @@ namespace eNroll.Admin.adminUserControls
                             if (currency.Active)
                             {
                                 cbEditSiteMainCurrencyUnit.Enabled = false;
-                                btDeleteCurrency.OnClientClick = "showNoticeToast('" + AdminResource.lbCanNotDeleteDefaultCurrency + "');return false;";
+                                btDeleteCurrency.OnClientClick = "showNoticeToast('" +
+                                                                 AdminResource.lbCanNotDeleteDefaultCurrency +
+                                                                 "');return false;";
                             }
                         }
                     }
@@ -160,7 +165,8 @@ namespace eNroll.Admin.adminUserControls
                     else
                     {
                         MessageBox.Show(MessageType.Warning, string.Format("{0} {1}",
-                            tbNewCurrency.Text, AdminResource.AlreadyExistInSystem));
+                                                                           tbNewCurrency.Text,
+                                                                           AdminResource.AlreadyExistInSystem));
                     }
                 }
                 else if (proccess == Proccess.Update)
@@ -180,7 +186,8 @@ namespace eNroll.Admin.adminUserControls
                     else
                     {
                         MessageBox.Show(MessageType.Warning, string.Format("{0} {1}",
-                            tbEditCurrency.Text, AdminResource.AlreadyExistInSystem));
+                                                                           tbEditCurrency.Text,
+                                                                           AdminResource.AlreadyExistInSystem));
                     }
                 }
             }
@@ -189,7 +196,6 @@ namespace eNroll.Admin.adminUserControls
                 ExceptionManager.ManageException(exception);
                 MessageBox.Show(MessageType.Error, AdminResource.lbErrorOccurred);
             }
-
         }
 
         public void ClearForm()
@@ -233,7 +239,6 @@ namespace eNroll.Admin.adminUserControls
                     currency.Active = false;
                     _entities.SaveChanges();
                 }
-
             }
         }
 
@@ -255,6 +260,5 @@ namespace eNroll.Admin.adminUserControls
             }
             return false;
         }
-
     }
 }

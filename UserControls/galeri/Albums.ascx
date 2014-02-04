@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="UserControls_Albums" Codebehind="Albums.ascx.cs" %>
 <h1> <asp:Label ID="lblCategoryName" runat="server"></asp:Label></h1><h2>
-    <asp:Label ID="lblCategoryNote" runat="server"></asp:Label></h2>
+                                                                         <asp:Label ID="lblCategoryNote" runat="server"></asp:Label></h2>
 <table border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td>
@@ -20,7 +20,7 @@
                         </div>
                         <div style="float: none; height: 100px; margin: 0 auto; overflow: hidden; padding: 5px 0 0 0; text-align: center; width: 140px;">
                             <a href="../../albumdetay-<%#                                        Eval("photoAlbumId") %>-1">
-                                <asp:Image ID="imgAlbum" runat="server" Width="130px" ImageUrl='<%#Eval("photoAlbumId") %>'
+                                <asp:Image ID="imgAlbum" runat="server" Width="130px" ImageUrl='<%#                                        Eval("photoAlbumId") %>'
                                            OnDataBinding="imgAlbum_DataBinding" /></a>
                         </div>
                         <div style="float: none; font-size: 11px; font-weight: normal; padding: 3px 0 3px 0; text-align: center;">

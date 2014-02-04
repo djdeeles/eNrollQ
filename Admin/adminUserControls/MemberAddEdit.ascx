@@ -1,10 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MemberAddEdit.ascx.cs"
-    Inherits="eNroll.Admin.adminUserControls.MemberAddEdit" %>
+            Inherits="eNroll.Admin.adminUserControls.MemberAddEdit" %>
 <%@ Import Namespace="Resources" %>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $("#" + '<%=tbEditParola.ClientID %>').keyup(function () {
-            $('#result').html(checkStrength($("#" + '<%=tbEditParola.ClientID %>').val()));
+    $(document).ready(function() {
+        $("#" + '<%= tbEditParola.ClientID %>').keyup(function() {
+            $('#result').html(checkStrength($("#" + '<%= tbEditParola.ClientID %>').val()));
         });
     });
 </script>
@@ -26,7 +26,7 @@
         $("#results").empty();
         $(".viewEmailInfo").css("display", "none");
         $(".editEmailInfo").css("display", "table-row");
-        $("#<%=btnSaveEmailInfo.ClientID %>").css("display", "inline-block");
+        $("#<%= btnSaveEmailInfo.ClientID %>").css("display", "inline-block");
         return false;
     }
 </script>
@@ -39,13 +39,14 @@
             data: "{}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (msg) {
-                document.getElementById("<%=tbEditParola.ClientID %>").value = msg.d;
-                $('#result').html(checkStrength($("#" + '<%=tbEditParola.ClientID %>').val()));
+            success: function(msg) {
+                document.getElementById("<%= tbEditParola.ClientID %>").value = msg.d;
+                $('#result').html(checkStrength($("#" + '<%= tbEditParola.ClientID %>').val()));
             }
         });
         return "";
     }
+
     function checkStrength(password) {
 
         //initial strength
@@ -55,7 +56,7 @@
         if (password.length < 5) {
             $('#result').removeClass();
             $('#result').addClass('short');
-            return '<%=Resources.Resource.msgPasswordTooShort %>';
+            return '<%= Resources.Resource.msgPasswordTooShort %>';
         }
 
         //length is ok, lets continue.
@@ -81,47 +82,49 @@
         if (strength < 2) {
             $('#result').removeClass();
             $('#result').addClass('weak');
-            return '<%=Resources.Resource.msgPasswordWeak%>';
+            return '<%= Resources.Resource.msgPasswordWeak %>';
         } else if (strength == 2) {
             $('#result').removeClass();
             $('#result').addClass('good');
-            return '<%=Resources.Resource.msgPasswordGood %>';
+            return '<%= Resources.Resource.msgPasswordGood %>';
         } else {
             $('#result').removeClass();
             $('#result').addClass('strong');
-            return '<%=Resources.Resource.msgPasswordStrong %>';
+            return '<%= Resources.Resource.msgPasswordStrong %>';
         }
     }
+
     function setChecked(control) {
         document.getElementById(control).checked = true;
     }
 
     //g[0] seçilmemiş, g[1] bay,  g[2] bayan
     //m[0] seçilmemiş, m[1] evli, m[2] bekar
-    function showHideAboutGender() {
-        var i = document.getElementById("<%=ddlEditGender.ClientID %>").selectedIndex;
-        var g = document.getElementById("<%=ddlEditGender.ClientID %>").options;
 
-        var j = document.getElementById("<%=ddlEditMaritalStatus.ClientID %>").selectedIndex;
-        var m = document.getElementById("<%=ddlEditMaritalStatus.ClientID %>").options;
+    function showHideAboutGender() {
+        var i = document.getElementById("<%= ddlEditGender.ClientID %>").selectedIndex;
+        var g = document.getElementById("<%= ddlEditGender.ClientID %>").options;
+
+        var j = document.getElementById("<%= ddlEditMaritalStatus.ClientID %>").selectedIndex;
+        var m = document.getElementById("<%= ddlEditMaritalStatus.ClientID %>").options;
 
         if (m[j].index == "0") { // seçilmemiş
-            $("#<%=trMaidenName.ClientID %>").addClass("hideaboutgender");
-            $("#<%=trMarriageDate.ClientID %>").addClass("hideaboutgender");
+            $("#<%= trMaidenName.ClientID %>").addClass("hideaboutgender");
+            $("#<%= trMarriageDate.ClientID %>").addClass("hideaboutgender");
         } else if (m[j].index == "1") { // evli
             if (g[i].index == "0") { //seçilmemiş
-                $("#<%=trMaidenName.ClientID %>").addClass("hideaboutgender");
-                $("#<%=trMarriageDate.ClientID %>").removeClass("hideaboutgender");
+                $("#<%= trMaidenName.ClientID %>").addClass("hideaboutgender");
+                $("#<%= trMarriageDate.ClientID %>").removeClass("hideaboutgender");
             } else if (g[i].index == "1") { // bay
-                $("#<%=trMaidenName.ClientID %>").addClass("hideaboutgender");
-                $("#<%=trMarriageDate.ClientID %>").removeClass("hideaboutgender");
+                $("#<%= trMaidenName.ClientID %>").addClass("hideaboutgender");
+                $("#<%= trMarriageDate.ClientID %>").removeClass("hideaboutgender");
             } else if (g[i].index == "2") { // bayan
-                $("#<%=trMaidenName.ClientID %>").removeClass("hideaboutgender");
-                $("#<%=trMarriageDate.ClientID %>").removeClass("hideaboutgender");
+                $("#<%= trMaidenName.ClientID %>").removeClass("hideaboutgender");
+                $("#<%= trMarriageDate.ClientID %>").removeClass("hideaboutgender");
             }
         } else if (m[j].index == "2") { // bekar
-            $("#<%=trMaidenName.ClientID %>").addClass("hideaboutgender");
-            $("#<%=trMarriageDate.ClientID %>").addClass("hideaboutgender");
+            $("#<%= trMaidenName.ClientID %>").addClass("hideaboutgender");
+            $("#<%= trMarriageDate.ClientID %>").addClass("hideaboutgender");
         }
     }
 
@@ -135,7 +138,9 @@
 </script>
 <style type="text/css">
     .hideaboutgender { display: none; }
+
     .viewEmailInfo { display: none; }
+
     .editEmailInfo { display: block; }
 </style>
 <script type="text/javascript">
@@ -150,7 +155,7 @@
                 data: "{'userIdStr': '" + userId + "','emailIdStr': '" + emailId + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (msg) {
+                success: function(msg) {
                     if (msg.d != "") {
                         if (msg.d == "-1") {
                             alert("Aktif mail adresi olarak kullanıldığı için silinemiyor. " +
@@ -159,16 +164,16 @@
                         }
                         $("#dEmailProcessResult").empty();
                         $("#dEmailProcessResult").append(msg.d);
-                        javascript: showSuccessToast('<%=AdminResource.msgDeleted%>');
+                        javascript: showSuccessToast('<%= AdminResource.msgDeleted %>');
                         showUserInfo('dEmailAddress');
                     }
                 }
             });
-        }
-        else {
+        } else {
             return false;
         }
     }
+
     function changeMailing(userId, emailId, islem) {
         $("#results").empty();
         $.ajax({
@@ -177,11 +182,11 @@
             data: "{'userIdStr': '" + userId + "','emailIdStr': '" + emailId + "','islem': '" + islem + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (msg) {
+            success: function(msg) {
                 if (msg.d != "") {
                     $("#dEmailProcessResult").empty();
                     $("#dEmailProcessResult").append(msg.d);
-                    javascript: showSuccessToast('<%=AdminResource.msgUpdated%>');
+                    javascript: showSuccessToast('<%= AdminResource.msgUpdated %>');
                     showUserInfo('dEmailAddress');
                 }
             }
@@ -196,15 +201,16 @@
             data: "{'userIdStr': '" + userId + "','emailIdStr': '" + emailId + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function (msg) {
+            success: function(msg) {
                 javascript: showSuccessToast(msg.d);
                 showUserInfo('dEmailAddress');
             }
         });
     }
+
     function changeActiveEmail(userId, emailId, control) {
         $("#results").empty();
-        var r = confirm("<%=AdminResource.msgQuestionChangeEmailComfirm %>");
+        var r = confirm("<%= AdminResource.msgQuestionChangeEmailComfirm %>");
         if (r == true) {
             $.ajax({
                 type: "POST",
@@ -212,17 +218,16 @@
                 data: "{'userIdStr': '" + userId + "','emailIdStr': '" + emailId + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (msg) {
+                success: function(msg) {
                     if (msg.d != "") {
                         $("#dEmailProcessResult").empty();
                         $("#dEmailProcessResult").append(msg.d);
-                        javascript: showSuccessToast('<%=AdminResource.msgUpdated%>');
+                        javascript: showSuccessToast('<%= AdminResource.msgUpdated %>');
                         showUserInfo('dEmailAddress');
                     }
                 }
             });
-        }
-        else {
+        } else {
             document.getElementById(control).checked = false;
             return false;
         }
@@ -261,20 +266,18 @@
                 <tr>
                     <td>
                         <p style="margin: 0 0 3px 0;">
-                            <input id="bPersonalDetail" onclick="showUserInfo('dPersonalDetail');" style="width: 100%;
-                                text-align: left;" type="button" class="SaveCancelBtn" value='<%=AdminResource.lbPersonalInfo %>' /></p>
+                            <input id="bPersonalDetail" onclick="showUserInfo('dPersonalDetail'); " style="width: 100%; text-align: left;" type="button" class="SaveCancelBtn" value='<%= AdminResource.lbPersonalInfo %>' /></p>
                         <p style="margin: 0 0 3px 0;">
-                            <input id="Button2" onclick="showUserInfo('dMemberDetail');" style="width: 100%;
-                                text-align: left;" type="button" class="SaveCancelBtn" value='<%=AdminResource.lbMembershipInfo%>' /></p>
+                            <input id="Button2" onclick=" showUserInfo('dMemberDetail'); " style="width: 100%; text-align: left;" type="button" class="SaveCancelBtn" value='<%= AdminResource.lbMembershipInfo %>' /></p>
                         <p style="margin: 0 0 3px 0;">
-                            <input id="bHomeDetail" onclick="showUserInfo('dHomeDetail');" style="width: 100%;
-                                text-align: left;" type="button" class="SaveCancelBtn" value='<%=AdminResource.lbHomeInfo%>' /></p>
+                            <input id="bHomeDetail" onclick=" showUserInfo('dHomeDetail'); " style="width: 100%;
+                                text-align: left;" type="button" class="SaveCancelBtn" value='<%= AdminResource.lbHomeInfo %>' /></p>
                         <p style="margin: 0 0 3px 0;">
-                            <input id="bJobDetail" onclick="showUserInfo('dWorkDetail');" style="width: 100%;
-                                text-align: left;" type="button" class="SaveCancelBtn" value='<%=AdminResource.lbWorkInfo%>' /></p>
+                            <input id="bJobDetail" onclick=" showUserInfo('dWorkDetail'); " style="width: 100%;
+                                text-align: left;" type="button" class="SaveCancelBtn" value='<%= AdminResource.lbWorkInfo %>' /></p>
                         <p style="margin: 0 0 3px 0;">
-                            <input id="Button1" onclick="showUserInfo('dEmailAddress');" style="width: 100%;
-                                text-align: left;" type="button" class="SaveCancelBtn" value='<%=AdminResource.lbEmailInfo%>' /></p>
+                            <input id="Button1" onclick=" showUserInfo('dEmailAddress'); " style="width: 100%;
+                                text-align: left;" type="button" class="SaveCancelBtn" value='<%= AdminResource.lbEmailInfo %>' /></p>
                     </td>
                 </tr>
             </table>
@@ -282,18 +285,18 @@
         <div id="dPersonalDetail" style="display: block; float: left; width: 100%;">
             <fieldset>
                 <legend>
-                    <%=Resources.Resource.lbPersonalInfo %></legend>
+                    <%= Resources.Resource.lbPersonalInfo %></legend>
                 <table cellpadding="3">
                     <tr>
                         <td>
-                            <%=AdminResource.lbTC %>
+                            <%= AdminResource.lbTC %>
                         </td>
                         <td>
                             :
                         </td>
                         <td>
                             <asp:TextBox ID="tbEditTC" runat="server" onkeydown="return onlyNumber(event);" MaxLength="11"
-                                Width="200px"></asp:TextBox>
+                                         Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -306,7 +309,7 @@
                         <td>
                             <asp:TextBox ID="tbEditName" runat="server" Width="200px" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbEditName"
-                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
+                                                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
                         </td>
                     </tr>
                     <tr>
@@ -319,7 +322,7 @@
                         <td>
                             <asp:TextBox ID="tbEditSurname" runat="server" Width="200px" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbEditSurname"
-                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
+                                                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
                         </td>
                     </tr>
                     <tr>
@@ -331,14 +334,14 @@
                         </td>
                         <td>
                             <asp:TextBox ID="tbEditParola" runat="server" Width="200px"></asp:TextBox>
-                            <input id="iGeneratePassword" value="<%=Resources.AdminResource.lbGeneratePassword%>"
-                                type="button" class="SaveCancelBtn" onclick="generatePassword();return false;" />
+                            <input id="iGeneratePassword" value="<%= AdminResource.lbGeneratePassword %>"
+                                   type="button" class="SaveCancelBtn" onclick=" generatePassword();return false; " />
                             <label id="result" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbGender%>
+                            <%= AdminResource.lbGender %>
                         </td>
                         <td>
                             :
@@ -349,7 +352,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbBloodType%>
+                            <%= AdminResource.lbBloodType %>
                         </td>
                         <td>
                             :
@@ -360,7 +363,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbFatherName%>
+                            <%= AdminResource.lbFatherName %>
                         </td>
                         <td>
                             :
@@ -371,7 +374,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbMotherName%>
+                            <%= AdminResource.lbMotherName %>
                         </td>
                         <td>
                             :
@@ -382,7 +385,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%=AdminResource.lbMartialStatus%>
+                            <%= AdminResource.lbMartialStatus %>
                         </td>
                         <td>
                             :
@@ -414,28 +417,28 @@
                         </td>
                         <td>
                             <telerik:RadDatePicker ID="dpEditMarriageDate" MaxDate="01-01-2200" MinDate="01-01-1900"
-                                runat="server" ZIndex="30001">
+                                                   runat="server" ZIndex="30001">
                             </telerik:RadDatePicker>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbBirthDate%>
+                            <%= AdminResource.lbBirthDate %>
                         </td>
                         <td>
                             :
                         </td>
                         <td>
                             <telerik:RadDatePicker ID="dpEditBirthDate" runat="server" MaxDate="01-01-2200" MinDate="01-01-1900"
-                                ZIndex="30001">
+                                                   ZIndex="30001">
                             </telerik:RadDatePicker>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ForeColor="Red"
-                                ControlToValidate="dpEditBirthDate" ValidationGroup="g1" ErrorMessage="!" />
+                                                        ControlToValidate="dpEditBirthDate" ValidationGroup="g1" ErrorMessage="!" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbBirthPlace%>
+                            <%= AdminResource.lbBirthPlace %>
                         </td>
                         <td>
                             :
@@ -446,7 +449,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbPhotoUrl%>
+                            <%= AdminResource.lbPhotoUrl %>
                         </td>
                         <td>
                             :
@@ -460,7 +463,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbHobby%>
+                            <%= AdminResource.lbHobby %>
                         </td>
                         <td>
                             :
@@ -471,7 +474,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbMemberFoundation%>
+                            <%= AdminResource.lbMemberFoundation %>
                         </td>
                         <td>
                             :
@@ -482,7 +485,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbWeb%>
+                            <%= AdminResource.lbWeb %>
                         </td>
                         <td>
                             :
@@ -493,7 +496,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbGsmNo%>
+                            <%= AdminResource.lbGsmNo %>
                         </td>
                         <td>
                             :
@@ -504,7 +507,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbLastSchool%>
+                            <%= AdminResource.lbLastSchool %>
                         </td>
                         <td>
                             :
@@ -515,14 +518,14 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbLastSchoolGraduateDate%>
+                            <%= AdminResource.lbLastSchoolGraduateDate %>
                         </td>
                         <td>
                             :
                         </td>
                         <td>
                             <telerik:RadMonthYearPicker ID="dpEditLastSchoolGraduateDate" runat="server" MaxDate="01-2200"
-                                MinDate="01-1900">
+                                                        MinDate="01-1900">
                                 <DateInput DateFormat="yyyy" DisplayDateFormat="yyyy">
                                 </DateInput>
                             </telerik:RadMonthYearPicker>
@@ -530,7 +533,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbDecease%>
+                            <%= AdminResource.lbDecease %>
                         </td>
                         <td>
                             :
@@ -541,14 +544,14 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbDeceaseDate%>
+                            <%= AdminResource.lbDeceaseDate %>
                         </td>
                         <td>
                             :
                         </td>
                         <td>
                             <telerik:RadDatePicker ID="dpMemberDeceaseDate" runat="server" MaxDate="01-2200"
-                                MinDate="01-1900" />
+                                                   MinDate="01-1900" />
                         </td>
                     </tr>
                     <tr>
@@ -562,11 +565,11 @@
         <div id="dMemberDetail" style="display: none; float: left; width: 100%;">
             <fieldset>
                 <legend>
-                    <%=Resources.Resource.lbMembershipInfo %></legend>
+                    <%= Resources.Resource.lbMembershipInfo %></legend>
                 <table cellpadding="3">
                     <tr>
                         <td>
-                            <%= AdminResource.lbMemberNumber%>
+                            <%= AdminResource.lbMemberNumber %>
                         </td>
                         <td>
                             :
@@ -577,7 +580,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%=AdminResource.lbRelationType%>
+                            <%= AdminResource.lbRelationType %>
                         </td>
                         <td>
                             :
@@ -585,25 +588,25 @@
                         <td>
                             <asp:DropDownList runat="server" ID="ddlEditMemberRelationType" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ForeColor="Red"
-                                ControlToValidate="ddlEditMemberRelationType" ValidationGroup="vgUpdateMember" InitialValue="" ErrorMessage="!" />
+                                                        ControlToValidate="ddlEditMemberRelationType" ValidationGroup="vgUpdateMember" InitialValue="" ErrorMessage="!" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%=AdminResource.lbEnterDate%>
+                            <%= AdminResource.lbEnterDate %>
                         </td>
                         <td>
                             :
                         </td>
                         <td>
                             <telerik:RadDatePicker ID="dpEditMembershipDate" MaxDate="01-01-2200" MinDate="01-01-1900"
-                                runat="server" ZIndex="30001">
+                                                   runat="server" ZIndex="30001">
                             </telerik:RadDatePicker>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%=AdminResource.lbSpecialNumber%>
+                            <%= AdminResource.lbSpecialNumber %>
                         </td>
                         <td>
                             :
@@ -614,7 +617,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%=AdminResource.lbTerm%>
+                            <%= AdminResource.lbTerm %>
                         </td>
                         <td>
                             :
@@ -627,7 +630,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%=AdminResource.lbAutoPaymentOrder%>
+                            <%= AdminResource.lbAutoPaymentOrder %>
                         </td>
                         <td>
                             :
@@ -638,7 +641,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%=AdminResource.lbAdminNote%>
+                            <%= AdminResource.lbAdminNote %>
                         </td>
                         <td>
                             :
@@ -658,35 +661,35 @@
         <div id="dHomeDetail" style="display: none; float: left; width: 100%;">
             <fieldset>
                 <legend>
-                    <%=Resources.Resource.lbHomeInfo %></legend>
+                    <%= Resources.Resource.lbHomeInfo %></legend>
                 <table cellpadding="3">
                     <tr>
                         <td>
-                            <%= AdminResource.lbCountry%>
+                            <%= AdminResource.lbCountry %>
                         </td>
                         <td>
                             :
                         </td>
                         <td>
                             <asp:DropDownList runat="server" ID="ddlEditHomeCountry" CssClass="editHomeInfo"
-                                AutoPostBack="true" OnSelectedIndexChanged="ddlEditHomeCountry_OnSelectedIndexChanged" />
+                                              AutoPostBack="true" OnSelectedIndexChanged="ddlEditHomeCountry_OnSelectedIndexChanged" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbCity%>
+                            <%= AdminResource.lbCity %>
                         </td>
                         <td>
                             :
                         </td>
                         <td>
                             <asp:DropDownList runat="server" ID="ddlEditHomeCity" CssClass="editHomeInfo" AutoPostBack="true"
-                                OnSelectedIndexChanged="ddlEditHomeCity_OnSelectedIndexChanged" />
+                                              OnSelectedIndexChanged="ddlEditHomeCity_OnSelectedIndexChanged" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbTown%>
+                            <%= AdminResource.lbTown %>
                         </td>
                         <td>
                             :
@@ -697,19 +700,19 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbAddress%>
+                            <%= AdminResource.lbAddress %>
                         </td>
                         <td>
                             :
                         </td>
                         <td>
                             <asp:TextBox ID="tbEditHomeAddress" runat="server" TextMode="MultiLine" CssClass="editHomeInfo"
-                                Width="200px" />
+                                         Width="200px" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbZipCode%>
+                            <%= AdminResource.lbZipCode %>
                         </td>
                         <td>
                             :
@@ -720,7 +723,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbPhone%>
+                            <%= AdminResource.lbPhone %>
                         </td>
                         <td style="width: 10px;">
                             :
@@ -731,7 +734,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%=AdminResource.lbHidePersonalInfo%>
+                            <%= AdminResource.lbHidePersonalInfo %>
                         </td>
                         <td>
                             :
@@ -751,11 +754,11 @@
         <div id="dWorkDetail" style="display: none; float: left; width: 100%;">
             <fieldset>
                 <legend>
-                    <%=Resources.Resource.lbWorkInfo %></legend>
+                    <%= Resources.Resource.lbWorkInfo %></legend>
                 <table cellpadding="3">
                     <tr>
                         <td>
-                            <%= AdminResource.lbCountry%>
+                            <%= AdminResource.lbCountry %>
                         </td>
                         <td>
                             :
@@ -766,7 +769,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbCity%>
+                            <%= AdminResource.lbCity %>
                         </td>
                         <td>
                             :
@@ -777,7 +780,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbTown%>
+                            <%= AdminResource.lbTown %>
                         </td>
                         <td>
                             :
@@ -788,7 +791,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbAddress%>
+                            <%= AdminResource.lbAddress %>
                         </td>
                         <td>
                             :
@@ -799,7 +802,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbZipCode%>
+                            <%= AdminResource.lbZipCode %>
                         </td>
                         <td>
                             :
@@ -810,7 +813,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbPhone%>
+                            <%= AdminResource.lbPhone %>
                         </td>
                         <td style="width: 10px;">
                             :
@@ -821,7 +824,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbFax%>
+                            <%= AdminResource.lbFax %>
                         </td>
                         <td>
                             :
@@ -832,7 +835,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbJobSector%>
+                            <%= AdminResource.lbJobSector %>
                         </td>
                         <td>
                             :
@@ -843,7 +846,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbJob%>
+                            <%= AdminResource.lbJob %>
                         </td>
                         <td>
                             :
@@ -854,7 +857,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbWorkTitle%>
+                            <%= AdminResource.lbWorkTitle %>
                         </td>
                         <td>
                             :
@@ -865,7 +868,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= AdminResource.lbWorkCorporation%>
+                            <%= AdminResource.lbWorkCorporation %>
                         </td>
                         <td>
                             :
@@ -876,7 +879,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%=AdminResource.lbHideJobInfo%>
+                            <%= AdminResource.lbHideJobInfo %>
                         </td>
                         <td>
                             :
@@ -896,7 +899,7 @@
         <div id="dEmailAddress" style="display: none; float: left; width: 100%;">
             <fieldset>
                 <legend>
-                    <%=Resources.Resource.lbEmailInfo %></legend>
+                    <%= Resources.Resource.lbEmailInfo %></legend>
                 <div id="dEmailProcessResult">
                     <asp:Literal runat="server" ID="ltUserEMailAddress" />
                 </div>
@@ -904,7 +907,7 @@
                     <tr class="editEmailInfo">
                         <td>
                             <label>
-                                <%=AdminResource.lbNewEmail%></label>
+                                <%= AdminResource.lbNewEmail %></label>
                         </td>
                         <td>
                             :
@@ -913,12 +916,12 @@
                             <asp:TextBox ID="tbNewEmailAddress" runat="server" />
                             &nbsp;
                             <asp:Button ID="btnSaveEmailInfo" runat="server" CssClass="SaveCancelBtn" OnClick="BtnSaveEmailInfoClick"
-                                ValidationGroup="vgNewEmail" />
+                                        ValidationGroup="vgNewEmail" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbNewEmailAddress"
-                                ErrorMessage="!" ForeColor="Red" ValidationGroup="vgNewEmail" Display="Dynamic" />
+                                                        ErrorMessage="!" ForeColor="Red" ValidationGroup="vgNewEmail" Display="Dynamic" />
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ForeColor="Red"
-                                ControlToValidate="tbNewEmailAddress" Display="Dynamic" ValidationGroup="vgNewEmail"
-                                ErrorMessage="!" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+                                                            ControlToValidate="tbNewEmailAddress" Display="Dynamic" ValidationGroup="vgNewEmail"
+                                                            ErrorMessage="!" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
                         </td>
                     </tr>
                 </table>

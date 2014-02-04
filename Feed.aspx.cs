@@ -137,10 +137,11 @@ namespace eNroll
         private void MenuIcerikRssVer(XmlTextWriter objX)
         {
             _rssImage = string.Empty;
-            var menuListe = _oEnroll.System_menu.Where(p => p.state==true && p.menuId > 1 && (p.type == "2" || p.type == "0") &&
-                                                            p.languageId ==
-                                                            EnrollContext.Current.WorkingLanguage.LanguageId).
-                OrderByDescending(p => p.menuId).ToList();
+            var menuListe =
+                _oEnroll.System_menu.Where(p => p.state == true && p.menuId > 1 && (p.type == "2" || p.type == "0") &&
+                                                p.languageId ==
+                                                EnrollContext.Current.WorkingLanguage.LanguageId).
+                    OrderByDescending(p => p.menuId).ToList();
             foreach (var s in menuListe)
             {
                 objX.WriteStartElement("item");

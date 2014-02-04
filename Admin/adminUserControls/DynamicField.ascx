@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_DynamicField"
-    CodeBehind="DynamicField.ascx.cs" %>
-<%@ Register TagPrefix="uc1" TagName="rtb" Src="~/Admin/adminUserControls/Rtb.ascx" %>
+            CodeBehind="DynamicField.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
+<%@ Register TagPrefix="uc1" TagName="rtb" Src="~/Admin/adminUserControls/Rtb.ascx" %>
 <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=Entities"
-    DefaultContainerName="Entities" EntitySetName="Customer_Dynamic_Group">
+                      DefaultContainerName="Entities" EntitySetName="Customer_Dynamic_Group">
 </asp:EntityDataSource>
 <asp:MultiView runat="server" ID="MultiView2">
     <asp:View runat="server">
@@ -16,7 +16,7 @@
                     <td>
                         <asp:TextBox ID="txtName" runat="server" Width="300px"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rf" runat="server" ControlToValidate="txtName" ForeColor="Red"
-                            ValidationGroup="vldGroup1">(!)</asp:RequiredFieldValidator>
+                                                    ValidationGroup="vldGroup1">(!)</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -40,9 +40,9 @@
                     </td>
                     <td>
                         <asp:Button ID="btnCustomerDynamicGroupSaveUpdate" runat="server" ValidationGroup="vldGroup1"
-                            CssClass="SaveCancelBtn" OnClick="btnCustomerDynamicGroupSaveUpdateClick" />
+                                    CssClass="SaveCancelBtn" OnClick="btnCustomerDynamicGroupSaveUpdateClick" />
                         <asp:Button ID="btnCustomerDynamicGroupEditCancel" runat="server" CssClass="SaveCancelBtn"
-                            OnClick="btnCustomerDynamicGroupEditCancel_Click" />
+                                    OnClick="btnCustomerDynamicGroupEditCancel_Click" />
                     </td>
                 </tr>
             </table>
@@ -56,7 +56,7 @@
                     <td>
                         <asp:TextBox ID="txtCustomerDynamic_name" runat="server" Width="300px"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCustomerDynamic_name"
-                            ForeColor="Red" ValidationGroup="vldGroup1">(!)</asp:RequiredFieldValidator>
+                                                    ForeColor="Red" ValidationGroup="vldGroup1">(!)</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -72,9 +72,9 @@
                     </td>
                     <td>
                         <asp:Button ID="btnCustomerDynamicSaveUpdate" runat="server" ValidationGroup="vldGroup1"
-                            CssClass="SaveCancelBtn" OnClick="btnCustomerDynamicSaveUpdateClick" />
+                                    CssClass="SaveCancelBtn" OnClick="btnCustomerDynamicSaveUpdateClick" />
                         <asp:Button ID="btnCustomerDynamicEditCancel" runat="server" CssClass="SaveCancelBtn"
-                            OnClick="btnCustomerDynamicEditCancel_Click" />
+                                    OnClick="btnCustomerDynamicEditCancel_Click" />
                     </td>
                 </tr>
             </table>
@@ -89,12 +89,12 @@
                 <tr>
                     <td>
                         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="GridViewStyle"
-                            PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
-                            SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
-                            SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
-                            SelectedRowStyle="selected" DataKeyNames="groupId" DataSourceID="EntityDataSource1"
-                            AllowPaging="True" AllowSorting="True" CellPadding="4" OnRowDataBound="GridView1_RowDataBound"
-                            Width="100%" PageSize="15" GridLines="None">
+                                      PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
+                                      SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
+                                      SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
+                                      SelectedRowStyle="selected" DataKeyNames="groupId" DataSourceID="EntityDataSource1"
+                                      AllowPaging="True" AllowSorting="True" CellPadding="4" OnRowDataBound="GridView1_RowDataBound"
+                                      Width="100%" PageSize="15" GridLines="None">
                             <EmptyDataTemplate>
                                 <%= AdminResource.lbNoRecord %>
                             </EmptyDataTemplate>
@@ -105,11 +105,12 @@
                                             <tr>
                                                 <td>
                                                     <asp:ImageButton ID="imgBtnEdit" runat="server" ImageUrl="~/Admin/images/icon/edit.png"
-                                                        CommandArgument='<%#Bind("groupId") %>' OnClick="imgBtnEdit_Click" />
+                                                                     CommandArgument='<%#Bind
+                                                                                                   ("groupId") %>' OnClick="imgBtnEdit_Click" />
                                                 </td>
                                                 <td>
                                                     <asp:ImageButton ID="imgBtnDelete" runat="server" ImageUrl="~/Admin/images/icon/cop.png"
-                                                        CommandArgument='<%#Bind("groupId") %>' OnClick="imgBtnDelete_Click" />
+                                                                     CommandArgument='<%#Bind("groupId") %>' OnClick="imgBtnDelete_Click" />
                                                 </td>
                                             </tr>
                                         </table>
@@ -131,18 +132,18 @@
                                             <tr>
                                                 <td align="left">
                                                     <asp:Button ID="imgBtnInnerNew" runat="server" CssClass="NewBtn" CommandArgument='<%#Bind("groupId") %>'
-                                                        OnClick="btnNewOptions_Click" />
+                                                                OnClick="btnNewOptions_Click" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <asp:GridView ID="grdSecenek" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                                                        CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                                                        SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-                                                        SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
-                                                        EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
-                                                        DataKeyNames="dynamicId" OnRowDataBound="grdSecenek_RowDataBound" PageSize="8"
-                                                        GridLines="None" Width="100%">
+                                                                  CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                                                                  SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                                                                  SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
+                                                                  EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
+                                                                  DataKeyNames="dynamicId" OnRowDataBound="grdSecenek_RowDataBound" PageSize="8"
+                                                                  GridLines="None" Width="100%">
                                                         <RowStyle CssClass="RowStyle" />
                                                         <EmptyDataRowStyle CssClass="EmptyRowStyle" />
                                                         <Columns>
@@ -152,11 +153,11 @@
                                                                         <tr>
                                                                             <td>
                                                                                 <asp:ImageButton ID="imgBtnInnerEdit" runat="server" CommandArgument='<%#Bind("dynamicId") %>'
-                                                                                    ImageUrl="~/Admin/images/icon/edit.png" OnClick="imgBtnEditOptions_Click" />
+                                                                                                 ImageUrl="~/Admin/images/icon/edit.png" OnClick="imgBtnEditOptions_Click" />
                                                                             </td>
                                                                             <td>
                                                                                 <asp:ImageButton ID="imgBtnInerDelete" runat="server" CommandArgument='<%#Bind("dynamicId") %>'
-                                                                                    ImageUrl="~/Admin/images/icon/cop.png" OnClick="imgBtnInerDeleteOptions_Click" />
+                                                                                                 ImageUrl="~/Admin/images/icon/cop.png" OnClick="imgBtnInerDeleteOptions_Click" />
                                                                             </td>
                                                                         </tr>
                                                                     </table>
@@ -183,7 +184,7 @@
                 </tr>
             </table>
             <asp:EntityDataSource ID="EntityDataSource3" runat="server" ConnectionString="name=Entities"
-                DefaultContainerName="Entities" EntitySetName="Customer_Dynamic">
+                                  DefaultContainerName="Entities" EntitySetName="Customer_Dynamic">
             </asp:EntityDataSource>
         </asp:Panel>
     </asp:View>

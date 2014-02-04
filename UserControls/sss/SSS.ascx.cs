@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using Resources;
@@ -31,7 +30,7 @@ public partial class UserControls_SSS_SSS : UserControl
     private void loadCategories()
     {
         var oEntities = new Entities();
-        List<FaqCategories> oCatList =
+        var oCatList =
             oEntities.FaqCategories.Where(
                 p =>
                 p.active == true && p.System_language.languageId == EnrollContext.Current.WorkingLanguage.LanguageId)
@@ -42,7 +41,7 @@ public partial class UserControls_SSS_SSS : UserControl
             for (int i = 0; i < oCatList.Count; i++)
             {
                 yazi = yazi + "<dt><b>" + oCatList[i].faqCategory + "</b></dt>";
-                List<Faq> oFaqList =
+                var oFaqList =
                     oEntities.Faq.Where("it.faqCategoryId=" + oCatList[i].faqCategoryId + " and it.active=True")
                         .ToList();
                 if (oFaqList.Count > 0)

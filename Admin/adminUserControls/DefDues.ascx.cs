@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Enroll.Managers;
@@ -12,14 +9,20 @@ using eNroll.Helpers;
 
 namespace eNroll.Admin.adminUserControls
 {
-    public partial class DefDues : System.Web.UI.UserControl
+    public partial class DefDues : UserControl
     {
+        #region Proccess enum
+
         public enum Proccess
         {
             Save = 1,
             Update = 2
         }
-        Entities _entities = new Entities();
+
+        #endregion
+
+        private readonly Entities _entities = new Entities();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             BindDuesTypes(lbDues);
@@ -33,10 +36,18 @@ namespace eNroll.Admin.adminUserControls
             ClearForm();
             btDeleteDues.OnClientClick = "return confirm('" + AdminResource.lbDeletingQuestion + "');";
 
-            ltNewAmountSymbolL.Text = (EnrollCurrency.SiteDefaultCurrency().Position == "L" ? EnrollCurrency.SiteDefaultCurrencyUnit() : "");
-            ltNewAmountSymbolR.Text = (EnrollCurrency.SiteDefaultCurrency().Position == "R" ? EnrollCurrency.SiteDefaultCurrencyUnit() : "");
-            ltEditAmountSymbolL.Text = (EnrollCurrency.SiteDefaultCurrency().Position == "L" ? EnrollCurrency.SiteDefaultCurrencyUnit() : "");
-            ltEditAmountSymbolR.Text = (EnrollCurrency.SiteDefaultCurrency().Position == "R" ? EnrollCurrency.SiteDefaultCurrencyUnit() : "");
+            ltNewAmountSymbolL.Text = (EnrollCurrency.SiteDefaultCurrency().Position == "L"
+                                           ? EnrollCurrency.SiteDefaultCurrencyUnit()
+                                           : "");
+            ltNewAmountSymbolR.Text = (EnrollCurrency.SiteDefaultCurrency().Position == "R"
+                                           ? EnrollCurrency.SiteDefaultCurrencyUnit()
+                                           : "");
+            ltEditAmountSymbolL.Text = (EnrollCurrency.SiteDefaultCurrency().Position == "L"
+                                            ? EnrollCurrency.SiteDefaultCurrencyUnit()
+                                            : "");
+            ltEditAmountSymbolR.Text = (EnrollCurrency.SiteDefaultCurrency().Position == "R"
+                                            ? EnrollCurrency.SiteDefaultCurrencyUnit()
+                                            : "");
         }
 
         protected void lbDuesTypes_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -49,7 +60,7 @@ namespace eNroll.Admin.adminUserControls
         protected void BtSaveDuesTypes_OnClick(object sender, EventArgs e)
         {
             var duesTypes = new DuesTypes();
-            SaveUpdateDuesTypes(duesTypes, Proccess.Save); 
+            SaveUpdateDuesTypes(duesTypes, Proccess.Save);
         }
 
         protected void BtUpdateDuesTypes_OnClick(object sender, EventArgs e)
@@ -64,7 +75,6 @@ namespace eNroll.Admin.adminUserControls
                     if (duesTypes != null)
                     {
                         SaveUpdateDuesTypes(duesTypes, Proccess.Update);
-                        
                     }
                 }
                 else
@@ -77,7 +87,6 @@ namespace eNroll.Admin.adminUserControls
                 ExceptionManager.ManageException(exception);
                 MessageBox.Show(MessageType.Error, AdminResource.lbErrorOccurred);
             }
-
         }
 
         protected void BtDeleteDuesTypes_OnClick(object sender, EventArgs e)
@@ -115,7 +124,8 @@ namespace eNroll.Admin.adminUserControls
             try
             {
                 tbEditDues.Text = string.Empty;
-                if (listBox != null && listBox.SelectedItem != null && !string.IsNullOrWhiteSpace(listBox.SelectedItem.Value))
+                if (listBox != null && listBox.SelectedItem != null &&
+                    !string.IsNullOrWhiteSpace(listBox.SelectedItem.Value))
                 {
                     hfSelectedDues.Value = Crypto.Encrypt(listBox.SelectedItem.Value);
                     var duesTypesId = Convert.ToInt32(listBox.SelectedItem.Value);
@@ -133,7 +143,6 @@ namespace eNroll.Admin.adminUserControls
                             }
                             catch (Exception)
                             {
-
                             }
                             cbEditUniqe.Checked = duesTypes.Uniqe;
                         }
@@ -169,7 +178,8 @@ namespace eNroll.Admin.adminUserControls
                     else
                     {
                         MessageBox.Show(MessageType.Warning, string.Format("{0} {1}",
-                            tbNewDues.Text, AdminResource.AlreadyExistInSystem));
+                                                                           tbNewDues.Text,
+                                                                           AdminResource.AlreadyExistInSystem));
                     }
                 }
                 else if (proccess == Proccess.Update)
@@ -186,7 +196,8 @@ namespace eNroll.Admin.adminUserControls
                     else
                     {
                         MessageBox.Show(MessageType.Warning, string.Format("{0} {1}",
-                            tbEditDues.Text, AdminResource.AlreadyExistInSystem));
+                                                                           tbEditDues.Text,
+                                                                           AdminResource.AlreadyExistInSystem));
                     }
                 }
             }
@@ -195,8 +206,8 @@ namespace eNroll.Admin.adminUserControls
                 ExceptionManager.ManageException(exception);
                 MessageBox.Show(MessageType.Error, AdminResource.lbErrorOccurred);
             }
-
         }
+
         public void ClearForm()
         {
             tbEditDues.Text = string.Empty;
@@ -217,7 +228,8 @@ namespace eNroll.Admin.adminUserControls
             try
             {
                 if (id != -1)
-                    duesTypes = _entities.DuesTypes.FirstOrDefault(p => p.Title.ToLower() == text.ToLower() && p.Id != id);
+                    duesTypes =
+                        _entities.DuesTypes.FirstOrDefault(p => p.Title.ToLower() == text.ToLower() && p.Id != id);
                 else
                     duesTypes = _entities.DuesTypes.FirstOrDefault(p => p.Title.ToLower() == text.ToLower());
 
@@ -229,6 +241,5 @@ namespace eNroll.Admin.adminUserControls
             }
             return false;
         }
-
     }
 }

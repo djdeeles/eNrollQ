@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MailTemplates.ascx.cs"
-    Inherits="eNroll.Admin.adminUserControls.MailTemplates" %>
+            Inherits="eNroll.Admin.adminUserControls.MailTemplates" %>
 <%@ Import Namespace="Resources" %>
 <%@ Register TagPrefix="uc1" TagName="rtb" Src="~/Admin/adminUserControls/Rtb.ascx" %>
 <asp:MultiView runat="server" ID="mvAuthoriztn">
@@ -9,7 +9,7 @@
                 <table>
                     <tr>
                         <td style="width: 100px;">
-                            <%=AdminResource.lbTemplateName %>
+                            <%= AdminResource.lbTemplateName %>
                         </td>
                         <td style="width: 10px;">
                             :
@@ -17,12 +17,12 @@
                         <td>
                             <asp:TextBox runat="server" ID="tbTemplateTitle"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbTemplateTitle"
-                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
+                                                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%=AdminResource.lbContent %>
+                            <%= AdminResource.lbContent %>
                         </td>
                         <td>
                             :
@@ -38,7 +38,7 @@
                     <tr>
                         <td colspan="3">
                             <asp:Button runat="server" ID="btSaveTemplate" CssClass="SaveCancelBtn" ValidationGroup="g1"
-                                OnClick="BtSaveTemplateClick" />
+                                        OnClick="BtSaveTemplateClick" />
                             <asp:Button runat="server" ID="btCancelSaveTemplate" CssClass="SaveCancelBtn" OnClick="BtCancelSaveTemplateClick" />
                         </td>
                     </tr>
@@ -52,13 +52,13 @@
             <asp:View ID="vGridTemplate" runat="server">
                 <asp:Button ID="btNewTemplate" runat="server" CssClass="NewBtn" OnClick="ImageButtonbtNewTemplate_Click" />
                 <asp:GridView ID="gVMailTemplates" runat="server" DataSourceID="EntityDataSource1"
-                    AutoGenerateColumns="False" CssClass="GridViewStyle" PagerStyle-CssClass="pgr"
-                    OnRowDataBound="gVMailTemplates_OnRowDataBound" AlternatingRowStyle-CssClass="alt"
-                    SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-                    SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
-                    EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
-                    DataKeyNames="Id" CellPadding="4" Width="100%" PageSize="15" ForeColor="#333333"
-                    GridLines="None" AllowSorting="False">
+                              AutoGenerateColumns="False" CssClass="GridViewStyle" PagerStyle-CssClass="pgr"
+                              OnRowDataBound="gVMailTemplates_OnRowDataBound" AlternatingRowStyle-CssClass="alt"
+                              SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                              SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
+                              EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
+                              DataKeyNames="Id" CellPadding="4" Width="100%" PageSize="15" ForeColor="#333333"
+                              GridLines="None" AllowSorting="False">
                     <EmptyDataTemplate>
                         <%= AdminResource.lbNoRecord %>
                     </EmptyDataTemplate>
@@ -69,11 +69,12 @@
                                     <tr>
                                         <td>
                                             <asp:ImageButton ID="imgBtnEdit" runat="server" ImageUrl="~/Admin/images/icon/edit.png"
-                                                OnClick="ImgBtnMemberEditClick" CommandArgument='<%#Bind("Id") %>' />
+                                                             OnClick="ImgBtnMemberEditClick" CommandArgument='<%#Bind
+                                                                                                   ("Id") %>' />
                                         </td>
                                         <td>
                                             <asp:ImageButton ID="imgBtnMemberDelete" runat="server" ImageUrl="~/Admin/images/icon/cop.png"
-                                                CommandArgument='<%#Bind("Id") %>' OnClick="ImgBtnMemberDeleteClick" />
+                                                             CommandArgument='<%#Bind("Id") %>' OnClick="ImgBtnMemberDeleteClick" />
                                         </td>
                                     </tr>
                                 </table>
@@ -82,20 +83,20 @@
                             <ItemStyle HorizontalAlign="Left" Width="75px" />
                         </asp:TemplateField>
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderStyle-HorizontalAlign="Left"
-                            ItemStyle-HorizontalAlign="Left">
+                                        ItemStyle-HorizontalAlign="Left">
                             <HeaderStyle HorizontalAlign="Left" />
                             <ItemStyle HorizontalAlign="Left" />
                         </asp:BoundField>
                         <asp:BoundField DataField="UpdatedTime" SortExpression="UpdatedTime" HeaderStyle-HorizontalAlign="Left"
-                            ItemStyle-HorizontalAlign="Left">
+                                        ItemStyle-HorizontalAlign="Left">
                             <HeaderStyle HorizontalAlign="Left" Width="130px" />
                             <ItemStyle HorizontalAlign="Left" />
                         </asp:BoundField>
                     </Columns>
                 </asp:GridView>
                 <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=Entities"
-                    DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="MailTemplates"
-                    OrderBy="it.Title">
+                                      DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="MailTemplates"
+                                      OrderBy="it.Title">
                 </asp:EntityDataSource>
             </asp:View>
         </asp:MultiView>

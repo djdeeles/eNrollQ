@@ -16,12 +16,12 @@ public partial class UserControls_ProductScroller : UserControl
         try
         {
             int lang = EnrollContext.Current.WorkingLanguage.LanguageId;
-            IQueryable<Products> products =
+            var products =
                 ent.Products.Where(p => p.languageId == lang && p.State == true && p.Vitrin == true);
             foreach (Products product in products)
             {
                 Products product1 = product;
-                IQueryable<Product_Images> pictures =
+                var pictures =
                     ent.Product_Images.Where(p => p.MainImage == true && p.ProductId == product1.ProductId);
 
                 stringBuilder.AppendLine("<li> <div class='productscrolleritem'>");

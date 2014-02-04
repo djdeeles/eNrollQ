@@ -1,24 +1,24 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Enroll.Managers;
-using eNroll.App_Data;
-using eNroll.Helpers;
 using Resources;
 using Telerik.Web.UI;
+using eNroll.App_Data;
+using eNroll.Helpers;
 
 namespace eNroll.Admin.adminUserControls
 {
-    public partial class MemberSendEmail : System.Web.UI.UserControl
+    public partial class MemberSendEmail : UserControl
     {
-        Entities _entities = new Entities();
+        private readonly Entities _entities = new Entities();
+        private List<Users> _users;
         public string MembersSqlQuery { get; set; }
         public SqlConnection Conn { get; set; }
-        private List<Users> _users;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (RoleControl.YetkiAlaniKontrol(HttpContext.Current.User.Identity.Name, 35))
@@ -31,7 +31,6 @@ namespace eNroll.Admin.adminUserControls
             {
                 mvAuth.SetActiveView(vNotAuth);
             }
-            
         }
 
         public void GetMembers()
@@ -42,7 +41,7 @@ namespace eNroll.Admin.adminUserControls
 
         public void ClearFormInputs()
         {
-            var rtb = ((RadEditor)RtbMailContent.FindControl("RadEditor1"));
+            var rtb = ((RadEditor) RtbMailContent.FindControl("RadEditor1"));
             rtb.Content = string.Empty;
             tbJobName.Text = string.Empty;
             tbMailSubject.Text = string.Empty;
@@ -59,7 +58,7 @@ namespace eNroll.Admin.adminUserControls
             var tarih = string.Empty;
             try
             {
-                var rtb = ((RadEditor)RtbMailContent.FindControl("RadEditor1"));
+                var rtb = ((RadEditor) RtbMailContent.FindControl("RadEditor1"));
 
                 var myTask = new Task();
                 myTask.Content = rtb.Content;
@@ -104,9 +103,9 @@ namespace eNroll.Admin.adminUserControls
 
             if (savedSuccessfuly)
             {
-                lblUyari.Text = ileriTarihli ?
-                    string.Format(AdminResource.lbEmailTaskSavedInfo, tarih) :
-                    string.Format(AdminResource.lbEmailTaskCreated);
+                lblUyari.Text = ileriTarihli
+                                    ? string.Format(AdminResource.lbEmailTaskSavedInfo, tarih)
+                                    : string.Format(AdminResource.lbEmailTaskCreated);
             }
             else
             {
@@ -116,7 +115,7 @@ namespace eNroll.Admin.adminUserControls
 
         protected void ddlMailTemplates_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            var rtb = ((RadEditor)RtbMailContent.FindControl("RadEditor1"));
+            var rtb = ((RadEditor) RtbMailContent.FindControl("RadEditor1"));
             var selectedTemplate = ddlMailTemplates.SelectedItem.Value;
             try
             {
@@ -142,7 +141,7 @@ namespace eNroll.Admin.adminUserControls
         protected void iBRefreshTemplatesClick(object sender, ImageClickEventArgs e)
         {
             EnrollMembershipHelper.BindDDlMailTemplates(ddlMailTemplates);
-        } 
+        }
 
         protected void btUpdateTaskClick(object sender, EventArgs e)
         {
@@ -159,10 +158,11 @@ namespace eNroll.Admin.adminUserControls
                             task.Name = tbJobName.Text;
                             task.Subject = tbMailSubject.Text;
                             if (dpMailSendDate.SelectedDate != null && tpMailSendTime.SelectedTime != null)
-                                task.StartDate = Convert.ToDateTime(dpMailSendDate.SelectedDate.Value.ToShortDateString() + " " +
-                                    tpMailSendTime.SelectedTime.Value.ToString());
+                                task.StartDate =
+                                    Convert.ToDateTime(dpMailSendDate.SelectedDate.Value.ToShortDateString() + " " +
+                                                       tpMailSendTime.SelectedTime.Value.ToString());
 
-                            var rtb = ((RadEditor)RtbMailContent.FindControl("RadEditor1"));
+                            var rtb = ((RadEditor) RtbMailContent.FindControl("RadEditor1"));
                             task.Content = rtb.Content;
 
                             task.mailReadInfo = (rbSendReport.SelectedIndex == 0);
@@ -184,7 +184,7 @@ namespace eNroll.Admin.adminUserControls
 
                             _entities.SaveChanges();
 
-                            var gVScheduledJobs = this.Parent.FindControl("gVScheduledJobs");
+                            var gVScheduledJobs = Parent.FindControl("gVScheduledJobs");
                             gVScheduledJobs.DataBind();
 
                             MessageBox.Show(MessageType.Success, AdminResource.msgUpdated);
@@ -196,7 +196,6 @@ namespace eNroll.Admin.adminUserControls
             {
                 ExceptionManager.ManageException(exception);
             }
-
         }
     }
 }

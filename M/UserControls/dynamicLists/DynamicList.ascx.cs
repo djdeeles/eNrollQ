@@ -218,12 +218,15 @@ public partial class M_UserControls_DynamicList : UserControl
                         {
                             if (Request.Url.PathAndQuery.IndexOf("&") != -1)
                             {
-                                currentLink.NavigateUrl = currentLink.NavigateUrl.Replace( Request.Url.PathAndQuery + "&", "../../m/listeler-");
+                                currentLink.NavigateUrl = currentLink.NavigateUrl.Replace(
+                                    Request.Url.PathAndQuery + "&", "../../m/listeler-");
                                 currentLink.NavigateUrl = currentLink.NavigateUrl.Replace("listpage=", "");
                             }
                             else
                             {
-                                currentLink.NavigateUrl = currentLink.NavigateUrl.Replace(Request.Url.PathAndQuery, "../../listeler-" + ListId + "-");
+                                currentLink.NavigateUrl = currentLink.NavigateUrl.Replace(Request.Url.PathAndQuery,
+                                                                                          "../../listeler-" + ListId +
+                                                                                          "-");
                                 currentLink.NavigateUrl = currentLink.NavigateUrl.Replace("listpage=", "");
                             }
                         }

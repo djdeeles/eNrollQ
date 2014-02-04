@@ -39,8 +39,7 @@
                                         <td width="100">
                                             <%= AdminResource.lbTitle %>
                                         </td>
-                                        <td width="10">
-                                            :
+                                        <td width="10">:
                                         </td>
                                         <td>
                                             <asp:TextBox ID="txtName" runat="server" MaxLength="150" Width="290px"></asp:TextBox>
@@ -52,8 +51,7 @@
                                         <td valign="top">
                                             <%= AdminResource.lbDesc %>
                                         </td>
-                                        <td valign="top">
-                                            :
+                                        <td valign="top">:
                                         </td>
                                         <td valign="top">
                                             <asp:TextBox ID="txtDesc" runat="server" Height="70px" TextMode="MultiLine" Width="300px"></asp:TextBox>
@@ -65,8 +63,7 @@
                                         <td>
                                             <%= AdminResource.lbStartDate %>
                                         </td>
-                                        <td>
-                                            :
+                                        <td>:
                                         </td>
                                         <td>
                                             <telerik:RadDatePicker ID="dpStartDate" runat="server" ZIndex="30001">
@@ -85,8 +82,7 @@
                                         <td>
                                             <%= AdminResource.lbEndDate %>
                                         </td>
-                                        <td>
-                                            :
+                                        <td>:
                                         </td>
                                         <td>
                                             <telerik:RadDatePicker ID="dpEndDate" runat="server" ZIndex="30001">
@@ -99,8 +95,7 @@
                                         <td>
                                             <%= AdminResource.lbState %>
                                         </td>
-                                        <td>
-                                            :
+                                        <td>:
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="cbActive" runat="server" Checked="true" />
@@ -110,18 +105,15 @@
                                         <td valign="top">
                                             <%= AdminResource.lbDesc %>
                                         </td>
-                                        <td valign="top">
-                                            :
+                                        <td valign="top">:
                                         </td>
                                         <td valign="top">
                                             <uc1:Rtb ID="Rtb1" runat="server" />
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td valign="top">
-                                        </td>
-                                        <td valign="top">
-                                        </td>
+                                        <td valign="top"></td>
+                                        <td valign="top"></td>
                                         <td>
                                             <asp:Button ID="btnSave2" runat="server" CssClass="SaveCancelBtn" OnClick="ImageButton2_Click"
                                                 ValidationGroup="g1" />
@@ -139,8 +131,7 @@
                                         <td width="100">
                                             <%= AdminResource.lbTitle %>
                                         </td>
-                                        <td width="10">
-                                            :
+                                        <td width="10">:
                                         </td>
                                         <td>
                                             <asp:TextBox ID="TextBox1Baslik" runat="server" MaxLength="150" Width="300px"></asp:TextBox>
@@ -152,8 +143,7 @@
                                         <td valign="top">
                                             <%= AdminResource.lbDesc %>
                                         </td>
-                                        <td valign="top">
-                                            :
+                                        <td valign="top">:
                                         </td>
                                         <td valign="top">
                                             <asp:TextBox ID="TextBox2Ozet" runat="server" Height="70px" TextMode="MultiLine"
@@ -166,8 +156,7 @@
                                         <td>
                                             <%= AdminResource.lbStartDate %>
                                         </td>
-                                        <td>
-                                            :
+                                        <td>:
                                         </td>
                                         <td>
                                             <telerik:RadDatePicker ID="editDpStartDate" runat="server" ZIndex="30001">
@@ -186,8 +175,7 @@
                                         <td>
                                             <%= AdminResource.lbEndDate %>
                                         </td>
-                                        <td>
-                                            :
+                                        <td>:
                                         </td>
                                         <td>
                                             <telerik:RadDatePicker ID="editDpEndDate" runat="server" ZIndex="30001">
@@ -200,8 +188,7 @@
                                         <td>
                                             <%= AdminResource.lbState %>
                                         </td>
-                                        <td>
-                                            :
+                                        <td>:
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="CheckBox1Durum" runat="server" Checked="true" />
@@ -211,18 +198,15 @@
                                         <td valign="top">
                                             <%= AdminResource.lbDesc %>
                                         </td>
-                                        <td valign="top">
-                                            :
+                                        <td valign="top">:
                                         </td>
                                         <td valign="top">
                                             <uc1:Rtb ID="Rtb2" runat="server" />
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td valign="top">
-                                        </td>
-                                        <td valign="top">
-                                        </td>
+                                        <td valign="top"></td>
+                                        <td valign="top"></td>
                                         <td>
                                             <asp:Button ID="btnSave" runat="server" CssClass="SaveCancelBtn" OnClick="BtnSaveClick"
                                                 ValidationGroup="g2" />
@@ -294,7 +278,7 @@
 </asp:MultiView>
 <asp:EntityDataSource ID="dsEvents" runat="server" ConnectionString="name=Entities"
     DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="Events"
-    Where="it.languageId=@languageId">
+    Where="it.languageId=@languageId" OrderBy="it.CreatedTime desc">
     <WhereParameters>
         <asp:ControlParameter Name="languageId" ControlID="hfLanguageId" PropertyName="Value"
             DbType="Int32" DefaultValue="1" />

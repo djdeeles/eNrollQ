@@ -1,24 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Resources;
 using eNroll.App_Data;
 using eNroll.Helpers;
 
 namespace eNroll.UserControls.cm
 {
-    public partial class MemberPanel : System.Web.UI.UserControl
+    public partial class MemberPanel : UserControl
     {
-        Entities _entitites = new Entities();
         private const string CookieName = "EnrollAuthentication";
-        protected bool MemberIsLogin = false;
-        protected string MemberImage = string.Empty;
-        protected string MemberName = Resource.lbGuest;
+        private readonly Entities _entitites = new Entities();
         protected LoginType LoginType = 0;
+        protected string MemberImage = string.Empty;
+        protected bool MemberIsLogin = false;
+        protected string MemberName = Resource.lbGuest;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!HttpContext.Current.User.Identity.IsAuthenticated)
@@ -33,8 +31,9 @@ namespace eNroll.UserControls.cm
                     LoginContext.LoginProccess(checkUser.EMail, checkUser.Password, true, "2", true, LoginType);
                     MemberName = checkUser.Name + " " + checkUser.Surname;
                     MemberImage = string.Format("<img alt='{0}' src='{1}' class='memberpanelimage'/>", MemberName,
-                    (userGeneral != null && userGeneral.PhotoUrl != null ?
-                        userGeneral.PhotoUrl.Replace("~/", "") : "/App_Themes/mainTheme/images/noimage.png"));
+                                                (userGeneral != null && userGeneral.PhotoUrl != null
+                                                     ? userGeneral.PhotoUrl.Replace("~/", "")
+                                                     : "/App_Themes/mainTheme/images/noimage.png"));
                     MemberIsLogin = true;
                 }
             }
@@ -52,11 +51,9 @@ namespace eNroll.UserControls.cm
                         MemberIsLogin = true;
                     }
                     MemberImage = string.Format("<img alt='{0}' src='{1}' class='memberpanelimage'/>",
-                        MemberName, ((userGeneral != null && userGeneral.PhotoUrl != null) ? 
-                                                    userGeneral.PhotoUrl.Replace("~/", "") : 
-                                                    "/App_Themes/mainTheme/images/noimage.png"));
-
-
+                                                MemberName, ((userGeneral != null && userGeneral.PhotoUrl != null)
+                                                                 ? userGeneral.PhotoUrl.Replace("~/", "")
+                                                                 : "/App_Themes/mainTheme/images/noimage.png"));
                 }
             }
         }

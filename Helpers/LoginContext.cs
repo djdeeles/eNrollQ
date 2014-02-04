@@ -15,7 +15,7 @@ namespace eNroll.Helpers
         Admin = 1,
         Web = 2
     }
-    
+
     public class LoginContext
     {
         private static string _username;
@@ -24,9 +24,10 @@ namespace eNroll.Helpers
         public static string RedirectUrl;
         public static int LoginFailedCount;
 
-        static readonly Entities _entities = new Entities();
+        private static readonly Entities _entities = new Entities();
 
         #region Cookie ile login
+
         public static bool CookieControl(LoginType loginType)
         {
             var c = HttpContext.Current.Request.Cookies[CookieName]; // login bilgileri
@@ -42,7 +43,9 @@ namespace eNroll.Helpers
                     switch (loginType)
                     {
                         case LoginType.Admin:
-                            user = _entities.Users.Where(x => x.EMail == uname && x.Password == pwd && x.State && x.Admin.Value).ToList();
+                            user =
+                                _entities.Users.Where(
+                                    x => x.EMail == uname && x.Password == pwd && x.State && x.Admin.Value).ToList();
                             break;
                         case LoginType.Web:
                             user = _entities.Users.Where(x => x.EMail == uname && x.Password == pwd && x.State).ToList();
@@ -89,24 +92,26 @@ namespace eNroll.Helpers
             }
             return null;
         }
+
         #endregion
 
         #region Login, crate formTicket, write cookie,
-        public static void LoginProccess(String userName, String encryptedPassword, bool isCookieAvaliable, string adminLanguage, bool cbRememberMe, LoginType loginType)
+
+        public static void LoginProccess(String userName, String encryptedPassword, bool isCookieAvaliable,
+                                         string adminLanguage, bool cbRememberMe, LoginType loginType)
         {
             try
             {
                 CreateEnrollAuthenticationCookie(userName, encryptedPassword, cbRememberMe);
                 CreateEnrollAdminLanguageCookie(adminLanguage);
                 CreateFormsAuthenticationTicket(userName, loginType);
-                
             }
             catch (Exception exception)
             {
                 ExceptionManager.ManageException(exception);
             }
-            
         }
+
         #endregion
 
         public static void CreateFormsAuthenticationTicket(string userName, LoginType loginType)
@@ -114,14 +119,15 @@ namespace eNroll.Helpers
             var roles = GetRoles(userName, loginType);
             FormsAuthentication.Initialize();
             var formsAuthenticationTicket = new FormsAuthenticationTicket(1,
-                userName,
-                DateTime.Now,
-                DateTime.Now.AddDays(1),
-                false,
-                roles,
-                FormsAuthentication.FormsCookiePath);
+                                                                          userName,
+                                                                          DateTime.Now,
+                                                                          DateTime.Now.AddDays(1),
+                                                                          false,
+                                                                          roles,
+                                                                          FormsAuthentication.FormsCookiePath);
 
-            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(formsAuthenticationTicket));
+            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName,
+                                        FormsAuthentication.Encrypt(formsAuthenticationTicket));
             if (formsAuthenticationTicket.IsPersistent) cookie.Expires = formsAuthenticationTicket.Expiration;
 
             HttpContext.Current.Response.Cookies.Add(cookie);
@@ -146,7 +152,7 @@ namespace eNroll.Helpers
         public static void CreateEnrollAdminLanguageCookie(string adminLanguage)
         {
             var systemLanguage = _entities.System_language.FirstOrDefault(
-                    p => p.languageId == EnrollAdminContext.Current.AdminLanguage.LanguageId);
+                p => p.languageId == EnrollAdminContext.Current.AdminLanguage.LanguageId);
 
             if (systemLanguage != null)
             {
@@ -158,7 +164,6 @@ namespace eNroll.Helpers
                 var cultureName = systemLanguage.languageCulture;
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureName);
                 Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureName);
-
             }
         }
 
@@ -169,63 +174,6 @@ namespace eNroll.Helpers
             var roles = isadmin ? "Admin" : "User";
             return roles;
         }
-
-        #region catcha hatalı giriş logu
-        public static void LogPasswordErrorCount(HttpCookie cookie)
-        {
-            if (cookie == null || cookie["errorCount"] == null)
-            {
-                var c = new HttpCookie(CookieName);
-                c["errorCount"] = Crypto.Encrypt("1");
-                LoginFailedCount = 1;
-                c.Expires = DateTime.Now.AddMonths(1);
-                HttpContext.Current.Response.Cookies.Add(c);
-            }
-            else
-            {
-                LoginFailedCount = Convert.ToInt32(Crypto.Decrypt(cookie["errorCount"])) + 1;
-                cookie["errorCount"] = Crypto.Encrypt(LoginFailedCount.ToString());
-                cookie.Expires = DateTime.Now.AddMonths(1);
-                HttpContext.Current.Response.Cookies.Add(cookie);
-            }
-        }
-        #endregion
-
-        #region getter setter
-
-        public static string GetUsername()
-        {
-            return _username;
-        }
-        public static void SetUsername(string username)
-        {
-            _username = username;
-        }
-
-        public static void SetPassword(string password)
-        {
-            _password = password;
-        }
-        public static string GetPassword()
-        {
-            return _password;
-        }
-
-        #endregion
-
-        #region check admin role
-        public static void CheckAdminUser()
-        {
-            if (HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated)
-            {
-                var _user = _entities.Users.First(p => p.EMail == HttpContext.Current.User.Identity.Name);
-                if (!Convert.ToBoolean(_user.Admin))
-                {
-                    HttpContext.Current.Response.Redirect("../Default.aspx");
-                }
-            }
-        }
-        #endregion
 
         public static string GetRetrunUrl(LoginType loginType)
         {
@@ -246,7 +194,68 @@ namespace eNroll.Helpers
             }
             return returnUrl;
         }
+
+        #region catcha hatalı giriş logu
+
+        public static void LogPasswordErrorCount(HttpCookie cookie)
+        {
+            if (cookie == null || cookie["errorCount"] == null)
+            {
+                var c = new HttpCookie(CookieName);
+                c["errorCount"] = Crypto.Encrypt("1");
+                LoginFailedCount = 1;
+                c.Expires = DateTime.Now.AddMonths(1);
+                HttpContext.Current.Response.Cookies.Add(c);
+            }
+            else
+            {
+                LoginFailedCount = Convert.ToInt32(Crypto.Decrypt(cookie["errorCount"])) + 1;
+                cookie["errorCount"] = Crypto.Encrypt(LoginFailedCount.ToString());
+                cookie.Expires = DateTime.Now.AddMonths(1);
+                HttpContext.Current.Response.Cookies.Add(cookie);
+            }
+        }
+
+        #endregion
+
+        #region getter setter
+
+        public static string GetUsername()
+        {
+            return _username;
+        }
+
+        public static void SetUsername(string username)
+        {
+            _username = username;
+        }
+
+        public static void SetPassword(string password)
+        {
+            _password = password;
+        }
+
+        public static string GetPassword()
+        {
+            return _password;
+        }
+
+        #endregion
+
+        #region check admin role
+
+        public static void CheckAdminUser()
+        {
+            if (HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                var _user = _entities.Users.First(p => p.EMail == HttpContext.Current.User.Identity.Name);
+                if (!Convert.ToBoolean(_user.Admin))
+                {
+                    HttpContext.Current.Response.Redirect("../Default.aspx");
+                }
+            }
+        }
+
+        #endregion
     }
-
-
 }

@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_VideoManager"
-    CodeBehind="VideoManager.ascx.cs" %>
+            CodeBehind="VideoManager.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <asp:MultiView runat="server" ID="MultiView2">
     <asp:View runat="server">
@@ -25,7 +25,7 @@
                                         </td>
                                         <td>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtNewCategory"
-                                                ForeColor="Red" ValidationGroup="gv1" SetFocusOnError="True">(!)</asp:RequiredFieldValidator>
+                                                                        ForeColor="Red" ValidationGroup="gv1" SetFocusOnError="True">(!)</asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -50,7 +50,7 @@
                                         </td>
                                         <td>
                                             <asp:Button ID="btnSave" runat="server" CssClass="SaveCancelBtn" OnClick="btnSave_Click"
-                                                ValidationGroup="gv1" />
+                                                        ValidationGroup="gv1" />
                                             <asp:Button ID="btnCancel" runat="server" CssClass="SaveCancelBtn" OnClick="btnCancel_Click" />
                                         </td>
                                         <td>
@@ -65,13 +65,13 @@
             <tr>
                 <td>
                     <asp:GridView ID="gvCategories" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                        CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                        SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-                        SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
-                        EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle-CssClass="selected"
-                        DataKeyNames="id" OnRowCommand="gvCategories_RowCommand" ForeColor="#333333"
-                        GridLines="None" Width="100%" OnRowDataBound="gvCategories_RowDataBound" DataSourceID="edsCat"
-                        AllowSorting="True" AllowPaging="False">
+                                  CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                                  SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                                  SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
+                                  EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle-CssClass="selected"
+                                  DataKeyNames="id" OnRowCommand="gvCategories_RowCommand" ForeColor="#333333"
+                                  GridLines="None" Width="100%" OnRowDataBound="gvCategories_RowDataBound" DataSourceID="edsCat"
+                                  AllowSorting="True" AllowPaging="False">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <EmptyDataTemplate>
                             <%= AdminResource.lbNoRecord %>
@@ -80,16 +80,16 @@
                             <asp:TemplateField>
                                 <EditItemTemplate>
                                     <asp:ImageButton ID="LinkButton1" runat="server" ImageUrl="~/Admin/images/icon/save.png"
-                                        CommandName="Update" CausesValidation="True" CommandArgument='<%#                                        Eval("id") %>' />
+                                                     CommandName="Update" CausesValidation="True" CommandArgument='<%#                                        Eval("id") %>' />
                                     <asp:ImageButton ID="LinkButton2" runat="server" ImageUrl="~/Admin/images/icon/cancel.png"
-                                        CommandName="Cancel" CausesValidation="False" />
+                                                     CommandName="Cancel" CausesValidation="False" />
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:ImageButton ID="LinkButton1" runat="server" ImageUrl="~/Admin/images/icon/edit.png"
-                                        CommandName="Edit" CommandArgument='<%#Eval
+                                                     CommandName="Edit" CommandArgument='<%#Eval
                                                                                                    ("id") %>' />
                                     <asp:ImageButton ID="lbCatSil" runat="server" ImageUrl="~/Admin/images/icon/cop.png"
-                                        CausesValidation="False" OnClick="lbCatSil_Click" CommandArgument='<%#Eval("id") %>' />
+                                                     CausesValidation="False" OnClick="lbCatSil_Click" CommandArgument='<%#Eval("id") %>' />
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="75px" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
@@ -97,7 +97,7 @@
                             <asp:TemplateField HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lbCatSec" runat="server" CausesValidation="False" CommandName="Select"
-                                        CommandArgument='<%#Eval("id") %>' Text='<%#Bind("name") %>' OnClick="lbCatSec_Click"></asp:LinkButton>
+                                                    CommandArgument='<%#Eval("id") %>' Text='<%#Bind("name") %>' OnClick="lbCatSec_Click"></asp:LinkButton>
                                 </ItemTemplate>
                                 <EditItemTemplate>
                                     <asp:TextBox ID="Kategori" runat="server" Text='<%#Bind("name") %>'></asp:TextBox>
@@ -120,11 +120,11 @@
             <tr>
                 <td>
                     <asp:EntityDataSource ID="edsCat" runat="server" ConnectionString="name=Entities"
-                        DefaultContainerName="Entities" EnableDelete="True" EnableUpdate="True" EntitySetName="VideoCategories"
-                        Where="it.languageId=@languageId" EnableFlattening="False" EntityTypeFilter="VideoCategories">
+                                          DefaultContainerName="Entities" EnableDelete="True" EnableUpdate="True" EntitySetName="VideoCategories"
+                                          Where="it.languageId=@languageId" EnableFlattening="False" EntityTypeFilter="VideoCategories" OrderBy="it.CreatedTime desc">
                         <WhereParameters>
                             <asp:ControlParameter Name="languageId" ControlID="HiddenField1" PropertyName="Value"
-                                DbType="Int32" DefaultValue="1" />
+                                                  DbType="Int32" DefaultValue="1" />
                         </WhereParameters>
                     </asp:EntityDataSource>
                     <asp:HiddenField ID="HiddenField1" runat="server" />
@@ -151,7 +151,7 @@
                                         </td>
                                         <td>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtLink"
-                                                ForeColor="Red" SetFocusOnError="True" ValidationGroup="gk2">(!)</asp:RequiredFieldValidator>
+                                                                        ForeColor="Red" SetFocusOnError="True" ValidationGroup="gk2">(!)</asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -166,7 +166,7 @@
                                         </td>
                                         <td>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtVideoName"
-                                                ForeColor="Red" ValidationGroup="gk2">(!)</asp:RequiredFieldValidator>
+                                                                        ForeColor="Red" ValidationGroup="gk2">(!)</asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -178,7 +178,7 @@
                                         </td>
                                         <td>
                                             <asp:TextBox ID="txtVideoDescription" runat="server" Height="100px" MaxLength="500"
-                                                TextMode="MultiLine" Width="190px"></asp:TextBox>
+                                                         TextMode="MultiLine" Width="190px"></asp:TextBox>
                                         </td>
                                         <td>
                                             &nbsp;
@@ -207,7 +207,7 @@
                                         </td>
                                         <td>
                                             <asp:Button ID="btnSaveVideo" runat="server" CssClass="SaveCancelBtn" OnClick="btnSaveVideo_Click"
-                                                ValidationGroup="gk2" />
+                                                        ValidationGroup="gk2" />
                                             <asp:Button ID="btnCancelVideo" runat="server" CssClass="SaveCancelBtn" OnClick="btnCancelVideo_Click" />
                                         </td>
                                         <td>
@@ -223,13 +223,13 @@
             <tr>
                 <td>
                     <asp:GridView ID="gvVideos" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                        PageSize="15" AllowPaging="True" CssClass="GridViewStyle" PagerStyle-CssClass="pgr"
-                        AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
-                        SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
-                        SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
-                        SelectedRowStyle-CssClass="selected" DataKeyNames="id" ForeColor="#333333" GridLines="None"
-                        Visible="False" DataSourceID="edsVideos" OnRowCommand="gvVideos_RowCommand" OnRowDataBound="gvVideos_RowDataBound"
-                        Width="100%" AllowSorting="True">
+                                  PageSize="15" AllowPaging="True" CssClass="GridViewStyle" PagerStyle-CssClass="pgr"
+                                  AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
+                                  SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
+                                  SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
+                                  SelectedRowStyle-CssClass="selected" DataKeyNames="id" ForeColor="#333333" GridLines="None"
+                                  Visible="False" DataSourceID="edsVideos" OnRowCommand="gvVideos_RowCommand" OnRowDataBound="gvVideos_RowDataBound"
+                                  Width="100%" AllowSorting="True">
                         <EmptyDataTemplate>
                             <%= AdminResource.lbNoRecord %>
                         </EmptyDataTemplate>
@@ -237,15 +237,15 @@
                             <asp:TemplateField HeaderText="İşlemler">
                                 <EditItemTemplate>
                                     <asp:ImageButton ID="LinkButton1" runat="server" ImageUrl="~/Admin/images/icon/save.png"
-                                        CommandName="Update" CausesValidation="True" CommandArgument='<%#Eval("id") %>' />
+                                                     CommandName="Update" CausesValidation="True" CommandArgument='<%#Eval("id") %>' />
                                     <asp:ImageButton ID="LinkButton2" runat="server" ImageUrl="~/Admin/images/icon/cancel.png"
-                                        CommandName="Cancel" CausesValidation="False" />
+                                                     CommandName="Cancel" CausesValidation="False" />
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:ImageButton ID="LinkButton1" runat="server" ImageUrl="~/Admin/images/icon/edit.png"
-                                        CommandName="Edit" CommandArgument='<%#Eval("id") %>' />
+                                                     CommandName="Edit" CommandArgument='<%#Eval("id") %>' />
                                     <asp:ImageButton ID="lbAlbSil" runat="server" ImageUrl="~/Admin/images/icon/cop.png"
-                                        CausesValidation="False" OnClick="lbVideoSil_Click" CommandArgument='<%#Eval("id") %>' />
+                                                     CausesValidation="False" OnClick="lbVideoSil_Click" CommandArgument='<%#Eval("id") %>' />
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="75px" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
@@ -269,11 +269,11 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblCategory" runat="server" Text='<%#                GetCategoryName(Convert.ToInt32(Eval("categoryId"))) %>'></asp:Label>
+                                    <asp:Label ID="lblCategory" runat="server" Text='<%#                                        GetCategoryName(Convert.ToInt32(Eval("categoryId"))) %>'></asp:Label>
                                 </ItemTemplate>
                                 <EditItemTemplate>
                                     <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="edsCat" DataTextField="name"
-                                        DataValueField="id" SelectedValue='<%#Bind("categoryId") %>'>
+                                                      DataValueField="id" SelectedValue='<%#Bind("categoryId") %>'>
                                     </asp:DropDownList>
                                 </EditItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="125px"></HeaderStyle>
@@ -296,8 +296,8 @@
             <tr>
                 <td>
                     <asp:EntityDataSource ID="edsVideos" runat="server" ConnectionString="name=Entities"
-                        DefaultContainerName="Entities" EnableDelete="True" EnableUpdate="True" EntitySetName="Videos"
-                        Where="it.categoryId=@catId">
+                                          DefaultContainerName="Entities" EnableDelete="True" EnableUpdate="True" EntitySetName="Videos"
+                                          Where="it.categoryId=@catId" OrderBy="it.CreatedTime desc">
                         <WhereParameters>
                             <asp:Parameter Name="catId" DbType="Int32" DefaultValue="0" />
                         </WhereParameters>

@@ -29,7 +29,8 @@
                         <asp:PlaceHolder runat="server" ID="itemPlaceHolder"></asp:PlaceHolder>
                     </GroupTemplate>
                     <ItemTemplate>
-                        <li><a href='<%#Eval("photoPath").ToString().Replace("~", "..") %>'>
+                        <li><a href='<%#Eval(
+                                            "photoPath").ToString().Replace("~", "..") %>'>
                                 <asp:Image ID="Image1" CssClass="contentimage" runat="server" ImageUrl='<%#Eval("photoId") %>'
                                            OnDataBinding="Image1_DataBinding" />
                                 <p><%#Eval("photoName") %></p></a> </li>

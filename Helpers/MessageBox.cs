@@ -48,15 +48,14 @@ public class MessageBox
                 iMsgCount = iMsgCount - 1;
                 sMsg = Convert.ToString(queue.Dequeue());
                 sMsg = sMsg.Replace("\"", "'");
-                if(messageType == "jAlert")
-                    builder.AppendFormat("javascript:alert('{0}');",sMsg);
+                if (messageType == "jAlert")
+                    builder.AppendFormat("javascript:alert('{0}');", sMsg);
                 else
                     builder.AppendFormat("javascript:{0}('{1}');", messageType, sMsg);
             }
             builder.Append("</script>");
             handlerPages.Remove(HttpContext.Current.Handler);
             HttpContext.Current.Response.Write(builder.ToString());
-            
         }
     }
 }

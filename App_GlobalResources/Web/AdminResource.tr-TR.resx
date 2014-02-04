@@ -1203,7 +1203,7 @@
     <value>Onay kodu gönder</value>
   </data>
   <data name="msgAccountActivationEMailSent" xml:space="preserve">
-    <value>Aktivasyon kodu gönderildi.</value>
+    <value>Giriş yapabilmeniz için aktivasyon kodunuz mail adresinize gönrderildi gönderildi.</value>
   </data>
   <data name="lbAdmin" xml:space="preserve">
     <value>Yönetici</value>
@@ -1695,7 +1695,7 @@
     <value>Beklemede</value>
   </data>
   <data name="msgNoUnpaidDept" xml:space="preserve">
-    <value>Ödenmemiş borç kalmamıştır.</value>
+    <value>Kurumun ödenmemiş borcu yoktur.</value>
   </data>
   <data name="msgUpdateGeneralDept" xml:space="preserve">
     <value>Ödenmemiş borçlar {0}{1}{2} olarak güncellendi.</value>
@@ -1993,5 +1993,50 @@
   </data>
   <data name="AlreadyExistInSystem" xml:space="preserve">
     <value>sistemde daha önceden kayıtlı.</value>
+  </data>
+  <data name="lbIntroLightBox" xml:space="preserve">
+    <value>Açılış Mesajı</value>
+  </data>
+  <data name="lbShowTime" xml:space="preserve">
+    <value>Gösterim Süresi</value>
+  </data>
+  <data name="lbHour" xml:space="preserve">
+    <value>Saat</value>
+  </data>
+  <data name="lbRepeatDisplayTimeout" xml:space="preserve">
+    <value>Tekrar Gösterim Zamanı</value>
+  </data>
+  <data name="lbTakePayments" xml:space="preserve">
+    <value>Tahsilat</value>
+  </data>
+  <data name="lbSaleInvoice" xml:space="preserve">
+    <value>Satış Faturası</value>
+  </data>
+  <data name="lbAddToBeInvoicingService" xml:space="preserve">
+    <value>Faturalandırılacak İş Girişi</value>
+  </data>
+  <data name="lbTax" xml:space="preserve">
+    <value>KDV</value>
+  </data>
+  <data name="lbConfirmContinueToInvoice" xml:space="preserve">
+    <value>İşlem faturalandırılacak, onaylıyor musunuz?</value>
+  </data>
+  <data name="lbPurchaseInvoice" xml:space="preserve">
+    <value>Alış faturası</value>
+  </data>
+  <data name="lbPaymentType5" xml:space="preserve">
+    <value>Çek</value>
+  </data>
+  <data name="lbInvoices" xml:space="preserve">
+    <value>Faturalar</value>
+  </data>
+  <data name="lbInvoiceNumber" xml:space="preserve">
+    <value>Fatura No</value>
+  </data>
+  <data name="lbbtnNewMultipleImage" xml:space="preserve">
+    <value>Yeni Çoklu Görsel</value>
+  </data>
+  <data name="lbUseFilesName" xml:space="preserve">
+    <value>Dosyaların kendi adları kullanılsın.</value>
   </data>
 </root>

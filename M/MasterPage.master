@@ -51,11 +51,11 @@
                     <h3>
                         <uc3:bottomText ID="bottomText_M" runat="server" />
                     </h3>
-		    <div id="eNroll">
-			<a href="http://www.enroll.com.tr" target="_blank">
-			<img src="/App_Themes/mainTheme/images/q.png" alt="eNroll Web Çözümleri" />eNroll Web &Ccedil;&ouml;z&uuml;mleri
-			</a>
-		</div>
+                    <div id="eNroll">
+                        <a href="http://www.enroll.com.tr" target="_blank">
+                            <img src="/App_Themes/mainTheme/images/q.png" alt="eNroll Web Çözümleri" />eNroll Web &Ccedil;&ouml;z&uuml;mleri
+                        </a>
+                    </div>
                 </div>
             </div>
         </form>

@@ -56,7 +56,7 @@ public partial class Admin_adminUserControls_Users : UserControl
         tbSurname.Text = string.Empty;
         CheckBoxDurum.Checked = false;
     }
-     
+
     public List<int> UserActiveAuthAreaIds()
     {
         var list = new List<int>();
@@ -89,7 +89,7 @@ public partial class Admin_adminUserControls_Users : UserControl
     {
         var roles = new List<Roles>();
         var activeUserAuthAreaCount = UserActiveAuthAreaIds().Count;
-        
+
         var roller = from p in _entities.Roles
                      orderby p.Id
                      select p;
@@ -97,7 +97,7 @@ public partial class Admin_adminUserControls_Users : UserControl
         foreach (var item in roller)
         {
             var roleAuthAreaCount = RoleControl.RoleActiveAuthAreaIds(item.Id).Count;
-            if(activeUserAuthAreaCount >= roleAuthAreaCount)
+            if (activeUserAuthAreaCount >= roleAuthAreaCount)
             {
                 roles.Add(item);
             }
@@ -105,15 +105,14 @@ public partial class Admin_adminUserControls_Users : UserControl
         }
 
         if (roller.Count() != 0)
-        { 
+        {
             CheckBoxList.DataTextField = "RoleName";
             CheckBoxList.DataValueField = "Id";
-            CheckBoxList.DataSource = roles; 
+            CheckBoxList.DataSource = roles;
             CheckBoxList.DataBind();
         }
-
     }
-    
+
     protected void ImageButtonYeniEkle_Click(object sender, EventArgs eventArgs)
     {
         hfUserId.Value = null;
@@ -132,7 +131,8 @@ public partial class Admin_adminUserControls_Users : UserControl
                 var kullaniciId = Convert.ToInt32(hfUserId.Value);
 
                 //aynı mail adresi olan kullanıcı var mı? kontrolü. yoksa o mail adresi ile kullanıcı eklenir.
-                var k = _entities.UserEmails.FirstOrDefault(p => p.UserId != kullaniciId && p.Email == TextBoxEPosta.Text);
+                var k =
+                    _entities.UserEmails.FirstOrDefault(p => p.UserId != kullaniciId && p.Email == TextBoxEPosta.Text);
                 //var k = _entities.Users.FirstOrDefault(p => p.Id != kullaniciId && p.EMail == TextBoxEPosta.Text);
 
                 if (k == null)
@@ -177,18 +177,18 @@ public partial class Admin_adminUserControls_Users : UserControl
                     newUser.UpdatedTime = DateTime.Now;
                     _entities.AddToUsers(newUser);
                     _entities.SaveChanges();
-                      
+
                     var userEmails = new UserEmails();
                     userEmails.Email = newUser.EMail;
                     userEmails.UserId = newUser.Id;
                     userEmails.MainAddress = true;
-                    userEmails.Activated= true;
+                    userEmails.Activated = true;
                     _entities.AddToUserEmails(userEmails);
                     _entities.SaveChanges();
 
                     var userFoundation = new UserFoundation();
-                    userFoundation.MemberState = true; 
-                    userFoundation.UserId = newUser.Id;  
+                    userFoundation.MemberState = true;
+                    userFoundation.UserId = newUser.Id;
                     _entities.AddToUserFoundation(userFoundation);
                     _entities.SaveChanges();
 
@@ -220,12 +220,13 @@ public partial class Admin_adminUserControls_Users : UserControl
         catch (Exception hata)
         {
             ExceptionManager.ManageException(hata);
+            MessageBox.Show(MessageType.Error, AdminResource.lbError);
         }
     }
 
     private void AktifRolleriKaydet(CheckBoxList roller, Users kullanici)
     {
-        List<UserRole> kRoller = _entities.UserRole.Where(p => p.UserId == kullanici.Id).ToList();
+        var kRoller = _entities.UserRole.Where(p => p.UserId == kullanici.Id).ToList();
         foreach (var rol in kRoller)
         {
             var krr = _entities.UserRole.First(p => p.UserId == rol.UserId);
@@ -295,7 +296,10 @@ public partial class Admin_adminUserControls_Users : UserControl
             try
             {
                 int id = Convert.ToInt32(e.CommandArgument);
-                if (!EnrollMembershipHelper.IsAuthForThisProcess(id, EnrollMembershipHelper.GetUserIdFromEmail(HttpContext.Current.User.Identity.Name)))
+                if (
+                    !EnrollMembershipHelper.IsAuthForThisProcess(id,
+                                                                 EnrollMembershipHelper.GetUserIdFromEmail(
+                                                                     HttpContext.Current.User.Identity.Name)))
                 {
                     MessageBox.Show(MessageType.Warning, AdminResource.msgNoAuth);
                     return;
@@ -314,7 +318,10 @@ public partial class Admin_adminUserControls_Users : UserControl
             try
             {
                 var id = Convert.ToInt32(e.CommandArgument);
-                if (!EnrollMembershipHelper.IsAuthForThisProcess(id, EnrollMembershipHelper.GetUserIdFromEmail(HttpContext.Current.User.Identity.Name)) ||
+                if (
+                    !EnrollMembershipHelper.IsAuthForThisProcess(id,
+                                                                 EnrollMembershipHelper.GetUserIdFromEmail(
+                                                                     HttpContext.Current.User.Identity.Name)) ||
                     EnrollMembershipHelper.AreYouActiveUser(id))
                 {
                     MessageBox.Show(MessageType.Warning, AdminResource.msgNoAuth);
@@ -322,8 +329,8 @@ public partial class Admin_adminUserControls_Users : UserControl
                 }
 
                 var kullanici = entities.Users.FirstOrDefault(p => p.Id == id);
-                if (kullanici!=null && KullanicininBilgileriniSil(kullanici.Id, entities))
-                { 
+                if (kullanici != null && KullanicininBilgileriniSil(kullanici.Id, entities))
+                {
                     entities.Users.DeleteObject(kullanici);
                     entities.SaveChanges();
                     Logger.Add(1, 2, id, 2);
@@ -336,12 +343,90 @@ public partial class Admin_adminUserControls_Users : UserControl
             catch (Exception exception)
             {
                 ExceptionManager.ManageException(exception);
-            } 
-            
+            }
+        }
+    }
+
+    private void KullaniciGuncelle(Users user)
+    {
+        Temizle();
+        hfUserId.Value = user.Id.ToString();
+        TextBoxEPosta.Text = user.EMail;
+        tbName.Text = user.Name;
+        tbSurname.Text = user.Surname;
+        //TextBoxParola.Text = user.Password;
+        CheckBoxDurum.Checked = user.State;
+        AktifRoller(user.Id);
+    }
+
+    private void AktifRoller(int Id)
+    {
+        RolleriVer(CheckBoxListRoller);
+        var aktifRoller = from p in _entities.UserRole
+                          where p.UserId == Id
+                          select p;
+        if (aktifRoller.Count() != 0)
+        {
+            foreach (var aktifRol in aktifRoller)
+            {
+                for (int i = 0; i <= CheckBoxListRoller.Items.Count - 1; i++)
+                {
+                    if (CheckBoxListRoller.Items[i].Value == aktifRol.RoleId.ToString())
+                    {
+                        CheckBoxListRoller.Items[i].Selected = true;
+                        CheckBoxListRoller.Items[i].Attributes.Remove("onchange");
+                        CheckBoxListRoller.Items[i].Attributes.Add("id", "cbRole_" + i);
+                        CheckBoxListRoller.Items[i].Attributes.Add("onchange", "confirmRemoveRole('cbRole_" + i + "');");
+                    }
+                }
+            }
+        }
+    }
+
+    protected void GridViewKullanicilar_OnRowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        var btnDelete = e.Row.FindControl("imgBtnDelete") as ImageButton;
+        if (btnDelete != null)
+        {
+            var userId = Convert.ToInt32(btnDelete.CommandArgument);
+            if (!IsAuthForThisProcess(userId) || EnrollMembershipHelper.AreYouActiveUser(userId))
+            {
+                //btnDelete.Enabled = false;
+                btnDelete.OnClientClick = string.Format("javascript:showWarningToast('{0}');return false;",
+                                                        AdminResource.msgNoAuth);
+            }
+            else
+            {
+                btnDelete.OnClientClick = " return confirm('" + AdminResource.lbDeletingQuestion + "'); ";
+            }
+        }
+        var btnEdit = e.Row.FindControl("imgBtnEdit") as ImageButton;
+        if (btnEdit != null)
+        {
+            var userId = Convert.ToInt32(btnEdit.CommandArgument);
+            if (!IsAuthForThisProcess(userId))
+            {
+                //btnDelete.Enabled = false;
+                btnEdit.OnClientClick = string.Format("javascript:showWarningToast('{0}');return false;",
+                                                      AdminResource.msgNoAuth);
+            }
+        }
+    }
+
+    protected void lbGeneratePwdClick(object sender, EventArgs e)
+    {
+        string generatedPwd = Guid.NewGuid().ToString("N");
+        generatedPwd = generatedPwd.Substring(0, 8);
+        var encrptedGeneratedPwd = Crypto.Encrypt(generatedPwd);
+        var control = _entities.Users.Count(p => p.Password == encrptedGeneratedPwd);
+        if (control == 0)
+        {
+            TextBoxParola.Text = generatedPwd;
         }
     }
 
     #region Delete User Related Tables
+
     public bool KullanicininBilgileriniSil(int userId, Entities entities)
     {
         try
@@ -432,80 +517,4 @@ public partial class Admin_adminUserControls_Users : UserControl
     }
 
     #endregion
-
-    private void KullaniciGuncelle(Users user)
-    {
-        Temizle();
-        hfUserId.Value = user.Id.ToString();
-        TextBoxEPosta.Text = user.EMail;
-        tbName.Text = user.Name;
-        tbSurname.Text = user.Surname;
-        //TextBoxParola.Text = user.Password;
-        CheckBoxDurum.Checked = user.State;
-        AktifRoller(user.Id);
-    }
-
-    private void AktifRoller(int Id)
-    {
-        RolleriVer(CheckBoxListRoller);
-        var aktifRoller = from p in _entities.UserRole
-                          where p.UserId == Id
-                          select p;
-        if (aktifRoller.Count() != 0)
-        {
-            foreach (var aktifRol in aktifRoller)
-            {
-                for (int i = 0; i <= CheckBoxListRoller.Items.Count - 1; i++)
-                {
-                    if (CheckBoxListRoller.Items[i].Value == aktifRol.RoleId.ToString())
-                    {
-                        CheckBoxListRoller.Items[i].Selected = true;
-                        CheckBoxListRoller.Items[i].Attributes.Remove("onchange");
-                        CheckBoxListRoller.Items[i].Attributes.Add("id", "cbRole_" + i);
-                        CheckBoxListRoller.Items[i].Attributes.Add("onchange", "confirmRemoveRole('cbRole_" + i + "');");
-                    }
-                }
-            }
-        }
-    }
-
-    protected void GridViewKullanicilar_OnRowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        var btnDelete = e.Row.FindControl("imgBtnDelete") as ImageButton;
-        if (btnDelete != null)
-        {
-            var userId = Convert.ToInt32(btnDelete.CommandArgument);
-            if (!IsAuthForThisProcess(userId) || EnrollMembershipHelper.AreYouActiveUser(userId))
-            {
-                //btnDelete.Enabled = false;
-                btnDelete.OnClientClick = string.Format("javascript:showWarningToast('{0}');return false;", AdminResource.msgNoAuth);
-            }
-            else
-            {
-                btnDelete.OnClientClick = " return confirm('" + AdminResource.lbDeletingQuestion + "'); ";   
-            }
-        }
-        var btnEdit = e.Row.FindControl("imgBtnEdit") as ImageButton;
-        if (btnEdit != null)
-        {
-            var userId = Convert.ToInt32(btnEdit.CommandArgument);
-            if(!IsAuthForThisProcess(userId))
-            {
-                //btnDelete.Enabled = false;
-                btnEdit.OnClientClick = string.Format("javascript:showWarningToast('{0}');return false;", AdminResource.msgNoAuth);
-            } 
-        }
-    }
-     
-    protected void lbGeneratePwdClick(object sender, EventArgs e)
-    {
-        string generatedPwd = Guid.NewGuid().ToString("N");
-        generatedPwd = generatedPwd.Substring(0, 8);
-        var encrptedGeneratedPwd = Crypto.Encrypt(generatedPwd);
-        var control = _entities.Users.Count(p => p.Password == encrptedGeneratedPwd);
-        if(control==0)
-        {
-            TextBoxParola.Text = generatedPwd;    
-        }  
-    } 
 }

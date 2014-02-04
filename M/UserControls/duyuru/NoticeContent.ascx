@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="M_UserControls_duyuru_NewsContent"
-    CodeBehind="NoticeContent.ascx.cs" %>
+            CodeBehind="NoticeContent.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <h1>
     <asp:Label ID="lblBaslik" runat="server"/>
-     <asp:Label ID="lbDate" CssClass="contentdate" runat="server"/>
+    <asp:Label ID="lbDate" CssClass="contentdate" runat="server"/>
 </h1>
 <p>
     <asp:Image ID="Image1" runat="server" Width="100%" /></p>

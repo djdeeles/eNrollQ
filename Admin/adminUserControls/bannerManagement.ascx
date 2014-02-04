@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="admin_bannerManagement"
-    CodeBehind="bannerManagement.ascx.cs" %>
+            CodeBehind="bannerManagement.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <asp:MultiView runat="server" ID="mvAuth">
     <asp:View runat="server">
@@ -10,13 +10,13 @@
                         <asp:View ID="View1" runat="server">
                             <asp:Button ID="btnAddNew" runat="server" CssClass="NewBtn" OnClick="btnAddNew_Click" />
                             <asp:GridView ID="gvBanners" runat="server" AutoGenerateColumns="False" DataKeyNames="bannerManagementId"
-                                CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                                SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-                                SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
-                                EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
-                                OnDataBound="gvBanners_DataBound" Width="100%" CellPadding="4" ForeColor="#333333"
-                                PageSize="15" AllowPaging="True" GridLines="None" OnRowCommand="gvBanners_RowCommand"
-                                AllowSorting="True" OnRowDataBound="gvBanners_RowDataBound">
+                                          CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                                          SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                                          SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
+                                          EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
+                                          OnDataBound="gvBanners_DataBound" Width="100%" CellPadding="4" ForeColor="#333333"
+                                          PageSize="15" AllowPaging="True" GridLines="None" OnRowCommand="gvBanners_RowCommand"
+                                          AllowSorting="True" OnRowDataBound="gvBanners_RowDataBound">
                                 <EmptyDataTemplate>
                                     <%= AdminResource.lbNoRecord %>
                                 </EmptyDataTemplate>
@@ -24,12 +24,12 @@
                                     <asp:TemplateField>
                                         <ItemTemplate>
                                             <asp:ImageButton ID="LinkButtonGuncelle" runat="server" ImageUrl="~/Admin/images/icon/edit.png"
-                                                CommandArgument='<%#Eval
+                                                             CommandArgument='<%#Eval
                                                                                                    ("bannerManagementId") %>'
-                                                CommandName="Guncelle" />
+                                                             CommandName="Guncelle" />
                                             <asp:ImageButton ID="LinkButtonSil" runat="server" ImageUrl="~/Admin/images/icon/cop.png"
-                                                CommandArgument='<%#                                        Eval("bannerManagementId") %>'
-                                                CommandName="Sil" />
+                                                             CommandArgument='<%#                                        Eval("bannerManagementId") %>'
+                                                             CommandName="Sil" />
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Left" Width="75px" />
                                         <ItemStyle HorizontalAlign="Left" Width="75px" />
@@ -68,8 +68,8 @@
                                 </Columns>
                             </asp:GridView>
                             <asp:EntityDataSource ID="EntityDataSourceBannerManagement" runat="server" ConnectionString="name=Entities"
-                                DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="BannerManagement"
-                                EntityTypeFilter="" Select="" EnableDelete="True" EnableUpdate="True">
+                                                  DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="BannerManagement"
+                                                  EntityTypeFilter="" Select="" EnableDelete="True" EnableUpdate="True">
                             </asp:EntityDataSource>
                         </asp:View>
                         <asp:View ID="View2" runat="server">
@@ -92,7 +92,7 @@
                                         </td>
                                         <td>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="DropDownListReklamAlanlari1"
-                                                Display="Dynamic" ForeColor="Red" InitialValue="Seçiniz" ValidationGroup="vg1">!</asp:RequiredFieldValidator>
+                                                                        Display="Dynamic" ForeColor="Red" InitialValue="Seçiniz" ValidationGroup="vg1">!</asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -107,7 +107,7 @@
                                         </td>
                                         <td>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="DropDownListReklamlar"
-                                                Display="Dynamic" ForeColor="Red" InitialValue="Seçiniz" ValidationGroup="vg1">!</asp:RequiredFieldValidator>
+                                                                        Display="Dynamic" ForeColor="Red" InitialValue="Seçiniz" ValidationGroup="vg1">!</asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -132,7 +132,7 @@
                                             <telerik:RadDatePicker ID="dpStartDate" runat="server">
                                             </telerik:RadDatePicker>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="dpStartDate"
-                                                ForeColor="Red" ValidationGroup="vg1">!
+                                                                        ForeColor="Red" ValidationGroup="vg1">!
                                             </asp:RequiredFieldValidator>
                                         </td>
                                         <td>&nbsp;
@@ -168,7 +168,7 @@
                                         <td></td>
                                         <td>
                                             <asp:Button ID="btnSave" runat="server" CssClass="SaveCancelBtn" OnClick="btnSave_Click"
-                                                ValidationGroup="vg1" />
+                                                        ValidationGroup="vg1" />
                                             <asp:Button ID="btnCancel" runat="server" CssClass="SaveCancelBtn" OnClick="btnCancel_Click" />
                                         </td>
                                         <td></td>
@@ -209,7 +209,7 @@
                                             <telerik:RadDatePicker ID="dpStartDate2" runat="server">
                                             </telerik:RadDatePicker>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="dpStartDate2"
-                                                ForeColor="Red" ValidationGroup="valGrupEdit">!
+                                                                        ForeColor="Red" ValidationGroup="valGrupEdit">!
                                             </asp:RequiredFieldValidator>
                                         </td>
                                         <td>&nbsp;
@@ -244,7 +244,7 @@
                                         </td>
                                         <td>
                                             <asp:Button ID="btnEditSave" runat="server" CssClass="SaveCancelBtn" OnClick="btnEditSave_Click"
-                                                ValidationGroup="valGrupEdit" />
+                                                        ValidationGroup="valGrupEdit" />
                                             <asp:Button ID="btnEditCancel" runat="server" CssClass="SaveCancelBtn" OnClick="btnEditCancel_Click" />
                                         </td>
                                     </tr>

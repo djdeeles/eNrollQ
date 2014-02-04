@@ -221,7 +221,7 @@ public partial class Admin_adminUserControls_SSS : UserControl
 
         tbIndex.Text = "";
         TextBoxSiraNo.Text = "";
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
         radEditor.Content = "";
 
         CheckBoxDurum.Checked = false;
@@ -234,7 +234,7 @@ public partial class Admin_adminUserControls_SSS : UserControl
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var myMastDelete = (ImageButton)e.Row.FindControl("BtnDeleteCategory");
+                var myMastDelete = (ImageButton) e.Row.FindControl("BtnDeleteCategory");
                 myMastDelete.OnClientClick = " return confirm('" + AdminResource.lbDeletingQuestion + "'); ";
             }
         }
@@ -249,7 +249,7 @@ public partial class Admin_adminUserControls_SSS : UserControl
         try
         {
             if (ViewState["catId"] != null) ViewState.Remove("catId");
-            var lbCatSec = (LinkButton)sender;
+            var lbCatSec = (LinkButton) sender;
             int categoryId = Convert.ToInt32(lbCatSec.CommandArgument);
             hfCategoryId.Value = lbCatSec.CommandArgument;
             ViewState.Add("catId", categoryId);
@@ -282,7 +282,7 @@ public partial class Admin_adminUserControls_SSS : UserControl
             catId = Convert.ToInt32(ddlAddNew.SelectedValue);
             sss.faqCategoryId = catId;
             sss.faqQuestion = TextBoxSoru.Text;
-            var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+            var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
             sss.faqAnswer = radEditor.Content;
             sss.active = cbFaqDurum.Checked;
 
@@ -290,7 +290,7 @@ public partial class Admin_adminUserControls_SSS : UserControl
             sss.faqOrderId = orderNo;
             var faqUpdate = ent.Faq.Where(p => p.faqCategoryId == catId && p.faqOrderId == orderNo).ToList();
 
-            if (faqUpdate.Count > 0 && faqUpdate[0].faqId!=sss.faqId)
+            if (faqUpdate.Count > 0 && faqUpdate[0].faqId != sss.faqId)
             {
                 var faqList = ent.Faq.Where(p => p.faqCategoryId == catId && p.faqOrderId >= orderNo).ToList();
                 foreach (Faq faq in faqList)
@@ -316,8 +316,6 @@ public partial class Admin_adminUserControls_SSS : UserControl
                 Logger.Add(12, 2, sss.faqId, 1);
                 MessageBox.Show(MessageType.Success, AdminResource.msgSaved);
             }
-
-
         }
         catch (Exception exception)
         {
@@ -352,10 +350,10 @@ public partial class Admin_adminUserControls_SSS : UserControl
                                where p.languageId == dilId && p.active == true
                                orderby p.orderId
                                select new
-                               {
-                                   KategoriAdi = p.faqCategory,
-                                   KategoriId = p.faqCategoryId
-                               }).ToList();
+                                          {
+                                              KategoriAdi = p.faqCategory,
+                                              KategoriId = p.faqCategoryId
+                                          }).ToList();
             if (kategoriler.Count() != 0)
             {
                 foreach (var item in kategoriler)
@@ -387,7 +385,7 @@ public partial class Admin_adminUserControls_SSS : UserControl
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var myButInnerDelete = (ImageButton)e.Row.FindControl("LinkButtonSil");
+                var myButInnerDelete = (ImageButton) e.Row.FindControl("LinkButtonSil");
                 myButInnerDelete.OnClientClick = "return confirm('" + AdminResource.lbDeletingQuestion + "'); ";
             }
         }
@@ -456,15 +454,13 @@ public partial class Admin_adminUserControls_SSS : UserControl
     {
         ClearInputs();
         TextBoxSoru.Text = SSS.faqQuestion;
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
         radEditor.Content = SSS.faqAnswer;
 
         if (SSS.active != null) CheckBoxDurum.Checked = SSS.active.Value;
 
         if (SSS.faqOrderId != null) tbIndex.Text = SSS.faqOrderId.Value.ToString();
         hfFaqId.Value = SSS.faqId.ToString();
-
-
     }
 
     protected void btnNewCategory_Click(object sender, EventArgs e)

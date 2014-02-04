@@ -1,10 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_SiteGeneralInfo" 
-    CodeBehind="SiteGeneralInfo.ascx.cs" %>
+            CodeBehind="SiteGeneralInfo.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <%@ Register Src="Rtb.ascx" TagName="Rtb" TagPrefix="uc1" %>
 <style type="text/css">
     .tdLeft { width: 115px; }
-    
+
     .tdCenter { width: 10px; }
 </style>
 <asp:MultiView runat="server" ID="mvAuth">
@@ -12,7 +12,7 @@
         <asp:Panel runat="server" DefaultButton="btnSave">
             <div class="rightcontenttable">
                 <asp:Menu ID="Menu1" runat="server" OnMenuItemClick="Menu1_MenuItemClick" Orientation="Horizontal"
-                    RenderingMode="Table" StaticEnableDefaultPopOutImage="False" CssClass="generalmenu">
+                          RenderingMode="Table" StaticEnableDefaultPopOutImage="False" CssClass="generalmenu">
                     <Items>
                         <asp:MenuItem Value="vBaslik"></asp:MenuItem>
                         <asp:MenuItem Value="vTepe1"></asp:MenuItem>
@@ -80,7 +80,7 @@
                                         </td>
                                         <td>
                                             <asp:TextBox  runat="server" content="text/javascript; charset=utf-8" ID="analyticsCode"
-                                                TextMode="MultiLine" Height="200px" Width="620px"></asp:TextBox> 
+                                                          TextMode="MultiLine" Height="200px" Width="620px"></asp:TextBox> 
                                         </td>
                                     </tr>
                                     <tr>
@@ -92,12 +92,12 @@
                                         </td>
                                         <td>
                                             <asp:DropDownList ID="cbChooseLang" DataValueField="languageId" DataTextField="name"
-                                                runat="server" />
+                                                              runat="server" />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="tdLeft">
-                                            <%= AdminResource.lbSiteMaintenanceMode%>
+                                            <%= AdminResource.lbSiteMaintenanceMode %>
                                         </td>
                                         <td class="tdCenter">
                                             :
@@ -150,8 +150,8 @@
                                             }
                                         </script>
                                         <telerik:RadWindow runat="server" Width="600px" Height="600px" VisibleStatusbar="false"
-                                            ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
-                                            Modal="true" Behaviors="Close,Move,Resize,Maximize">
+                                                           ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
+                                                           Modal="true" Behaviors="Close,Move,Resize,Maximize">
                                         </telerik:RadWindow>
                                     </td>
                                 </tr>
@@ -195,7 +195,7 @@
                                     </td>
                                     <td>
                                         <asp:DropDownList ID="ddlTepe1DosyaTipi" OnSelectedIndexChanged="ddlDosyaTipi_Chaged"
-                                            runat="server" AutoPostBack="True" Height="22px" Width="150px">
+                                                          runat="server" AutoPostBack="True" Height="22px" Width="150px">
                                         </asp:DropDownList>
                                     </td>
                                     <td style="width: 100px;">

@@ -16,6 +16,7 @@ public partial class Edit_Content : Page
 
         lblLocation.Text = Session["currentPath"].ToString();
     }
+
     protected override void OnInit(EventArgs e)
     {
         var entities = new Entities();
@@ -30,7 +31,7 @@ public partial class Edit_Content : Page
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture);
         }
     }
-    
+
     protected string GetSiteTitle(int DilId)
     {
         string Title = string.Empty;
@@ -40,9 +41,9 @@ public partial class Edit_Content : Page
             var SiteTile = (from p in ent.SiteGeneralInfo
                             where p.languageId == DilId
                             select new
-                            {
-                                p.title
-                            }).FirstOrDefault();
+                                       {
+                                           p.title
+                                       }).FirstOrDefault();
             if (!string.IsNullOrEmpty(SiteTile.title))
             {
                 Title = SiteTile.title;

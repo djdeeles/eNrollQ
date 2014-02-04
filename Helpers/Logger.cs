@@ -358,7 +358,7 @@ namespace eNroll.Helpers
                     {
                         name += " - " + AdminResource.lbDeletePayment;
                     }
-                    logInfo.ModulName = name; 
+                    logInfo.ModulName = name;
                     break;
                 case 34:
                     logInfo.ModulName = AdminResource.lbSmsManagement;
@@ -374,9 +374,6 @@ namespace eNroll.Helpers
                     break;
                 case 38:
                     logInfo.ModulName = AdminResource.lbStaticFieldManagement;
-                    break;
-                case 39:
-                    logInfo.ModulName = AdminResource.lbCorporationManagement;
                     break;
                 default:
                     break;

@@ -29,7 +29,7 @@
                                        Font-Bold="true" rel="prettyPhoto[pp_gal]" Font-Size="14px" OnDataBinding="HyperLink1_DataBinding">
                             <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("photoId") %>' OnDataBinding="Image1_DataBinding" />
                         </asp:HyperLink>
-                        <br /> <%#Eval("photoName") %>
+                        <br /> <%#                                        Eval("photoName") %>
                     </div>
                 </ItemTemplate>
             </asp:ListView>

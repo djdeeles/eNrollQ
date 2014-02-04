@@ -8,7 +8,7 @@ using Enroll.Managers;
 namespace eNroll.Helpers
 {
     /// <summary>
-    ///   Summary description for ImageHelper
+    /// 	Summary description for ImageHelper
     /// </summary>
     public class ImageHelper
     {
@@ -71,7 +71,7 @@ namespace eNroll.Helpers
             try
             {
                 // Get image codecs for all image formats
-                ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+                var codecs = ImageCodecInfo.GetImageEncoders();
                 // Find the correct image codec
                 for (int i = 0; i < codecs.Length; i++)
                     if (codecs[i].MimeType == mimeType)

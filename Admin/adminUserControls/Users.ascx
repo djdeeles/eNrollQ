@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_Users"
-    CodeBehind="Users.ascx.cs" %>
+            CodeBehind="Users.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <asp:MultiView ID="MultiView2" runat="server">
     <asp:View ID="View3" runat="server">
@@ -18,7 +18,7 @@
                             var x = document.getElementById(control);
                             var checkBoxList = x.getElementsByTagName("input");
                             if (!checkBoxList[0].checked) {
-                                if (!confirm('<%=AdminResource.msgConfirmRemoveOwnRole %>')) {
+                                if (!confirm('<%= AdminResource.msgConfirmRemoveOwnRole %>')) {
                                     checkBoxList[0].checked = "checked";
                                 }
                             }
@@ -40,7 +40,7 @@
                                         </td>
                                         <td>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbName"
-                                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g" Display="Dynamic"></asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -55,7 +55,7 @@
                                         </td>
                                         <td>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbSurname"
-                                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g" Display="Dynamic"></asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -70,9 +70,9 @@
                                         </td>
                                         <td>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBoxEPosta"
-                                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g" Display="Dynamic"></asp:RequiredFieldValidator>
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBoxEPosta"
-                                                Display="Dynamic" ErrorMessage="!" ForeColor="Red" ValidationGroup="g" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                                                            Display="Dynamic" ErrorMessage="!" ForeColor="Red" ValidationGroup="g" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -120,7 +120,7 @@
                                         </td>
                                         <td colspan="2">
                                             <asp:Button ID="btnKaydet" runat="server" CssClass="SaveCancelBtn" OnClick="ImageButtonKaydet_Click"
-                                                ValidationGroup="g" />
+                                                        ValidationGroup="g" />
                                             <asp:Button ID="btnIptal" runat="server" CssClass="SaveCancelBtn" OnClick="ImageButtonIptal_Click" />
                                         </td>
                                     </tr>
@@ -145,13 +145,13 @@
                         <tr>
                             <td>
                                 <asp:GridView ID="GridViewKullanicilar" runat="server" AllowSorting="True" AutoGenerateColumns="False"
-                                    CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="EntityDataSource1"
-                                    CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                                    SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-                                    SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
-                                    EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
-                                    PageSize="15" AllowPaging="True" OnRowDataBound="GridViewKullanicilar_OnRowDataBound"
-                                    Width="100%" OnRowCommand="GridViewKullanicilar_RowCommand">
+                                              CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="EntityDataSource1"
+                                              CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                                              SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                                              SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
+                                              EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
+                                              PageSize="15" AllowPaging="True" OnRowDataBound="GridViewKullanicilar_OnRowDataBound"
+                                              Width="100%" OnRowCommand="GridViewKullanicilar_RowCommand">
                                     <EmptyDataTemplate>
                                         <%= AdminResource.lbNoRecord %>
                                     </EmptyDataTemplate>
@@ -162,11 +162,12 @@
                                                     <tr>
                                                         <td>
                                                             <asp:ImageButton ID="imgBtnEdit" runat="server" ImageUrl="../images/icon/edit.png"
-                                                                CommandArgument='<%#Bind("Id") %>' CommandName="Guncelle" />
+                                                                             CommandArgument='<%#Bind
+                                                                                                   ("Id") %>' CommandName="Guncelle" />
                                                         </td>
                                                         <td>
                                                             <asp:ImageButton ID="imgBtnDelete" runat="server" ImageUrl="../images/icon/cop.png"
-                                                                CommandArgument='<%#Bind("Id") %>' CommandName="Sil" />
+                                                                             CommandArgument='<%#Bind("Id") %>' CommandName="Sil" />
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -193,8 +194,8 @@
                                     </Columns>
                                 </asp:GridView>
                                 <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=Entities"
-                                    DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="Users"
-                                    Where="it.Admin=True">
+                                                      DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="Users"
+                                                      Where="it.Admin=True">
                                 </asp:EntityDataSource>
                             </td>
                         </tr>

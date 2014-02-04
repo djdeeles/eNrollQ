@@ -44,7 +44,7 @@ public partial class Admin_adminUserControls_VideoManager : UserControl
 
         cbVideoState.Text = AdminResource.lbActive;
         videoState.Text = AdminResource.lbActive;
-        
+
         btnNew.Text = AdminResource.lbNewCategory;
         btnNewVideo.Text = AdminResource.lbNewVideo;
 
@@ -169,6 +169,13 @@ public partial class Admin_adminUserControls_VideoManager : UserControl
                     ent.SaveChanges();
 
                     gvCategories.DataBind();
+                    gvVideos.DataBind();
+
+                    if (ent.Videos.Count(p => p.categoryId == catId) == 0)
+                    {
+                        mvVideos.Visible = false;
+                        gvVideos.Visible = false;
+                    }
                     MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
                 }
                 catch (Exception exception)

@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Web;
-using System.Web.Configuration;
 using System.Web.Script.Serialization;
 using System.Web.Security;
 using Enroll.Managers;
@@ -18,7 +17,7 @@ namespace eNroll.Admin
 {
     public partial class MasterPage : System.Web.UI.MasterPage
     {
-        Entities _entities = new Entities();
+        private readonly Entities _entities = new Entities();
 
         protected override void OnInit(EventArgs e)
         {
@@ -58,7 +57,8 @@ namespace eNroll.Admin
             {
                 try
                 {
-                    if (Session["currentPath"] != null && !(string.IsNullOrWhiteSpace(Session["currentPath"].ToString())))
+                    if (Session["currentPath"] != null &&
+                        !(string.IsNullOrWhiteSpace(Session["currentPath"].ToString())))
                         lblLocation_Admin.Text = Session["currentPath"].ToString();
                     else
                         lblLocation_Admin.Text = string.Empty;
@@ -136,7 +136,7 @@ namespace eNroll.Admin
             string rawUrl = HttpContext.Current.Request.RawUrl;
             try
             {
-                string[] data = rawUrl.Split('=');
+                var data = rawUrl.Split('=');
                 int length = data.Length;
                 if (length > 1)
                 {
@@ -155,7 +155,6 @@ namespace eNroll.Admin
                             return paramss[0];
                     }
                 }
-
             }
             catch (Exception exception)
             {
@@ -227,6 +226,5 @@ namespace eNroll.Admin
 
             return list;
         }
-
     }
 }

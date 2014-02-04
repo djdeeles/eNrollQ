@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Enroll.Managers;
@@ -11,14 +9,20 @@ using eNroll.Helpers;
 
 namespace eNroll.Admin.adminUserControls
 {
-    public partial class DefTax : System.Web.UI.UserControl
+    public partial class DefTax : UserControl
     {
+        #region Proccess enum
+
         public enum Proccess
         {
             Save = 1,
             Update = 2
         }
-        Entities _entities = new Entities();
+
+        #endregion
+
+        private readonly Entities _entities = new Entities();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             BindTaxTypes(lbTaxType);
@@ -43,7 +47,7 @@ namespace eNroll.Admin.adminUserControls
         protected void BtSaveTaxType_OnClick(object sender, EventArgs e)
         {
             var TaxTypes = new TaxTypes();
-            SaveUpdateTaxType(TaxTypes, Proccess.Save); 
+            SaveUpdateTaxType(TaxTypes, Proccess.Save);
         }
 
         protected void BtUpdateTaxType_OnClick(object sender, EventArgs e)
@@ -70,7 +74,6 @@ namespace eNroll.Admin.adminUserControls
                 ExceptionManager.ManageException(exception);
                 MessageBox.Show(MessageType.Error, AdminResource.lbErrorOccurred);
             }
-
         }
 
 
@@ -109,7 +112,8 @@ namespace eNroll.Admin.adminUserControls
             try
             {
                 tbEditTaxType.Text = string.Empty;
-                if (listBox != null && listBox.SelectedItem != null && !string.IsNullOrWhiteSpace(listBox.SelectedItem.Value))
+                if (listBox != null && listBox.SelectedItem != null &&
+                    !string.IsNullOrWhiteSpace(listBox.SelectedItem.Value))
                 {
                     hfSelectedTaxType.Value = Crypto.Encrypt(listBox.SelectedItem.Value);
                     var TaxTypeId = Convert.ToInt32(listBox.SelectedItem.Value);
@@ -150,7 +154,8 @@ namespace eNroll.Admin.adminUserControls
                     else
                     {
                         MessageBox.Show(MessageType.Warning, string.Format("{0} {1}",
-                            tbTaxType.Text, AdminResource.AlreadyExistInSystem));
+                                                                           tbTaxType.Text,
+                                                                           AdminResource.AlreadyExistInSystem));
                     }
                 }
                 else if (proccess == Proccess.Update)
@@ -167,7 +172,8 @@ namespace eNroll.Admin.adminUserControls
                     else
                     {
                         MessageBox.Show(MessageType.Warning, string.Format("{0} {1}",
-                            tbEditTaxType.Text, AdminResource.AlreadyExistInSystem));
+                                                                           tbEditTaxType.Text,
+                                                                           AdminResource.AlreadyExistInSystem));
                     }
                 }
             }
@@ -176,8 +182,8 @@ namespace eNroll.Admin.adminUserControls
                 ExceptionManager.ManageException(exception);
                 MessageBox.Show(MessageType.Error, AdminResource.lbErrorOccurred);
             }
-
         }
+
         public void ClearForm()
         {
             tbEditTaxType.Text = string.Empty;
@@ -205,6 +211,5 @@ namespace eNroll.Admin.adminUserControls
             }
             return false;
         }
-
     }
 }

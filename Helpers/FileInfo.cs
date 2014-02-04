@@ -1,7 +1,7 @@
 ﻿using System;
 
 /// <summary>
-///   Summary description for FileInfo
+/// 	Summary description for FileInfo
 /// </summary>
 public class FileInfo
 {

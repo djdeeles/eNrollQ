@@ -17,8 +17,7 @@
                                         <td width="100px">
                                             <%= AdminResource.lbCategoryName %>
                                         </td>
-                                        <td width="10px">
-                                            :
+                                        <td width="10px">:
                                         </td>
                                         <td width="200px">
                                             <asp:TextBox ID="txtCatName" runat="server" Width="190px"></asp:TextBox>
@@ -32,43 +31,36 @@
                                         <td>
                                             <%= AdminResource.lbDesc %>
                                         </td>
-                                        <td>
-                                            :
+                                        <td>:
                                         </td>
                                         <td>
                                             <asp:TextBox ID="txtCatDesc" runat="server" Height="70px" Width="188px" TextMode="MultiLine"></asp:TextBox>
                                         </td>
-                                        <td>
-                                            &nbsp;
+                                        <td>&nbsp;
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <%=AdminResource.lbState %>
+                                            <%= AdminResource.lbState %>
                                         </td>
-                                        <td>
-                                            :
+                                        <td>:
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="cbCatActive" runat="server" Checked="True" />
                                         </td>
-                                        <td>
-                                        </td>
+                                        <td></td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            &nbsp;
+                                        <td>&nbsp;
                                         </td>
-                                        <td>
-                                            &nbsp;
+                                        <td>&nbsp;
                                         </td>
                                         <td>
                                             <asp:Button ID="btnSave" runat="server" CssClass="SaveCancelBtn" OnClick="BtnCategorySaveClick"
                                                 ValidationGroup="gk1" />
                                             <asp:Button ID="btnCancel" runat="server" CssClass="SaveCancelBtn" OnClick="BtnSaveCategoryCancelClick" />
                                         </td>
-                                        <td>
-                                        </td>
+                                        <td></td>
                                     </tr>
                                 </table>
                             </asp:Panel>
@@ -134,7 +126,7 @@
                 <td>
                     <asp:EntityDataSource ID="edsCat" runat="server" ConnectionString="name=Entities"
                         DefaultContainerName="Entities" EnableDelete="True" EnableUpdate="True" EntitySetName="Def_photoAlbumCategory"
-                        Where="it.languageId=@languageId" EnableFlattening="False" EntityTypeFilter="Def_photoAlbumCategory">
+                        Where="it.languageId=@languageId" EnableFlattening="False" EntityTypeFilter="Def_photoAlbumCategory" OrderBy="it.CreatedTime desc">
                         <WhereParameters>
                             <asp:ControlParameter Name="languageId" ControlID="HiddenField1" PropertyName="Value"
                                 DbType="Int32" DefaultValue="1" />
@@ -156,8 +148,7 @@
                                         <td width="100px">
                                             <%= AdminResource.lbAlbumName %>
                                         </td>
-                                        <td width="10px">
-                                            :
+                                        <td width="10px">:
                                         </td>
                                         <td width="200px">
                                             <asp:TextBox ID="txtAlbName" runat="server" Width="190px"></asp:TextBox>
@@ -171,43 +162,36 @@
                                         <td>
                                             <%= AdminResource.lbDesc %>
                                         </td>
-                                        <td>
-                                            :
+                                        <td>:
                                         </td>
                                         <td>
                                             <asp:TextBox ID="txtAlbDesc" runat="server" Height="70px" Width="188px" TextMode="MultiLine"></asp:TextBox>
                                         </td>
-                                        <td>
-                                            &nbsp;
+                                        <td>&nbsp;
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <%=AdminResource.lbState %>
+                                            <%= AdminResource.lbState %>
                                         </td>
-                                        <td>
-                                            :
+                                        <td>:
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="cbAlbActive" runat="server" Checked="True" />
                                         </td>
-                                        <td>
-                                        </td>
+                                        <td></td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            &nbsp;
+                                        <td>&nbsp;
                                         </td>
-                                        <td>
-                                            &nbsp;
+                                        <td>&nbsp;
                                         </td>
                                         <td>
                                             <asp:Button ID="btnSaveAlbum" runat="server" CssClass="SaveCancelBtn" OnClick="BtnSaveAlbumClick"
                                                 ValidationGroup="gk2" />
                                             <asp:Button ID="btnCancelAlbum" runat="server" CssClass="SaveCancelBtn" OnClick="BtnCancelAlbumClick" />
                                         </td>
-                                        <td>
-                                            &nbsp;
+                                        <td>&nbsp;
                                         </td>
                                     </tr>
                                 </table>
@@ -264,7 +248,7 @@
                                 </ItemTemplate>
                                 <EditItemTemplate>
                                     <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="edsCat" DataTextField="categoryName"
-                                        DataValueField="photoAlbumCategoryId" SelectedValue='<%#                Bind("photoAlbumCategoryId") %>'>
+                                        DataValueField="photoAlbumCategoryId" SelectedValue='<%#                                        Bind("photoAlbumCategoryId") %>'>
                                     </asp:DropDownList>
                                 </EditItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="125px"></HeaderStyle>
@@ -282,7 +266,7 @@
                 <td>
                     <asp:EntityDataSource ID="edsPhotoAlbum" runat="server" ConnectionString="name=Entities"
                         DefaultContainerName="Entities" EnableDelete="True" EnableUpdate="True" EntitySetName="Def_photoAlbum"
-                        Where="it.photoAlbumCategoryId=@catId">
+                        Where="it.photoAlbumCategoryId=@catId" OrderBy="it.CreatedTime desc">
                         <WhereParameters>
                             <asp:Parameter Name="catId" DbType="Int32" DefaultValue="0" />
                         </WhereParameters>
@@ -294,6 +278,7 @@
                     <asp:MultiView ID="mvPhoto" runat="server" ActiveViewIndex="0" Visible="False">
                         <asp:View ID="vvPhotoEkle" runat="server">
                             <asp:Button ID="btnNewImage" runat="server" CssClass="NewBtn" OnClick="BtnNewImageClick" />
+                            <asp:Button ID="btnNewMultipleImage" runat="server" CssClass="NewBtn" OnClick="BtnNewMultipleImageClick" />
                         </asp:View>
                         <asp:View ID="vvYeniPhoto" runat="server">
                             <asp:Panel runat="server" DefaultButton="btnSavePhoto">
@@ -302,8 +287,7 @@
                                         <td width="100px">
                                             <%= AdminResource.lbImagePath %>
                                         </td>
-                                        <td width="10px">
-                                            :
+                                        <td width="10px">:
                                         </td>
                                         <td width="200px">
                                             <telerik:RadTextBox ID="txtPhotoPath" runat="server" Width="190px" />
@@ -322,7 +306,7 @@
                                                         </asp:RequiredFieldValidator>
                                                     </td>
                                                     <script type="text/javascript">
-          //<![CDATA[
+                                                        //<![CDATA[
                                                         function OpenFileExplorerDialog() {
                                                             var wnd = $find("<%= ExplorerWindow.ClientID %>");
                                                             wnd.show();
@@ -334,10 +318,12 @@
                                                             var textbox = $find("<%= txtPhotoPath.ClientID %>");
                                                             textbox.set_value("~" + fileSelected);
                                                         }
-                                                //]]>
+
+
+                                                        //]]>
                                                     </script>
-                                                    <telerik:RadWindow runat="server" Width="600px" Height="600px" VisibleStatusbar="false"
-                                                        ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
+                                                    <telerik:RadWindow ID="ExplorerWindow" runat="server" Width="600px" Height="600px" VisibleStatusbar="false"
+                                                        ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx"
                                                         Modal="true" Behaviors="Close,Move,Resize,Maximize">
                                                     </telerik:RadWindow>
                                                 </tr>
@@ -348,71 +334,150 @@
                                         <td>
                                             <%= AdminResource.lbName %>
                                         </td>
-                                        <td>
-                                            :
+                                        <td>:
                                         </td>
                                         <td>
                                             <asp:TextBox ID="txtPhotoName" runat="server" Width="190px"></asp:TextBox>
                                         </td>
-                                        <td>
-                                            &nbsp;
+                                        <td>&nbsp;
                                         </td>
                                     </tr>
                                     <tr valign="top">
                                         <td>
                                             <%= AdminResource.lbDesc %>
                                         </td>
-                                        <td>
-                                            :
+                                        <td>:
                                         </td>
                                         <td>
                                             <asp:TextBox ID="txtPhotoDesc" runat="server" Height="70px" Width="188px" TextMode="MultiLine"></asp:TextBox>
                                         </td>
-                                        <td>
-                                            &nbsp;
+                                        <td>&nbsp;
                                         </td>
                                     </tr>
                                     <tr>
                                         <td valign="top">
                                             <%= AdminResource.lbState %>
                                         </td>
-                                        <td valign="top">
-                                            :
+                                        <td valign="top">:
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="photoState" Checked="False" runat="server" />
                                         </td>
-                                        <td>
-                                            &nbsp;
+                                        <td>&nbsp;
                                         </td>
                                     </tr>
                                     <tr>
                                         <td valign="top">
                                             <%= AdminResource.lbMainImage %>
                                         </td>
-                                        <td valign="top">
-                                            :
+                                        <td valign="top">:
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="cbMainImage" Checked="False" runat="server" />
                                         </td>
-                                        <td>
-                                            &nbsp;
+                                        <td>&nbsp;
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            &nbsp;
+                                        <td></td>
+                                        <td>&nbsp;
                                         </td>
                                         <td>
                                             <asp:Button ID="btnSavePhoto" runat="server" CssClass="SaveCancelBtn" OnClick="BtnSavePhotoClick"
                                                 ValidationGroup="gk3" />
                                             <asp:Button ID="btnCancelPhoto" runat="server" CssClass="SaveCancelBtn" OnClick="BtnCancelPhotoClick" />
                                         </td>
+                                        <td>&nbsp;
+                                        </td>
+                                    </tr>
+                                </table>
+                            </asp:Panel>
+                        </asp:View>
+                        <asp:View ID="vvYeniMultiplePhoto" runat="server">
+                            <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSavePhoto">
+                                <table>
+                                    <tr>
+                                        <td width="100px" valign="top">
+                                            <%= AdminResource.lbImagePath %>
+                                        </td>
+                                        <td width="10px" valign="top">:
+                                        </td>
+                                        <td width="620px" colspan="2">
+                                            <span id="spSelectedFilesInfo">Dosya seçilmedi</span>
+                                            <br />
+                                            <telerik:RadFileExplorer runat="server" ID="FileExplorer1" Width="100%" Height="300px" OnClientItemSelected="OnClientItemSelected">
+                                                <Configuration ViewPaths="~/FileManager/" UploadPaths="~/FileManager/" DeletePaths="~/FileManager/"
+                                                    SearchPatterns="*.jpg, *.png, *.jpeg, *.gif" AllowMultipleSelection="True" MaxUploadFileSize="10240000"></Configuration>
+                                            </telerik:RadFileExplorer>
+                                            <script type="text/javascript">
+
+                                                function OnClientItemSelected(sender, args) {// Called when a file is open.
+
+                                                    var item = args.get_item();
+                                                    //If file (and not a folder) is selected - call the OnFileSelected method on the parent page
+                                                    if (item.get_type() == Telerik.Web.UI.FileExplorerItemType.File) {
+                                                        // Cancel the default dialog;
+                                                        args.set_cancel(true);
+
+                                                        var selectedItems = sender.get_selectedItems();
+                                                        var hfResult = "";
+                                                        for (var i = 0; i < selectedItems.length; i++) {
+                                                            hfResult += "~" + selectedItems[i].get_url() + "|";
+                                                        }
+                                                        hfResult = hfResult.slice(0, -1);
+                                                        OnMultipleFileSelected(i + " dosya seçildi", hfResult); // Call the method declared on the parent page
+
+                                                    }
+                                                }
+
+
+                                                function OnMultipleFileSelected(fileSelectedInfo, selectedFiles) {
+                                                    var hfSelectedFiles = document.getElementById('<%= hfSelectedFiles.ClientID %>');
+                                                                hfSelectedFiles.value = selectedFiles;
+
+                                                                var spSelectedFilesInfo = document.getElementById('spSelectedFilesInfo');
+                                                                spSelectedFilesInfo.innerHTML = fileSelectedInfo;
+                                                            }
+                                                            //]]>
+                                            </script>
+                                            <asp:HiddenField runat="server" ID="hfSelectedFiles" /> 
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td valign="top">
+                                            <%= AdminResource.lbState %>
+                                        </td>
+                                        <td valign="top">:
+                                        </td>
                                         <td>
-                                            &nbsp;
+                                            <asp:CheckBox ID="cbMultiFilesState" Checked="False" runat="server" />
+                                        </td>
+                                        <td>&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <%= AdminResource.lbUseFilesName %>
+                                        </td>
+                                        <td>:
+                                        </td>
+                                        <td>
+                                            <asp:CheckBox ID="cbUseFilesName" Checked="True" runat="server" />
+                                        </td>
+                                        <td>&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>&nbsp;
+                                        </td>
+                                        <td>
+                                            <asp:Button ID="BtnSaveMultiplePhoto" runat="server" CssClass="SaveCancelBtn" OnClick="BtnSaveMultiplePhotoClick"
+                                                ValidationGroup="gk3" />
+                                            <asp:Button ID="BtnCancelMultiplePhoto" runat="server" CssClass="SaveCancelBtn" OnClick="BtnCancelMultiplePhotoClick" />
+                                        </td>
+                                        <td>&nbsp;
                                         </td>
                                     </tr>
                                 </table>
@@ -450,7 +515,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Görsel">
                                 <ItemTemplate>
-                                    <a href='<%#Eval("photoPath").ToString().Replace("~", "..") %>' rel="prettyPhoto">
+                                    <a href='<%#                                        Eval("photoPath").ToString().Replace("~", "..") %>' rel="prettyPhoto">
                                         <asp:Image ID="Image1" runat="server" Width="50px" ImageUrl='<%#Bind("thumbnailPath") %>' /></a>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="75px" />
@@ -466,7 +531,7 @@
                             </asp:BoundField>
                             <asp:TemplateField HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
-                                    <asp:Label ID="lbAlbum" runat="server" Text='<%#GetAlbumName(Convert.ToInt32(Eval("photoAlbumId"))) %>' />
+                                    <asp:Label ID="lbAlbum" runat="server" Text='<%#                GetAlbumName(Convert.ToInt32(Eval("photoAlbumId"))) %>' />
                                 </ItemTemplate>
                                 <EditItemTemplate>
                                     <asp:DropDownList ID="ddlNewAlbum" runat="server" DataSourceID="edsPhotoAlbum"
@@ -491,7 +556,7 @@
                                     <asp:CheckBox ID="MainPhoto" runat="server" Enabled="False" Checked='<%#Bind("mainPhoto") %>' />
                                 </ItemTemplate>
                                 <EditItemTemplate>
-                                    <asp:CheckBox ID="cbMainPhoto" runat="server" Enabled='<%#!Convert.ToBoolean(Eval("mainPhoto")) %>'
+                                    <asp:CheckBox ID="cbMainPhoto" runat="server" Enabled='<%#                !Convert.ToBoolean(Eval("mainPhoto")) %>'
                                         Checked='<%#Bind("mainPhoto") %>' />
                                 </EditItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="70px"></HeaderStyle>
@@ -501,7 +566,7 @@
                     </asp:GridView>
                     <asp:EntityDataSource ID="edsPhotos" runat="server" ConnectionString="name=Entities"
                         DefaultContainerName="Entities" EnableDelete="True" EnableUpdate="True" EntitySetName="PhotoAlbum"
-                        Where="it.photoAlbumId=@albId">
+                        Where="it.photoAlbumId=@albId" OrderBy="it.CreatedTime desc">
                         <WhereParameters>
                             <asp:Parameter DefaultValue="0" DbType="Int32" Name="albId" />
                         </WhereParameters>

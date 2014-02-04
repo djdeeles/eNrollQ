@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using eNroll.App_Data;
 using Enroll.Managers;
+using eNroll.App_Data;
 
 public partial class uye_userControls_photoAlbum : UserControl
 {
@@ -23,21 +23,25 @@ public partial class uye_userControls_photoAlbum : UserControl
         PhotoAlbum album = null;
         int lang = EnrollContext.Current.WorkingLanguage.LanguageId;
         if (!String.IsNullOrEmpty(Request.QueryString["albumid"]))
-        {  
+        {
             if (IsPostBack)
             {
                 #region AlbumId yi session dan alıyoruz
+
                 // sayfa postback olmuşsa yeni yüklenirken AlbumId değerini Session nesnesinden alırız
-                if (Session["listItemshfAlbumId"] != null && !string.IsNullOrWhiteSpace(Session["listItemshfAlbumId"].ToString()))
+                if (Session["listItemshfAlbumId"] != null &&
+                    !string.IsNullOrWhiteSpace(Session["listItemshfAlbumId"].ToString()))
                 {
                     AlbumId = Convert.ToInt32(Session["listItemshfAlbumId"]);
                     HiddenField1.Value = Session["listItemshfAlbumId"].ToString();
                 }
+
                 #endregion
             }
             else
             {
                 #region query string ten varsa albumid değerini alıyoruz
+
                 try
                 {
                     AlbumId = Convert.ToInt32(Request.QueryString["albumid"]);
@@ -48,6 +52,7 @@ public partial class uye_userControls_photoAlbum : UserControl
                 {
                     ExceptionManager.ManageException(exception);
                 }
+
                 #endregion
             }
         }
@@ -82,7 +87,8 @@ public partial class uye_userControls_photoAlbum : UserControl
 
             Session["listItemshfAlbumId"] = AlbumId;
 
-            if (Session["listItemPageIndex"] == null || string.IsNullOrWhiteSpace(Session["listItemPageIndex"].ToString()))
+            if (Session["listItemPageIndex"] == null ||
+                string.IsNullOrWhiteSpace(Session["listItemPageIndex"].ToString()))
             {
                 Session["listItemPageIndex"] = 1;
             }
@@ -100,7 +106,7 @@ public partial class uye_userControls_photoAlbum : UserControl
 
     protected void DataPager1_Init(object sender, EventArgs e)
     {
-        _localizations.ChangeDataPager((DataPager)sender);
+        _localizations.ChangeDataPager((DataPager) sender);
     }
 
 
@@ -117,7 +123,7 @@ public partial class uye_userControls_photoAlbum : UserControl
             {
                 if (c is HyperLink)
                 {
-                    var currentLink = (HyperLink)c;
+                    var currentLink = (HyperLink) c;
                     if ((!string.IsNullOrEmpty(Request.Url.AbsolutePath)) && (!string.IsNullOrEmpty(Request.Url.Query)))
                     {
                         if (Request.Url.AbsolutePath != "/AlbumPhotos.aspx")
@@ -148,7 +154,7 @@ public partial class uye_userControls_photoAlbum : UserControl
 
     protected void HyperLink1_DataBinding(object sender, EventArgs e)
     {
-        var myHyper = (HyperLink)sender;
+        var myHyper = (HyperLink) sender;
         int photoId = Convert.ToInt32(myHyper.NavigateUrl);
         PhotoAlbum PhotoAlbum = ent.PhotoAlbum.Where(p => p.photoId == photoId).First();
         myHyper.NavigateUrl = "/" + PhotoAlbum.photoPath.Replace("~/", "");
@@ -157,7 +163,7 @@ public partial class uye_userControls_photoAlbum : UserControl
 
     protected void Image1_DataBinding(object sender, EventArgs e)
     {
-        var Resim = (Image)sender;
+        var Resim = (Image) sender;
         int photoId = Convert.ToInt32(Resim.ImageUrl);
         PhotoAlbum PhotoAlbum = ent.PhotoAlbum.Where(p => p.photoId == photoId).First();
         Resim.ImageUrl = "/" + PhotoAlbum.thumbnailPath.Replace("~/", "");

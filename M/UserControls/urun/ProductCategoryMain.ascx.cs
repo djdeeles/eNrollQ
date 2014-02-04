@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -45,7 +44,7 @@ public partial class M_UserControls_ProductCategoryMain : UserControl
 
         string thumbnailPath = NoImgUrl;
         int id = Convert.ToInt32(productCategoryId);
-        List<Products> urunler = entities.Products.Where(x => x.ProductCategoryId == id).ToList();
+        var urunler = entities.Products.Where(x => x.ProductCategoryId == id).ToList();
         if (urunler.Count > 0)
         {
             int urunId = Convert.ToInt32(urunler.Take(1).First().ProductId);

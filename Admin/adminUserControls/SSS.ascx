@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_SSS"
-    CodeBehind="SSS.ascx.cs" %>
-<%@ Register TagPrefix="uc1" TagName="Rtb" Src="~/Admin/adminUserControls/Rtb.ascx" %>
+            CodeBehind="SSS.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
+<%@ Register TagPrefix="uc1" TagName="Rtb" Src="~/Admin/adminUserControls/Rtb.ascx" %>
 <asp:MultiView runat="server" ID="mvAuth">
     <asp:View runat="server">
         <table class="rightcontenttable">
@@ -30,7 +30,7 @@
                                         <td colspan="2">
                                             <asp:TextBox ID="TextBoxKategoriAdi" runat="server" Width="250px"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxKategoriAdi"
-                                                ForeColor="Red" Display="Dynamic" ValidationGroup="g2">!</asp:RequiredFieldValidator>
+                                                                        ForeColor="Red" Display="Dynamic" ValidationGroup="g2">!</asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -53,9 +53,9 @@
                                         </td>
                                         <td>
                                             <asp:TextBox ID="TextBoxSiraNo" onkeydown="return onlyNumber(event);" runat="server"
-                                                Width="50px"></asp:TextBox>
+                                                         Width="50px"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TextBoxSiraNo"
-                                                ForeColor="Red" Display="Dynamic" ValidationGroup="g2">!</asp:RequiredFieldValidator>
+                                                                        ForeColor="Red" Display="Dynamic" ValidationGroup="g2">!</asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -65,7 +65,7 @@
                                         </td>
                                         <td>
                                             <asp:Button ID="btnSaveCat" runat="server" CssClass="SaveCancelBtn" OnClick="btnSaveCat_Click"
-                                                ValidationGroup="g2" />
+                                                        ValidationGroup="g2" />
                                             <asp:Button ID="btnCancelCat" runat="server" CssClass="SaveCancelBtn" OnClick="ImageButton3_Click" />
                                         </td>
                                         <td>
@@ -80,13 +80,13 @@
             <tr>
                 <td colspan="3">
                     <asp:GridView ID="GridViewSSSKategoriler" runat="server" AutoGenerateColumns="False"
-                        PageSize="15" AllowPaging="True" CssClass="GridViewStyle" PagerStyle-CssClass="pgr"
-                        AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
-                        SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
-                        SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
-                        SelectedRowStyle="selected" DataKeyNames="faqCategoryId" Width="100%" CellPadding="4"
-                        ForeColor="#333333" OnRowDataBound="GridViewSSSKategoriler_onDataRowBound" GridLines="None"
-                        AllowSorting="True" DataSourceID="EntityDataSourceFaqCat" OnRowCommand="GridViewSSSKategoriler_RowCommand">
+                                  PageSize="15" AllowPaging="True" CssClass="GridViewStyle" PagerStyle-CssClass="pgr"
+                                  AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
+                                  SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
+                                  SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
+                                  SelectedRowStyle="selected" DataKeyNames="faqCategoryId" Width="100%" CellPadding="4"
+                                  ForeColor="#333333" OnRowDataBound="GridViewSSSKategoriler_onDataRowBound" GridLines="None"
+                                  AllowSorting="True" DataSourceID="EntityDataSourceFaqCat" OnRowCommand="GridViewSSSKategoriler_RowCommand">
                         <EmptyDataTemplate>
                             <%= AdminResource.msgNotFoundCategory %>
                         </EmptyDataTemplate>
@@ -94,12 +94,12 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <asp:ImageButton ID="BtnGuncelle" runat="server" ImageUrl="~/Admin/images/icon/edit.png"
-                                        CommandArgument='<%#Eval
+                                                     CommandArgument='<%#Eval
                                                                                                    ("faqCategoryId") %>'
-                                        CommandName="Guncelle" />
+                                                     CommandName="Guncelle" />
                                     <asp:ImageButton ID="BtnDeleteCategory" runat="server" ImageUrl="~/Admin/images/icon/cop.png"
-                                        CommandArgument='<%#                                        Eval("faqCategoryId") %>'
-                                        CommandName="Sil" />
+                                                     CommandArgument='<%#                                        Eval("faqCategoryId") %>'
+                                                     CommandName="Sil" />
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="75px" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
@@ -107,8 +107,8 @@
                             <asp:TemplateField HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lbCatSec" runat="server" CausesValidation="False" CommandName="Select"
-                                        CommandArgument='<%#Eval("faqCategoryId") %>' Text='<%#Bind("faqCategory") %>'
-                                        OnClick="lbCatSec_Click"></asp:LinkButton>
+                                                    CommandArgument='<%#                                        Eval("faqCategoryId") %>' Text='<%#Bind("faqCategory") %>'
+                                                    OnClick="lbCatSec_Click"></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="orderId" SortExpression="orderId">
@@ -131,7 +131,7 @@
                                 <tr>
                                     <td>
                                         <asp:Button ID="BtnAddNewFaq" runat="server" CssClass="NewBtn" OnClick="BtnAddNewFaq_Click"
-                                            Height="32px" />
+                                                    Height="32px" />
                                     </td>
                                 </tr>
                             </table>
@@ -152,7 +152,7 @@
                                         </td>
                                         <td>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="ddlAddNew"
-                                                Display="Dynamic" ForeColor="Red" ValidationGroup="g1" InitialValue="">!</asp:RequiredFieldValidator>
+                                                                        Display="Dynamic" ForeColor="Red" ValidationGroup="g1" InitialValue="">!</asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -167,7 +167,7 @@
                                         </td>
                                         <td>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="TextBoxSoru"
-                                                Display="Dynamic" ForeColor="Red" ValidationGroup="g1">!</asp:RequiredFieldValidator>
+                                                                        Display="Dynamic" ForeColor="Red" ValidationGroup="g1">!</asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -206,7 +206,7 @@
                                         </td>
                                         <td>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="tbIndex"
-                                                Display="Dynamic" ForeColor="Red" ValidationGroup="g1">!</asp:RequiredFieldValidator>
+                                                                        Display="Dynamic" ForeColor="Red" ValidationGroup="g1">!</asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -216,7 +216,7 @@
                                         </td>
                                         <td>
                                             <asp:Button ID="BtnSaveQuest" runat="server" CssClass="SaveCancelBtn" OnClick="BtnSaveQuest_Click"
-                                                ValidationGroup="g1" />
+                                                        ValidationGroup="g1" />
                                             <asp:Button ID="BtnCancelQuest" runat="server" CssClass="SaveCancelBtn" OnClick="BtnCancelQuest_Click" />
                                         </td>
                                         <td>
@@ -231,13 +231,13 @@
             <tr>
                 <td colspan="3">
                     <asp:GridView ID="GridViewSSS" runat="server" DataSourceID="EntityDataSourceSSS"
-                        AutoGenerateColumns="False" CssClass="GridViewStyle" PagerStyle-CssClass="pgr"
-                        AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
-                        SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
-                        SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
-                        SelectedRowStyle="selected" OnRowDataBound="GridViewSSS_OnRowDataBound" Width="100%"
-                        CellPadding="4" ForeColor="#333333" GridLines="None" OnRowCommand="GridViewSSS_RowCommand"
-                        PageSize="15" AllowPaging="True" AllowSorting="True">
+                                  AutoGenerateColumns="False" CssClass="GridViewStyle" PagerStyle-CssClass="pgr"
+                                  AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
+                                  SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
+                                  SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
+                                  SelectedRowStyle="selected" OnRowDataBound="GridViewSSS_OnRowDataBound" Width="100%"
+                                  CellPadding="4" ForeColor="#333333" GridLines="None" OnRowCommand="GridViewSSS_RowCommand"
+                                  PageSize="15" AllowPaging="True" AllowSorting="True">
                         <EmptyDataTemplate>
                             <%= AdminResource.lbNoRecord %>
                         </EmptyDataTemplate>
@@ -245,10 +245,10 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <asp:ImageButton ID="LinkButtonGuncelle" runat="server" CommandArgument='<%#Eval("faqId") %>'
-                                        ImageUrl="~/Admin/images/icon/edit.png" CommandName="Guncelle" />
-                                    <asp:ImageButton ID="LinkButtonSil" runat="server" CommandArgument='<%#Eval
-                                                                                                   ("faqId") %>' ImageUrl="~/Admin/images/icon/cop.png"
-                                        CommandName="Sil" />
+                                                     ImageUrl="~/Admin/images/icon/edit.png" CommandName="Guncelle" />
+                                    <asp:ImageButton ID="LinkButtonSil" runat="server" CommandArgument='<%#                                        Eval
+                                            ("faqId") %>' ImageUrl="~/Admin/images/icon/cop.png"
+                                                     CommandName="Sil" />
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="75px" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
@@ -275,16 +275,16 @@
             </tr>
         </table>
         <asp:EntityDataSource ID="EntityDataSourceFaqCat" runat="server" ConnectionString="name=Entities"
-            DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="FaqCategories"
-            Where="it.languageId=@languageId" OrderBy="it.orderId asc" EntityTypeFilter=""
-            Select="">
+                              DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="FaqCategories"
+                              Where="it.languageId=@languageId" OrderBy="it.orderId asc" EntityTypeFilter=""
+                              Select="">
             <WhereParameters>
                 <asp:ControlParameter ControlID="hfLanguageId" DbType="Int32" Name="languageId" PropertyName="Value" />
             </WhereParameters>
         </asp:EntityDataSource>
         <asp:EntityDataSource ID="EntityDataSourceSSS" runat="server" ConnectionString="name=Entities"
-            DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="Faq"
-            Where="it.faqCategoryId=@catId" EntityTypeFilter="" Select="" OrderBy="it.faqOrderId asc">
+                              DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="Faq"
+                              Where="it.faqCategoryId=@catId" EntityTypeFilter="" Select="" OrderBy="it.faqOrderId asc">
             <WhereParameters>
                 <asp:Parameter Name="catId" DbType="Int32" DefaultValue="0" />
             </WhereParameters>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -14,7 +13,7 @@ using Image = System.Drawing.Image;
 
 public partial class Admin_adminUserControls_GalleryManager : UserControl
 {
-    Entities _ent = new Entities();
+    private readonly Entities _ent = new Entities();
 
     protected override void OnInit(EventArgs e)
     {
@@ -45,6 +44,7 @@ public partial class Admin_adminUserControls_GalleryManager : UserControl
         }
 
         #region resources
+
         cbCatActive.Text = AdminResource.lbActive;
         cbAlbActive.Text = AdminResource.lbActive;
         photoState.Text = AdminResource.lbActive;
@@ -53,11 +53,14 @@ public partial class Admin_adminUserControls_GalleryManager : UserControl
         btnNew.Text = AdminResource.lbNewCategory;
         btnNewAlbum.Text = AdminResource.lbNewAlbum;
         btnNewImage.Text = AdminResource.lbNewImage;
+        btnNewMultipleImage.Text = AdminResource.lbbtnNewMultipleImage;
 
         btnImageSelect.Text = AdminResource.lbImageSelect;
 
         btnSave.Text = AdminResource.lbSave;
+        BtnSaveMultiplePhoto.Text = AdminResource.lbSave;
         btnCancel.Text = AdminResource.lbCancel;
+        BtnCancelMultiplePhoto.Text = AdminResource.lbCancel;
 
         btnSaveAlbum.Text = AdminResource.lbSave;
         btnCancelAlbum.Text = AdminResource.lbCancel;
@@ -89,8 +92,24 @@ public partial class Admin_adminUserControls_GalleryManager : UserControl
         gvPhotos.Columns[6].HeaderText = AdminResource.lbMainImage;
 
         gvPhotos.EmptyDataText = AdminResource.msgNotFoundPhoto;
-        #endregion
 
+        #endregion
+    }
+
+    public string GetCategoryName(int id)
+    {
+        string catName = string.Empty;
+        var cat = _ent.Def_photoAlbumCategory.FirstOrDefault(p => p.photoAlbumCategoryId == id);
+        if (cat != null) catName = cat.categoryName;
+        return catName;
+    }
+
+    public string GetAlbumName(int id)
+    {
+        string albumName = string.Empty;
+        var album = _ent.Def_photoAlbum.FirstOrDefault(p => p.photoAlbumId == id);
+        if (album != null) albumName = album.albumName;
+        return albumName;
     }
 
     #region Category
@@ -149,6 +168,8 @@ public partial class Admin_adminUserControls_GalleryManager : UserControl
 
             MessageBox.Show(MessageType.Success, AdminResource.msgUpdated);
             _ent.SaveChanges();
+
+
         }
     }
 
@@ -215,7 +236,6 @@ public partial class Admin_adminUserControls_GalleryManager : UserControl
                 {
                     ExceptionManager.ManageException(exception);
                 }
-
             }
         }
     }
@@ -277,6 +297,7 @@ public partial class Admin_adminUserControls_GalleryManager : UserControl
                 alb.photoAlbumCategoryId = cat.photoAlbumCategoryId;
                 alb.languageId = cat.languageId;
                 alb.state = cbAlbActive.Checked;
+                alb.CreatedTime = DateTime.Now;
                 alb.UpdatedTime = DateTime.Now;
                 ent.AddToDef_photoAlbum(alb);
                 ent.SaveChanges();
@@ -340,7 +361,7 @@ public partial class Admin_adminUserControls_GalleryManager : UserControl
             using (var ent = new Entities())
             {
                 Def_photoAlbum alb = ent.Def_photoAlbum.Where(p => p.photoAlbumId == albId).First();
-                List<PhotoAlbum> fotolar = ent.PhotoAlbum.Where(p => p.photoAlbumId == albId).ToList();
+                var fotolar = ent.PhotoAlbum.Where(p => p.photoAlbumId == albId).ToList();
                 foreach (PhotoAlbum p in fotolar)
                 {
                     if (string.IsNullOrWhiteSpace(p.thumbnailPath))
@@ -424,6 +445,11 @@ public partial class Admin_adminUserControls_GalleryManager : UserControl
         mvPhoto.SetActiveView(vvYeniPhoto);
     }
 
+    protected void BtnNewMultipleImageClick(object sender, EventArgs eventArgs)
+    {
+        mvPhoto.SetActiveView(vvYeniMultiplePhoto);
+    }
+
     protected void BtnSavePhotoClick(object sender, EventArgs eventArgs)
     {
         try
@@ -466,6 +492,7 @@ public partial class Admin_adminUserControls_GalleryManager : UserControl
             photo.State = photoState.Checked;
 
             #region albüm kapak fotoğrafı yap
+
             if (cbMainImage.Checked)
             {
                 var e = new Entities();
@@ -494,7 +521,13 @@ public partial class Admin_adminUserControls_GalleryManager : UserControl
                 Logger.Add(5, 3, photo.photoId, 3);
                 MessageBox.Show(MessageType.Success, AdminResource.msgUpdated);
             }
-
+             
+            if (photo.State.Value && photo.mainPhoto)
+                SetAllPhotosNotMainPhoto(photo.photoAlbumId, photo.photoId);
+            else
+            {
+                CheckMainPhotoAdd(photo.photoId);
+            }
 
             gvCategories.DataBind();
 
@@ -531,40 +564,31 @@ public partial class Admin_adminUserControls_GalleryManager : UserControl
         {
             var lbGorselSil = (ImageButton)sender;
             var photoId = Convert.ToInt32(lbGorselSil.CommandArgument);
-
             var photo = _ent.PhotoAlbum.FirstOrDefault(p => p.photoId == photoId);
+
             if (photo != null)
             {
-                var isMainImage = photo.mainPhoto;
                 var path = photo.thumbnailPath;
                 if (!string.IsNullOrWhiteSpace(path)) ImageHelper.DeleteImage(Server.MapPath(path.Replace("~", "..")));
+                var albumId = photo.photoAlbumId;
                 _ent.DeleteObject(photo);
                 _ent.SaveChanges();
 
-                #region görsel olan foto silindiyse, albümde başka fotoğraf varsa ilk foto ana görsel olarak ayarlanır
-                if (isMainImage)
-                {
-                    var photos = _ent.PhotoAlbum.Where(p => p.photoAlbumId == photo.photoAlbumId).ToList();
-                    if (photos.Count > 0)
-                    {
-                        photos[0].mainPhoto = true;
-                        _ent.SaveChanges();
-                    }
-                }
-                #endregion
+                CheckMainPhoto(albumId);
 
                 Logger.Add(5, 3, photoId, 2);
+                
+                MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
+                
                 edsPhotos.WhereParameters.Clear();
                 edsPhotos.WhereParameters.Add("albId", DbType.Int32, hfSelectedAlbum.Value);
                 gvPhotos.DataBind();
 
-                MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
             }
             else
             {
                 MessageBox.Show(MessageType.Warning, AdminResource.lbNotFound);
             }
-
         }
         catch (Exception exception)
         {
@@ -611,79 +635,15 @@ public partial class Admin_adminUserControls_GalleryManager : UserControl
                 #region update photo
                 var editPhotoId = int.Parse(e.CommandArgument.ToString());
                 var editPhoto = _ent.PhotoAlbum.First(p => p.photoId == editPhotoId);
-                var beforeMainImage = editPhoto.mainPhoto;
                 editPhoto.mainPhoto = cbMainPhoto.Checked;
                 editPhoto.UpdatedTime = DateTime.Now;
-                var oldAlbum = editPhoto.photoAlbumId;
-                var newAlbum = Convert.ToInt32(ddlNewAlbum.SelectedItem.Value);
                 _ent.SaveChanges();
-                #endregion
-                
-                #region Düzenlenen fotoğraf ana görsel olarak seçildiyse
+                var newAlbumId = Convert.ToInt32(ddlNewAlbum.SelectedItem.Value);
                  
-                //ana fotoraf olarak seçildiyse diğer fotolar false olarak güncellenir
-                if (!beforeMainImage && editPhoto.mainPhoto)
-                {
-                    #region albüm değişmemiştir
-                    if (oldAlbum == newAlbum) 
-                    {
-                        //eski albümün diğer fotoğrafları mainImage=false olarak güncellenir
-                        var albumOtherPhotos =
-                            _ent.PhotoAlbum.Where(
-                                p => p.photoAlbumId == editPhoto.photoAlbumId && p.photoId != editPhoto.photoId && p.State==true).ToList();
-                        foreach (var otherPhoto in albumOtherPhotos)
-                        {
-                            otherPhoto.mainPhoto = false;
-                        }
-                    }
-                    #endregion
-
-                    #region albüm değişmiştir
-                    else
-                    {
-                        #region yeni albüm
-
-                        //düzenlenen görsel, yeni albümün ana görseli olarak güncellenir
-                        var newAlbumOtherPhotos = _ent.PhotoAlbum.Where(p => 
-                            p.photoAlbumId == newAlbum && p.photoId != editPhoto.photoId && p.State == true).ToList();
-
-                        //yeni albümün eski fotoğrafları mainImage=false olarak güncellenir
-                        foreach (var otherPhoto in newAlbumOtherPhotos)
-                        {
-                            otherPhoto.mainPhoto = false;
-                        }
-                        #endregion
-                    }
-                    #endregion
-                }
-                else if (beforeMainImage && editPhoto.mainPhoto && oldAlbum != newAlbum)
-                { 
-                    #region eski albüm
-
-                    //eski albümün ilk fotoğrafı ana görsel olarak güncellenir
-                    var oldAlbumFirstPhoto = _ent.PhotoAlbum.FirstOrDefault(p =>
-                        p.photoAlbumId == oldAlbum && p.photoId != editPhoto.photoId && p.State == true);
-
-                    if (oldAlbumFirstPhoto != null) oldAlbumFirstPhoto.mainPhoto = true;
-                    #endregion
-
-                    #region yeni albüm
-
-                    //düzenlenen görsel, yeni albümün ana görseli olarak güncellenir
-                    var newAlbumOtherPhotos = _ent.PhotoAlbum.Where(
-                        p => p.photoAlbumId == newAlbum && p.photoId != editPhoto.photoId && p.State == true).ToList();
-
-                    //yeni albümün eski fotoğrafları mainImage=false olarak güncellenir
-                    foreach (var otherPhoto in newAlbumOtherPhotos)
-                    {
-                        otherPhoto.mainPhoto = false;
-                    }
-                    #endregion
-                }
-
                 #endregion
 
-                _ent.SaveChanges();
+                ChechkMainPhotoUpdate(editPhoto.photoAlbumId, newAlbumId, editPhotoId);
+
                 Logger.Add(5, 3, editPhotoId, 3);
             }
             MessageBox.Show(MessageType.Success, AdminResource.msgUpdated);
@@ -701,19 +661,181 @@ public partial class Admin_adminUserControls_GalleryManager : UserControl
 
     #endregion
 
-    public string GetCategoryName(int id)
+    protected void BtnSaveMultiplePhotoClick(object sender, EventArgs e)
     {
-        string catName = string.Empty;
-        var cat = _ent.Def_photoAlbumCategory.FirstOrDefault(p => p.photoAlbumCategoryId == id);
-        if (cat != null) catName = cat.categoryName;
-        return catName;
+        try
+        {
+            var dataPhotoPaths = hfSelectedFiles.Value.Split('|');
+            foreach (var dataPhotoPath in dataPhotoPaths)
+            {
+                var photo = new PhotoAlbum();
+                var orj = new Bitmap(Server.MapPath(dataPhotoPath.Replace("~", "..")));
+                var i = ImageHelper.ResizeImage(orj, new Size(150, 150));
+                var thumbName = Guid.NewGuid().ToString("N").Substring(1, 8) + ".jpg";
+                var dest = Server.MapPath("../FileManager/thumbnails/" + thumbName);
+                ImageHelper.SaveJpeg(dest, (Bitmap)i, 75);
+                photo.thumbnailPath = "~/FileManager/thumbnails/" + thumbName;
+                photo.photoPath = dataPhotoPath;
+
+                if (!string.IsNullOrEmpty(Request.QueryString["alb"]))
+                    photo.photoAlbumId = Convert.ToInt32(Request.QueryString["alb"]);
+                else photo.photoAlbumId = Convert.ToInt32(ViewState["albId"]);
+
+                if (cbUseFilesName.Checked)
+                {
+                    var data = dataPhotoPath.Split('/');
+                    var fileName = data[data.Length - 1].Split('.')[0];
+                    photo.photoName = fileName;
+                }
+                else
+                {
+                    photo.photoName = "";
+                }
+
+                photo.photoNote = "";
+                photo.UpdatedTime = DateTime.Now;
+                photo.State = cbMultiFilesState.Checked;
+                photo.mainPhoto = cbMainImage.Checked;
+                photo.CreatedTime = DateTime.Now;
+                _ent.AddToPhotoAlbum(photo);
+                _ent.SaveChanges();
+
+                CheckMainPhotoAdd(photo.photoId);
+            }
+
+            MessageBox.Show(MessageType.Success, AdminResource.msgSaved);
+            gvCategories.DataBind();
+
+            edsPhotoAlbum.WhereParameters.Clear();
+            edsPhotoAlbum.WhereParameters.Add("catId", DbType.Int32, ViewState["catId"].ToString());
+            gvAlb.DataBind();
+
+            edsPhotos.WhereParameters.Clear();
+            edsPhotos.WhereParameters.Add("albId", DbType.Int32, ViewState["albId"].ToString());
+            gvPhotos.DataBind();
+
+            mvPhoto.SetActiveView(vvPhotoEkle);
+        }
+        catch (Exception exception)
+        {
+            ExceptionManager.ManageException(exception);
+        }
     }
 
-    public string GetAlbumName(int id)
+    protected void BtnCancelMultiplePhotoClick(object sender, EventArgs e)
     {
-        string albumName = string.Empty;
-        var album = _ent.Def_photoAlbum.FirstOrDefault(p => p.photoAlbumId == id);
-        if (album != null) albumName = album.albumName;
-        return albumName;
+        mvPhoto.SetActiveView(vvPhotoEkle);
+        cbMultiFilesState.Checked = false; 
+    }
+
+    private void CheckMainPhotoAdd(int addedPhotoId)
+    {
+        var editPhoto = _ent.PhotoAlbum.FirstOrDefault(p => p.photoId == addedPhotoId);
+        if (editPhoto != null)
+        {
+            #region editphoto => active&main : diğer fotoğraflar mainPhoto='false' olur
+            if (editPhoto.State != null && (editPhoto.mainPhoto && editPhoto.State.Value))
+            {
+                SetAllPhotosNotMainPhoto(editPhoto.photoAlbumId, addedPhotoId); 
+            }
+            #endregion
+
+            #region editphoto => !(active&main) : active fotoğraf var ise rastgele ilk fotoğraf mainPhoto olur
+ 
+            #region album hasn't active&main photo
+            else if (_ent.PhotoAlbum.Count(p => p.photoAlbumId == editPhoto.photoAlbumId && p.State.Value && p.mainPhoto) == 0)
+            {
+                var randomFirstActivePhoto = _ent.PhotoAlbum.FirstOrDefault(p => p.photoAlbumId == editPhoto.photoAlbumId && p.State.Value);
+                if (randomFirstActivePhoto != null)
+                {
+                    randomFirstActivePhoto.mainPhoto = true;
+                    _ent.SaveChanges();
+                    SetAllPhotosNotMainPhoto(editPhoto.photoAlbumId, randomFirstActivePhoto.photoId);
+                }
+            }
+            #endregion
+            #region album has active&main photo
+            else 
+            {
+                var randomActiveMainPhotoPhoto = _ent.PhotoAlbum.FirstOrDefault(p => p.photoAlbumId == editPhoto.photoAlbumId && p.State.Value && p.mainPhoto);
+                if (randomActiveMainPhotoPhoto != null)
+                {
+                    SetAllPhotosNotMainPhoto(editPhoto.photoAlbumId, randomActiveMainPhotoPhoto.photoId);
+                }
+            }
+            #endregion
+             
+            #endregion
+             
+        }
+
+    }
+
+    private void ChechkMainPhotoUpdate(int oldPhotoAlbumId, int newPhotoAlbumId, int editPhotoId)
+    {
+        var photo = _ent.PhotoAlbum.FirstOrDefault(p => p.photoId == editPhotoId);
+        if(photo!=null)
+        { 
+            if (photo.State != null && (photo.State.Value && photo.mainPhoto))
+            {
+                #region albüm değişmediyse
+                if (oldPhotoAlbumId== newPhotoAlbumId)
+                {
+                    SetAllPhotosNotMainPhoto(photo.photoAlbumId, photo.photoId); 
+                }
+                #endregion
+
+                #region albüm değiştiyse
+                else if (oldPhotoAlbumId != newPhotoAlbumId)
+                {
+                    #region yeni albüm
+                    SetAllPhotosNotMainPhoto(newPhotoAlbumId, editPhotoId); 
+                    #endregion
+
+                    #region eski albüm
+                    var randomFirstActivePhoto = _ent.PhotoAlbum.FirstOrDefault(p => p.photoAlbumId == oldPhotoAlbumId && p.State.Value && p.photoId != editPhotoId);
+                    if (randomFirstActivePhoto != null)
+                    {
+                        randomFirstActivePhoto.mainPhoto = true;
+                        _ent.SaveChanges();
+
+                        SetAllPhotosNotMainPhoto(oldPhotoAlbumId, randomFirstActivePhoto.photoId); 
+                    }
+                    #endregion
+                }
+                #endregion
+            } 
+        } 
+    }
+
+    private void CheckMainPhoto(int albumId)
+    {
+        var main = _ent.PhotoAlbum.FirstOrDefault(p => p.photoAlbumId == albumId && p.State.Value && p.mainPhoto);
+        if ( main == null)
+        {
+            var randomFirstActivePhoto = _ent.PhotoAlbum.FirstOrDefault(p => p.photoAlbumId == albumId && p.State.Value);
+            if (randomFirstActivePhoto != null)
+            {
+                randomFirstActivePhoto.mainPhoto = true;
+                _ent.SaveChanges();
+
+                SetAllPhotosNotMainPhoto(albumId, randomFirstActivePhoto.photoId); 
+            }
+        }
+        else
+        {
+            var activeMainPhotoId = main.photoId;
+            SetAllPhotosNotMainPhoto(albumId, activeMainPhotoId); 
+        }
+    }
+
+    private void SetAllPhotosNotMainPhoto(int albumId, int photoId)
+    {
+        var otherPhotos = _ent.PhotoAlbum.Where(p => p.photoAlbumId == albumId && p.photoId != photoId).ToList();
+        foreach (var otherPhoto in otherPhotos)
+        {
+            otherPhoto.mainPhoto = false;
+            _ent.SaveChanges();
+        }
     }
 }

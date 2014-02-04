@@ -48,7 +48,7 @@
                         <HeaderStyle HorizontalAlign="Left" Width="160px" />
                         <ItemStyle VerticalAlign="Top" />
                         <ItemTemplate>
-                            <%#                Logger.GetUserEmail(Convert.ToInt32(Eval("userId"))) %>
+                            <%#                                        Logger.GetUserEmail(Convert.ToInt32(Eval("userId"))) %>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="Ip" SortExpression="Ip">

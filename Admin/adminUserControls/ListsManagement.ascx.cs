@@ -16,7 +16,7 @@ namespace eNroll.Admin.adminUserControls
 {
     public partial class ListsManagement : UserControl
     {
-        Entities _ent = new Entities();
+        private readonly Entities _ent = new Entities();
 
         protected override void OnInit(EventArgs e)
         {
@@ -72,13 +72,12 @@ namespace eNroll.Admin.adminUserControls
 
                 btnImageSelect.Text = AdminResource.lbImageSelect;
                 btnImageSelectEdit.Text = AdminResource.lbImageSelect;
-
             }
             catch (Exception exception)
             {
                 ExceptionManager.ManageException(exception);
             }
-            
+
             ShowLists();
         }
 
@@ -116,6 +115,25 @@ namespace eNroll.Admin.adminUserControls
             }
         }
 
+        protected void ImageButton2Ara_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                var aranan = txtAra.Text;
+
+                EntityDataSourceListData.Where = "it.Lists.LanguageId=" +
+                                                 EnrollAdminContext.Current.DataLanguage.LanguageId.ToString() +
+                                                 " and it.ListId=" + HiddenFieldListId.Value + " AND (it.Title like '%" +
+                                                 aranan + "%' OR it.Description like '%" + aranan + "%')";
+                EntityDataSourceListData.DataBind();
+                gvListData.DataBind();
+            }
+            catch (Exception exception)
+            {
+                ExceptionManager.ManageException(exception);
+            }
+        }
+
         #region GvList
 
         protected void GvListsRowDataBound(object sender, GridViewRowEventArgs e)
@@ -124,7 +142,7 @@ namespace eNroll.Admin.adminUserControls
             {
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    var myMastDelete = (ImageButton)e.Row.FindControl("LinkButtonSil");
+                    var myMastDelete = (ImageButton) e.Row.FindControl("LinkButtonSil");
                     myMastDelete.OnClientClick = " return confirm('" + AdminResource.lbDeletingQuestion + "'); ";
                 }
             }
@@ -258,10 +276,10 @@ namespace eNroll.Admin.adminUserControls
                 txtListDataTitleEdit.Text = listData.Title;
                 txtListDataDescEdit.Text = listData.Description;
                 txtImageEdit.Text = listData.Image;
-                var editor = ((RadEditor)RtbEdit.FindControl("RadEditor1"));
+                var editor = ((RadEditor) RtbEdit.FindControl("RadEditor1"));
                 editor.Content = listData.Detail;
                 if (listData.State != null)
-                    cbListDataStateEdit.Checked = (bool)listData.State;
+                    cbListDataStateEdit.Checked = (bool) listData.State;
 
                 mvListData.Visible = true;
                 mvListData.SetActiveView(vEditListData);
@@ -285,7 +303,7 @@ namespace eNroll.Admin.adminUserControls
             {
                 if (e != null && e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    var deleteBtn = (ImageButton)e.Row.FindControl("lbSil");
+                    var deleteBtn = (ImageButton) e.Row.FindControl("lbSil");
                     if (deleteBtn != null)
                     {
                         deleteBtn.OnClientClick =
@@ -304,7 +322,7 @@ namespace eNroll.Admin.adminUserControls
         {
             try
             {
-                var lbListSec = (LinkButton)sender;
+                var lbListSec = (LinkButton) sender;
                 HiddenFieldListId.Value = lbListSec.CommandArgument;
                 gvListData.DataSourceID = "EntityDataSourceListData";
                 EntityDataSourceListData.WhereParameters.Clear();
@@ -342,7 +360,7 @@ namespace eNroll.Admin.adminUserControls
                     listData.ListId = listId;
                     listData.Title = txtListDataTitle.Text;
                     listData.Description = txtListDataDesc.Text;
-                    listData.Detail = ((RadEditor)Rtb.FindControl("RadEditor1")).Content;
+                    listData.Detail = ((RadEditor) Rtb.FindControl("RadEditor1")).Content;
                     listData.State = cbListDataState.Checked;
                     listData.CreatedTime = DateTime.Now;
                     listData.UpdatedTime = DateTime.Now;
@@ -356,7 +374,7 @@ namespace eNroll.Admin.adminUserControls
                         Image i = ImageHelper.ResizeImage(orj, new Size(150, 150));
                         string thumbName = Guid.NewGuid().ToString("N").Substring(1, 8) + ".jpg";
                         string dest = Server.MapPath("../FileManager/thumbnails/" + thumbName);
-                        var isphotoSaved = ImageHelper.SaveJpeg(dest, (Bitmap)i, 75);
+                        var isphotoSaved = ImageHelper.SaveJpeg(dest, (Bitmap) i, 75);
                         if (isphotoSaved)
                         {
                             listData.ThumbnailPath = "~/FileManager/thumbnails/" + thumbName;
@@ -411,7 +429,7 @@ namespace eNroll.Admin.adminUserControls
                     listData.Title = txtListDataTitleEdit.Text;
                     listData.Description = txtListDataDescEdit.Text;
                     listData.State = cbListDataStateEdit.Checked;
-                    listData.Detail = ((RadEditor)RtbEdit.FindControl("RadEditor1")).Content;
+                    listData.Detail = ((RadEditor) RtbEdit.FindControl("RadEditor1")).Content;
                     listData.UpdatedTime = DateTime.Now;
 
                     #region update image
@@ -429,7 +447,7 @@ namespace eNroll.Admin.adminUserControls
                         string thumbName = Guid.NewGuid().ToString("N").Substring(1, 8) + ".jpg";
                         string dest = Server.MapPath("../FileManager/thumbnails/" + thumbName);
 
-                        var isphotoSaved = ImageHelper.SaveJpeg(dest, (Bitmap)i, 75);
+                        var isphotoSaved = ImageHelper.SaveJpeg(dest, (Bitmap) i, 75);
                         if (isphotoSaved)
                         {
                             listData.ThumbnailPath = "~/FileManager/thumbnails/" + thumbName;
@@ -490,7 +508,7 @@ namespace eNroll.Admin.adminUserControls
             txtName.Text = string.Empty;
             txtDesc.Text = string.Empty;
             txtImage.Text = string.Empty;
-            var radEditor = ((RadEditor)Rtb.FindControl("RadEditor1"));
+            var radEditor = ((RadEditor) Rtb.FindControl("RadEditor1"));
             radEditor.Content = string.Empty;
             cbState.Checked = false;
             txtListDataTitle.Text = string.Empty;
@@ -503,29 +521,10 @@ namespace eNroll.Admin.adminUserControls
             txtListDataTitleEdit.Text = string.Empty;
             txtListDataDescEdit.Text = string.Empty;
             cbListDataStateEdit.Checked = false;
-            radEditor = ((RadEditor)RtbEdit.FindControl("RadEditor1"));
+            radEditor = ((RadEditor) RtbEdit.FindControl("RadEditor1"));
             radEditor.Content = string.Empty;
         }
 
         #endregion
-
-        protected void ImageButton2Ara_Click(object sender, ImageClickEventArgs e)
-        {
-            try
-            {
-                var aranan = txtAra.Text;
-
-                EntityDataSourceListData.Where = "it.Lists.LanguageId=" +
-                                          EnrollAdminContext.Current.DataLanguage.LanguageId.ToString() +
-                                          " and it.ListId=" + HiddenFieldListId.Value + " AND (it.Title like '%" + aranan + "%' OR it.Description like '%" + aranan + "%')";
-                EntityDataSourceListData.DataBind();
-                gvListData.DataBind();
-            }
-            catch (Exception exception)
-            {
-                ExceptionManager.ManageException(exception);
-            }
-
-        }
     }
 }

@@ -20,25 +20,29 @@ public partial class UserControls_Albums : UserControl
     }
 
     protected void Page_Load(object sender, EventArgs e)
-    { 
+    {
         Def_photoAlbumCategory category = null;
         int lang = EnrollContext.Current.WorkingLanguage.LanguageId;
         if (!String.IsNullOrEmpty(Request.QueryString["categoryid"]))
-        { 
+        {
             if (IsPostBack)
             {
                 #region AlbumId yi session dan alıyoruz
+
                 // sayfa postback olmuşsa yeni yüklenirken AlbumId değerini Session nesnesinden alırız
-                if (Session["listItemshfCategoryId"] != null && !string.IsNullOrWhiteSpace(Session["listItemshfCategoryId"].ToString()))
+                if (Session["listItemshfCategoryId"] != null &&
+                    !string.IsNullOrWhiteSpace(Session["listItemshfCategoryId"].ToString()))
                 {
                     CategoryId = Convert.ToInt32(Session["listItemshfCategoryId"]);
                     HiddenField1.Value = Session["listItemshfCategoryId"].ToString();
                 }
+
                 #endregion
             }
             else
             {
                 #region query string ten varsa albumid değerini alıyoruz
+
                 try
                 {
                     CategoryId = Convert.ToInt32(Request.QueryString["categoryid"]);
@@ -49,6 +53,7 @@ public partial class UserControls_Albums : UserControl
                 {
                     ExceptionManager.ManageException(exception);
                 }
+
                 #endregion
             }
         }
@@ -78,12 +83,14 @@ public partial class UserControls_Albums : UserControl
 
             #endregion
 
-            EntityDataSource1.Where = string.Format("it.languageId={0} and it.photoAlbumCategoryId={1} and it.State=True", lang, CategoryId );
+            EntityDataSource1.Where =
+                string.Format("it.languageId={0} and it.photoAlbumCategoryId={1} and it.State=True", lang, CategoryId);
             ListView1.DataBind();
 
             Session["listItemshfCategoryId"] = CategoryId;
 
-            if (Session["listItemPageIndex"] == null || string.IsNullOrWhiteSpace(Session["listItemPageIndex"].ToString()))
+            if (Session["listItemPageIndex"] == null ||
+                string.IsNullOrWhiteSpace(Session["listItemPageIndex"].ToString()))
             {
                 Session["listItemPageIndex"] = 1;
             }
@@ -101,14 +108,14 @@ public partial class UserControls_Albums : UserControl
 
     protected void DataPager1_Init(object sender, EventArgs e)
     {
-        _localizations.ChangeDataPager((DataPager)sender);
+        _localizations.ChangeDataPager((DataPager) sender);
     }
 
     protected void imgAlbum_DataBinding(object sender, EventArgs e)
     {
         try
         {
-            var Resim = (Image)sender;
+            var Resim = (Image) sender;
             int photoAlbumId = Convert.ToInt32(Resim.ImageUrl);
             //PhotoAlbum PhotoAlbum = ent.PhotoAlbum.Where(p => p.photoAlbumId == photoAlbumId).FirstOrDefault();
             var photoAlbum = ent.PhotoAlbum.FirstOrDefault(p => p.photoAlbumId == photoAlbumId && p.mainPhoto);
@@ -123,7 +130,7 @@ public partial class UserControls_Albums : UserControl
 
     protected void HyperLink1_DataBinding(object sender, EventArgs e)
     {
-        var myHyper = (HyperLink)sender;
+        var myHyper = (HyperLink) sender;
         try
         {
             int photoAlbumId = Convert.ToInt32(myHyper.NavigateUrl);
@@ -153,7 +160,7 @@ public partial class UserControls_Albums : UserControl
             {
                 if (c is HyperLink)
                 {
-                    var currentLink = (HyperLink)c;
+                    var currentLink = (HyperLink) c;
                     if ((!string.IsNullOrEmpty(Request.Url.AbsolutePath)) && (!string.IsNullOrEmpty(Request.Url.Query)))
                     {
                         if (Request.Url.AbsolutePath != "/Albums.aspx")
@@ -166,7 +173,7 @@ public partial class UserControls_Albums : UserControl
                             else
                             {
                                 currentLink.NavigateUrl = currentLink.NavigateUrl.Replace(Request.Url.PathAndQuery,
-                                                                                          "../../albumler-"+CategoryId);
+                                                                                          "../../albumler-" + CategoryId);
                             }
                         }
                         else

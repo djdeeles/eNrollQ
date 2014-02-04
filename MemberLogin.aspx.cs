@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.Linq;
-using System.Net.Mail;
-using System.Text;
 using System.Web;
-using System.Web.UI.WebControls;
+using System.Web.UI;
 using Enroll.Managers;
 using Resources;
 using eNroll.App_Data;
@@ -12,11 +9,12 @@ using eNroll.Helpers;
 
 namespace eNroll
 {
-    public partial class MemberLogin : System.Web.UI.Page
+    public partial class MemberLogin : Page
     {
         public static string CookieName = "EnrollAuthentication";
         private readonly Entities _entities = new Entities();
         public int LoginFailedCount = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (HttpContext.Current.Request.Url.AbsoluteUri.ToLower().Contains(HttpUtility.UrlEncode("/admin")))
@@ -34,7 +32,7 @@ namespace eNroll
                 Response.Redirect("Login.aspx?" + adminLoginUrl);
             }
 
-            if (HttpContext.Current.User!=null && HttpContext.Current.User.Identity.IsAuthenticated)
+            if (HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 Response.Redirect("Default.aspx");
             }
@@ -46,7 +44,7 @@ namespace eNroll
                 RadCaptcha1.Style.Clear();
                 RadCaptcha1.Enabled = true;
                 RadCaptcha1.Visible = true;
-                RadCaptcha1.CaptchaTextBoxCssClass = "CaptchaTextBox";
+                RadCaptcha1.TextBoxDecoration.CssClass = "CaptchaTextBox";
                 RadCaptcha1.EnableEmbeddedBaseStylesheet = false;
             }
             else
@@ -85,7 +83,9 @@ namespace eNroll
             {
                 var cookie = HttpContext.Current.Request.Cookies[CookieName];
                 string encryptedPwd = Crypto.Encrypt(TextBoxPassword.Text);
-                var oSystemCustomer = _entities.Users.Where(x => x.EMail == TextBoxUserName.Text && x.Password == encryptedPwd && x.State).ToList();
+                var oSystemCustomer =
+                    _entities.Users.Where(x => x.EMail == TextBoxUserName.Text && x.Password == encryptedPwd && x.State)
+                        .ToList();
 
                 if (oSystemCustomer.Count > 0)
                 {
@@ -147,8 +147,9 @@ namespace eNroll
                 try
                 {
                     var result = EnrollMembershipHelper.SendForgetPasswordMail(tbUserName_.Text,
-                                                                                  "App_Themes/mainTheme/mailtemplates/LoginMailContent.htm");
-                    Page.ClientScript.RegisterStartupScript(GetType(), "dsadas2", "<script> alert('" + result + "');</script>");
+                                                                               "App_Themes/mainTheme/mailtemplates/LoginMailContent.htm");
+                    Page.ClientScript.RegisterStartupScript(GetType(), "dsadas2",
+                                                            "<script> alert('" + result + "');</script>");
                     ltSendNewPasswordResult.Text = result;
                 }
                 catch (Exception exception)
@@ -159,9 +160,8 @@ namespace eNroll
             }
             else
             {
-                ltSendNewPasswordResult.Text = AdminResource.lbUserInformationNotValid ;
+                ltSendNewPasswordResult.Text = AdminResource.lbUserInformationNotValid;
             }
         }
-
     }
 }

@@ -1,5 +1,5 @@
 <%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_MenuManager"
-    CodeBehind="MenuManager.ascx.cs" %>
+            CodeBehind="MenuManager.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <%@ Register Src="Rtb.ascx" TagName="Rtb" TagPrefix="uc1" %>
 <asp:HiddenField ID="hdnActiveMenuId" runat="server" />
@@ -9,12 +9,11 @@
 <asp:HiddenField ID="hdnMenuThema" runat="server" EnableViewState="False" Value="Default" />
 <asp:MultiView runat="server" ID="MultiView2">
     <asp:View runat="server">
-        <div style="float: left; width: 210px; height: 400px; margin: 0 15px 10px 0; overflow: auto;
-            background-color: #f6f6f6; border: 1px solid #E5E5E5">
+        <div style="float: left; width: 210px; height: 400px; margin: 0 15px 10px 0; overflow: auto; background-color: #f6f6f6; border: 1px solid #E5E5E5">
             <asp:Panel ID="Panel1" runat="server">
                 <telerik:RadTreeView runat="server" ID="RadTreeViewMenuler" EnableDragAndDrop="true"
-                    EnableDragAndDropBetweenNodes="true" MultipleSelect="False" OnNodeClick="RadTreeViewMenulerNodeClick"
-                    OnNodeDrop="RadTreeViewMenulerNodeDrop" IsExpanded="True" Font-Size="11px">
+                                     EnableDragAndDropBetweenNodes="true" MultipleSelect="False" OnNodeClick="RadTreeViewMenulerNodeClick"
+                                     OnNodeDrop="RadTreeViewMenulerNodeDrop" IsExpanded="True" Font-Size="11px">
                     <DataBindings>
                         <telerik:RadTreeNodeBinding TextField="name" Expanded="True" Checkable="true" />
                         <telerik:RadTreeNodeBinding Checkable="false" TextField="name" Expanded="true" CssClass="rootNode" />
@@ -25,7 +24,7 @@
         <div style="margin-bottom: 10px;">
             <asp:Button ID="BtnAddNewItem" CssClass="NewBtn" runat="server" OnClick="BtnAddNewItemClick" />
             <asp:Button ID="BtnDeleteItem" CssClass="DeleteBtn" runat="server" OnClick="BtnDeleteItemClick"
-                Visible="False" />
+                        Visible="False" />
         </div>
         <asp:Panel ID="pnlDynamicField" runat="server" Visible="False" DefaultButton="btSave">
             <table>
@@ -39,7 +38,7 @@
                     <td>
                         <asp:TextBox ID="txtDynaDisplay" runat="server" Width="135px"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtDynaDisplay"
-                            ForeColor="Red" ValidationGroup="vldGroup1">!</asp:RequiredFieldValidator>
+                                                    ForeColor="Red" ValidationGroup="vldGroup1">!</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -79,16 +78,16 @@
                             <tr>
                                 <td valign="top">
                                     <asp:DropDownList ID="ddlDynamicGroup" runat="server" AutoPostBack="True" DataSourceID="EntityDynaGroup"
-                                        DataTextField="name" DataValueField="groupId" Width="180px" OnDataBound="ddlDynamicGroup_DataBound"
-                                        OnSelectedIndexChanged="ddlDynamicGroup_SelectedIndexChanged1">
+                                                      DataTextField="name" DataValueField="groupId" Width="180px" OnDataBound="ddlDynamicGroup_DataBound"
+                                                      OnSelectedIndexChanged="ddlDynamicGroup_SelectedIndexChanged1">
                                     </asp:DropDownList>
                                     <asp:EntityDataSource ID="EntityDynaGroup" runat="server" ConnectionString="name=Entities"
-                                        DefaultContainerName="Entities" EntitySetName="Customer_Dynamic_Group">
+                                                          DefaultContainerName="Entities" EntitySetName="Customer_Dynamic_Group">
                                     </asp:EntityDataSource>
                                     <br />
                                     <asp:ListBox ID="ListBoxDynaSource" runat="server" Width="180px" Height="150px" />
                                     <asp:EntityDataSource ID="EntityDynaData" runat="server" ConnectionString="name=Entities"
-                                        DefaultContainerName="Entities" EntitySetName="Customer_Dynamic">
+                                                          DefaultContainerName="Entities" EntitySetName="Customer_Dynamic">
                                     </asp:EntityDataSource>
                                 </td>
                                 <td width="5px">
@@ -104,7 +103,7 @@
                                 </td>
                                 <td>
                                     <asp:Button ID="btnAdd" runat="server" CssClass="SaveCancelBtn" ValidationGroup="vldGroup1"
-                                        OnClick="btnAdd_Click" />
+                                                OnClick="btnAdd_Click" />
                                     <asp:Button ID="btnRemove" runat="server" CssClass="SaveCancelBtn" OnClick="btnRemove_Click" />
                                 </td>
                             </tr>
@@ -114,7 +113,7 @@
                 <tr>
                     <td>
                         <asp:Button ID="btSave" runat="server" CssClass="SaveCancelBtn" ValidationGroup="vldGroup1"
-                            OnClick="btSaveDynamicMenu_Click" />
+                                    OnClick="btSaveDynamicMenu_Click" />
                         <asp:Button ID="btCancel" runat="server" CssClass="SaveCancelBtn" OnClick="btEditCancelDynamicMenu_Click" />
                     </td>
                 </tr>
@@ -138,7 +137,7 @@
                         <td>
                             <asp:TextBox ID="txtName" runat="server" Width="400px"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfMenuName" runat="server" ControlToValidate="txtName"
-                                ValidationGroup="vldGroup1" ForeColor="Red" Display="Dynamic">(!)</asp:RequiredFieldValidator>
+                                                        ValidationGroup="vldGroup1" ForeColor="Red" Display="Dynamic">(!)</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -157,7 +156,7 @@
                                 <asp:ListItem Value="2"></asp:ListItem>
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlType"
-                                ValidationGroup="vldGroup1" ForeColor="Red" Display="Dynamic">(!)</asp:RequiredFieldValidator>
+                                                        ValidationGroup="vldGroup1" ForeColor="Red" Display="Dynamic">(!)</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -236,7 +235,7 @@
                                 <td>
                                     <asp:TextBox ID="txtUrl" runat="server" Width="250px"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfMenuName0" runat="server" ControlToValidate="txtUrl"
-                                        ForeColor="Red" ValidationGroup="vldGroup1" Display="Dynamic">!</asp:RequiredFieldValidator>
+                                                                ForeColor="Red" ValidationGroup="vldGroup1" Display="Dynamic">!</asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                         </table>
@@ -286,7 +285,7 @@
                                 </td>
                                 <td colspan="2">
                                     <asp:DropDownList ID="ddlThemas" runat="server" DataSourceID="EntityDataSource1"
-                                        DataTextField="name" DataValueField="id" Width="250px">
+                                                      DataTextField="name" DataValueField="id" Width="250px">
                                     </asp:DropDownList>
                                     &nbsp;&nbsp;
                                     <asp:Button ID="btnShowDynamicFieldManager" runat="server" CssClass="SaveCancelBtn" OnClick="btnShowDynamicFieldManagerClick" />
@@ -306,14 +305,14 @@
                             <tr valign="top">
                                 <td>
                                     <%= AdminResource.lbSummary %>&nbsp;/<br/>
-									<%= AdminResource.lbDesc %>
+                                    <%= AdminResource.lbDesc %>
                                 </td>
                                 <td>
                                     :
                                 </td>
                                 <td colspan="2">
                                     <asp:TextBox ID="txtHeader" runat="server" Height="75px" Rows="5" TextMode="MultiLine"
-                                        Width="400px"></asp:TextBox>
+                                                 Width="400px"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
@@ -332,7 +331,7 @@
                         </table>
                         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="vldGroup1" />
                         <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=Entities"
-                            DefaultContainerName="Entities" EntitySetName="TemplatePages">
+                                              DefaultContainerName="Entities" EntitySetName="TemplatePages">
                         </asp:EntityDataSource>
                     </asp:View>
                 </asp:MultiView>
@@ -340,7 +339,7 @@
                     <tr>
                         <td>
                             <asp:Button ID="BtnUpdateMenu" runat="server" CssClass="SaveCancelBtn" OnClick="BtnUpdateMenuClick"
-                                ValidationGroup="vldGroup1" />
+                                        ValidationGroup="vldGroup1" />
                             <asp:Button ID="BtnCancelUpdateMenu" runat="server" CssClass="SaveCancelBtn" OnClick="BtnCancelUpdateMenuClick" />
                         </td>
                     </tr>
@@ -361,6 +360,6 @@
     </asp:View>
 </asp:MultiView>
 <telerik:RadWindow runat="server" Width="600px" Height="600px" VisibleStatusbar="false"
-    ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
-    Modal="true" Behaviors="Close,Move,Resize,Maximize">
+                   ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
+                   Modal="true" Behaviors="Close,Move,Resize,Maximize">
 </telerik:RadWindow>

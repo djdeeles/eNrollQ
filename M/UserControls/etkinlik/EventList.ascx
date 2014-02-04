@@ -34,21 +34,30 @@
             </tr>
             <tr>
                 <td valign="top" >
-                    <a <%#(Convert.ToDateTime(Eval("EndDate")) < DateTime.Now ? "style='text-decoration:line-through;'" : "") %>
-                        href="/m/etkinlik-<%#Eval("id") %>-<%#UrlMapping.cevir(Eval("Name").ToString()) %>">
+                    <a <%#(Convert
+                                                                                                    .
+                                                                                                    ToDateTime
+                                                                                                    (Eval
+                                                                                                         ("EndDate")) <
+                                                                                                DateTime
+                                                                                                    .
+                                                                                                    Now
+                                                                                                    ? "style='text-decoration:line-through;'"
+                                                                                                    : "") %>
+                        href="/m/etkinlik-<%#                                        Eval("id") %>-<%#                                        UrlMapping.cevir(Eval("Name").ToString()) %>">
                         <%#Eval("Name").ToString() %></a>
                 </td>
                 <td valign="top" >
-                    <a style="font-weight: normal ; " <%#(Convert.ToDateTime(Eval("EndDate")) < DateTime.Now ? "style='text-decoration:line-through;'" : "") %>
-                        href="/m/etkinlik-<%#Eval("id") %>-<%#UrlMapping.cevir(Eval("Name").ToString()) %>">
+                    <a style="font-weight: normal;" <%#                (Convert.ToDateTime(Eval("EndDate")) < DateTime.Now ? "style='text-decoration:line-through;'" : "") %>
+                       href="/m/etkinlik-<%#Eval("id") %>-<%#                UrlMapping.cevir(Eval("Name").ToString()) %>">
                         <%#Eval("Description") %></a>
                 </td>
                 <td valign="top" >
-                    <a style="font-weight: normal;" <%#(Convert.ToDateTime(Eval("EndDate")) < DateTime.Now ? "style='text-decoration:line-through;'" : "") %>
-                        href="/m/etkinlik-<%#Eval("id") %>-<%#UrlMapping.cevir(Eval("Name").ToString()) %>">
-                        <%#Convert.ToDateTime(Eval("StartDate")).ToShortDateString() %>
+                    <a style="font-weight: normal;" <%#                (Convert.ToDateTime(Eval("EndDate")) < DateTime.Now ? "style='text-decoration:line-through;'" : "") %>
+                       href="/m/etkinlik-<%#Eval("id") %>-<%#                UrlMapping.cevir(Eval("Name").ToString()) %>">
+                        <%#                Convert.ToDateTime(Eval("StartDate")).ToShortDateString() %>
                         &nbsp;-&nbsp;
-                        <%#Convert.ToDateTime(Eval("EndDate")).ToShortDateString() %></a>
+                        <%#                Convert.ToDateTime(Eval("EndDate")).ToShortDateString() %></a>
                 </td>
             </tr>
             

@@ -13,7 +13,7 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_ChangePassword : UserControl
 {
-    Entities ent = new Entities();
+    private readonly Entities ent = new Entities();
 
     protected override void OnInit(EventArgs e)
     {
@@ -225,7 +225,6 @@ public partial class Admin_adminUserControls_ChangePassword : UserControl
                 {
                     if (HttpContext.Current.User.Identity is FormsIdentity)
                     {
-                        
                         string username = HttpContext.Current.User.Identity.Name;
 
                         var cust = ent.Users.First(p => p.EMail == username);
@@ -253,11 +252,9 @@ public partial class Admin_adminUserControls_ChangePassword : UserControl
                             Session.Clear();
                             Session.Abandon();
                             FormsAuthentication.SignOut();
-                            
                         }
 
                         lblError.Text = string.Empty;
-
                     }
                 }
             }
@@ -270,6 +267,5 @@ public partial class Admin_adminUserControls_ChangePassword : UserControl
         {
             Response.Redirect("~/Login.aspx");
         }
-        
     }
 }

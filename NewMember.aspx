@@ -1,14 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master"
-    CodeBehind="NewMember.aspx.cs" Inherits="eNroll.NewMember" %>
-
+         CodeBehind="NewMember.aspx.cs" Inherits="eNroll.NewMember" %>
 <%@ Import Namespace="Resources" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server"
-    ViewStateMode="Enabled">
+             ViewStateMode="Enabled">
     <script src="App_Themes/mainTheme/js/memberProfile.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("#" + '<%=tbParola.ClientID %>').keyup(function () {
-                $('#result').html(checkStrength($("#" + '<%=tbParola.ClientID %>').val()));
+        $(document).ready(function() {
+            $("#" + '<%= tbParola.ClientID %>').keyup(function() {
+                $('#result').html(checkStrength($("#" + '<%= tbParola.ClientID %>').val()));
             });
         });
     </script>
@@ -28,13 +27,14 @@
                 data: "{}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (msg) {
-                    document.getElementById("<%=tbParola.ClientID %>").value = msg.d;
-                    $('#result').html(checkStrength($("#" + '<%=tbParola.ClientID %>').val()));
+                success: function(msg) {
+                    document.getElementById("<%= tbParola.ClientID %>").value = msg.d;
+                    $('#result').html(checkStrength($("#" + '<%= tbParola.ClientID %>').val()));
                 }
             });
             return "";
         }
+
         function checkStrength(password) {
 
             //initial strength
@@ -44,7 +44,7 @@
             if (password.length < 5) {
                 $('#result').removeClass();
                 $('#result').addClass('short');
-                return '<%=Resources.Resource.msgPasswordTooShort %>';
+                return '<%= Resources.Resource.msgPasswordTooShort %>';
             }
 
             //length is ok, lets continue.
@@ -70,15 +70,15 @@
             if (strength < 2) {
                 $('#result').removeClass();
                 $('#result').addClass('weak');
-                return '<%=Resources.Resource.msgPasswordWeak%>';
+                return '<%= Resources.Resource.msgPasswordWeak %>';
             } else if (strength == 2) {
                 $('#result').removeClass();
                 $('#result').addClass('good');
-                return '<%=Resources.Resource.msgPasswordGood %>';
+                return '<%= Resources.Resource.msgPasswordGood %>';
             } else {
                 $('#result').removeClass();
                 $('#result').addClass('strong');
-                return '<%=Resources.Resource.msgPasswordStrong %>';
+                return '<%= Resources.Resource.msgPasswordStrong %>';
             }
         }
     </script>
@@ -87,46 +87,52 @@
         //g[0] seçilmemiş, g[1] bay,  g[2] bayan
         //m[0] seçilmemiş, m[1] evli, m[2] bekar
         function showHideAboutGender() {
-            var i = document.getElementById("<%=ddlGender.ClientID %>").selectedIndex;
-            var g = document.getElementById("<%=ddlGender.ClientID %>").options;
+            var i = document.getElementById("<%= ddlGender.ClientID %>").selectedIndex;
+            var g = document.getElementById("<%= ddlGender.ClientID %>").options;
 
-            var j = document.getElementById("<%=ddlMaritalStatus.ClientID %>").selectedIndex;
-            var m = document.getElementById("<%=ddlMaritalStatus.ClientID %>").options;
+            var j = document.getElementById("<%= ddlMaritalStatus.ClientID %>").selectedIndex;
+            var m = document.getElementById("<%= ddlMaritalStatus.ClientID %>").options;
 
             if (m[j].index == "0") { // seçilmemiş
-                $("#<%=trMaidenName.ClientID %>").addClass("hideaboutgender");
-                $("#<%=trMarriageDate.ClientID %>").addClass("hideaboutgender");
+                $("#<%= trMaidenName.ClientID %>").addClass("hideaboutgender");
+                $("#<%= trMarriageDate.ClientID %>").addClass("hideaboutgender");
             } else if (m[j].index == "1") { // evli
                 if (g[i].index == "0") { //seçilmemiş
-                    $("#<%=trMaidenName.ClientID %>").addClass("hideaboutgender");
-                    $("#<%=trMarriageDate.ClientID %>").removeClass("hideaboutgender");
+                    $("#<%= trMaidenName.ClientID %>").addClass("hideaboutgender");
+                    $("#<%= trMarriageDate.ClientID %>").removeClass("hideaboutgender");
                 } else if (g[i].index == "1") { // bay
-                    $("#<%=trMaidenName.ClientID %>").addClass("hideaboutgender");
-                    $("#<%=trMarriageDate.ClientID %>").removeClass("hideaboutgender");
+                    $("#<%= trMaidenName.ClientID %>").addClass("hideaboutgender");
+                    $("#<%= trMarriageDate.ClientID %>").removeClass("hideaboutgender");
                 } else if (g[i].index == "2") { // bayan
-                    $("#<%=trMaidenName.ClientID %>").removeClass("hideaboutgender");
-                    $("#<%=trMarriageDate.ClientID %>").removeClass("hideaboutgender");
+                    $("#<%= trMaidenName.ClientID %>").removeClass("hideaboutgender");
+                    $("#<%= trMarriageDate.ClientID %>").removeClass("hideaboutgender");
                 }
             } else if (m[j].index == "2") { // bekar
-                $("#<%=trMaidenName.ClientID %>").addClass("hideaboutgender");
-                $("#<%=trMarriageDate.ClientID %>").addClass("hideaboutgender");
+                $("#<%= trMaidenName.ClientID %>").addClass("hideaboutgender");
+                $("#<%= trMarriageDate.ClientID %>").addClass("hideaboutgender");
             }
         }
     </script>
     <style type="text/css">
-        fieldset { border: 1px #ccc solid; margin: 0 0 10px 0; padding: 10px; }
+        fieldset {
+            border: 1px #ccc solid;
+            margin: 0 0 10px 0;
+            padding: 10px;
+        }
+
         legend { font-weight: bold; }
+
         .hideaboutgender { display: none; }
     </style>
     <h1>
-        <%=Resources.Resource.lbNewMembership%>
+        <%= Resources.Resource.lbNewMembership %>
     </h1>
 
     <asp:MultiView ID="mvCreateMember" runat="server">
         <asp:View ID="vPersonalDetail" runat="server">
             <fieldset>
                 <legend>
-                    <%=Resources.Resource.lbPersonalInfo %></legend>
+                    <%= Resources.Resource.lbPersonalInfo %></legend>
                 <table cellpadding="3">
                     <tr>
                         <td>
@@ -138,7 +144,7 @@
                         <td>
                             <asp:TextBox ID="tbName" runat="server" Width="200px" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbName"
-                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
+                                                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
                         </td>
                     </tr>
                     <tr>
@@ -151,7 +157,7 @@
                         <td>
                             <asp:TextBox ID="tbSurname" runat="server" Width="200px" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbSurname"
-                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
+                                                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
                         </td>
                     </tr>
                     <tr>
@@ -164,9 +170,9 @@
                         <td>
                             <asp:TextBox ID="tbEPosta" runat="server" Width="200px" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbEPosta"
-                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="tbEPosta"
-                                Display="Dynamic" ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                                            Display="Dynamic" ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                         </td>
                     </tr>
                     <tr>
@@ -178,28 +184,28 @@
                         </td>
                         <td>
                             <asp:TextBox ID="tbParola" runat="server" Width="200px"></asp:TextBox>
-                            <input id="iGeneratePassword" type="button" value="<%=Resources.AdminResource.lbGeneratePassword%>"
-                                class="button" onclick="generatePassword();return false;" />
+                            <input id="iGeneratePassword" type="button" value="<%= AdminResource.lbGeneratePassword %>"
+                                   class="button" onclick="generatePassword();return false; " />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbParola"
-                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
+                                                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
                             <label id="result"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%=Resources.Resource.lbTC %>
+                            <%= Resources.Resource.lbTC %>
                         </td>
                         <td>
                             :
                         </td>
                         <td>
                             <asp:TextBox ID="tbTC" runat="server" onkeydown="return onlyNumber(event);" MaxLength="11"
-                                Width="200px"></asp:TextBox>
+                                         Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbGender%>
+                            <%= Resources.Resource.lbGender %>
                         </td>
                         <td>
                             :
@@ -210,7 +216,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbBloodType%>
+                            <%= Resources.Resource.lbBloodType %>
                         </td>
                         <td>
                             :
@@ -221,7 +227,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbMaritalStatus%>
+                            <%= Resources.Resource.lbMaritalStatus %>
                         </td>
                         <td>
                             :
@@ -250,29 +256,29 @@
                         </td>
                         <td>
                             <telerik:RadDatePicker ID="dpMarriageDate" MaxDate="01-01-2200" MinDate="01-01-1900"
-                                runat="server" ZIndex="30001">
+                                                   runat="server" ZIndex="30001">
                             </telerik:RadDatePicker>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbBirthDate%>
+                            <%= Resources.Resource.lbBirthDate %>
                         </td>
                         <td>
                             :
                         </td>
                         <td>
                             <telerik:RadDatePicker ID="dpBirthDate" runat="server" MaxDate="01-01-2200" MinDate="01-01-1900"
-                                ZIndex="30001">
+                                                   ZIndex="30001">
                             </telerik:RadDatePicker>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ForeColor="Red"
-                                ControlToValidate="dpBirthDate" ValidationGroup="g1" ErrorMessage="!">
+                                                        ControlToValidate="dpBirthDate" ValidationGroup="g1" ErrorMessage="!">
                             </asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbBirthPlace%>
+                            <%= Resources.Resource.lbBirthPlace %>
                         </td>
                         <td>
                             :
@@ -283,7 +289,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbMemberFoundation%>
+                            <%= Resources.Resource.lbMemberFoundation %>
                         </td>
                         <td>
                             :
@@ -294,7 +300,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbGsmNo%>
+                            <%= Resources.Resource.lbGsmNo %>
                         </td>
                         <td>
                             :
@@ -305,7 +311,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbLastSchool%>
+                            <%= Resources.Resource.lbLastSchool %>
                         </td>
                         <td>
                             :
@@ -316,14 +322,14 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbLastSchoolGraduateDate%>
+                            <%= Resources.Resource.lbLastSchoolGraduateDate %>
                         </td>
                         <td>
                             :
                         </td>
                         <td>
                             <telerik:RadMonthYearPicker ID="dpLastSchoolGraduateDate" runat="server" MaxDate="01-2200"
-                                MinDate="01-1900">
+                                                        MinDate="01-1900">
                                 <DateInput DateFormat="yyyy" DisplayDateFormat="yyyy">
                                 </DateInput>
                             </telerik:RadMonthYearPicker>
@@ -334,7 +340,7 @@
                     <tr>
                         <td>
                             <asp:Button ID="btnSavePersonalInfo" runat="server" CssClass="button" OnClick="BtnSavePersonalInfoClick"
-                                ValidationGroup="g1" />
+                                        ValidationGroup="g1" />
                         </td>
                     </tr>
                     <tr>
@@ -348,11 +354,11 @@
         <asp:View ID="vMemberInfo" runat="server">
             <fieldset>
                 <legend>
-                    <%=Resources.Resource.lbMembershipInfo %></legend>
+                    <%= Resources.Resource.lbMembershipInfo %></legend>
                 <table cellpadding="3">
                     <tr>
                         <td>
-                            <%=Resources.Resource.lbMemberNumber %>
+                            <%= Resources.Resource.lbMemberNumber %>
                         </td>
                         <td>
                             :
@@ -363,7 +369,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%=Resources.Resource.lbRelationType %>
+                            <%= Resources.Resource.lbRelationType %>
                         </td>
                         <td>
                             :
@@ -371,25 +377,25 @@
                         <td>
                             <asp:DropDownList runat="server" ID="ddlMembershipRelType" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlMembershipRelType"
-                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g4" Display="Dynamic" />
+                                                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g4" Display="Dynamic" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%=Resources.Resource.lbEnterDate %>
+                            <%= Resources.Resource.lbEnterDate %>
                         </td>
                         <td>
                             :
                         </td>
                         <td>
                             <telerik:RadDatePicker ID="dpMembershipDate" MaxDate="01-01-2200" MinDate="01-01-1900"
-                                runat="server" ZIndex="30001">
+                                                   runat="server" ZIndex="30001">
                             </telerik:RadDatePicker>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%=Resources.Resource.lbSpecialNumber %>
+                            <%= Resources.Resource.lbSpecialNumber %>
                         </td>
                         <td>
                             :
@@ -400,7 +406,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%=Resources.Resource.lbTerm %>
+                            <%= Resources.Resource.lbTerm %>
                         </td>
                         <td>
                             :
@@ -414,7 +420,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%=Resources.Resource.lbTermLeader%>
+                            <%= Resources.Resource.lbTermLeader %>
                         </td>
                         <td>
                             :
@@ -429,7 +435,7 @@
                         <td>
                             <asp:Button ID="btnMemberInfoGoBack" runat="server" CssClass="button" OnClick="BtnMemberInfoGoBackClick" />
                             <asp:Button ID="btnSaveMemberInfo" runat="server" CssClass="button" OnClick="BtnSaveMemberInfoClick"
-                                ValidationGroup="g4" />
+                                        ValidationGroup="g4" />
                         </td>
                     </tr>
                     <tr>
@@ -443,11 +449,11 @@
         <asp:View ID="vHomeDetail" runat="server">
             <fieldset>
                 <legend>
-                    <%=Resources.Resource.lbHomeInfo%></legend>
+                    <%= Resources.Resource.lbHomeInfo %></legend>
                 <table cellpadding="3">
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbCountry%>
+                            <%= Resources.Resource.lbCountry %>
                         </td>
                         <td>
                             :
@@ -458,7 +464,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbCity%>
+                            <%= Resources.Resource.lbCity %>
                         </td>
                         <td>
                             :
@@ -469,7 +475,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbTown%>
+                            <%= Resources.Resource.lbTown %>
                         </td>
                         <td>
                             :
@@ -480,7 +486,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbAddress%>
+                            <%= Resources.Resource.lbAddress %>
                         </td>
                         <td>
                             :
@@ -491,7 +497,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbZipCode%>
+                            <%= Resources.Resource.lbZipCode %>
                         </td>
                         <td>
                             :
@@ -502,14 +508,14 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbPhone%>
+                            <%= Resources.Resource.lbPhone %>
                         </td>
                         <td style="width: 10px;">
                             :
                         </td>
                         <td>
                             <asp:TextBox ID="tbHomePhone" onkeydown="return onlyNumber(event);" runat="server"
-                                Width="200px"></asp:TextBox>
+                                         Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                 </table>
@@ -518,7 +524,7 @@
                         <td>
                             <asp:Button ID="btnHomeInfoGoBack" runat="server" CssClass="button" OnClick="BtnHomeInfoGoBackClick" />
                             <asp:Button ID="btnSaveHomeInfo" runat="server" CssClass="button" OnClick="BtnSaveHomeInfoClick"
-                                ValidationGroup="g2" />
+                                        ValidationGroup="g2" />
                         </td>
                     </tr>
                     <tr>
@@ -532,11 +538,11 @@
         <asp:View ID="vJobDetail" runat="server">
             <fieldset>
                 <legend>
-                    <%=Resources.Resource.lbWorkInfo%></legend>
+                    <%= Resources.Resource.lbWorkInfo %></legend>
                 <table cellpadding="3">
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbCountry%>
+                            <%= Resources.Resource.lbCountry %>
                         </td>
                         <td>
                             :
@@ -547,7 +553,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbCity%>
+                            <%= Resources.Resource.lbCity %>
                         </td>
                         <td>
                             :
@@ -558,7 +564,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbTown%>
+                            <%= Resources.Resource.lbTown %>
                         </td>
                         <td>
                             :
@@ -569,7 +575,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbAddress%>
+                            <%= Resources.Resource.lbAddress %>
                         </td>
                         <td>
                             :
@@ -580,7 +586,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbZipCode%>
+                            <%= Resources.Resource.lbZipCode %>
                         </td>
                         <td>
                             :
@@ -591,31 +597,31 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbPhone%>
+                            <%= Resources.Resource.lbPhone %>
                         </td>
                         <td style="width: 10px;">
                             :
                         </td>
                         <td>
                             <asp:TextBox ID="tbWorkPhone" onkeydown="return onlyNumber(event);" runat="server"
-                                Width="200px"></asp:TextBox>
+                                         Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbFax%>
+                            <%= Resources.Resource.lbFax %>
                         </td>
                         <td>
                             :
                         </td>
                         <td>
                             <asp:TextBox ID="tbWorkFax" onkeydown="return onlyNumber(event);" runat="server"
-                                Width="200px"></asp:TextBox>
+                                         Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbJobSector%>
+                            <%= Resources.Resource.lbJobSector %>
                         </td>
                         <td>
                             :
@@ -626,7 +632,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbJob%>
+                            <%= Resources.Resource.lbJob %>
                         </td>
                         <td>
                             :
@@ -637,7 +643,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbWorkTitle%>
+                            <%= Resources.Resource.lbWorkTitle %>
                         </td>
                         <td>
                             :
@@ -648,7 +654,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <%= Resources.Resource.lbWorkCorporation%>
+                            <%= Resources.Resource.lbWorkCorporation %>
                         </td>
                         <td>
                             :
@@ -663,7 +669,7 @@
                         <td>
                             <asp:Button ID="btnJobInfoGoBack" runat="server" CssClass="button" OnClick="BtnJobInfoGoBackClick" />
                             <asp:Button ID="btnSaveJobInfo" runat="server" CssClass="button" OnClick="BtnSaveJobInfoClick"
-                                ValidationGroup="g3" />
+                                        ValidationGroup="g3" />
                         </td>
                     </tr>
                     <tr>

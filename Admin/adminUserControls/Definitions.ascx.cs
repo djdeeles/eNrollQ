@@ -1,22 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using Enroll.Managers;
 using Resources;
-using eNroll.Helpers;
 
 namespace eNroll.Admin.adminUserControls
 {
-    public partial class Definitions : System.Web.UI.UserControl
+    public partial class Definitions : UserControl
     {
+        #region SelectedProccess enum
+
         public enum SelectedProccess
         {
             CorporationRelationType = 1,
             CountryCityTown = 2
         }
+
+        #endregion
+
         protected override void OnInit(EventArgs e)
         {
             Session["currentPath"] = AdminResource.lbDefinitions;
@@ -29,13 +29,14 @@ namespace eNroll.Admin.adminUserControls
                                            : vNoAuth);
 
             #region resources
+
             btnCorporationRelType.Text = AdminResource.lbCorporationRelTypes;
             btnBloodType.Text = AdminResource.lbBloodType;
             btnCurrency.Text = AdminResource.lbCurrencyUnit;
             btnDuesType.Text = AdminResource.lbDuesType;
-            btnServiceType.Text = AdminResource.lbServiceType;
             btnTaxType.Text = AdminResource.lbTaxType;
-            btnCountryCityTown.Text = string.Format("{0}/{1}/{2}", AdminResource.lbCountry, AdminResource.lbCity, AdminResource.lbTown);
+            btnCountryCityTown.Text = string.Format("{0}/{1}/{2}", AdminResource.lbCountry, AdminResource.lbCity,
+                                                    AdminResource.lbTown);
             btnSectorJob.Text = string.Format("{0}/{1}", AdminResource.lbJobSector, AdminResource.lbJob);
 
             #endregion
@@ -69,11 +70,6 @@ namespace eNroll.Admin.adminUserControls
         protected void BtnDuesType_OnClick(object sender, EventArgs e)
         {
             mvDefinations.SetActiveView(vDefDues);
-        }
-
-        protected void BtnServiceType_OnClick(object sender, EventArgs e)
-        {
-            mvDefinations.SetActiveView(vDefServiceType);
         }
 
         protected void BtnTaxType_OnClick(object sender, EventArgs e)

@@ -9,6 +9,7 @@
     <head id="Head1" runat="server">
         <title>
             <%= GetSiteTitle(EnrollAdminContext.Current.DataLanguage.LanguageId) %></title>
+        <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js" type="text/javascript"></script>
         <script src="js/admin.js" type="text/javascript"></script>
     </head>
     <body>

@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListsManagement.ascx.cs"
-    Inherits="eNroll.Admin.adminUserControls.ListsManagement" %>
+            Inherits="eNroll.Admin.adminUserControls.ListsManagement" %>
 <%@ Import Namespace="Resources" %>
 <%@ Register TagPrefix="uc1" TagName="Rtb" Src="~/Admin/adminUserControls/Rtb.ascx" %>
 <asp:MultiView runat="server" ID="mvAuth">
@@ -29,7 +29,7 @@
                                         <td>
                                             <asp:TextBox ID="txtName" runat="server" Width="250px"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName"
-                                                ForeColor="Red" ValidationGroup="vg1">(!)</asp:RequiredFieldValidator>
+                                                                        ForeColor="Red" ValidationGroup="vg1">(!)</asp:RequiredFieldValidator>
                                         </td>
                                         <td>
                                             &nbsp;
@@ -70,7 +70,7 @@
                                         </td>
                                         <td>
                                             <asp:Button ID="btnSave" runat="server" CssClass="SaveCancelBtn" OnClick="BtnSaveClick"
-                                                ValidationGroup="vg1" />
+                                                        ValidationGroup="vg1" />
                                             <asp:Button ID="btnCancel" runat="server" CssClass="SaveCancelBtn" OnClick="BtnCancelClick" />
                                         </td>
                                         <td>
@@ -92,7 +92,7 @@
                                         <td>
                                             <asp:TextBox ID="txtNameEdit" runat="server" Width="250px"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtNameEdit"
-                                                runat="server" ForeColor="Red" ValidationGroup="vg2">(!)</asp:RequiredFieldValidator>
+                                                                        runat="server" ForeColor="Red" ValidationGroup="vg2">(!)</asp:RequiredFieldValidator>
                                         </td>
                                         <td>
                                             &nbsp;
@@ -134,7 +134,7 @@
                                         </td>
                                         <td>
                                             <asp:Button ID="btnEditSave" runat="server" CssClass="SaveCancelBtn" OnClick="BtnEditSaveClick"
-                                                ValidationGroup="vg2" />
+                                                        ValidationGroup="vg2" />
                                             <asp:Button ID="btnEditCancel" runat="server" CssClass="SaveCancelBtn" OnClick="BtnEditCancelClick" />
                                         </td>
                                     </tr>
@@ -148,12 +148,12 @@
             <tr>
                 <td>
                     <asp:GridView ID="gvLists" runat="server" AutoGenerateColumns="False" DataKeyNames="Id"
-                        CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                        SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-                        PageSize="15" AllowPaging="True" SortedAscendingCellStyle-CssClass="sortasc"
-                        SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
-                        SelectedRowStyle="selected" Width="100%" CellPadding="4" ForeColor="#333333"
-                        GridLines="None" OnRowCommand="GvListsRowCommand" AllowSorting="True" OnRowDataBound="GvListsRowDataBound">
+                                  CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                                  SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                                  PageSize="15" AllowPaging="True" SortedAscendingCellStyle-CssClass="sortasc"
+                                  SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
+                                  SelectedRowStyle="selected" Width="100%" CellPadding="4" ForeColor="#333333"
+                                  GridLines="None" OnRowCommand="GvListsRowCommand" AllowSorting="True" OnRowDataBound="GvListsRowDataBound">
                         <EmptyDataTemplate>
                             <%= AdminResource.lbNoRecord %>
                         </EmptyDataTemplate>
@@ -161,10 +161,10 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <asp:ImageButton ID="LinkButtonGuncelle" runat="server" ImageUrl="~/Admin/images/icon/edit.png"
-                                        CommandArgument='<%#Eval
+                                                     CommandArgument='<%#Eval
                                                                                                    ("Id") %>' CommandName="Guncelle" />
                                     <asp:ImageButton ID="LinkButtonSil" runat="server" ImageUrl="~/Admin/images/icon/cop.png"
-                                        CommandArgument='<%#Eval("Id") %>' CommandName="Sil" />
+                                                     CommandArgument='<%#Eval("Id") %>' CommandName="Sil" />
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="75px" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
@@ -172,7 +172,7 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lbListSec" runat="server" CausesValidation="False" CommandName="Select"
-                                        CommandArgument='<%#Eval("Id") %>' Text='<%#Bind("Name") %>' OnClick="LbListSecClick" />
+                                                    CommandArgument='<%#Eval("Id") %>' Text='<%#Bind("Name") %>' OnClick="LbListSecClick" />
                                 </ItemTemplate>
                                 <EditItemTemplate>
                                     <asp:TextBox ID="tbEditName" runat="server" Text='<%#Eval("albumName") %>'></asp:TextBox>
@@ -185,19 +185,19 @@
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:CheckBoxField DataField="State" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left"
-                                SortExpression="State">
+                                               SortExpression="State">
                                 <HeaderStyle HorizontalAlign="Left" Width="40px" />
                                 <ItemStyle HorizontalAlign="Left" Width="40px" />
                             </asp:CheckBoxField>
                         </Columns>
                     </asp:GridView>
                     <asp:EntityDataSource ID="EntityDataSourceListManagement" runat="server" ConnectionString="name=Entities"
-                        DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="Lists"
-                        EntityTypeFilter="" Select="" EnableDelete="True" EnableUpdate="True" Where="it.LanguageId=@languageId"
-                        OrderBy="it.UpdatedTime desc">
+                                          DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="Lists"
+                                          EntityTypeFilter="" Select="" EnableDelete="True" EnableUpdate="True" Where="it.LanguageId=@languageId"
+                                          OrderBy="it.UpdatedTime desc">
                         <WhereParameters>
                             <asp:ControlParameter ControlID="hfLanguageId" Name="languageId" PropertyName="Value"
-                                DbType="Int32" />
+                                                  DbType="Int32" />
                         </WhereParameters>
                     </asp:EntityDataSource>
                     <asp:HiddenField ID="hfLanguageId" runat="server" />
@@ -221,7 +221,7 @@
                                                     </td>
                                                     <td>
                                                         <asp:ImageButton ID="ImageButton2Ara" runat="server" ImageUrl="~/Admin/images/icon/ara.png"
-                                                            OnClick="ImageButton2Ara_Click" />
+                                                                         OnClick="ImageButton2Ara_Click" />
                                                     </td>
                                                 </tr>
                                             </table>
@@ -248,8 +248,8 @@
                                         <td>
                                             <asp:TextBox ID="txtListDataTitle" runat="server" Width="150px"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtListDataTitle"
-                                                ForeColor="Red" ValidationGroup="vg1">
-                                            (!)
+                                                                        ForeColor="Red" ValidationGroup="vg1">
+                                                (!)
                                             </asp:RequiredFieldValidator>
                                         </td>
                                         <td>
@@ -266,8 +266,8 @@
                                         <td>
                                             <asp:TextBox ID="txtListDataDesc" TextMode="MultiLine" runat="server" Width="150px"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtListDataDesc"
-                                                ForeColor="Red" ValidationGroup="vg1">
-                                            (!)
+                                                                        ForeColor="Red" ValidationGroup="vg1">
+                                                (!)
                                             </asp:RequiredFieldValidator>
                                         </td>
                                         <td>
@@ -327,7 +327,7 @@
                                         </td>
                                         <td>
                                             <asp:Button ID="BtnListDataSave" runat="server" CssClass="SaveCancelBtn" OnClick="BtnListDataSaveClick"
-                                                ValidationGroup="vg1" />
+                                                        ValidationGroup="vg1" />
                                             <asp:Button ID="BtnListDataCancel" runat="server" CssClass="SaveCancelBtn" OnClick="BtnListDataCancelClick" />
                                         </td>
                                         <td>
@@ -349,7 +349,7 @@
                                         <td>
                                             <asp:TextBox ID="txtListDataTitleEdit" runat="server" Width="150px"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txtListDataTitleEdit"
-                                                runat="server" ForeColor="Red" ValidationGroup="vg2">(!)</asp:RequiredFieldValidator>
+                                                                        runat="server" ForeColor="Red" ValidationGroup="vg2">(!)</asp:RequiredFieldValidator>
                                         </td>
                                         <td>
                                             &nbsp;
@@ -365,8 +365,8 @@
                                         <td>
                                             <asp:TextBox ID="txtListDataDescEdit" TextMode="MultiLine" runat="server" Width="150px"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtListDataDescEdit"
-                                                ForeColor="Red" ValidationGroup="vg1">
-                                            (!)
+                                                                        ForeColor="Red" ValidationGroup="vg1">
+                                                (!)
                                             </asp:RequiredFieldValidator>
                                         </td>
                                         <td>
@@ -427,7 +427,7 @@
                                         </td>
                                         <td>
                                             <asp:Button ID="BtnListDataEditSave" runat="server" CssClass="SaveCancelBtn" OnClick="BtnListDataEditSaveClick"
-                                                ValidationGroup="vg2" />
+                                                        ValidationGroup="vg2" />
                                             <asp:Button ID="BtnListDataEditCancel" runat="server" CssClass="SaveCancelBtn" OnClick="BtnListDataEditCancelClick" />
                                         </td>
                                     </tr>
@@ -441,12 +441,12 @@
             <tr>
                 <td>
                     <asp:GridView ID="gvListData" runat="server" AutoGenerateColumns="False" DataKeyNames="Id"
-                        CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                        SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-                        SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
-                        EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
-                        PageSize="15" AllowPaging="True" Width="100%" CellPadding="4" ForeColor="#333333"
-                        GridLines="None" OnRowCommand="GvListDataRowCommand" AllowSorting="True" OnRowDataBound="GvListDataRowDataBound">
+                                  CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                                  SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                                  SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
+                                  EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
+                                  PageSize="15" AllowPaging="True" Width="100%" CellPadding="4" ForeColor="#333333"
+                                  GridLines="None" OnRowCommand="GvListDataRowCommand" AllowSorting="True" OnRowDataBound="GvListDataRowDataBound">
                         <EmptyDataTemplate>
                             <%= AdminResource.lbNoRecord %>
                         </EmptyDataTemplate>
@@ -454,9 +454,9 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <asp:ImageButton ID="LinkButtonGuncelle" runat="server" ImageUrl="~/Admin/images/icon/edit.png"
-                                        CommandArgument='<%#Eval("Id") %>' CommandName="Guncelle" />
+                                                     CommandArgument='<%#Eval("Id") %>' CommandName="Guncelle" />
                                     <asp:ImageButton ID="lbSil" runat="server" ImageUrl="~/Admin/images/icon/cop.png"
-                                        CommandArgument='<%#Eval("Id") %>' CommandName="Sil" />
+                                                     CommandArgument='<%#Eval("Id") %>' CommandName="Sil" />
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="75px" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
@@ -478,23 +478,23 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <a href='<%#                                        Eval("Image").ToString().Replace("~", "..") %>'
-                                        rel="prettyPhoto">
-                                        <asp:Image ID="Image1" runat="server" Width="50px" ImageUrl='<%#Bind("ThumbnailPath") %>' /></a>
+                                       rel="prettyPhoto">
+                                        <asp:Image ID="Image1" runat="server" Width="50px" ImageUrl='<%#                                        Bind("ThumbnailPath") %>' /></a>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="50px" />
                                 <ItemStyle Width="50px" HorizontalAlign="Left" />
                             </asp:TemplateField>
                             <asp:CheckBoxField DataField="State" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left"
-                                SortExpression="State">
+                                               SortExpression="State">
                                 <HeaderStyle HorizontalAlign="Left" Width="40px" />
                                 <ItemStyle HorizontalAlign="Left" Width="40px" />
                             </asp:CheckBoxField>
                         </Columns>
                     </asp:GridView>
                     <asp:EntityDataSource ID="EntityDataSourceListData" runat="server" ConnectionString="name=Entities"
-                        DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="ListData"
-                        EntityTypeFilter="" Select="" EnableDelete="True" EnableUpdate="True" Where="it.ListId=@ListId"
-                        OrderBy="it.UpdatedTime desc">
+                                          DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="ListData"
+                                          EntityTypeFilter="" Select="" EnableDelete="True" EnableUpdate="True" Where="it.ListId=@ListId"
+                                          OrderBy="it.UpdatedTime desc">
                         <WhereParameters>
                             <asp:Parameter Name="ListId" DefaultValue="0" DbType="Int32" />
                         </WhereParameters>
@@ -517,6 +517,6 @@
     </asp:View>
 </asp:MultiView>
 <telerik:RadWindow runat="server" Width="600px" Height="600px" VisibleStatusbar="false"
-    ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
-    Modal="true" Behaviors="Close,Move,Resize,Maximize">
+                   ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
+                   Modal="true" Behaviors="Close,Move,Resize,Maximize">
 </telerik:RadWindow>

@@ -4,11 +4,11 @@ using System.Xml;
 using eNroll.App_Data;
 
 /// <summary>
-///   Summary description for GetCurrency
+/// 	Summary description for GetCurrency
 /// </summary>
 public class EnrollCurrency
 {
-    private static Entities _entities = new Entities();
+    private static readonly Entities _entities = new Entities();
     private readonly double avroalis;
     private readonly double avrosatis;
     private readonly double caprazkur;

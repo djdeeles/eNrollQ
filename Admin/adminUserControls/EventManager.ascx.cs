@@ -11,7 +11,7 @@ using eNroll.Helpers;
 
 public partial class Uye_UserControls_EventManager : UserControl
 {
-    Entities ent = new Entities();
+    private readonly Entities ent = new Entities();
 
     protected override void OnInit(EventArgs e)
     {
@@ -73,8 +73,9 @@ public partial class Uye_UserControls_EventManager : UserControl
                         {
                             if (tpEndTime.SelectedDate != null)
                             {
-                                etkinlik.EndDate = Convert.ToDateTime(dpEndDate.SelectedDate.Value.ToShortDateString() + " " +
-                                                                      tpEndTime.SelectedDate.Value.ToShortTimeString());
+                                etkinlik.EndDate =
+                                    Convert.ToDateTime(dpEndDate.SelectedDate.Value.ToShortDateString() + " " +
+                                                       tpEndTime.SelectedDate.Value.ToShortTimeString());
                             }
                             else
                             {
@@ -95,7 +96,7 @@ public partial class Uye_UserControls_EventManager : UserControl
             }
             etkinlik.Name = txtName.Text;
             etkinlik.Description = txtDesc.Text;
-            var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+            var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
             etkinlik.Details = radEditor.Content;
 
             etkinlik.State = cbActive.Checked;
@@ -159,7 +160,7 @@ public partial class Uye_UserControls_EventManager : UserControl
         Temizle();
         TextBox1Baslik.Text = Etkinlik.Name;
         TextBox2Ozet.Text = Etkinlik.Description;
-        var radEditor = ((RadEditor)Rtb2.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb2.FindControl("RadEditor1"));
         radEditor.Content = Etkinlik.Details;
         editDpStartDate.SelectedDate = Etkinlik.StartDate;
         editTpStartTime.SelectedDate = Etkinlik.StartDate;
@@ -177,10 +178,10 @@ public partial class Uye_UserControls_EventManager : UserControl
         txtDesc.Text = string.Empty;
         TextBox2Ozet.Text = string.Empty;
 
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
         radEditor.Content = string.Empty;
 
-        var radEditor2 = ((RadEditor)Rtb2.FindControl("RadEditor1"));
+        var radEditor2 = ((RadEditor) Rtb2.FindControl("RadEditor1"));
         radEditor2.Content = string.Empty;
 
         cbActive.Checked = true;
@@ -206,7 +207,7 @@ public partial class Uye_UserControls_EventManager : UserControl
             var etkinlik = ent.Events.First(p => p.id == etkinlikId);
             etkinlik.Name = TextBox1Baslik.Text;
             etkinlik.Description = TextBox2Ozet.Text;
-            var radEditor = ((RadEditor)Rtb2.FindControl("RadEditor1"));
+            var radEditor = ((RadEditor) Rtb2.FindControl("RadEditor1"));
             etkinlik.Details = radEditor.Content;
             if (editDpStartDate.SelectedDate != null)
             {
@@ -269,7 +270,7 @@ public partial class Uye_UserControls_EventManager : UserControl
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var deleteButton = (ImageButton)e.Row.FindControl("btnDelete");
+                var deleteButton = (ImageButton) e.Row.FindControl("btnDelete");
                 deleteButton.OnClientClick = "return confirm('" + AdminResource.lbDeletingQuestion + "')";
             }
         }
@@ -281,14 +282,13 @@ public partial class Uye_UserControls_EventManager : UserControl
 
     protected void ImageButton2Ara_Click(object sender, ImageClickEventArgs e)
     {
-
         try
         {
             var aranan = txtAra.Text;
 
             dsEvents.Where = "it.languageId=" +
-                                      EnrollAdminContext.Current.DataLanguage.LanguageId.ToString() +
-                                      " and (it.Name like '%" + aranan + "%' OR it.Description like '%" + aranan + "%')";
+                             EnrollAdminContext.Current.DataLanguage.LanguageId.ToString() +
+                             " and (it.Name like '%" + aranan + "%' OR it.Description like '%" + aranan + "%')";
             dsEvents.DataBind();
             gvEventList.DataBind();
         }

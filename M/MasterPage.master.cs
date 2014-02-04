@@ -10,11 +10,13 @@ using eNroll.App_Data;
 
 public partial class m_MasterPage : MasterPage
 {
-    private Entities _entities = new Entities();
+    private readonly Entities _entities = new Entities();
+
     protected override void OnInit(EventArgs e)
     {
-
-        if ((!Request.RawUrl.Contains("admin")) && ((_entities.SiteGeneralInfo.FirstOrDefault(p => p.State == false) != null) && !HttpContext.Current.User.Identity.IsAuthenticated))
+        if ((!Request.RawUrl.Contains("admin")) &&
+            ((_entities.SiteGeneralInfo.FirstOrDefault(p => p.State == false) != null) &&
+             !HttpContext.Current.User.Identity.IsAuthenticated))
         {
             Response.Redirect("../Maintenance.aspx");
         }
@@ -61,7 +63,7 @@ public partial class m_MasterPage : MasterPage
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureName);
             Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureName);
 
-            string[] ReqUrl = Request.RawUrl.Split('-');
+            var ReqUrl = Request.RawUrl.Split('-');
             param1 = ReqUrl[0].Trim('/');
             param2 = ReqUrl[1].Trim('/');
             switch (param1)

@@ -76,9 +76,9 @@ public partial class UserControls_ProductDetails : UserControl
 
             if (DataList1.Visible && resimKontrol > 1)
             {
-                IQueryable<Product_Images> Resimler = from q in ent.Product_Images
-                                                      where q.ProductId == id
-                                                      select q;
+                var Resimler = from q in ent.Product_Images
+                               where q.ProductId == id
+                               select q;
                 if (Resimler.Count() != 0)
                 {
                     DataList1.DataSource = Resimler;

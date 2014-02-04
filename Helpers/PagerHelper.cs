@@ -2,7 +2,7 @@
 using Resources;
 
 /// <summary>
-///   Summary description for Localizations
+/// 	Summary description for Localizations
 /// </summary>
 public class Localizations
 {

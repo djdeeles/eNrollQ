@@ -277,6 +277,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Work will be invoiced Entry.
+        /// </summary>
+        internal static string lbAddToBeInvoicingService {
+            get {
+                return ResourceManager.GetString("lbAddToBeInvoicingService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Users.
         /// </summary>
         internal static string lbAddUsers {
@@ -547,6 +556,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Multiple Files.
+        /// </summary>
+        internal static string lbbtnNewMultipleImage {
+            get {
+                return ResourceManager.GetString("lbbtnNewMultipleImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calender.
         /// </summary>
         internal static string lbCalender {
@@ -741,6 +759,15 @@ namespace Resources {
         internal static string lbConfirmCancelInvoice {
             get {
                 return ResourceManager.GetString("lbConfirmCancelInvoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The service will be invoiced. Do you want to continue?.
+        /// </summary>
+        internal static string lbConfirmContinueToInvoice {
+            get {
+                return ResourceManager.GetString("lbConfirmContinueToInvoice", resourceCulture);
             }
         }
         
@@ -2158,6 +2185,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hour.
+        /// </summary>
+        internal static string lbHour {
+            get {
+                return ResourceManager.GetString("lbHour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Content.
         /// </summary>
         internal static string lbIcerik {
@@ -2221,6 +2257,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Intro Message.
+        /// </summary>
+        internal static string lbIntroLightBox {
+            get {
+                return ResourceManager.GetString("lbIntroLightBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Members.
         /// </summary>
         internal static string lbInvalidMembers {
@@ -2271,6 +2316,24 @@ namespace Resources {
         internal static string lbInvoiceDate {
             get {
                 return ResourceManager.GetString("lbInvoiceDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invoice Number.
+        /// </summary>
+        internal static string lbInvoiceNumber {
+            get {
+                return ResourceManager.GetString("lbInvoiceNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invoices.
+        /// </summary>
+        internal static string lbInvoices {
+            get {
+                return ResourceManager.GetString("lbInvoices", resourceCulture);
             }
         }
         
@@ -3616,6 +3679,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cheque.
+        /// </summary>
+        internal static string lbPaymentType5 {
+            get {
+                return ResourceManager.GetString("lbPaymentType5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Personal Info.
         /// </summary>
         internal static string lbPersonalInfo {
@@ -3796,6 +3868,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Purchase invoice.
+        /// </summary>
+        internal static string lbPurchaseInvoice {
+            get {
+                return ResourceManager.GetString("lbPurchaseInvoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Question.
         /// </summary>
         internal static string lbQuestion {
@@ -3900,6 +3981,15 @@ namespace Resources {
         internal static string lbRememberMe {
             get {
                 return ResourceManager.GetString("lbRememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repeat Display Timeout.
+        /// </summary>
+        internal static string lbRepeatDisplayTimeout {
+            get {
+                return ResourceManager.GetString("lbRepeatDisplayTimeout", resourceCulture);
             }
         }
         
@@ -4017,6 +4107,15 @@ namespace Resources {
         internal static string lbRssUrl {
             get {
                 return ResourceManager.GetString("lbRssUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sale Invoice.
+        /// </summary>
+        internal static string lbSaleInvoice {
+            get {
+                return ResourceManager.GetString("lbSaleInvoice", resourceCulture);
             }
         }
         
@@ -4332,6 +4431,15 @@ namespace Resources {
         internal static string lbShowSubMenuInPage {
             get {
                 return ResourceManager.GetString("lbShowSubMenuInPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Time.
+        /// </summary>
+        internal static string lbShowTime {
+            get {
+                return ResourceManager.GetString("lbShowTime", resourceCulture);
             }
         }
         
@@ -4696,6 +4804,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Take Payment.
+        /// </summary>
+        internal static string lbTakePayments {
+            get {
+                return ResourceManager.GetString("lbTakePayments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TAX.
+        /// </summary>
+        internal static string lbTax {
+            get {
+                return ResourceManager.GetString("lbTax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tax Dept.
         /// </summary>
         internal static string lbTaxDept {
@@ -4926,6 +5052,15 @@ namespace Resources {
         internal static string lbUrl {
             get {
                 return ResourceManager.GetString("lbUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use files own name..
+        /// </summary>
+        internal static string lbUseFilesName {
+            get {
+                return ResourceManager.GetString("lbUseFilesName", resourceCulture);
             }
         }
         

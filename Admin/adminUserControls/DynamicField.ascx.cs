@@ -11,7 +11,8 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_DynamicField : UserControl
 {
-    Entities _entities = new Entities();
+    private readonly Entities _entities = new Entities();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (RoleControl.YetkiAlaniKontrol(HttpContext.Current.User.Identity.Name, 16))
@@ -32,7 +33,7 @@ public partial class Admin_adminUserControls_DynamicField : UserControl
 
         EntityDataSource1.Where = " it.languageId=" + EnrollAdminContext.Current.DataLanguage.LanguageId.ToString();
 
-        
+
         btnCustomerDynamicSaveUpdate.Text = AdminResource.lbSave;
         btnCustomerDynamicEditCancel.Text = AdminResource.lbCancel;
 
@@ -93,7 +94,7 @@ public partial class Admin_adminUserControls_DynamicField : UserControl
             Logger.Add(16, 2, groupId, 2);
             _entities.DeleteObject(oGroup);
             _entities.SaveChanges();
-            MessageBox.Show(MessageType.Success,AdminResource.msgDeleted);
+            MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
             GridView1.DataBind();
         }
         catch (Exception exception)
@@ -119,8 +120,24 @@ public partial class Admin_adminUserControls_DynamicField : UserControl
         }
     }
 
+    private void ClearFormInputs()
+    {
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
+        var radEditor2 = ((RadEditor) Rtb_CustomerDynamic_details.FindControl("RadEditor1"));
+
+        txtName.Text = string.Empty;
+        chkState.Checked = false;
+        radEditor.Content = string.Empty;
+
+        radEditor2.Content = string.Empty;
+        txtCustomerDynamic_name.Text = string.Empty;
+
+        hfDynamicGroupId.Value = null;
+        hfDynamicId.Value = null;
+    }
+
     #region customer dynamic group {save, edit, update, delete, cancel}
-    
+
     //new 
     protected void btnNewDynamicGroupList(object sender, EventArgs e)
     {
@@ -136,9 +153,9 @@ public partial class Admin_adminUserControls_DynamicField : UserControl
             Customer_Dynamic_Group group = null;
             int groupId = 0;
 
-            var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+            var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
 
-            if(!string.IsNullOrWhiteSpace(hfDynamicGroupId.Value))
+            if (!string.IsNullOrWhiteSpace(hfDynamicGroupId.Value))
             {
                 groupId = Convert.ToInt32(hfDynamicGroupId.Value);
 
@@ -168,7 +185,7 @@ public partial class Admin_adminUserControls_DynamicField : UserControl
 
                 MessageBox.Show(MessageType.Success, AdminResource.msgSaved);
             }
-            
+
             GridView1.DataBind();
 
             pnlNewDynamicGroup.Visible = false;
@@ -180,7 +197,6 @@ public partial class Admin_adminUserControls_DynamicField : UserControl
         {
             ExceptionManager.ManageException(exception);
         }
-
     }
 
     //cancel
@@ -203,7 +219,7 @@ public partial class Admin_adminUserControls_DynamicField : UserControl
             Customer_Dynamic_Group dynamicGroup = _entities.Customer_Dynamic_Group.First(p => p.groupId == groupId);
 
             txtName.Text = dynamicGroup.name;
-            var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+            var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
             radEditor.Content = dynamicGroup.details;
             if (dynamicGroup.state != null)
                 chkState.Checked = Convert.ToBoolean(dynamicGroup.state.Value);
@@ -212,20 +228,18 @@ public partial class Admin_adminUserControls_DynamicField : UserControl
 
             pnlNewList.Visible = false;
             pnlNewDynamicGroup.Visible = true;
-
         }
     }
 
     //delete
     protected void imgBtnDelete_Click(object sender, ImageClickEventArgs e)
     {
-        var myButton = (ImageButton)sender;
+        var myButton = (ImageButton) sender;
         DeletingProccess(myButton.CommandArgument);
     }
 
-#endregion
+    #endregion
 
-    
     #region customer dynamic group page {save, edit, update, delete, cancel}
 
     //new
@@ -243,13 +257,13 @@ public partial class Admin_adminUserControls_DynamicField : UserControl
 
     //save, update
     protected void btnCustomerDynamicSaveUpdateClick(object sender, EventArgs e)
-    { 
+    {
         try
         {
             Customer_Dynamic customerDynamic = null;
             int dynamicId = 0;
 
-            var radEditor = ((RadEditor)Rtb_CustomerDynamic_details.FindControl("RadEditor1"));
+            var radEditor = ((RadEditor) Rtb_CustomerDynamic_details.FindControl("RadEditor1"));
 
             if (!string.IsNullOrWhiteSpace(hfDynamicId.Value))
             {
@@ -294,7 +308,6 @@ public partial class Admin_adminUserControls_DynamicField : UserControl
         {
             ExceptionManager.ManageException(exception);
         }
-
     }
 
     //cancel
@@ -319,7 +332,7 @@ public partial class Admin_adminUserControls_DynamicField : UserControl
             Customer_Dynamic dynamic = _entities.Customer_Dynamic.First(p => p.dynamicId == dynamicId);
 
             txtCustomerDynamic_name.Text = dynamic.name;
-            var radEditor = ((RadEditor)Rtb_CustomerDynamic_details.FindControl("RadEditor1"));
+            var radEditor = ((RadEditor) Rtb_CustomerDynamic_details.FindControl("RadEditor1"));
             radEditor.Content = dynamic.details;
 
             pnlNewList.Visible = false;
@@ -333,7 +346,7 @@ public partial class Admin_adminUserControls_DynamicField : UserControl
     {
         var myImage = (ImageButton) sender;
         try
-        { 
+        {
             var dynamicId = Convert.ToInt32(myImage.CommandArgument);
             var oDynamic = _entities.Customer_Dynamic.FirstOrDefault(p => p.dynamicId == dynamicId);
             Logger.Add(16, 3, dynamicId, 2);
@@ -342,35 +355,16 @@ public partial class Admin_adminUserControls_DynamicField : UserControl
 
             GridView1.DataBind();
             pnlNewDynamicGroup.Visible = false;
-            pnlCustomerDynamic.Visible = false; 
+            pnlCustomerDynamic.Visible = false;
             pnlNewList.Visible = true;
 
             MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
-            
         }
         catch (Exception exception)
         {
             ExceptionManager.ManageException(exception);
         }
     }
+
     #endregion
-
-
-    private void ClearFormInputs()
-    {
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
-        var radEditor2 = ((RadEditor)Rtb_CustomerDynamic_details.FindControl("RadEditor1"));
-
-        txtName.Text = string.Empty;
-        chkState.Checked = false;
-        radEditor.Content = string.Empty;
-
-        radEditor2.Content = string.Empty;
-        txtCustomerDynamic_name.Text = string.Empty;
-
-        hfDynamicGroupId.Value = null;
-        hfDynamicId.Value = null;
-    }
-
-    
 }

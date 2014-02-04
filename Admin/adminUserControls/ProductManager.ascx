@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="admin_adminUserControls_ProductManager"
-    CodeBehind="ProductManager.ascx.cs" %>
+            CodeBehind="ProductManager.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <%@ Register Src="Rtb.ascx" TagName="Rtb" TagPrefix="uc1" %>
 <asp:MultiView runat="server" ID="mvAuth">
@@ -46,7 +46,7 @@
                                             <td>
                                                 <asp:TextBox ID="txtNew" runat="server" Width="220px"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNew"
-                                                    ForeColor="Red" ValidationGroup="vg1">!</asp:RequiredFieldValidator>
+                                                                            ForeColor="Red" ValidationGroup="vg1">!</asp:RequiredFieldValidator>
                                             </td>
                                         </tr>
                                         <tr>
@@ -67,9 +67,9 @@
                                             </td>
                                             <td>
                                                 <asp:Button ID="btnNewFolder" runat="server" CssClass="SaveCancelBtn" OnClick="btnNewFolder_Click"
-                                                    Style="height: 20px" ValidationGroup="vg1" />
+                                                            Style="height: 20px" ValidationGroup="vg1" />
                                                 <asp:Button ID="btnAddNewCategoryCancel" runat="server" CssClass="SaveCancelBtn"
-                                                    Style="height: 20px" />
+                                                            Style="height: 20px" />
                                             </td>
                                         </tr>
                                     </table>
@@ -87,7 +87,7 @@
                                             <td>
                                                 <asp:TextBox ID="txtEdit" runat="server" Width="220px"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEdit"
-                                                    ForeColor="Red" ValidationGroup="vg2">!</asp:RequiredFieldValidator>
+                                                                            ForeColor="Red" ValidationGroup="vg2">!</asp:RequiredFieldValidator>
                                             </td>
                                         </tr>
                                         <tr>
@@ -108,10 +108,10 @@
                                             </td>
                                             <td>
                                                 <asp:Button ID="btnButtonEditFolder" runat="server" CssClass="SaveCancelBtn" OnClick="btnButtonEditFolder_Click"
-                                                    ValidationGroup="vg2" />
+                                                            ValidationGroup="vg2" />
                                                 <asp:Button ID="btnDelete" runat="server" CssClass="SaveCancelBtn" OnClick="btnDelete_Click" />
                                                 <asp:Button ID="btnAddEditCategoryCancel" runat="server" CssClass="SaveCancelBtn"
-                                                    OnClick="BtnAddEditCategoryCancelClick" />
+                                                            OnClick="BtnAddEditCategoryCancelClick" />
                                             </td>
                                         </tr>
                                     </table>
@@ -131,7 +131,7 @@
                                             <td>
                                                 <asp:TextBox ID="txtNameInsert" runat="server" Width="400px"></asp:TextBox>
                                                 &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtNameInsert"
-                                                    ForeColor="Red" SetFocusOnError="True" ValidationGroup="aa">!</asp:RequiredFieldValidator>
+                                                                                  ForeColor="Red" SetFocusOnError="True" ValidationGroup="aa">!</asp:RequiredFieldValidator>
                                             </td>
                                         </tr>
                                         <tr>
@@ -178,8 +178,8 @@
                                                                 }
                                                             </script>
                                                             <telerik:RadWindow runat="server" Width="600px" Height="600px" VisibleStatusbar="false"
-                                                                ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
-                                                                Modal="true" Behaviors="Close,Move,Resize,Maximize">
+                                                                               ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
+                                                                               Modal="true" Behaviors="Close,Move,Resize,Maximize">
                                                             </telerik:RadWindow>
                                                         </td>
                                                     </tr>
@@ -239,7 +239,7 @@
                                             </td>
                                             <td>
                                                 <asp:Button ID="btnSave" runat="server" CssClass="SaveCancelBtn" ValidationGroup="aa"
-                                                    OnClick="btnSave_Click" />
+                                                            OnClick="btnSave_Click" />
                                                 <asp:Button ID="btnCancel" runat="server" CssClass="SaveCancelBtn" OnClick="btnCancel_Click" />
                                             </td>
                                         </tr>
@@ -287,19 +287,19 @@
                                             </td>
                                             <td>
                                                 <asp:DataList ID="DataList1" runat="server" RepeatColumns="3" RepeatDirection="Horizontal"
-                                                    CellPadding="0" CellSpacing="5" OnItemDataBound="DataList1_ItemDataBound">
+                                                              CellPadding="0" CellSpacing="5" OnItemDataBound="DataList1_ItemDataBound">
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     <ItemTemplate>
                                                         <div style="border: 1px solid #dfdfdf; padding: 5px 5px 10px 5px;">
                                                             <asp:Image ID="Image1" runat="server" Height="60px" max-width="100px" ImageUrl='<%#Eval
-                                                                                        ("Thumbnail") %>' /></div>
+                                                                                                   ("Thumbnail") %>' /></div>
                                                         <div style="padding-top: 5px; text-align: left;">
                                                             <asp:ImageButton ID="ImgBtnDeleteImage" runat="server" CommandArgument='<%#Eval("ProductImageId") %>'
-                                                                Width="16px" OnClick="ImgBtnDeleteImage_Click" ImageUrl="~/Admin/images/icon/cop.png" />
+                                                                             Width="16px" OnClick="ImgBtnDeleteImage_Click" ImageUrl="~/Admin/images/icon/cop.png" />
                                                             <asp:LinkButton ID="lbGorselSec" CommandArgument='<%#Eval("ProductImageId") %>' runat="server"
-                                                                OnClick="lbGorselSec_Click">
+                                                                            OnClick="lbGorselSec_Click">
                                                                 <asp:RadioButton ID="RadioButton1" runat="server" Font-Size="X-Small" GroupName="a"
-                                                                    TextAlign="Left" Enabled="True" AutoPostBack="True" Checked='<%#Eval("MainImage") %>' />
+                                                                                 TextAlign="Left" Enabled="True" AutoPostBack="True" Checked='<%#Eval("MainImage") %>' />
                                                                 <%= AdminResource.lbMainImage %>
                                                             </asp:LinkButton>
                                                             <br />
@@ -322,14 +322,14 @@
                                                         <td>
                                                             <telerik:RadTextBox ID="TextBox1" runat="server" Width="180px" />
                                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox1"
-                                                                ForeColor="Red" ValidationGroup="groupImg" ErrorMessage="!" />
+                                                                                        ForeColor="Red" ValidationGroup="groupImg" ErrorMessage="!" />
                                                         </td>
                                                         <td align="left">
                                                             <asp:Button ID="btnNewImage" runat="server" CssClass="ImageSelectBtn" OnClientClick="OpenFileExplorerDialog(); return false;" />
                                                         </td>
                                                         <td align="right">
                                                             <asp:Button ID="btnAddImage" ValidationGroup="groupImg" runat="server" CssClass="SaveCancelBtn"
-                                                                OnClick="btnAddImageClick" />
+                                                                        OnClick="btnAddImageClick" />
                                                             <script type="text/javascript">
           //<![CDATA[
                                                                 function OpenFileExplorerDialog() {
@@ -339,8 +339,8 @@
                                                                 }
                                                             </script>
                                                             <telerik:RadWindow runat="server" Width="600px" Height="600px" VisibleStatusbar="false"
-                                                                ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow2"
-                                                                Modal="true" Behaviors="Close,Move,Resize,Maximize">
+                                                                               ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow2"
+                                                                               Modal="true" Behaviors="Close,Move,Resize,Maximize">
                                                             </telerik:RadWindow>
                                                         </td>
                                                     </tr>
@@ -367,9 +367,9 @@
                                             </td>
                                             <td>
                                                 <asp:TextBox ID="TextBoxPriceEdit" onkeydown="return priceInputsCharacters(event,this);"
-                                                    runat="server"></asp:TextBox><asp:DropDownList ID="ddlPriceCurrencyEdit" AutoPostBack="True"
-                                                        runat="server">
-                                                    </asp:DropDownList>
+                                                             runat="server"></asp:TextBox><asp:DropDownList ID="ddlPriceCurrencyEdit" AutoPostBack="True"
+                                                                                                            runat="server">
+                                                                                          </asp:DropDownList>
                                             </td>
                                         </tr>
                                         <tr>
@@ -403,19 +403,19 @@
                                             </td>
                                             <td>
                                                 <asp:Button ID="btnUpdate" runat="server" OnClientClick='return priceInputsValidation(<%= TextBoxPriceEdit.ClientID %>, <%= ddlPriceCurrencyEdit.ClientID %>);'
-                                                    CssClass="SaveCancelBtn" ValidationGroup="g1" OnClick="btnUpdate_Click" />
+                                                            CssClass="SaveCancelBtn" ValidationGroup="g1" OnClick="btnUpdate_Click" />
                                                 <asp:Button ID="btnUpdateCancel" runat="server" CssClass="SaveCancelBtn" OnClick="btnUpdateCancel_Click" />
                                             </td>
                                         </tr>
                                     </table>
                                 </asp:Panel>
                                 <asp:GridView ID="grvProducts" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                                    CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                                    SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-                                    PageSize="15" AllowPaging="True" SortedAscendingCellStyle-CssClass="sortasc"
-                                    SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
-                                    SelectedRowStyle="selected" Width="565px" ForeColor="#333333" GridLines="None"
-                                    DataSourceID="edsUrunler" OnRowCommand="GridView1_RowCommand" OnRowDataBound="grvProducts_RowDataBound">
+                                              CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                                              SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                                              PageSize="15" AllowPaging="True" SortedAscendingCellStyle-CssClass="sortasc"
+                                              SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
+                                              SelectedRowStyle="selected" Width="565px" ForeColor="#333333" GridLines="None"
+                                              DataSourceID="edsUrunler" OnRowCommand="GridView1_RowCommand" OnRowDataBound="grvProducts_RowDataBound">
                                     <EmptyDataTemplate>
                                         <%= AdminResource.lbNoRecord %>
                                     </EmptyDataTemplate>
@@ -423,9 +423,9 @@
                                         <asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:ImageButton ID="btnEditProduct" runat="server" CausesValidation="False" ImageUrl="~/Admin/images/icon/edit.png"
-                                                    CommandName="Guncelle" CommandArgument='<%#Eval("ProductId") %>' Text="Düzenle" />
+                                                                 CommandName="Guncelle" CommandArgument='<%#Eval("ProductId") %>' Text="Düzenle" />
                                                 <asp:ImageButton ID="btnDeleteProduct" runat="server" CausesValidation="False" ImageUrl="~/Admin/images/icon/cop.png"
-                                                    CommandName="Sil" CommandArgument='<%#Eval("ProductId") %>' />
+                                                                 CommandName="Sil" CommandArgument='<%#Eval("ProductId") %>' />
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Left" Width="75px" />
                                             <ItemStyle HorizontalAlign="Left" Width="75px" />
@@ -439,8 +439,8 @@
                                     </Columns>
                                 </asp:GridView>
                                 <asp:EntityDataSource ID="edsUrunler" runat="server" ConnectionString="name=Entities"
-                                    DefaultContainerName="Entities" Where="it.ProductCategoryId=@catId and it.languageId=@languageId"
-                                    OrderBy="it.ProductId DESC" EntitySetName="Products" EnableDelete="True" EnableUpdate="True">
+                                                      DefaultContainerName="Entities" Where="it.ProductCategoryId=@catId and it.languageId=@languageId"
+                                                      OrderBy="it.ProductId DESC" EntitySetName="Products" EnableDelete="True" EnableUpdate="True">
                                     <WhereParameters>
                                         <asp:Parameter DbType="Int32" Name="catId" DefaultValue="0" />
                                     </WhereParameters>

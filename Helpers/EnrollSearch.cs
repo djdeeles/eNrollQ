@@ -55,20 +55,20 @@ namespace Enroll.WebParts
             var ent = new Entities();
             SearchList = new List<Search>();
             int DilId = EnrollContext.Current.WorkingLanguage.LanguageId;
-            List<System_menu> menuResult = ent.SP_System_menuSearch(DilId, ArananKelime).ToList();
-            List<News> newsResult = ent.SP_NewsSearch(DilId, ArananKelime).ToList();
-            List<Notices> noticesResult = ent.SP_NoticesSearch(DilId, ArananKelime).ToList();
-            List<Events> eventResult = ent.SP_EventsSearch(DilId, ArananKelime).ToList();
-            List<Products> productResult = ent.SP_ProductsSearch(DilId, ArananKelime).ToList();
-            List<ListData> dynamicListResult = ent.SP_ListDataSearch(DilId, ArananKelime).ToList();
-            List<Customer_Random> customerRandomResult = ent.SP_Customer_Random(DilId, ArananKelime).ToList();
+            var menuResult = ent.SP_System_menuSearch(DilId, ArananKelime).ToList();
+            var newsResult = ent.SP_NewsSearch(DilId, ArananKelime).ToList();
+            var noticesResult = ent.SP_NoticesSearch(DilId, ArananKelime).ToList();
+            var eventResult = ent.SP_EventsSearch(DilId, ArananKelime).ToList();
+            var productResult = ent.SP_ProductsSearch(DilId, ArananKelime).ToList();
+            var dynamicListResult = ent.SP_ListDataSearch(DilId, ArananKelime).ToList();
+            var customerRandomResult = ent.SP_Customer_Random(DilId, ArananKelime).ToList();
             foreach (System_menu m in menuResult)
             {
                 string details = HtmlRemoval.StripTagsRegexCompiled(m.Details);
                 var s = new Search(Resource.lbSearchResultMenu, "sayfa-" + m.menuId + "-" + UrlMapping.cevir(m.name),
                                    m.brief, details, m.name);
                 SearchList.Add(s);
-            } 
+            }
             foreach (News ne in newsResult)
             {
                 string details = HtmlRemoval.StripTagsRegexCompiled(ne.details);
@@ -120,7 +120,7 @@ namespace Enroll.WebParts
                                    summary, text, cRandom.Title);
                 SearchList.Add(s);
             }
-            
+
             return SearchList;
         }
 

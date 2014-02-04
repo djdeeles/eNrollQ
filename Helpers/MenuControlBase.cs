@@ -18,7 +18,7 @@ namespace Enroll.BaseObjects
         {
             for (int i = 0; i < ContentList.Length; i++)
             {
-                string[] menuData = ContentList[i].Split('-');
+                var menuData = ContentList[i].Split('-');
                 switch (menuData[0])
                 {
                     case "MenuContent":
@@ -64,7 +64,7 @@ namespace Enroll.BaseObjects
                         break;
                     case "pAlbum":
                         var pAlbum =
-                            (uye_userControls_photoAlbum)LoadControl("~/UserControls/galeri/AlbumPhotos.ascx");
+                            (uye_userControls_photoAlbum) LoadControl("~/UserControls/galeri/AlbumPhotos.ascx");
                         if (menuData.Length > 1)
                         {
                             pAlbum.AlbumId = Convert.ToInt32(menuData[1]);
@@ -73,7 +73,7 @@ namespace Enroll.BaseObjects
                         break;
                     case "pCategory":
                         var pCategory =
-                            (UserControls_Albums)LoadControl("~/UserControls/galeri/Albums.ascx");
+                            (UserControls_Albums) LoadControl("~/UserControls/galeri/Albums.ascx");
                         if (menuData.Length > 1)
                         {
                             pCategory.CategoryId = Convert.ToInt32(menuData[1]);
@@ -86,7 +86,7 @@ namespace Enroll.BaseObjects
                         break;
                     case "vCategory":
                         var vCategory =
-                            (userControls_AlbumVideos)LoadControl("~/UserControls/galeri/AlbumVideos.ascx");
+                            (userControls_AlbumVideos) LoadControl("~/UserControls/galeri/AlbumVideos.ascx");
                         if (menuData.Length > 1)
                         {
                             vCategory.CategoryId = Convert.ToInt32(menuData[1]);
@@ -137,7 +137,7 @@ namespace Enroll.BaseObjects
                         Control tempMainPageSpecial3 = LoadControl("~/UserControls/dinamikAlanlar/MainPageSpecial3.ascx");
                         PlaceHolder1.Controls.Add(tempMainPageSpecial3);
                         break;
-		    case "BannerField1":
+                    case "BannerField1":
                         Control tempBannerField1 = LoadControl("~/UserControls/banner/Banner.ascx");
                         PlaceHolder1.Controls.Add(tempBannerField1);
                         break;
@@ -195,7 +195,7 @@ namespace Enroll.BaseObjects
         {
             for (int i = 0; i < ContentList.Length; i++)
             {
-                string[] menuPlace = ContentList[i].Split('-');
+                var menuPlace = ContentList[i].Split('-');
                 switch (menuPlace[0])
                 {
                     case "MenuContent":
@@ -211,7 +211,7 @@ namespace Enroll.BaseObjects
                         PlaceHolder1.Controls.Add(tempShareSocial);
                         break;
                     case "NoticeScroller":
-			            Control tempNoticeList = LoadControl("~/m/UserControls/duyuru/NoticeList.ascx");
+                        Control tempNoticeList = LoadControl("~/m/UserControls/duyuru/NoticeList.ascx");
                         PlaceHolder1.Controls.Add(tempNoticeList);
                         break;
                     case "NoticeList":
@@ -238,7 +238,7 @@ namespace Enroll.BaseObjects
                         break;
                     case "pCategory":
                         var pCategory =
-                            (M_Albums)LoadControl("~/m/UserControls/galeri/Albums.ascx");
+                            (M_Albums) LoadControl("~/m/UserControls/galeri/Albums.ascx");
                         if (menuPlace.Length > 1)
                         {
                             pCategory.CategoryId = Convert.ToInt32(menuPlace[1]);
@@ -247,7 +247,7 @@ namespace Enroll.BaseObjects
                         break;
                     case "pAlbum":
                         var pAlbum =
-                            (M_AlbumPhotos)LoadControl("~/m/UserControls/galeri/AlbumPhotos.ascx");
+                            (M_AlbumPhotos) LoadControl("~/m/UserControls/galeri/AlbumPhotos.ascx");
                         if (menuPlace.Length > 1)
                         {
                             pAlbum.AlbumId = Convert.ToInt32(menuPlace[1]);
@@ -260,7 +260,7 @@ namespace Enroll.BaseObjects
                         break;
                     case "vCategory":
                         var vCategory =
-                            (M_AlbumVideos)LoadControl("~/m/UserControls/galeri/AlbumVideos.ascx");
+                            (M_AlbumVideos) LoadControl("~/m/UserControls/galeri/AlbumVideos.ascx");
                         if (menuPlace.Length > 1)
                         {
                             vCategory.CategoryId = Convert.ToInt32(menuPlace[1]);
@@ -295,7 +295,7 @@ namespace Enroll.BaseObjects
                         break;
                     case "MainPageSpecial3":
                         break;
-		    case "BannerField1":
+                    case "BannerField1":
                         break;
                     case "BannerField2":
                         break;

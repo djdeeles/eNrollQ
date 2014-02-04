@@ -10,8 +10,8 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_SurveyList : UserControl
 {
+    private readonly Entities oEntities = new Entities();
 
-    Entities oEntities = new Entities();
     protected override void OnInit(EventArgs e)
     {
         Session["currentPath"] = AdminResource.lbSurveyManagement;
@@ -50,15 +50,14 @@ public partial class Admin_adminUserControls_SurveyList : UserControl
             GridView gr;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-
-                var myMastDelete = (ImageButton)e.Row.FindControl("imgBtnDelete");
+                var myMastDelete = (ImageButton) e.Row.FindControl("imgBtnDelete");
                 myMastDelete.OnClientClick = " return confirm('" + AdminResource.lbDeletingQuestion + "'); ";
 
-                var myButton = (Button)e.Row.FindControl("imgBtnInnerNew");
+                var myButton = (Button) e.Row.FindControl("imgBtnInnerNew");
                 myButton.Text = AdminResource.lbNewSurveyOption;
 
 
-                gr = ((GridView)e.Row.FindControl("gVSurveyOption"));
+                gr = ((GridView) e.Row.FindControl("gVSurveyOption"));
 
                 gr.Columns[0].HeaderText = AdminResource.lbActions;
                 gr.Columns[1].HeaderText = AdminResource.lbOptions;
@@ -91,7 +90,6 @@ public partial class Admin_adminUserControls_SurveyList : UserControl
 
             gVSurveyList.DataBind();
             MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
-
         }
         catch (Exception exception)
         {
@@ -101,7 +99,7 @@ public partial class Admin_adminUserControls_SurveyList : UserControl
 
     protected void imgBtnSurveyDelete_Click(object sender, ImageClickEventArgs e)
     {
-        var myButton = (ImageButton)sender;
+        var myButton = (ImageButton) sender;
         DeletingProccess(myButton.CommandArgument);
     }
 
@@ -111,7 +109,7 @@ public partial class Admin_adminUserControls_SurveyList : UserControl
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var myButInnerDelete = (ImageButton)e.Row.FindControl("imgBtnInerDelete");
+                var myButInnerDelete = (ImageButton) e.Row.FindControl("imgBtnInerDelete");
                 myButInnerDelete.OnClientClick = "return confirm('" + AdminResource.lbDeletingQuestion + "'); ";
             }
         }
@@ -125,17 +123,17 @@ public partial class Admin_adminUserControls_SurveyList : UserControl
     {
         try
         {
-            var myImage = (ImageButton)sender;
+            var myImage = (ImageButton) sender;
             var oEntities = new Entities();
             var optionId = Convert.ToInt32(myImage.CommandArgument);
             Survey_Option oOption =
-                        oEntities.Survey_Option.Where("it.surveyOptionId=" + optionId).FirstOrDefault();
+                oEntities.Survey_Option.Where("it.surveyOptionId=" + optionId).FirstOrDefault();
             oEntities.DeleteObject(oOption);
             if (oOption != null) Logger.Add(17, 2, oOption.surveyOptionId, 2);
             oEntities.SaveChanges();
             gVSurveyList.DataBind();
 
-            MessageBox.Show(MessageType.Success, Resources.AdminResource.msgDeleted);
+            MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
         }
         catch (Exception exception)
         {
@@ -145,7 +143,6 @@ public partial class Admin_adminUserControls_SurveyList : UserControl
 
     protected void btnSurveySaveUpdateClick(object sender, EventArgs e)
     {
-
         Survey oSurvey = null;
         try
         {
@@ -178,8 +175,6 @@ public partial class Admin_adminUserControls_SurveyList : UserControl
 
             pnlList.Visible = true;
             pnlSurveyEdit.Visible = false;
-
-            
         }
         catch (Exception exception)
         {
@@ -251,13 +246,13 @@ public partial class Admin_adminUserControls_SurveyList : UserControl
             if (!string.IsNullOrWhiteSpace(hfSurveyOptionId.Value))
             {
                 int serveyOptionId = Convert.ToInt32(hfSurveyOptionId.Value);
-                oOption = oEntities.Survey_Option.First(p=>p.surveyOptionId == serveyOptionId);
+                oOption = oEntities.Survey_Option.First(p => p.surveyOptionId == serveyOptionId);
                 SetDataProccess_SurveyOption(oOption);
                 oEntities.SaveChanges();
 
                 Logger.Add(17, 2, oOption.surveyOptionId, 3);
 
-                MessageBox.Show(MessageType.Success,AdminResource.msgUpdated);
+                MessageBox.Show(MessageType.Success, AdminResource.msgUpdated);
             }
             else
             {
@@ -278,7 +273,6 @@ public partial class Admin_adminUserControls_SurveyList : UserControl
             }
 
             gVSurveyList.DataBind();
-
         }
         catch (Exception exception)
         {
@@ -326,7 +320,7 @@ public partial class Admin_adminUserControls_SurveyList : UserControl
     private void GetDataProccess_SurveyOption(Survey_Option option)
     {
         txtOption.Text = option.surveyOption;
-        if (option.chooseCount.ToString()==string.Empty)
+        if (option.chooseCount.ToString() == string.Empty)
         {
             txtChooseCount.Text = "0";
         }
@@ -334,7 +328,6 @@ public partial class Admin_adminUserControls_SurveyList : UserControl
         {
             txtChooseCount.Text = option.chooseCount.ToString();
         }
-        
     }
 
     private void SetDataProccess_SurveyOption(Survey_Option option)
@@ -353,6 +346,5 @@ public partial class Admin_adminUserControls_SurveyList : UserControl
         hfSurveyId.Value = btnNewSurvey.CommandArgument;
         pnlList.Visible = false;
         pnlSurveyOptionEdit.Visible = true;
-
     }
 }

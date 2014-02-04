@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
+using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Net.Mail;
-using System.Text;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Security;
 using System.Web.Services;
 using System.Web.UI;
@@ -13,32 +13,32 @@ using Enroll.Managers;
 using Resources;
 using eNroll.App_Data;
 using eNroll.Helpers;
-using System.Drawing;
 using Image = System.Drawing.Image;
-using System.Web.Configuration;
 
 namespace eNroll
 {
-    public partial class MemberProfile : System.Web.UI.Page
+    public partial class MemberProfile : Page
     {
         public static MemberInfo Member = new MemberInfo();
-        readonly Entities _entities = new Entities();
+        private readonly Entities _entities = new Entities();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(),
-                        "hideAllUserInfo11", "<script> hideAllUserInfo(); </script>");
+                                                        "hideAllUserInfo11", "<script> hideAllUserInfo(); </script>");
 
                 //login panelinden aidat linki ile 
-                if (HttpContext.Current.Request.QueryString.Count > 0 && HttpContext.Current.Request.QueryString["show"] != null)
+                if (HttpContext.Current.Request.QueryString.Count > 0 &&
+                    HttpContext.Current.Request.QueryString["show"] != null)
                 {
                     var show = HttpContext.Current.Request.QueryString["show"];
                     ShowControlPanel(show);
                 }
+
                 #region Bind User and User Pers/Home/Job Info
+
                 Member = EnrollMembershipHelper.BindUser(Member);
                 var userId = Member.Users.Id;
                 hfMemberId.Value = userId.ToString();
@@ -47,8 +47,11 @@ namespace eNroll
                 BindJobInfo();
                 BindEmailInfo();
                 BindMemberInfo();
+
                 #endregion
+
                 #region label/button set resource text
+
                 lbMaidenName.Text = Resource.lbMaidenName;
                 lbMarriageDate.Text = Resource.lbMarriageDate;
                 btnSavePersonalInfo.Text = Resource.lbSave;
@@ -76,27 +79,28 @@ namespace eNroll
                 if (genrlDept != null)
                 {
                     ltCurrentDebt.Text = EnrollMembershipHelper.DebtValue(genrlDept.Dept);
-                    ltAutoPaymentOrder.Text = Resource.lbAutoPaymentOrder + ": " + (genrlDept.AutoPay ? Resource.lbYes : Resource.lbNo);
-                    if(genrlDept.AutoPay)
+                    ltAutoPaymentOrder.Text = Resource.lbAutoPaymentOrder + ": " +
+                                              (genrlDept.AutoPay ? Resource.lbYes : Resource.lbNo);
+                    if (genrlDept.AutoPay)
                     {
                         btPayCertainAmount.OnClientClick =
-                            "if(document.getElementById('" + tbSpecificAmount.ClientID+ "').value=='' || " +
+                            "if(document.getElementById('" + tbSpecificAmount.ClientID + "').value=='' || " +
                             "document.getElementById('" + tbSpecificAmount.ClientID + "').value==undefined){" +
-                                "alert('" + Resource.msgPayAmountIsRequired + "');" +
-                                "return false; " +
+                            "alert('" + Resource.msgPayAmountIsRequired + "');" +
+                            "return false; " +
                             "} " +
                             "else{ " +
-                                "return confirm ('" + Resource.msgConfirmAutoPaymentOrderRemember + "');  " +
-                            "} "; 
+                            "return confirm ('" + Resource.msgConfirmAutoPaymentOrderRemember + "');  " +
+                            "} ";
                         btPayAllAmount.OnClientClick =
                             "if(document.getElementById('" + tbSpecificAmount.ClientID + "').value=='' || " +
                             "document.getElementById('" + tbSpecificAmount.ClientID + "').value==undefined){" +
-                                "alert('" + Resource.msgPayAmountIsRequired + "');" +
-                                "return false; " +
+                            "alert('" + Resource.msgPayAmountIsRequired + "');" +
+                            "return false; " +
                             "} " +
                             "else{ " +
-                                "return confirm ('" + Resource.msgConfirmAutoPaymentOrderRemember + "');  " +
-                            "} "; 
+                            "return confirm ('" + Resource.msgConfirmAutoPaymentOrderRemember + "');  " +
+                            "} ";
                     }
                 }
 
@@ -107,7 +111,6 @@ namespace eNroll
                 gvChargesForDues.Columns[4].HeaderText = Resource.lbProcess;
 
                 #endregion
-
             }
             ShowPersInfoViewMode();
             ShowMemberInfoViewMode();
@@ -116,8 +119,10 @@ namespace eNroll
             ShowEmailInfoViewMode();
 
             #region set page title
+
             string pageTitle = MetaGenerate.SetMetaTags(EnrollContext.Current.WorkingLanguage.LanguageId, Page);
             Page.Title = string.Format("{0} - {1}", pageTitle, Resource.lbMemberProfile);
+
             #endregion
         }
 
@@ -126,15 +131,116 @@ namespace eNroll
             //login panelinden aidat linki ile 
             try
             {
-                Page.ClientScript.RegisterStartupScript(GetType(), "asdfg", "<script> showUserInfo('" + control + "'); </script>");
+                Page.ClientScript.RegisterStartupScript(GetType(), "asdfg",
+                                                        "<script> showUserInfo('" + control + "'); </script>");
             }
             catch (Exception)
             {
-
             }
         }
 
+        private static bool Logout()
+        {
+            try
+            {
+                var cookie = HttpContext.Current.Response.Cookies["EnrollAuthentication"];
+                if (cookie != null) cookie.Expires = DateTime.Now.AddMinutes(-1);
+
+                cookie = HttpContext.Current.Response.Cookies["EnrollAdminLanguage"];
+                if (cookie != null) cookie.Expires = DateTime.Now.AddMinutes(-1);
+
+                cookie = HttpContext.Current.Response.Cookies["EnrollDataLanguage"];
+                if (cookie != null) cookie.Expires = DateTime.Now.AddMinutes(-1);
+
+                HttpContext.Current.Session.Clear();
+                HttpContext.Current.Session.Abandon();
+                FormsAuthentication.SignOut();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        protected string GetDuesType(int duesTypeId)
+        {
+            try
+            {
+                var duesType = _entities.DuesTypes.FirstOrDefault(p => p.Id == duesTypeId);
+                return duesType == null ? string.Empty : duesType.Title;
+            }
+            catch (Exception exception)
+            {
+                ExceptionManager.ManageException(exception);
+            }
+            return string.Empty;
+        }
+
+        protected string GetUserName(int userId)
+        {
+            try
+            {
+                var user = _entities.Users.FirstOrDefault(p => p.Id == userId);
+                if (user == null) return string.Empty;
+                return string.Format("{0} {1}", user.Name, user.Surname);
+            }
+            catch (Exception exception)
+            {
+                ExceptionManager.ManageException(exception);
+            }
+            return string.Empty;
+        }
+
+        protected string GetPaymentType(int paymentTypeId)
+        {
+            try
+            {
+                switch (paymentTypeId)
+                {
+                    case 1:
+                        return AdminResource.lbPaymentType1;
+                    case 2:
+                        return AdminResource.lbPaymentType2;
+                    case 3:
+                        return AdminResource.lbPaymentType3;
+                    case 4:
+                        return AdminResource.lbPaymentType4;
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionManager.ManageException(exception);
+            }
+            return string.Empty;
+        }
+
+        protected void BtPayCertainAmount_OnClick(object sender, EventArgs e)
+        {
+            Page.ClientScript.RegisterStartupScript(GetType(),
+                                                    "dFinanceDetail21",
+                                                    "<script> showUserInfo('dFinanceDetail'); </script>");
+            return;
+        }
+
+        protected void BtPayAllAmount_OnClick(object sender, EventArgs e)
+        {
+            Page.ClientScript.RegisterStartupScript(GetType(),
+                                                    "dFinanceDetail22",
+                                                    "<script> showUserInfo('dFinanceDetail'); </script>");
+            return;
+        }
+
+        protected void gvChargesForDues_OnPageIndexChanged(object sender, EventArgs e)
+        {
+            Page.ClientScript.RegisterStartupScript(GetType(),
+                                                    "dFinanceDetail23",
+                                                    "<script> showUserInfo('dFinanceDetail');</script>");
+            return;
+        }
+
         #region Bind PersonalInfo, HomeInfo, JobInfo, EmailInfo
+
         private void BindPersonalInfo()
         {
             try
@@ -143,12 +249,14 @@ namespace eNroll
                 ClearPersonalInfo();
 
                 #region user general info
+
                 lUserNameSurname.Text = string.Format("{0} {1}", Member.Users.Name, Member.Users.Surname);
                 lUserEmail.Text = Member.Users.EMail;
                 if (!string.IsNullOrWhiteSpace(Member.UserGeneral.PhotoUrl))
                     lUserPhoto.ImageUrl = Member.UserGeneral.PhotoUrl;
                 else
                     lUserPhoto.ImageUrl = "/App_Themes/mainTheme/images/noimage.png";
+
                 #endregion
 
                 tbName.Text = Member.Users.Name;
@@ -163,6 +271,7 @@ namespace eNroll
                     lFatherName.Text = Member.UserGeneral.MotherName;
 
                     #region cinsiyet
+
                     EnrollMembershipHelper.DataBindDdlGender(Member, ddlGender);
                     if (Member.UserGeneral.Gender != null && Convert.ToInt32(Member.UserGeneral.Gender.Value) > 0)
                     {
@@ -180,6 +289,7 @@ namespace eNroll
                     {
                         lGender.Text = string.Empty;
                     }
+
                     #endregion
 
                     #region evlilik durumuna göre kızlık soyadı evlilik tarihi gibi alanlar visible/invisible yapılarak alanlar doldurulur
@@ -218,9 +328,11 @@ namespace eNroll
                         trMaidenName.Attributes.Add("class", "hideaboutgender");
                         trMarriageDate.Attributes.Add("class", "hideaboutgender");
                     }
+
                     #endregion
 
                     #region doğum günü, doğum yeri, profil fotoğrafı
+
                     if (Member.UserGeneral.Birthdate != null)
                     {
                         var date = Member.UserGeneral.Birthdate.Value;
@@ -258,6 +370,7 @@ namespace eNroll
                     lMemberFoundation.Text = Member.UserGeneral.MemberFoundation;
 
                     #region okul bilgileri
+
                     lLastSchool.Text = Member.UserGeneral.LastSchool;
                     tbLastSchool.Text = Member.UserGeneral.LastSchool;
                     if (Member.UserGeneral.LastSchoolGraduateDate != null)
@@ -270,8 +383,8 @@ namespace eNroll
                         lLastSchoolGraduateDate.Text = string.Empty;
                         dpLastSchoolGraduateDate.SelectedDate = null;
                     }
-                    #endregion
 
+                    #endregion
                 }
 
                 EnrollMembershipHelper.DataBindDDlBloodType(Member, ddlBloodType);
@@ -281,7 +394,6 @@ namespace eNroll
                     lBloodType.Text = _entities.BloodTypes.First(p => p.Id == selected).Name;
                 }
                 else lBloodType.Text = string.Empty;
-
             }
             catch (Exception exception)
             {
@@ -289,6 +401,7 @@ namespace eNroll
             }
             lbError.Text = string.Empty;
         }
+
         private void BindHomeInfo()
         {
             try
@@ -298,17 +411,20 @@ namespace eNroll
                 Member = BindHomeCountryCityTown(Member, ddlHomeCountry, ddlHomeCity, ddlHomeTown);
 
 
-                if (Member.UserGeneral.HomeCountry != null && !string.IsNullOrWhiteSpace(Member.UserGeneral.HomeCountry.Value.ToString()))
+                if (Member.UserGeneral.HomeCountry != null &&
+                    !string.IsNullOrWhiteSpace(Member.UserGeneral.HomeCountry.Value.ToString()))
                 {
                     hfHomeCountry.Value = Member.UserGeneral.HomeCountry.Value.ToString();
-                    lHomeCountry.Text = _entities.Countries.First(p => p.Id == Member.UserGeneral.HomeCountry.Value).Name;
+                    lHomeCountry.Text =
+                        _entities.Countries.First(p => p.Id == Member.UserGeneral.HomeCountry.Value).Name;
                 }
                 else
                 {
                     hfHomeCountry.Value = string.Empty;
                     lHomeCountry.Text = string.Empty;
                 }
-                if (Member.UserGeneral.HomeCity != null && !string.IsNullOrWhiteSpace(Member.UserGeneral.HomeCity.Value.ToString()))
+                if (Member.UserGeneral.HomeCity != null &&
+                    !string.IsNullOrWhiteSpace(Member.UserGeneral.HomeCity.Value.ToString()))
                 {
                     hfHomeCity.Value = Member.UserGeneral.HomeCity.Value.ToString();
                     lHomeCity.Text = _entities.Cities.First(p => p.Id == Member.UserGeneral.HomeCity.Value).Name;
@@ -318,7 +434,8 @@ namespace eNroll
                     hfHomeCity.Value = string.Empty;
                     lHomeCity.Text = string.Empty;
                 }
-                if (Member.UserGeneral.HomeTown != null && !string.IsNullOrWhiteSpace(Member.UserGeneral.HomeTown.Value.ToString()))
+                if (Member.UserGeneral.HomeTown != null &&
+                    !string.IsNullOrWhiteSpace(Member.UserGeneral.HomeTown.Value.ToString()))
                 {
                     hfHomeTown.Value = Member.UserGeneral.HomeTown.Value.ToString();
                     lHomeTown.Text = _entities.Towns.First(p => p.Id == Member.UserGeneral.HomeTown.Value).Name;
@@ -339,13 +456,13 @@ namespace eNroll
                 tbHomePhone.Text = Member.UserGeneral.HomePhone;
                 lHomeZipCode.Text = Member.UserGeneral.HomeZipCode;
                 tbHomeZipCode.Text = Member.UserGeneral.HomeZipCode;
-
             }
             catch (Exception exception)
             {
                 ExceptionManager.ManageException(exception);
             }
         }
+
         private void BindJobInfo()
         {
             try
@@ -355,17 +472,20 @@ namespace eNroll
 
                 Member = BindWorkCountryCityTown(Member, ddlWorkCountry, ddlWorkCity, ddlWorkTown);
 
-                if (Member.UserGeneral.WorkCountry != null && !string.IsNullOrWhiteSpace(Member.UserGeneral.WorkCountry.Value.ToString()))
+                if (Member.UserGeneral.WorkCountry != null &&
+                    !string.IsNullOrWhiteSpace(Member.UserGeneral.WorkCountry.Value.ToString()))
                 {
                     hfWorkCountry.Value = Member.UserGeneral.WorkCountry.Value.ToString();
-                    lWorkCountry.Text = _entities.Countries.First(p => p.Id == Member.UserGeneral.WorkCountry.Value).Name;
+                    lWorkCountry.Text =
+                        _entities.Countries.First(p => p.Id == Member.UserGeneral.WorkCountry.Value).Name;
                 }
                 else
                 {
                     hfWorkCountry.Value = string.Empty;
                     lWorkCountry.Text = string.Empty;
                 }
-                if (Member.UserGeneral.WorkCity != null && !string.IsNullOrWhiteSpace(Member.UserGeneral.WorkCity.Value.ToString()))
+                if (Member.UserGeneral.WorkCity != null &&
+                    !string.IsNullOrWhiteSpace(Member.UserGeneral.WorkCity.Value.ToString()))
                 {
                     hfWorkCity.Value = Member.UserGeneral.WorkCity.Value.ToString();
                     lWorkCity.Text = _entities.Cities.First(p => p.Id == Member.UserGeneral.WorkCity.Value).Name;
@@ -375,7 +495,8 @@ namespace eNroll
                     hfWorkCity.Value = string.Empty;
                     lWorkCity.Text = string.Empty;
                 }
-                if (Member.UserGeneral.WorkTown != null && !string.IsNullOrWhiteSpace(Member.UserGeneral.WorkTown.Value.ToString()))
+                if (Member.UserGeneral.WorkTown != null &&
+                    !string.IsNullOrWhiteSpace(Member.UserGeneral.WorkTown.Value.ToString()))
                 {
                     hfWorkTown.Value = Member.UserGeneral.WorkTown.Value.ToString();
                     lWorkTown.Text = _entities.Towns.First(p => p.Id == Member.UserGeneral.WorkTown.Value).Name;
@@ -405,8 +526,8 @@ namespace eNroll
                                        ? _entities.JobSectors.First(p => p.Id == Member.UserGeneral.JobSectorNo).Name
                                        : string.Empty;
                 lJobs.Text = Member.UserGeneral.JobNo != null && Member.UserGeneral.JobNo > 0
-                                       ? _entities.Jobs.First(p => p.Id == Member.UserGeneral.JobNo).Name
-                                       : string.Empty;
+                                 ? _entities.Jobs.First(p => p.Id == Member.UserGeneral.JobNo).Name
+                                 : string.Empty;
                 cbViewHideJobInfo.Checked = Member.UserGeneral.HideJobInfo;
                 cbHideJobInfo.Checked = Member.UserGeneral.HideJobInfo;
             }
@@ -414,12 +535,11 @@ namespace eNroll
             {
                 ExceptionManager.ManageException(exception);
             }
-
         }
 
-        private MemberInfo BindWorkCountryCityTown(MemberInfo memberInfo, DropDownList ddlCountry, DropDownList ddlCity, DropDownList ddlTown)
+        private MemberInfo BindWorkCountryCityTown(MemberInfo memberInfo, DropDownList ddlCountry, DropDownList ddlCity,
+                                                   DropDownList ddlTown)
         {
-
             BindDdlCountries(ddlCountry, ddlCity, ddlTown, EnrollMembershipHelper.GetCountries());
 
             if (memberInfo.UserGeneral.WorkCountry != null)
@@ -432,7 +552,8 @@ namespace eNroll
                         break;
                     }
                 }
-                BindDdlCities(ddlCity, ddlTown, EnrollMembershipHelper.GetCities(memberInfo.UserGeneral.WorkCountry.Value.ToString()));
+                BindDdlCities(ddlCity, ddlTown,
+                              EnrollMembershipHelper.GetCities(memberInfo.UserGeneral.WorkCountry.Value.ToString()));
                 if (memberInfo.UserGeneral.WorkCity != null)
                 {
                     for (var i = 0; i < ddlCity.Items.Count; i++)
@@ -444,8 +565,9 @@ namespace eNroll
                         }
                     }
 
-                    BindDdlTowns(ddlTown, EnrollMembershipHelper.GetTowns(memberInfo.UserGeneral.WorkCountry.Value.ToString(),
-                        memberInfo.UserGeneral.WorkCity.Value.ToString()));
+                    BindDdlTowns(ddlTown,
+                                 EnrollMembershipHelper.GetTowns(memberInfo.UserGeneral.WorkCountry.Value.ToString(),
+                                                                 memberInfo.UserGeneral.WorkCity.Value.ToString()));
                     if (memberInfo.UserGeneral.WorkTown != null)
                     {
                         for (var i = 0; i < ddlTown.Items.Count; i++)
@@ -462,9 +584,9 @@ namespace eNroll
             return memberInfo;
         }
 
-        private MemberInfo BindHomeCountryCityTown(MemberInfo memberInfo, DropDownList ddlCountry, DropDownList ddlCity, DropDownList ddlTown)
+        private MemberInfo BindHomeCountryCityTown(MemberInfo memberInfo, DropDownList ddlCountry, DropDownList ddlCity,
+                                                   DropDownList ddlTown)
         {
-
             BindDdlCountries(ddlCountry, ddlCity, ddlTown, EnrollMembershipHelper.GetCountries());
 
             if (memberInfo.UserGeneral.HomeCountry != null)
@@ -477,7 +599,8 @@ namespace eNroll
                         break;
                     }
                 }
-                BindDdlCities(ddlCity, ddlTown, EnrollMembershipHelper.GetCities(memberInfo.UserGeneral.HomeCountry.Value.ToString()));
+                BindDdlCities(ddlCity, ddlTown,
+                              EnrollMembershipHelper.GetCities(memberInfo.UserGeneral.HomeCountry.Value.ToString()));
                 if (memberInfo.UserGeneral.HomeCity != null)
                 {
                     for (var i = 0; i < ddlCity.Items.Count; i++)
@@ -489,8 +612,9 @@ namespace eNroll
                         }
                     }
 
-                    BindDdlTowns(ddlTown, EnrollMembershipHelper.GetTowns(memberInfo.UserGeneral.HomeCountry.Value.ToString(),
-                        memberInfo.UserGeneral.HomeCity.Value.ToString()));
+                    BindDdlTowns(ddlTown,
+                                 EnrollMembershipHelper.GetTowns(memberInfo.UserGeneral.HomeCountry.Value.ToString(),
+                                                                 memberInfo.UserGeneral.HomeCity.Value.ToString()));
                     if (memberInfo.UserGeneral.HomeTown != null)
                     {
                         for (var i = 0; i < ddlTown.Items.Count; i++)
@@ -518,7 +642,8 @@ namespace eNroll
 
                 if (Member.UserFoundation.MemberRelType > 0)
                 {
-                    var foundationRelType = _entities.FoundationRelType.FirstOrDefault(p => p.Id == Member.UserFoundation.MemberRelType);
+                    var foundationRelType =
+                        _entities.FoundationRelType.FirstOrDefault(p => p.Id == Member.UserFoundation.MemberRelType);
                     lMemberRelationType.Text = foundationRelType != null ? foundationRelType.Name : string.Empty;
                 }
                 else
@@ -539,6 +664,7 @@ namespace eNroll
                 ExceptionManager.ManageException(exception);
             }
         }
+
         private void BindEmailInfo()
         {
             try
@@ -551,9 +677,11 @@ namespace eNroll
                 ExceptionManager.ManageException(exception);
             }
         }
+
         #endregion
 
         #region clear form inputs
+
         private void ClearPersonalInfo()
         {
             tbName.Text = string.Empty;
@@ -579,11 +707,12 @@ namespace eNroll
             dpLastSchoolGraduateDate.SelectedDate = null;
 
             lbError.Text = string.Empty;
-
         }
+
         private void ClearHomeInfo()
         {
-            EnrollMembershipHelper.BindDdlCountries(ddlHomeCountry, ddlHomeCity, ddlHomeTown, EnrollMembershipHelper.GetCountries());
+            EnrollMembershipHelper.BindDdlCountries(ddlHomeCountry, ddlHomeCity, ddlHomeTown,
+                                                    EnrollMembershipHelper.GetCountries());
 
             hfHomeCountry.Value = null;
             hfHomeCity.Value = null;
@@ -594,9 +723,11 @@ namespace eNroll
             tbHomePhone.Text = string.Empty;
             tbMemberFoundation.Text = string.Empty;
         }
+
         private void ClearJobInfo()
         {
-            EnrollMembershipHelper.BindDdlCountries(ddlWorkCountry, ddlWorkCity, ddlWorkTown, EnrollMembershipHelper.GetCountries());
+            EnrollMembershipHelper.BindDdlCountries(ddlWorkCountry, ddlWorkCity, ddlWorkTown,
+                                                    EnrollMembershipHelper.GetCountries());
             hfWorkCountry.Value = null;
             hfWorkCity.Value = null;
             hfWorkTown.Value = null;
@@ -612,6 +743,7 @@ namespace eNroll
             ddlJobSectors.SelectedIndex = 0;
             ddlJobs.SelectedIndex = 0;
         }
+
         private void ClearMembershipInfo()
         {
             lMemberRelationType.Text = string.Empty;
@@ -620,19 +752,24 @@ namespace eNroll
             lTerm.Text = string.Empty;
             lMembershipDate.Text = string.Empty;
         }
+
         #endregion
 
         #region generate password
+
         [WebMethod]
         public static string GeneratePassword()
         {
             var password = Guid.NewGuid().ToString("N");
             return password.Substring(0, 8);
         }
+
         #endregion
 
         #region bind Home countries cities towns
-        public static void BindDdlCountries(DropDownList dropDownList, DropDownList ddlCity, DropDownList ddlTown, List<Countries> list)
+
+        public static void BindDdlCountries(DropDownList dropDownList, DropDownList ddlCity, DropDownList ddlTown,
+                                            List<Countries> list)
         {
             dropDownList.Items.Clear();
             ddlCity.Items.Clear();
@@ -646,6 +783,7 @@ namespace eNroll
             ddlCity.Items.Insert(0, new ListItem(Resource.lbChoose, ""));
             ddlTown.Items.Insert(0, new ListItem(Resource.lbChoose, ""));
         }
+
         public static void BindDdlCities(DropDownList dropDownList, DropDownList ddlTown, List<Cities> list)
         {
             dropDownList.Items.Clear();
@@ -658,6 +796,7 @@ namespace eNroll
             dropDownList.Items.Insert(0, new ListItem(Resource.lbChoose, ""));
             ddlTown.Items.Insert(0, new ListItem(Resource.lbChoose, ""));
         }
+
         public static void BindDdlTowns(DropDownList dropDownList, List<Towns> list)
         {
             dropDownList.Items.Clear();
@@ -668,6 +807,7 @@ namespace eNroll
                 }
             dropDownList.Items.Insert(0, new ListItem(Resource.lbChoose, ""));
         }
+
         #endregion
 
         #region OnSelectedIndexChanged home&work countries cities towns
@@ -677,8 +817,10 @@ namespace eNroll
             hfHomeCountry.Value = ddlHomeCountry.SelectedIndex > 0 ? ddlHomeCountry.SelectedItem.Value : string.Empty;
             BindDdlCities(ddlHomeCity, ddlHomeTown, EnrollMembershipHelper.GetCities(hfHomeCountry.Value));
             ShowHomeInfoEditMode();
-            Page.ClientScript.RegisterStartupScript(GetType(), "showUserInfo123edsaas", "<script> showUserInfo('dHomeDetail');</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "showUserInfo123edsaas",
+                                                    "<script> showUserInfo('dHomeDetail');</script>");
         }
+
         protected void ddlHomeCity_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlHomeCity.SelectedIndex > 0)
@@ -689,7 +831,8 @@ namespace eNroll
                 hfHomeCity.Value = string.Empty;
             BindDdlTowns(ddlHomeTown, EnrollMembershipHelper.GetTowns(hfHomeCountry.Value, hfHomeCity.Value));
             ShowHomeInfoEditMode();
-            Page.ClientScript.RegisterStartupScript(GetType(), "showUserInfo123edsaa1s", "<script> showUserInfo('dHomeDetail');</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "showUserInfo123edsaa1s",
+                                                    "<script> showUserInfo('dHomeDetail');</script>");
         }
 
         protected void ddlWorkCountry_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -697,24 +840,28 @@ namespace eNroll
             hfWorkCountry.Value = ddlWorkCountry.SelectedIndex > 0 ? ddlWorkCountry.SelectedItem.Value : string.Empty;
             BindDdlCities(ddlWorkCity, ddlWorkTown, EnrollMembershipHelper.GetCities(hfWorkCountry.Value));
             ShowWorkInfoEditMode();
-            Page.ClientScript.RegisterStartupScript(GetType(), "showUserInfo123edsaas1", "<script> showUserInfo('dWorkDetail');</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "showUserInfo123edsaas1",
+                                                    "<script> showUserInfo('dWorkDetail');</script>");
         }
+
         protected void ddlWorkCity_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             hfWorkCity.Value = ddlWorkCity.SelectedIndex > 0 ? ddlWorkCity.SelectedItem.Value : string.Empty;
             BindDdlTowns(ddlWorkTown, EnrollMembershipHelper.GetTowns(hfWorkCountry.Value, hfWorkCity.Value));
             ShowWorkInfoEditMode();
-            Page.ClientScript.RegisterStartupScript(GetType(), "showUserInfo123edsaas12", "<script> showUserInfo('dWorkDetail');</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "showUserInfo123edsaas12",
+                                                    "<script> showUserInfo('dWorkDetail');</script>");
         }
 
         #endregion
 
         #region edit user info changes <personal, home, work>
+
         protected void BtnSavePersonalInfoClick(object sender, EventArgs e)
         {
             try
             {
-                var newUserGeneral = false;//userGeneral tablosu yeni oluştuysa
+                var newUserGeneral = false; //userGeneral tablosu yeni oluştuysa
                 if (Member != null && Member.Users != null && Member.Users.Id > 0)
                 {
                     var user = _entities.Users.First(p => p.Id == Member.Users.Id);
@@ -736,27 +883,30 @@ namespace eNroll
                     }
 
                     userGeneral.Gender = ddlGender.SelectedIndex > 0
-                                             ? (int?)Convert.ToInt32(ddlGender.SelectedItem.Value)
+                                             ? (int?) Convert.ToInt32(ddlGender.SelectedItem.Value)
                                              : null;
                     userGeneral.MaritalStatus = ddlMaritalStatus.SelectedIndex > 0
-                                                    ? (int?)Convert.ToInt32(ddlMaritalStatus.SelectedItem.Value)
+                                                    ? (int?) Convert.ToInt32(ddlMaritalStatus.SelectedItem.Value)
                                                     : null;
                     userGeneral.BloodType = ddlBloodType.SelectedIndex > 0
-                                                ? (int?)Convert.ToInt32(ddlBloodType.SelectedItem.Value)
+                                                ? (int?) Convert.ToInt32(ddlBloodType.SelectedItem.Value)
                                                 : null;
                     userGeneral.TC = tbTC.Text;
                     userGeneral.FatherName = tbFatherName.Text;
                     userGeneral.MotherName = tbMotherName.Text;
                     userGeneral.MarriageDate = dpMarriageDate.SelectedDate;
                     userGeneral.MaidenName = tbMaidenName.Text;
-                    userGeneral.Birthdate = (dpBirthDate != null || dpBirthDate.SelectedDate != null ? dpBirthDate.SelectedDate : null);
+                    userGeneral.Birthdate = (dpBirthDate != null || dpBirthDate.SelectedDate != null
+                                                 ? dpBirthDate.SelectedDate
+                                                 : null);
                     userGeneral.Birthplace = tbBirthPlace.Text;
                     userGeneral.Hobby = tbHobbies.Text;
                     userGeneral.Web = tbWeb.Text;
                     userGeneral.GsmNo = tbGsmNo.Text;
                     userGeneral.LastSchool = tbLastSchool.Text;
                     if (dpLastSchoolGraduateDate.SelectedDate != null)
-                        userGeneral.LastSchoolGraduateDate = Convert.ToDateTime("01.01." + dpLastSchoolGraduateDate.SelectedDate.Value.Year.ToString());
+                        userGeneral.LastSchoolGraduateDate =
+                            Convert.ToDateTime("01.01." + dpLastSchoolGraduateDate.SelectedDate.Value.Year.ToString());
 
                     string photoUrl = SaveUserPhoto(user.Id);
                     if (!string.IsNullOrWhiteSpace(photoUrl))
@@ -782,7 +932,8 @@ namespace eNroll
                     Member = EnrollMembershipHelper.BindUser(Member);
                     BindPersonalInfo();
                     ShowPersInfoViewMode();
-                    Page.ClientScript.RegisterStartupScript(GetType(), "dPersonalDetail11", "<script> showUserInfo('dPersonalDetail');</script>");
+                    Page.ClientScript.RegisterStartupScript(GetType(), "dPersonalDetail11",
+                                                            "<script> showUserInfo('dPersonalDetail');</script>");
                     MessageBox.Show(MessageType.jAlert, Resource.msgUpdated);
                 }
             }
@@ -792,15 +943,15 @@ namespace eNroll
                 MessageBox.Show(MessageType.jAlert, Resource.msgError);
             }
         }
+
         protected void BtnSaveHomeInfoClick(object sender, EventArgs e)
         {
             try
             {
-                var newUserGeneral = false;//userGeneral tablosu yeni oluştuysa 
+                var newUserGeneral = false; //userGeneral tablosu yeni oluştuysa 
 
                 if (Member != null && Member.Users != null && Member.Users.Id > 0)
                 {
-
                     var userGeneral = _entities.UserGeneral.FirstOrDefault(p => p.UserId == Member.Users.Id);
                     if (userGeneral == null)
                     {
@@ -844,7 +995,8 @@ namespace eNroll
                     Member = EnrollMembershipHelper.BindUser(Member);
                     BindHomeInfo();
                     ShowHomeInfoViewMode();
-                    Page.ClientScript.RegisterStartupScript(GetType(), "dHomeDetail11", "<script> showUserInfo('dHomeDetail');</script>");
+                    Page.ClientScript.RegisterStartupScript(GetType(), "dHomeDetail11",
+                                                            "<script> showUserInfo('dHomeDetail');</script>");
                     MessageBox.Show(MessageType.jAlert, Resource.msgUpdated);
                 }
             }
@@ -854,11 +1006,12 @@ namespace eNroll
                 MessageBox.Show(MessageType.jAlert, Resource.msgError);
             }
         }
+
         protected void BtnSaveWorkInfoClick(object sender, EventArgs e)
         {
             try
             {
-                var newUserGeneral = false;//userGeneral tablosu yeni oluştuysa 
+                var newUserGeneral = false; //userGeneral tablosu yeni oluştuysa 
 
                 if (Member != null && Member.Users != null && Member.Users.Id > 0 && Member.UserGeneral != null)
                 {
@@ -921,7 +1074,8 @@ namespace eNroll
                     Member = EnrollMembershipHelper.BindUser(Member);
                     BindJobInfo();
                     ShowWorkInfoViewMode();
-                    Page.ClientScript.RegisterStartupScript(GetType(), "dWorkDetail11", "<script> showUserInfo('dWorkDetail');</script>");
+                    Page.ClientScript.RegisterStartupScript(GetType(), "dWorkDetail11",
+                                                            "<script> showUserInfo('dWorkDetail');</script>");
                     MessageBox.Show(MessageType.jAlert, Resource.msgUpdated);
                 }
             }
@@ -931,9 +1085,11 @@ namespace eNroll
                 MessageBox.Show(MessageType.jAlert, Resource.msgError);
             }
         }
+
         #endregion
 
         #region edit/createNew  email details <WebMethods>
+
         protected void BtnSaveEmailInfoClick(object sender, EventArgs e)
         {
             try
@@ -944,7 +1100,9 @@ namespace eNroll
                 {
                     tbNewEmailAddress.Text = string.Empty;
                     Page.ClientScript.RegisterStartupScript(GetType(),
-                        "dEmailAddress11", "<script> showUserInfo('dEmailAddress');alert('" + AdminResource.lbMailAddressTakenAlready + "');</script>");
+                                                            "dEmailAddress11",
+                                                            "<script> showUserInfo('dEmailAddress');alert('" +
+                                                            AdminResource.lbMailAddressTakenAlready + "');</script>");
                     return;
                 }
                 else
@@ -960,13 +1118,13 @@ namespace eNroll
                         _entities.AddToUserEmails(newEmailAddress);
                         _entities.SaveChanges();
 
-                        var activationMailResult = EnrollMembershipHelper.SendEmailActivationMail(Member.Users.Id, newEmailAddress.Id, "/App_Themes/mainTheme/mailtemplates/MemberActivationMailContent.htm");
+                        var activationMailResult = EnrollMembershipHelper.SendEmailActivationMail(Member.Users.Id,
+                                                                                                  newEmailAddress.Id,
+                                                                                                  "/App_Themes/mainTheme/mailtemplates/MemberActivationMailContent.htm");
                         tbNewEmailAddress.Text = string.Empty;
                         MessageBox.Show(MessageType.jAlert, activationMailResult);
-
                     }
                 }
-
             }
             catch (Exception exception)
             {
@@ -976,8 +1134,9 @@ namespace eNroll
             BindEmailInfo();
             ShowEmailInfoViewMode();
             Page.ClientScript.RegisterStartupScript(GetType(), "newEmail1",
-                                                            "<script> showUserInfo('dEmailAddress');</script>");
+                                                    "<script> showUserInfo('dEmailAddress');</script>");
         }
+
         [WebMethod]
         public static string ChangeMailing(string userIdStr, string emailIdStr, string islem)
         {
@@ -1004,7 +1163,11 @@ namespace eNroll
                         }
                         e.SaveChanges();
 
-                        result = EnrollMembershipHelper.CreateUserEmailsInfoTableProfile(Member, e.UserEmails.Where(p => p.UserId == Member.Users.Id).ToList());
+                        result = EnrollMembershipHelper.CreateUserEmailsInfoTableProfile(Member,
+                                                                                         e.UserEmails.Where(
+                                                                                             p =>
+                                                                                             p.UserId == Member.Users.Id)
+                                                                                             .ToList());
                         return result;
                     }
                 }
@@ -1016,6 +1179,7 @@ namespace eNroll
             }
             return result;
         }
+
         [WebMethod]
         public static string ChangeMailingAdmn(string userIdStr, string emailIdStr, string islem)
         {
@@ -1044,7 +1208,11 @@ namespace eNroll
                         }
                         e.SaveChanges();
 
-                        result = EnrollMembershipHelper.CreateUserEmailsInfoTableAdmin(Member, e.UserEmails.Where(p => p.UserId == Member.Users.Id).ToList());
+                        result = EnrollMembershipHelper.CreateUserEmailsInfoTableAdmin(Member,
+                                                                                       e.UserEmails.Where(
+                                                                                           p =>
+                                                                                           p.UserId == Member.Users.Id).
+                                                                                           ToList());
                         return result;
                     }
                 }
@@ -1056,6 +1224,7 @@ namespace eNroll
             }
             return result;
         }
+
         [WebMethod]
         public static string DeleteEmail(string userIdStr, string emailIdStr)
         {
@@ -1077,7 +1246,11 @@ namespace eNroll
                         }
                         e.DeleteObject(email);
                         e.SaveChanges();
-                        result = EnrollMembershipHelper.CreateUserEmailsInfoTableProfile(Member, e.UserEmails.Where(p => p.UserId == Member.Users.Id).ToList());
+                        result = EnrollMembershipHelper.CreateUserEmailsInfoTableProfile(Member,
+                                                                                         e.UserEmails.Where(
+                                                                                             p =>
+                                                                                             p.UserId == Member.Users.Id)
+                                                                                             .ToList());
                         return result;
                     }
                 }
@@ -1089,6 +1262,7 @@ namespace eNroll
             }
             return result;
         }
+
         [WebMethod]
         public static string DeleteEmailAdmn(string userIdStr, string emailIdStr)
         {
@@ -1113,7 +1287,11 @@ namespace eNroll
                         }
                         e.DeleteObject(email);
                         e.SaveChanges();
-                        result = EnrollMembershipHelper.CreateUserEmailsInfoTableAdmin(Member, e.UserEmails.Where(p => p.UserId == Member.Users.Id).ToList());
+                        result = EnrollMembershipHelper.CreateUserEmailsInfoTableAdmin(Member,
+                                                                                       e.UserEmails.Where(
+                                                                                           p =>
+                                                                                           p.UserId == Member.Users.Id).
+                                                                                           ToList());
                         return result;
                     }
                 }
@@ -1125,10 +1303,10 @@ namespace eNroll
             }
             return result;
         }
+
         [WebMethod]
         public static string ActivateMailAddress(string userIdStr, string emailIdStr)
         {
-
             var e = new Entities();
             var result = string.Empty;
             try
@@ -1139,9 +1317,8 @@ namespace eNroll
                 var user = e.Users.FirstOrDefault(p => p.Id == userId);
                 if (user != null)
                 {
-
                     result = EnrollMembershipHelper.SendEmailActivationMail(userId, emailId,
-                                                "App_Themes/mainTheme/mailtemplates/MemberActivationMailContent.htm");
+                                                                            "App_Themes/mainTheme/mailtemplates/MemberActivationMailContent.htm");
                 }
                 else
                 {
@@ -1155,6 +1332,7 @@ namespace eNroll
             }
             return result;
         }
+
         [WebMethod]
         public static string ChangeActiveEmail(string userIdStr, string emailIdStr)
         {
@@ -1182,7 +1360,6 @@ namespace eNroll
                         e.SaveChanges();
                         processResult = true;
                     }
-
                 }
                 else
                 {
@@ -1200,6 +1377,7 @@ namespace eNroll
             }
             return result;
         }
+
         [WebMethod]
         public static string ChangeActiveEmailAdmn(string userIdStr, string emailIdStr)
         {
@@ -1232,7 +1410,6 @@ namespace eNroll
                         e.SaveChanges();
                         processResult = true;
                     }
-
                 }
                 else
                 {
@@ -1247,14 +1424,18 @@ namespace eNroll
             if (processResult)
             {
                 MessageBox.Show(MessageType.Success, AdminResource.msgUpdated);
-                result = EnrollMembershipHelper.CreateUserEmailsInfoTableAdmin(Member, e.UserEmails.Where(p => p.UserId == Member.Users.Id).ToList());
-
+                result = EnrollMembershipHelper.CreateUserEmailsInfoTableAdmin(Member,
+                                                                               e.UserEmails.Where(
+                                                                                   p => p.UserId == Member.Users.Id).
+                                                                                   ToList());
             }
             return result;
         }
+
         #endregion
 
         #region save user profil photo
+
         public string SaveUserPhoto(int userId)
         {
             bool isImageSaved = false;
@@ -1264,16 +1445,16 @@ namespace eNroll
             if (uploadedFiles.Count > 0)
             {
                 var userPostedFile = uploadedFiles[0];
-                if (userPostedFile.ContentLength > 1024 * 1024)
+                if (userPostedFile.ContentLength > 1024*1024)
                 {
                     MessageBox.Show(MessageType.Error, Resource.msgFileSizeTooLarge);
                     return string.Empty;
                 }
-                if (userPostedFile.ContentLength > 0 && userPostedFile.ContentLength < 1024 * 1024)
+                if (userPostedFile.ContentLength > 0 && userPostedFile.ContentLength < 1024*1024)
                 {
                     try
                     {
-                        string fileExtension = System.IO.Path.GetExtension(userPostedFile.FileName);
+                        string fileExtension = Path.GetExtension(userPostedFile.FileName);
                         String filePath = Server.MapPath(hdnActiveDirectory.Value);
                         string orjinalImagePath = filePath + "\\UserImages\\temp_" + userId.ToString() + fileExtension;
 
@@ -1283,8 +1464,12 @@ namespace eNroll
                         lock (orj)
                         {
                             Image i = ImageHelper.ResizeImage(orj, new Size(150, 150));
-                            resizedImagePath = "~/FileManager/UserImages/userProfileImage_" + userId.ToString() + fileExtension;
-                            isImageSaved = ImageHelper.SaveJpeg(filePath + "\\UserImages\\userProfileImage_" + userId.ToString() + fileExtension, (Bitmap)i, 75);
+                            resizedImagePath = "~/FileManager/UserImages/userProfileImage_" + userId.ToString() +
+                                               fileExtension;
+                            isImageSaved =
+                                ImageHelper.SaveJpeg(
+                                    filePath + "\\UserImages\\userProfileImage_" + userId.ToString() + fileExtension,
+                                    (Bitmap) i, 75);
                             i.Dispose();
                         }
                         orj.Dispose();
@@ -1306,147 +1491,69 @@ namespace eNroll
                         ExceptionManager.ManageException(exception);
                     }
                 }
-
             }
             return resizedImagePath;
         }
+
         #endregion
 
         #region javascript show/hide - button/div
+
         public void ShowPersInfoViewMode()
         {
             Page.ClientScript.RegisterStartupScript(GetType(), "viewPersonalInfoClickweqrq2",
-                                                            "<script> viewPersonalInfoClick();</script>");
+                                                    "<script> viewPersonalInfoClick();</script>");
         }
+
         public void ShowPersInfoEditMode()
         {
             Page.ClientScript.RegisterStartupScript(GetType(),
-                "editPersonalInfoClick32423redf", "<script> editPersonalInfoClick();$(\"#results\").empty();</script>");
+                                                    "editPersonalInfoClick32423redf",
+                                                    "<script> editPersonalInfoClick();$(\"#results\").empty();</script>");
         }
 
         public void ShowHomeInfoViewMode()
         {
-            Page.ClientScript.RegisterStartupScript(GetType(), "viewHomeInfoClick213123", "<script> viewHomeInfoClick();</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "viewHomeInfoClick213123",
+                                                    "<script> viewHomeInfoClick();</script>");
         }
+
         public void ShowHomeInfoEditMode()
         {
-            Page.ClientScript.RegisterStartupScript(GetType(), "viewHomeInfoClick34214d", "<script> editHomeInfoClick();</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "viewHomeInfoClick34214d",
+                                                    "<script> editHomeInfoClick();</script>");
         }
 
         public void ShowMemberInfoViewMode()
         {
-            Page.ClientScript.RegisterStartupScript(GetType(), "viewPersonalInfoClickwqerdwq", "<script> viewMemberInfoClick();</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "viewPersonalInfoClickwqerdwq",
+                                                    "<script> viewMemberInfoClick();</script>");
         }
 
         public void ShowWorkInfoViewMode()
         {
-            Page.ClientScript.RegisterStartupScript(GetType(), "viewWorkInfoClicksadsad", "<script> viewWorkInfoClick();</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "viewWorkInfoClicksadsad",
+                                                    "<script> viewWorkInfoClick();</script>");
         }
+
         public void ShowWorkInfoEditMode()
         {
-            Page.ClientScript.RegisterStartupScript(GetType(), "editWorkInfoClick1234r", "<script> editWorkInfoClick();</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "editWorkInfoClick1234r",
+                                                    "<script> editWorkInfoClick();</script>");
         }
 
         public void ShowEmailInfoViewMode()
         {
-            Page.ClientScript.RegisterStartupScript(GetType(), "viewEmailInfoClick123r5d", "<script> viewEmailInfoClick();</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "viewEmailInfoClick123r5d",
+                                                    "<script> viewEmailInfoClick();</script>");
         }
+
         public void ShowEmailInfoEditMode()
         {
-            Page.ClientScript.RegisterStartupScript(GetType(), "viewEmailInfoClickw4321ed", "<script> editEmailInfoClick();</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "viewEmailInfoClickw4321ed",
+                                                    "<script> editEmailInfoClick();</script>");
         }
+
         #endregion
-
-        private static bool Logout()
-        {
-            try
-            {
-                var cookie = HttpContext.Current.Response.Cookies["EnrollAuthentication"];
-                if (cookie != null) cookie.Expires = DateTime.Now.AddMinutes(-1);
-
-                cookie = HttpContext.Current.Response.Cookies["EnrollAdminLanguage"];
-                if (cookie != null) cookie.Expires = DateTime.Now.AddMinutes(-1);
-
-                cookie = HttpContext.Current.Response.Cookies["EnrollDataLanguage"];
-                if (cookie != null) cookie.Expires = DateTime.Now.AddMinutes(-1);
-
-                HttpContext.Current.Session.Clear();
-                HttpContext.Current.Session.Abandon();
-                FormsAuthentication.SignOut();
-                return true;
-
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        protected string GetDuesType(int duesTypeId)
-        {
-            try
-            {
-                var duesType = _entities.DuesTypes.FirstOrDefault(p => p.Id == duesTypeId);
-                return duesType == null ? string.Empty : duesType.Title;
-            }
-            catch (Exception exception)
-            {
-                ExceptionManager.ManageException(exception);
-            }
-            return string.Empty;
-        }
-
-        protected string GetUserName(int userId)
-        {
-            try
-            {
-                var user = _entities.Users.FirstOrDefault(p => p.Id == userId);
-                if (user == null) return string.Empty;
-                return string.Format("{0} {1}", user.Name, user.Surname);
-            }
-            catch (Exception exception)
-            {
-                ExceptionManager.ManageException(exception);
-            }
-            return string.Empty;
-        }
-
-        protected string GetPaymentType(int paymentTypeId)
-        {
-            try
-            {
-                switch (paymentTypeId)
-                {
-                    case 1: return AdminResource.lbPaymentType1;
-                    case 2: return AdminResource.lbPaymentType2;
-                    case 3: return AdminResource.lbPaymentType3;
-                    case 4: return AdminResource.lbPaymentType4;
-                }
-            }
-            catch (Exception exception)
-            {
-                ExceptionManager.ManageException(exception);
-            }
-            return string.Empty;
-        }
-
-        protected void BtPayCertainAmount_OnClick(object sender, EventArgs e)
-        {
-            Page.ClientScript.RegisterStartupScript(GetType(),
-                        "dFinanceDetail21", "<script> showUserInfo('dFinanceDetail'); </script>");
-            return;
-        }
-        protected void BtPayAllAmount_OnClick(object sender, EventArgs e)
-        {
-            Page.ClientScript.RegisterStartupScript(GetType(),
-                        "dFinanceDetail22", "<script> showUserInfo('dFinanceDetail'); </script>");
-            return;
-        }
-        protected void gvChargesForDues_OnPageIndexChanged(object sender, EventArgs e)
-        {
-            Page.ClientScript.RegisterStartupScript(GetType(),
-                        "dFinanceDetail23", "<script> showUserInfo('dFinanceDetail');</script>");
-            return;
-        }
     }
 }

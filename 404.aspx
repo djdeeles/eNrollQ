@@ -8,6 +8,6 @@
             <%= Resource.lb404Title %></p>
         <p class="hatamsg">
             <%= Resource.lb404msg %></p>
-	<p><uc1:searchControl ID="searchControl1" runat="server" /></p>
+        <p><uc1:searchControl ID="searchControl1" runat="server" /></p>
     </div>
 </asp:Content>

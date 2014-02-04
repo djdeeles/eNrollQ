@@ -1,32 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Drawing;
 using System.Linq;
-using System.Net.Mail;
-using System.Text;
 using System.Web;
-using System.Web.Configuration;
 using System.Web.Services;
-using System.Web.UI.WebControls;
+using System.Web.UI;
 using Enroll.Managers;
 using Resources;
 using eNroll.App_Data;
 using eNroll.Helpers;
-using Image = System.Drawing.Image;
 
 namespace eNroll
 {
-
-    public partial class NewMember : System.Web.UI.Page
+    public partial class NewMember : Page
     {
         public static MemberInfo _newMember = new MemberInfo();
 
-        readonly Entities _entities = new Entities();
+        private readonly Entities _entities = new Entities();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(HttpContext.Current.Request.IsAuthenticated) Response.Redirect("Default.aspx");
+            if (HttpContext.Current.Request.IsAuthenticated) Response.Redirect("Default.aspx");
             if (!IsPostBack)
             {
                 ClearPersonalInfo();
@@ -48,20 +40,23 @@ namespace eNroll
             }
 
             #region set page title
+
             string pageTitle = MetaGenerate.SetMetaTags(EnrollContext.Current.WorkingLanguage.LanguageId, Page);
             Page.Title = string.Format("{0} - {1}", pageTitle, Resource.lbNewMembership);
+
             #endregion
         }
 
         private bool SendEmailAccountActivation(int userId)
-        { 
+        {
             var user = _entities.Users.FirstOrDefault(p => p.Id == userId);
-            if (user!=null)
+            if (user != null)
             {
-                var userEmail = _entities.UserEmails.FirstOrDefault(p => p.UserId== userId && p.MainAddress);
+                var userEmail = _entities.UserEmails.FirstOrDefault(p => p.UserId == userId && p.MainAddress);
                 try
                 {
-                    if (userEmail != null){
+                    if (userEmail != null)
+                    {
                         EnrollMembershipHelper.SendEmailActivationMail(user.Id, userEmail.Id,
                                                                        "/App_Themes/mainTheme/mailtemplates/MemberActivationMailContent.htm");
                     }
@@ -77,120 +72,16 @@ namespace eNroll
                 Page.ClientScript.RegisterStartupScript(GetType(), "vvvv",
                                                         "<script> alert('" + AdminResource.lbUserInformationNotValid +
                                                         ".');</script>");
-
             }
             return true;
         }
-         
-        #region generete password
-        [WebMethod]
-        public static string GeneratePassword()
-        {
-            var password = Guid.NewGuid().ToString("N");
-            return password.Substring(0, 8);
-        }
-        #endregion
 
-        #region clear form inputs
-        private void ClearPersonalInfo()
-        {
-            tbName.Text = string.Empty;
-            tbSurname.Text = string.Empty;
-            tbEPosta.Text = string.Empty;
-            tbParola.Text = string.Empty;
-            tbTC.Text = string.Empty;
-            EnrollMembershipHelper.DataBindDdlGender(_newMember, ddlGender);
-
-            EnrollMembershipHelper.DataBindDdlMaritalStatus(_newMember, ddlMaritalStatus);
-            tbMaidenName.Text = string.Empty;
-            dpMarriageDate = null;
-            trMaidenName.Attributes.Add("class", "hideaboutgender");
-            trMarriageDate.Attributes.Add("class", "hideaboutgender");
-            EnrollMembershipHelper.DataBindDDlBloodType(_newMember, ddlBloodType);
-            dpBirthDate = null;
-            tbBirthPlace.Text = string.Empty;
-            tbGsmNo.Text = string.Empty;
-            tbLastSchool.Text = string.Empty;
-            dpLastSchoolGraduateDate.SelectedDate = null;
-            tbMemberFoundation.Text = string.Empty;
-            lbError.Text = string.Empty;
-        }
-        private void ClearHomeInfo()
-        {
-            EnrollMembershipHelper.BindDdlCountries(ddlHomeCountry, ddlHomeCity, ddlHomeTown, EnrollMembershipHelper.GetCountries());
-            hfHomeCountry.Value = null;
-            hfHomeCity.Value = null;
-            hfHomeTown.Value = null;
-
-            tbHomeAddress.Text = string.Empty;
-            tbHomeZipCode.Text = string.Empty;
-            tbHomePhone.Text = string.Empty;
-
-        }
-        private void ClearJobInfo()
-        {
-            EnrollMembershipHelper.BindDdlCountries(ddlWorkCountry, ddlWorkCity, ddlWorkTown, EnrollMembershipHelper.GetCountries());
-            hfWorkCountry.Value = null;
-            hfWorkCity.Value = null;
-            hfWorkTown.Value = null;
-
-            tbWorkAddress.Text = string.Empty;
-            tbWorkZipCode.Text = string.Empty;
-            tbWorkPhone.Text = string.Empty;
-            tbWorkFax.Text = string.Empty;
-            tbWorkTitle.Text = string.Empty;
-            tbWorkCorparation.Text = string.Empty;
-
-            EnrollMembershipHelper.DataBindDDlSectorsJobs(_newMember, ddlJobSectors, ddlJobs);
-            ddlJobSectors.SelectedIndex = 0;
-            ddlJobs.SelectedIndex = 0;
-        }
-        private void ClearMembershipInfo()
-        {
-            EnrollMembershipHelper.DataBindDdlMembershipRelType(ddlMembershipRelType);
-            ddlMembershipRelType.SelectedIndex = 0;
-            tbMembershipNumber.Text = string.Empty;
-            cbIsTermLider.Checked = false;
-            tbSpecialNumber.Text = string.Empty;
-            dpTerm.SelectedDate = null;
-            dpMembershipDate.SelectedDate = null;
-        }
-        #endregion
-
-        #region OnSelectedIndexChanged countries cities towns
-        
-        //Home
-        protected void ddlHomeCountry_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            hfHomeCountry.Value = ddlHomeCountry.SelectedIndex > 0 ? ddlHomeCountry.SelectedItem.Value : string.Empty;
-            EnrollMembershipHelper.BindDdlCities(ddlHomeCity, ddlHomeTown, EnrollMembershipHelper.GetCities(hfHomeCountry.Value));
-        }
-        protected void ddlHomeCity_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            hfHomeCity.Value = ddlHomeCity.SelectedIndex > 0 ? ddlHomeCity.SelectedItem.Value : string.Empty;
-            EnrollMembershipHelper.BindDdlTowns(ddlHomeTown, EnrollMembershipHelper.GetTowns(hfHomeCountry.Value, hfHomeCity.Value));
-        }
-        
-        //Work
-        protected void ddlWorkCountry_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            hfWorkCountry.Value = ddlWorkCountry.SelectedIndex > 0 ? ddlWorkCountry.SelectedItem.Value : string.Empty;
-            EnrollMembershipHelper.BindDdlCities(ddlWorkCity, ddlWorkTown, EnrollMembershipHelper.GetCities(hfWorkCountry.Value));
-        }
-        protected void ddlWorkCity_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            hfWorkCity.Value = ddlWorkCity.SelectedIndex > 0 ? ddlWorkCity.SelectedItem.Value : string.Empty;
-            EnrollMembershipHelper.BindDdlTowns(ddlWorkTown, EnrollMembershipHelper.GetTowns(hfWorkCountry.Value, hfWorkCity.Value));
-        }
-
-        #endregion
-        
         protected void BtnSavePersonalInfoClick(object sender, EventArgs e)
         {
             try
             {
                 string email = tbEPosta.Text;
-                List<Users> users = _entities.Users.Where(p => p.EMail == email).ToList();
+                var users = _entities.Users.Where(p => p.EMail == email).ToList();
                 if (users.Count == 0 && tbParola.Text != string.Empty)
                 {
                     _newMember.Users.EMail = email;
@@ -204,7 +95,7 @@ namespace eNroll
 
                     _newMember.UserEmails.Email = tbEPosta.Text;
                     _newMember.UserEmails.MainAddress = true;
-                    _newMember.UserEmails.Activated= false;
+                    _newMember.UserEmails.Activated = false;
                     _newMember.UserEmails.AllowMailing = true;
 
                     if (ddlGender.SelectedIndex > 0)
@@ -229,13 +120,13 @@ namespace eNroll
 
                     if (dpLastSchoolGraduateDate.SelectedDate != null)
                     {
-                        _newMember.UserGeneral.LastSchoolGraduateDate = Convert.ToDateTime("01.01." + dpLastSchoolGraduateDate.SelectedDate.Value.Year.ToString());
+                        _newMember.UserGeneral.LastSchoolGraduateDate =
+                            Convert.ToDateTime("01.01." + dpLastSchoolGraduateDate.SelectedDate.Value.Year.ToString());
                     }
                     _newMember.UserGeneral.PhotoUrl = null;
                     mvCreateMember.SetActiveView(vMemberInfo);
-
                 }
-                else if(email.Any())
+                else if (email.Any())
                 {
                     MessageBox.Show(MessageType.jAlert, Resource.lbMailAddressTakenAlready);
                 }
@@ -245,7 +136,6 @@ namespace eNroll
                 ExceptionManager.ManageException(exception);
                 MessageBox.Show(MessageType.jAlert, Resource.msgError);
             }
-
         }
 
         protected void BtnSaveMemberInfoClick(object sender, EventArgs e)
@@ -382,5 +272,122 @@ namespace eNroll
         {
             mvCreateMember.SetActiveView(vHomeDetail);
         }
+
+        #region generete password
+
+        [WebMethod]
+        public static string GeneratePassword()
+        {
+            var password = Guid.NewGuid().ToString("N");
+            return password.Substring(0, 8);
+        }
+
+        #endregion
+
+        #region clear form inputs
+
+        private void ClearPersonalInfo()
+        {
+            tbName.Text = string.Empty;
+            tbSurname.Text = string.Empty;
+            tbEPosta.Text = string.Empty;
+            tbParola.Text = string.Empty;
+            tbTC.Text = string.Empty;
+            EnrollMembershipHelper.DataBindDdlGender(_newMember, ddlGender);
+
+            EnrollMembershipHelper.DataBindDdlMaritalStatus(_newMember, ddlMaritalStatus);
+            tbMaidenName.Text = string.Empty;
+            dpMarriageDate = null;
+            trMaidenName.Attributes.Add("class", "hideaboutgender");
+            trMarriageDate.Attributes.Add("class", "hideaboutgender");
+            EnrollMembershipHelper.DataBindDDlBloodType(_newMember, ddlBloodType);
+            dpBirthDate = null;
+            tbBirthPlace.Text = string.Empty;
+            tbGsmNo.Text = string.Empty;
+            tbLastSchool.Text = string.Empty;
+            dpLastSchoolGraduateDate.SelectedDate = null;
+            tbMemberFoundation.Text = string.Empty;
+            lbError.Text = string.Empty;
+        }
+
+        private void ClearHomeInfo()
+        {
+            EnrollMembershipHelper.BindDdlCountries(ddlHomeCountry, ddlHomeCity, ddlHomeTown,
+                                                    EnrollMembershipHelper.GetCountries());
+            hfHomeCountry.Value = null;
+            hfHomeCity.Value = null;
+            hfHomeTown.Value = null;
+
+            tbHomeAddress.Text = string.Empty;
+            tbHomeZipCode.Text = string.Empty;
+            tbHomePhone.Text = string.Empty;
+        }
+
+        private void ClearJobInfo()
+        {
+            EnrollMembershipHelper.BindDdlCountries(ddlWorkCountry, ddlWorkCity, ddlWorkTown,
+                                                    EnrollMembershipHelper.GetCountries());
+            hfWorkCountry.Value = null;
+            hfWorkCity.Value = null;
+            hfWorkTown.Value = null;
+
+            tbWorkAddress.Text = string.Empty;
+            tbWorkZipCode.Text = string.Empty;
+            tbWorkPhone.Text = string.Empty;
+            tbWorkFax.Text = string.Empty;
+            tbWorkTitle.Text = string.Empty;
+            tbWorkCorparation.Text = string.Empty;
+
+            EnrollMembershipHelper.DataBindDDlSectorsJobs(_newMember, ddlJobSectors, ddlJobs);
+            ddlJobSectors.SelectedIndex = 0;
+            ddlJobs.SelectedIndex = 0;
+        }
+
+        private void ClearMembershipInfo()
+        {
+            EnrollMembershipHelper.DataBindDdlMembershipRelType(ddlMembershipRelType);
+            ddlMembershipRelType.SelectedIndex = 0;
+            tbMembershipNumber.Text = string.Empty;
+            cbIsTermLider.Checked = false;
+            tbSpecialNumber.Text = string.Empty;
+            dpTerm.SelectedDate = null;
+            dpMembershipDate.SelectedDate = null;
+        }
+
+        #endregion
+
+        #region OnSelectedIndexChanged countries cities towns
+
+        //Home
+        protected void ddlHomeCountry_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            hfHomeCountry.Value = ddlHomeCountry.SelectedIndex > 0 ? ddlHomeCountry.SelectedItem.Value : string.Empty;
+            EnrollMembershipHelper.BindDdlCities(ddlHomeCity, ddlHomeTown,
+                                                 EnrollMembershipHelper.GetCities(hfHomeCountry.Value));
+        }
+
+        protected void ddlHomeCity_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            hfHomeCity.Value = ddlHomeCity.SelectedIndex > 0 ? ddlHomeCity.SelectedItem.Value : string.Empty;
+            EnrollMembershipHelper.BindDdlTowns(ddlHomeTown,
+                                                EnrollMembershipHelper.GetTowns(hfHomeCountry.Value, hfHomeCity.Value));
+        }
+
+        //Work
+        protected void ddlWorkCountry_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            hfWorkCountry.Value = ddlWorkCountry.SelectedIndex > 0 ? ddlWorkCountry.SelectedItem.Value : string.Empty;
+            EnrollMembershipHelper.BindDdlCities(ddlWorkCity, ddlWorkTown,
+                                                 EnrollMembershipHelper.GetCities(hfWorkCountry.Value));
+        }
+
+        protected void ddlWorkCity_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            hfWorkCity.Value = ddlWorkCity.SelectedIndex > 0 ? ddlWorkCity.SelectedItem.Value : string.Empty;
+            EnrollMembershipHelper.BindDdlTowns(ddlWorkTown,
+                                                EnrollMembershipHelper.GetTowns(hfWorkCountry.Value, hfWorkCity.Value));
+        }
+
+        #endregion
     }
 }

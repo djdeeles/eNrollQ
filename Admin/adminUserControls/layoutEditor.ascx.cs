@@ -14,7 +14,8 @@ using eNroll.App_Data;
 
 public partial class Admin_adminUserControls_layoutEditor : UserControl
 {
-    Entities ent = new Entities();
+    private readonly Entities ent = new Entities();
+
     protected override void OnInit(EventArgs e)
     {
         Session["currentPath"] = AdminResource.lbInterfaceSettings;
@@ -40,7 +41,7 @@ public partial class Admin_adminUserControls_layoutEditor : UserControl
         else
         {
             MultiView2.ActiveViewIndex = 1;
-        } 
+        }
         if (!IsPostBack && !string.IsNullOrEmpty(Request.QueryString["loc"]))
         {
             ColorPicker.Visible = false;
@@ -138,7 +139,7 @@ public partial class Admin_adminUserControls_layoutEditor : UserControl
             ibtnArti.Enabled = true;
             btnCancelAddproperty.Visible = false;
             if (!String.IsNullOrEmpty(Request.QueryString["div"]) && !String.IsNullOrEmpty(Request.QueryString["loc"]))
-            { 
+            {
                 string divId = Request.QueryString["div"];
                 int location = Convert.ToInt32(Request.QueryString["loc"]);
                 int kontrol = ent.EnrollHtmlPanels.Count(p => p.divId == divId);
@@ -189,14 +190,14 @@ public partial class Admin_adminUserControls_layoutEditor : UserControl
     }
 
     private List<EnrollCssAttributes> GetCssAttributes()
-    { 
+    {
         return ent.EnrollCssAttributes.OrderBy(p => p.cssDescription).ToList();
     }
 
     protected void btnSaveProperty_Click(object sender, EventArgs eventArgs)
     {
         try
-        { 
+        {
             var pval = new EnrollHtmlPanelValues();
             string divId = Request.QueryString["div"];
             var panel = ent.EnrollHtmlPanels.First(p => p.divId == divId);
@@ -249,7 +250,7 @@ public partial class Admin_adminUserControls_layoutEditor : UserControl
     protected void ddlAttList_SelectedIndexChanged(object sender, EventArgs e)
     {
         try
-        { 
+        {
             int attId = Convert.ToInt32(ddlAttList.SelectedValue);
             var cssAttribute = ent.EnrollCssAttributes.First(p => p.cssAttributeId == attId);
 
@@ -286,7 +287,7 @@ public partial class Admin_adminUserControls_layoutEditor : UserControl
 
                     ddlCssAttValues.Visible = true;
                     int cssAttId = Convert.ToInt32(ddlAttList.SelectedValue);
-                    List<EnrollCssAttributeValues> attVal =
+                    var attVal =
                         ent.EnrollCssAttributeValues.Where(p => p.cssAttributeId == cssAttId).ToList();
                     ddlCssAttValues.DataSource = attVal;
                     ddlCssAttValues.DataValueField = "cssValue";

@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_ChangePassword"
-    CodeBehind="CustomerManagement.ascx.cs" %>
+            CodeBehind="CustomerManagement.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <asp:Panel runat="server" DefaultButton="btnChangeEmail">
     <table>
@@ -12,7 +12,7 @@
             </td>
             <td>
                 <asp:DropDownList ID="ddlAdminLanguage" AutoPostBack="True" OnSelectedIndexChanged="ddlAdminLanguage_Changed"
-                    runat="server">
+                                  runat="server">
                     <asp:ListItem Value="1">English</asp:ListItem>
                     <asp:ListItem Value="2">Türkçe</asp:ListItem>
                 </asp:DropDownList>
@@ -61,9 +61,9 @@
             <td>
                 <asp:TextBox ID="tbEmaiAdress" runat="server" Width="200px" ValidationGroup="email"></asp:TextBox>
                 <asp:Button ID="btnChangeEmail" runat="server" CssClass="SaveCancelBtn" ValidationGroup="email"
-                    OnClick="btChangeName_Click" />
+                            OnClick="btChangeName_Click" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbEmaiAdress"
-                    ErrorMessage="!" ForeColor="Red" ValidationGroup="email"></asp:RequiredFieldValidator>
+                                            ErrorMessage="!" ForeColor="Red" ValidationGroup="email"></asp:RequiredFieldValidator>
             </td>
         </tr>
     </table>
@@ -129,8 +129,8 @@
             </td>
             <td>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="tbEmaiAdress"
-                    SetFocusOnError="True" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-                    ForeColor="Red" ValidationGroup="email"></asp:RegularExpressionValidator>
+                                                SetFocusOnError="True" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                                                ForeColor="Red" ValidationGroup="email"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>

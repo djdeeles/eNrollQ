@@ -53,7 +53,7 @@ public partial class Admin_adminUserControls_SiteLayout : UserControl
                 pnlChild.Controls.Add(lbSil);
                 pnlChild.Controls.Add(lbDuzenle);
                 pnlChild.Controls.Add(lbAddChildControl);
-                List<EnrollHtmlPanelValues> pvals = ent.EnrollHtmlPanelValues.Where(p => p.panelId == panel.id).ToList();
+                var pvals = ent.EnrollHtmlPanelValues.Where(p => p.panelId == panel.id).ToList();
                 foreach (EnrollHtmlPanelValues v in pvals)
                 {
                     v.EnrollCssAttributesReference.Load();
@@ -142,7 +142,7 @@ public partial class Admin_adminUserControls_SiteLayout : UserControl
                     pnlDynamic.Controls.Add(lbSil);
                     pnlDynamic.Controls.Add(lbDuzenle);
                     pnlDynamic.Controls.Add(lbAddChildControl);
-                    List<EnrollHtmlPanelValues> pvals =
+                    var pvals =
                         ent.EnrollHtmlPanelValues.Where(p => p.panelId == panel.id).ToList();
                     foreach (EnrollHtmlPanelValues v in pvals)
                     {
@@ -183,7 +183,7 @@ public partial class Admin_adminUserControls_SiteLayout : UserControl
                     pnlDynamic.Attributes.CssStyle.Add("background-color", "#dfdfdf");
                     ph.Controls.Add(pnlDynamic);
                     pnlDynamic.CssClass = panel.divId;
-                    List<EnrollHtmlPanels> childPanels =
+                    var childPanels =
                         ent.EnrollHtmlPanels.Where(x => x.parentId == panel.id).ToList();
                     if (childPanels.Count > 0)
                     {
@@ -316,7 +316,7 @@ public partial class Admin_adminUserControls_SiteLayout : UserControl
             foreach (EnrollHtmlPanels p in paneller)
             {
                 tw.WriteLine("#" + p.divId + " {");
-                List<EnrollHtmlPanelValues> values = ent.EnrollHtmlPanelValues.Where(x => x.panelId == p.id).ToList();
+                var values = ent.EnrollHtmlPanelValues.Where(x => x.panelId == p.id).ToList();
                 foreach (EnrollHtmlPanelValues v in values)
                 {
                     tw.WriteLine(v.EnrollCssAttributes.cssAttribute + ":" + v.cssAttributeValue + ";");

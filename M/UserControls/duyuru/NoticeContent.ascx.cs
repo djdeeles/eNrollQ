@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using eNroll.App_Data;
 
 public partial class M_UserControls_duyuru_NewsContent : UserControl

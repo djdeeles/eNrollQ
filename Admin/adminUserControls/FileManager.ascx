@@ -1,10 +1,19 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_FileManager"
-    CodeBehind="FileManager.ascx.cs" %>
+            CodeBehind="FileManager.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <style type="text/css">
-    .TabloSol { text-align: left; vertical-align: top; width: 220px; margin-right:10px; }
-    
-    .TabloSag { text-align: left; vertical-align: top; width: 520px; }
+    .TabloSol {
+        text-align: left;
+        vertical-align: top;
+        width: 220px;
+        margin-right: 10px;
+    }
+
+    .TabloSag {
+        text-align: left;
+        vertical-align: top;
+        width: 520px;
+    }
 </style>
 <asp:MultiView runat="server" ID="MultiView2">
     <asp:View runat="server">
@@ -112,12 +121,12 @@
                                 <td>
                                     <asp:Panel ID="pnlGrid" runat="server" ScrollBars="Auto">
                                         <asp:GridView ID="grVFiles" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                                            CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                                            SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-                                            SortedAscendingCellStyle-CssClass="sortasc"
-                                            SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
-                                            SelectedRowStyle="selected" Width="100%" OnRowDataBound="grVFiles_RowDataBound"
-                                            ForeColor="#333333" GridLines="None">
+                                                      CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                                                      SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                                                      SortedAscendingCellStyle-CssClass="sortasc"
+                                                      SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
+                                                      SelectedRowStyle="selected" Width="100%" OnRowDataBound="grVFiles_RowDataBound"
+                                                      ForeColor="#333333" GridLines="None">
                                             <EmptyDataTemplate>
                                                 <%= AdminResource.lbNoRecord %>
                                             </EmptyDataTemplate>
@@ -131,7 +140,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <a href='../<%= hdnActiveDirectory.Value.Replace("~/", "") %>/<%#                                        Eval("Name") %>'
-                                                                        rel="prettyPhoto">
+                                                                       rel="prettyPhoto">
                                                                         <img src="../../Admin/images/icon/zoom.png" width="26px" />
                                                                     </a>
                                                                 </td>
@@ -173,7 +182,7 @@
                                                 <asp:TemplateField>
                                                     <ItemTemplate>
                                                         <asp:ImageButton ID="btnFileDelete" runat="server" CommandArgument='<%#Bind("FullName") %>'
-                                                            ImageUrl="~/Admin/images/icon/cop.png" OnClick="BtnFileDelete" />
+                                                                         ImageUrl="~/Admin/images/icon/cop.png" OnClick="BtnFileDelete" />
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Left" Width="50px" />
                                                     <ItemStyle HorizontalAlign="Left" Width="50px" />

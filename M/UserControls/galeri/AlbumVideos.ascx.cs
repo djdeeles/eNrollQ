@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using eNroll.App_Data;
 using Enroll.Managers;
+using eNroll.App_Data;
 
 public partial class M_AlbumVideos : UserControl
 {
     private readonly Localizations _localizations = new Localizations();
-    private Entities ent = new Entities();
+    private readonly Entities ent = new Entities();
 
     private int _categoryId = -1;
 
@@ -27,28 +27,32 @@ public partial class M_AlbumVideos : UserControl
             if (IsPostBack)
             {
                 #region AlbumId yi session dan alıyoruz
+
                 // sayfa postback olmuşsa yeni yüklenirken AlbumId değerini Session nesnesinden alırız
-                if (Session["listItemshfCategoryId"] != null && !string.IsNullOrWhiteSpace(Session["listItemshfCategoryId"].ToString()))
+                if (Session["listItemshfCategoryId"] != null &&
+                    !string.IsNullOrWhiteSpace(Session["listItemshfCategoryId"].ToString()))
                 {
                     CategoryId = Convert.ToInt32(Session["listItemshfCategoryId"]);
                     HiddenField1.Value = Session["listItemshfCategoryId"].ToString();
                 }
+
                 #endregion
             }
             else
             {
                 #region query string ten varsa albumid değerini alıyoruz
+
                 try
                 {
                     CategoryId = Convert.ToInt32(Request.QueryString["videoalbumid"]);
                     Session["listItemshfCategoryId"] = CategoryId;
                     HiddenField1.Value = CategoryId.ToString();
-
                 }
                 catch (Exception exception)
                 {
                     ExceptionManager.ManageException(exception);
                 }
+
                 #endregion
             }
         }
@@ -77,12 +81,14 @@ public partial class M_AlbumVideos : UserControl
 
             #endregion
 
-            EntityDataSource1.Where = string.Format("it.categoryId={0} and it.languageId={1} and it.State=True", CategoryId, lang);
+            EntityDataSource1.Where = string.Format("it.categoryId={0} and it.languageId={1} and it.State=True",
+                                                    CategoryId, lang);
             ListView1.DataBind();
 
             Session["listItemshfCategoryId"] = CategoryId;
 
-            if (Session["listItemPageIndex"] == null || string.IsNullOrWhiteSpace(Session["listItemPageIndex"].ToString()))
+            if (Session["listItemPageIndex"] == null ||
+                string.IsNullOrWhiteSpace(Session["listItemPageIndex"].ToString()))
             {
                 Session["listItemPageIndex"] = 1;
             }
@@ -129,7 +135,8 @@ public partial class M_AlbumVideos : UserControl
                             else
                             {
                                 currentLink.NavigateUrl = currentLink.NavigateUrl.Replace(Request.Url.PathAndQuery,
-                                                                                          "../../albumvideolari-"+CategoryId);
+                                                                                          "../../albumvideolari-" +
+                                                                                          CategoryId);
                             }
                         }
                         else

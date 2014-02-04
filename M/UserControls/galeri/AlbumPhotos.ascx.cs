@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using eNroll.App_Data;
 using Enroll.Managers;
+using eNroll.App_Data;
 
 public partial class M_AlbumPhotos : UserControl
 {
@@ -19,26 +19,30 @@ public partial class M_AlbumPhotos : UserControl
     }
 
     protected void Page_Load(object sender, EventArgs e)
-    { 
+    {
         PhotoAlbum album = null;
         int lang = EnrollContext.Current.WorkingLanguage.LanguageId;
 
         if (!String.IsNullOrEmpty(Request.QueryString["albumid"]))
-        {  
+        {
             if (IsPostBack)
             {
                 #region AlbumId yi session dan alıyoruz
+
                 // sayfa postback olmuşsa yeni yüklenirken AlbumId değerini Session nesnesinden alırız
-                if (Session["listItemshfAlbumId"] != null && !string.IsNullOrWhiteSpace(Session["listItemshfAlbumId"].ToString()))
+                if (Session["listItemshfAlbumId"] != null &&
+                    !string.IsNullOrWhiteSpace(Session["listItemshfAlbumId"].ToString()))
                 {
                     AlbumId = Convert.ToInt32(Session["listItemshfAlbumId"]);
                     HiddenField1.Value = Session["listItemshfAlbumId"].ToString();
                 }
+
                 #endregion
             }
             else
             {
                 #region query string ten varsa albumid değerini alıyoruz
+
                 try
                 {
                     AlbumId = Convert.ToInt32(Request.QueryString["albumid"]);
@@ -49,6 +53,7 @@ public partial class M_AlbumPhotos : UserControl
                 {
                     ExceptionManager.ManageException(exception);
                 }
+
                 #endregion
             }
         }
@@ -83,7 +88,8 @@ public partial class M_AlbumPhotos : UserControl
 
             Session["listItemshfAlbumId"] = AlbumId;
 
-            if (Session["listItemPageIndex"] == null || string.IsNullOrWhiteSpace(Session["listItemPageIndex"].ToString()))
+            if (Session["listItemPageIndex"] == null ||
+                string.IsNullOrWhiteSpace(Session["listItemPageIndex"].ToString()))
             {
                 Session["listItemPageIndex"] = 1;
             }
@@ -131,7 +137,7 @@ public partial class M_AlbumPhotos : UserControl
                             else
                             {
                                 currentLink.NavigateUrl = currentLink.NavigateUrl.Replace(Request.Url.PathAndQuery,
-                                                                                          "../../albumdetay-"+AlbumId);
+                                                                                          "../../albumdetay-" + AlbumId);
                             }
                         }
                         else

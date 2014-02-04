@@ -33,7 +33,7 @@
                                            OnDataBinding="imgAlbum_DataBinding" /></a>
                         </div>
                         <div style="float: none; font-size: 11px; font-weight: normal; padding: 3px 0 3px 0; text-align: center;">
-                            <%#Eval("categoryNotes") %>
+                            <%#                                        Eval("categoryNotes") %>
                         </div>
                         <div style="font-size: 11px; text-align: center;">
                             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#                Eval("photoAlbumCategoryId") %>'

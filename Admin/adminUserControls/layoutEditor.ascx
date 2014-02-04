@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_layoutEditor"
-    CodeBehind="layoutEditor.ascx.cs" %>
+            CodeBehind="layoutEditor.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <asp:MultiView runat="server" ID="MultiView2">
     <asp:View runat="server">
@@ -35,7 +35,7 @@
                 </td>
                 <td>
                     <asp:DropDownList ID="ddlKontroller" runat="server" Width="150px" Font-Bold="True"
-                        Font-Names="Calibri">
+                                      Font-Names="Calibri">
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -66,18 +66,18 @@
                 </td>
                 <td>
                     <asp:ImageButton ID="ibtnArti" runat="server" ImageUrl="~/Admin/images/icon/arti.png"
-                        OnClick="btnArti_Click" Width="16px" Enabled="False" />
+                                     OnClick="btnArti_Click" Width="16px" Enabled="False" />
                 </td>
             </tr>
             <tr>
                 <td colspan="3">
                     <asp:GridView ID="gvAttValues" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                        CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                        SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-                        PageSize="15" AllowPaging="True" SortedAscendingCellStyle-CssClass="sortasc"
-                        SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
-                        SelectedRowStyle="selected" OnRowDataBound="gvAttValues_OnRowDataBound" DataKeyNames="id"
-                        ForeColor="#333333" GridLines="None" Width="100%" DataSourceID="edsEnrollPanelValues">
+                                  CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                                  SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                                  PageSize="15" AllowPaging="True" SortedAscendingCellStyle-CssClass="sortasc"
+                                  SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
+                                  SelectedRowStyle="selected" OnRowDataBound="gvAttValues_OnRowDataBound" DataKeyNames="id"
+                                  ForeColor="#333333" GridLines="None" Width="100%" DataSourceID="edsEnrollPanelValues">
                         <EmptyDataTemplate>
                             <%= AdminResource.lbNoRecord %>
                         </EmptyDataTemplate>
@@ -85,15 +85,15 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <asp:ImageButton ID="btnEdit" runat="server" CausesValidation="False" ImageUrl="~/Admin/images/icon/edit.png"
-                                        CommandName="Edit" />
+                                                     CommandName="Edit" />
                                     <asp:ImageButton ID="btnDelete" runat="server" CausesValidation="False" ImageUrl="~/Admin/images/icon/cop.png"
-                                        CommandName="Delete" />
+                                                     CommandName="Delete" />
                                 </ItemTemplate>
                                 <EditItemTemplate>
                                     <asp:ImageButton ID="btnUpdate" runat="server" CausesValidation="True" CommandName="Update"
-                                        ImageUrl="~/Admin/images/icon/save.png" />
+                                                     ImageUrl="~/Admin/images/icon/save.png" />
                                     <asp:ImageButton ID="btnCancel" runat="server" CausesValidation="False" CommandName="Cancel"
-                                        ImageUrl="~/Admin/images/icon/cancel.png" />
+                                                     ImageUrl="~/Admin/images/icon/cancel.png" />
                                 </EditItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="75px" />
                                 <ItemStyle Width="75px" HorizontalAlign="Left" />
@@ -121,30 +121,30 @@
                             <tr>
                                 <td>
                                     <asp:DropDownList ID="ddlAttList" runat="server" Font-Bold="True" Font-Names="Calibri"
-                                        Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlAttList_SelectedIndexChanged">
+                                                      Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlAttList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </td>
                                 <td>
                                     <telerik:RadColorPicker ID="ColorPicker" ShowIcon="True" Enabled="True" EnableCustomColor="True"
-                                        runat="server">
+                                                            runat="server">
                                     </telerik:RadColorPicker>
                                 </td>
                                 <td>
                                     <asp:DropDownList ID="ddlCssAttValues" runat="server" Visible="False" Width="150px">
                                     </asp:DropDownList>
                                     <telerik:RadTextBox ID="txtAttValue" runat="server" Font-Bold="False" Font-Names="Calibri"
-                                        Width="150px" />
+                                                        Width="150px" />
                                 </td>
                                 <td>
                                     <asp:DropDownList ID="ddlUzunluk" runat="server" Visible="False" AutoPostBack="True"
-                                        Width="50px">
+                                                      Width="50px">
                                         <asp:ListItem Text="px" Value="px"></asp:ListItem>
                                         <asp:ListItem Text="%" Value="%"></asp:ListItem>
                                     </asp:DropDownList>
                                 </td>
                                 <td>
                                     <asp:Button ID="ibtnGozat" runat="server" CssClass="ImageSelectBtn" OnClientClick="OpenFileExplorerDialog(); return false;"
-                                        Visible="False" />
+                                                Visible="False" />
                                     <script type="text/javascript">
                                         function OpenFileExplorerDialog() {
                                             selectedFile = $find("<%= txtAttValue.ClientID %>");
@@ -153,8 +153,8 @@
                                         }
                                     </script>
                                     <telerik:RadWindow runat="server" Width="600px" Height="400px" VisibleStatusbar="false"
-                                        ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
-                                        Modal="true" Behaviors="Close,Move,Resize,Maximize">
+                                                       ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
+                                                       Modal="true" Behaviors="Close,Move,Resize,Maximize">
                                     </telerik:RadWindow>
                                 </td>
                                 <td style="width: 50px;">
@@ -167,8 +167,8 @@
                             <tr>
                                 <td colspan="6">
                                     <asp:RangeValidator ID="rwTxtAttValue" runat="server" ForeColor="Red" ControlToValidate="txtAttValue"
-                                        Enabled="False" Type="Integer" ValidationGroup="attValue" MaximumValue="960"
-                                        MinimumValue="1" SetFocusOnError="True"></asp:RangeValidator>
+                                                        Enabled="False" Type="Integer" ValidationGroup="attValue" MaximumValue="960"
+                                                        MinimumValue="1" SetFocusOnError="True"></asp:RangeValidator>
                                 </td>
                             </tr>
                         </table>
@@ -190,8 +190,8 @@
     </asp:View>
 </asp:MultiView>
 <asp:EntityDataSource ID="edsEnrollPanelValues" runat="server" ConnectionString="name=Entities"
-    DefaultContainerName="Entities" EntitySetName="EnrollHtmlPanelValues" Where="it.panelId= @panelId"
-    EnableUpdate="True" EntityTypeFilter="EnrollHtmlPanelValues" EnableDelete="True">
+                      DefaultContainerName="Entities" EntitySetName="EnrollHtmlPanelValues" Where="it.panelId= @panelId"
+                      EnableUpdate="True" EntityTypeFilter="EnrollHtmlPanelValues" EnableDelete="True">
     <WhereParameters>
         <asp:QueryStringParameter DbType="Int32" Name="panelId" QueryStringField="id" />
     </WhereParameters>

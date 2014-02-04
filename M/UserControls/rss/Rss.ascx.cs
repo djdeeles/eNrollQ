@@ -13,9 +13,9 @@ using eNroll.App_Data;
 public partial class M_UserControls_Rss : UserControl
 {
     private readonly Entities _entities = new Entities();
-    public Localizations _localizations = new Localizations();
     protected List<RssItem> RssItems = null;
     public Rss SelectedRss = null;
+    public Localizations _localizations = new Localizations();
     private int _rssId = -1;
 
     public int RssId
@@ -134,7 +134,7 @@ public partial class M_UserControls_Rss : UserControl
 
     protected void DataPager1_Init(object sender, EventArgs e)
     {
-        _localizations.ChangeDataPager((DataPager)sender);
+        _localizations.ChangeDataPager((DataPager) sender);
     }
 
     protected void Page_PreRender(object sender, EventArgs e)
@@ -211,5 +211,4 @@ public partial class M_UserControls_Rss : UserControl
     }
 
     #endregion
-
 }

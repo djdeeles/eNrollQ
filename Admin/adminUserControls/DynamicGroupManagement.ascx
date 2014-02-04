@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_DynamicListManagement"
-    CodeBehind="DynamicGroupManagement.ascx.cs" %>
+            CodeBehind="DynamicGroupManagement.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <asp:MultiView runat="server" ID="MultiView2">
     <asp:View runat="server">
@@ -15,7 +15,7 @@
                     <td>
                         <asp:TextBox ID="txtDynaDisplay" runat="server" Width="135px"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDynaDisplay"
-                            ForeColor="Red" ValidationGroup="vldGroup1">!</asp:RequiredFieldValidator>
+                                                    ForeColor="Red" ValidationGroup="vldGroup1">!</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -56,16 +56,16 @@
                                 <tr>
                                     <td valign="top">
                                         <asp:DropDownList ID="ddlDynamicGroup" runat="server" AutoPostBack="True" DataSourceID="EntityDynaGroup"
-                                            DataTextField="name" DataValueField="groupId" Width="180px" OnDataBound="ddlDynamicGroup_DataBound"
-                                            OnSelectedIndexChanged="ddlDynamicGroup_SelectedIndexChanged1">
+                                                          DataTextField="name" DataValueField="groupId" Width="180px" OnDataBound="ddlDynamicGroup_DataBound"
+                                                          OnSelectedIndexChanged="ddlDynamicGroup_SelectedIndexChanged1">
                                         </asp:DropDownList>
                                         <asp:EntityDataSource ID="EntityDynaGroup" runat="server" ConnectionString="name=Entities"
-                                            DefaultContainerName="Entities" EntitySetName="Customer_Dynamic_Group">
+                                                              DefaultContainerName="Entities" EntitySetName="Customer_Dynamic_Group">
                                         </asp:EntityDataSource>
                                         <br />
                                         <asp:ListBox ID="ListBoxDynaSource" runat="server" Width="180px" Height="150px" />
                                         <asp:EntityDataSource ID="EntityDynaData" runat="server" ConnectionString="name=Entities"
-                                            DefaultContainerName="Entities" EntitySetName="Customer_Dynamic">
+                                                              DefaultContainerName="Entities" EntitySetName="Customer_Dynamic">
                                         </asp:EntityDataSource>
                                     </td>
                                     <td width="5px">
@@ -81,7 +81,7 @@
                                     </td>
                                     <td>
                                         <asp:Button ID="btnAdd" runat="server" CssClass="SaveCancelBtn" ValidationGroup="vldGroup1"
-                                            OnClick="btnAdd_Click" />
+                                                    OnClick="btnAdd_Click" />
                                         <asp:Button ID="btnRemove" runat="server" CssClass="SaveCancelBtn" OnClick="btnRemove_Click" />
                                     </td>
                                 </tr>
@@ -92,7 +92,7 @@
                 <tr>
                     <td>
                         <asp:Button ID="btSave" runat="server" CssClass="SaveCancelBtn" ValidationGroup="vldGroup1"
-                            OnClick="btSave_Click" />
+                                    OnClick="btSave_Click" />
                         <asp:Button ID="btCancel" runat="server" CssClass="SaveCancelBtn" OnClientClick=" window.close(); " />
                     </td>
                 </tr>

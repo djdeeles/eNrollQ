@@ -55,7 +55,7 @@ namespace eNroll.Admin.adminUserControls
             ServerInstance = builder["server"] as string;
             Uid = builder["uid"] as string;
             Pwd = builder["pwd"] as string;
-            var datetimeNowString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace(":","-").Replace(" ","_");
+            var datetimeNowString = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace(":", "-").Replace(" ", "_");
             Path = Server.MapPath(".") + "/" + BackupFolder + DatabaseName + "_" + datetimeNowString + ".bak";
             ListFiles();
         }
@@ -113,7 +113,6 @@ namespace eNroll.Admin.adminUserControls
             sqlBackup.FormatMedia = false;
             sqlBackup.SqlBackup(sqlServer);
             sqlBackup.Devices.Remove(deviceItem);
-
         }
 
         protected void BackupFilesClick(object sender, EventArgs eventArgs)
@@ -130,31 +129,30 @@ namespace eNroll.Admin.adminUserControls
 
         protected void RestoreDatabase(object sender, EventArgs eventArgs)
         {
-
             try
             {
-                var btRestoreDb = (ImageButton)sender;
+                var btRestoreDb = (ImageButton) sender;
                 Path = btRestoreDb.CommandArgument;
-                
+
                 try
                 {
                     var connection = new ServerConnection(ServerInstance, Uid, Pwd);
                     var svr = new Server(connection);
-                    
+
                     var backupltem = new BackupDeviceItem(Path, DeviceType.File);
                     var restore = new Restore
-                    {
-                        Database = DatabaseName,
-                        NoRecovery = false,
-                        ReplaceDatabase = true
-                    };
+                                      {
+                                          Database = DatabaseName,
+                                          NoRecovery = false,
+                                          ReplaceDatabase = true
+                                      };
 
                     svr.Refresh();
                     svr.KillDatabase(DatabaseName);
 
                     restore.Devices.Add(backupltem);
-                    restore.Action = RestoreActionType.Database;//*
-                    restore.ReplaceDatabase = true;//*
+                    restore.Action = RestoreActionType.Database; //*
+                    restore.ReplaceDatabase = true; //*
                     restore.SqlRestore(svr);
 
                     var db = svr.Databases[DatabaseName];
@@ -178,6 +176,7 @@ namespace eNroll.Admin.adminUserControls
             }
 
             #region eski
+
             /*
             try
             {
@@ -221,17 +220,17 @@ namespace eNroll.Admin.adminUserControls
             {
                 ExceptionManager.ManageException(exception);
             }*/
-            #endregion
 
+            #endregion
         }
 
         protected void GrVFilesRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e != null && e.Row.DataItem != null && e.Row.RowType == DataControlRowType.DataRow)
             {
-                var deleteButton = (ImageButton)e.Row.FindControl("btnFileDelete");
+                var deleteButton = (ImageButton) e.Row.FindControl("btnFileDelete");
                 deleteButton.OnClientClick = " return confirm('" + AdminResource.lbDeletingQuestion + "')";
-                var restoreButton = (ImageButton)e.Row.FindControl("btnDBRestore");
+                var restoreButton = (ImageButton) e.Row.FindControl("btnDBRestore");
                 restoreButton.OnClientClick = " return confirm('" + AdminResource.lbRestoreQuestion + "')";
             }
         }
@@ -282,7 +281,7 @@ namespace eNroll.Admin.adminUserControls
 
         protected void BtnFileDelete(object sender, ImageClickEventArgs e)
         {
-            var myButton = (ImageButton)sender;
+            var myButton = (ImageButton) sender;
             try
             {
                 string path = myButton.CommandArgument;

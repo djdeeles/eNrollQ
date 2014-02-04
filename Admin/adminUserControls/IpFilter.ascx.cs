@@ -10,7 +10,7 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_IpFilter : UserControl
 {
-    Entities ent = new Entities();
+    private readonly Entities ent = new Entities();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -47,7 +47,7 @@ public partial class Admin_adminUserControls_IpFilter : UserControl
     private void BindRbIpFilterOnOff()
     {
         rbIpFilterOnOff_Off.Text = AdminResource.lbOff;
-        rbIpFilterOnOff_Off.Attributes["value"]= "0";
+        rbIpFilterOnOff_Off.Attributes["value"] = "0";
 
         rbIpFilterOnOff_BlackList.Text = AdminResource.lbBlackList;
         rbIpFilterOnOff_BlackList.Attributes["value"] = "1";
@@ -58,13 +58,12 @@ public partial class Admin_adminUserControls_IpFilter : UserControl
         var info = ent.SiteGeneralInfo.First();
         if (info.IpFilter == 0)
             rbIpFilterOnOff_Off.Checked = true;
-        
+
         else if (info.IpFilter == 1)
             rbIpFilterOnOff_BlackList.Checked = true;
-        
+
         else if (info.IpFilter == 2)
             rbIpFilterOnOff_WhiteList.Checked = true;
-        
     }
 
     private void BindDdlFilterType(DropDownList ddlFilterType)
@@ -98,7 +97,7 @@ public partial class Admin_adminUserControls_IpFilter : UserControl
 
     protected override void OnInit(EventArgs e)
     {
-        Session["currentPath"] = AdminResource.lbIpFilterManagement;// değişecek
+        Session["currentPath"] = AdminResource.lbIpFilterManagement; // değişecek
     }
 
     protected void BtnNewIpAddressClick(object sender, EventArgs eventArgs)
@@ -113,7 +112,6 @@ public partial class Admin_adminUserControls_IpFilter : UserControl
         {
             if (ddlIpFilterType.SelectedItem.Value != "")
             {
-                
             }
             else
             {
@@ -126,20 +124,20 @@ public partial class Admin_adminUserControls_IpFilter : UserControl
             ExceptionManager.ManageException(exception);
         }
     }
-    
+
     public bool CheckIpNumbers()
     {
-        string[] data = new string[] { };
+        var data = new string[] {};
         try
         {
             data = txtIpAddress.Text.Split('.');
 
             // '*' karakter kontrolü
-            if (data[0] == "*" )
+            if (data[0] == "*")
             {
                 return false;
             }
-            else if (data[1] == "*" && (data[2] != "*" || data[3]!="*"))
+            else if (data[1] == "*" && (data[2] != "*" || data[3] != "*"))
             {
                 return false;
             }
@@ -147,7 +145,7 @@ public partial class Admin_adminUserControls_IpFilter : UserControl
             {
                 return false;
             }
-            
+
             // '0..255' aralığı kontrolü
             for (int i = 0; i < data.Count(); i++)
             {
@@ -160,15 +158,13 @@ public partial class Admin_adminUserControls_IpFilter : UserControl
             int d = Convert.ToInt32(data[3]);
 
             if (data.Count() != 4
-                    || ((a < 0 || a > 255))
-                    || ((b < 0 || b > 255))
-                    || ((c < 0 || c > 255))
-                    || ((d < 0 || d > 255)))
+                || ((a < 0 || a > 255))
+                || ((b < 0 || b > 255))
+                || ((c < 0 || c > 255))
+                || ((d < 0 || d > 255)))
             {
-                
                 return false;
             }
-
         }
         catch (Exception)
         {
@@ -180,10 +176,9 @@ public partial class Admin_adminUserControls_IpFilter : UserControl
 
     protected void BtnSaveUpdateIp_Click(object sender, EventArgs eventArgs)
     {
-        
-        if(!CheckIpNumbers())
+        if (!CheckIpNumbers())
         {
-            MessageBox.Show(MessageType.Warning, AdminResource.msgWrongIpAddress); 
+            MessageBox.Show(MessageType.Warning, AdminResource.msgWrongIpAddress);
             return;
         }
 
@@ -226,7 +221,6 @@ public partial class Admin_adminUserControls_IpFilter : UserControl
                 hfIpAddress.Value = ipFilter.Id.ToString();
 
                 MultiView1.SetActiveView(View2);
-
             }
             else if (e.CommandName == "Sil")
             {
@@ -241,8 +235,6 @@ public partial class Admin_adminUserControls_IpFilter : UserControl
                 gvIpFilterList.DataBind();
                 MultiView1.SetActiveView(View1);
             }
-
-
         }
         catch (Exception exception)
         {
@@ -256,7 +248,7 @@ public partial class Admin_adminUserControls_IpFilter : UserControl
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var myButInnerDelete = (ImageButton)e.Row.FindControl("LinkButtonSil");
+                var myButInnerDelete = (ImageButton) e.Row.FindControl("LinkButtonSil");
                 myButInnerDelete.OnClientClick = "return confirm('" + AdminResource.lbDeletingQuestion + "'); ";
             }
         }
@@ -279,7 +271,7 @@ public partial class Admin_adminUserControls_IpFilter : UserControl
                 ipFilter.UpdatedTime = DateTime.Now;
                 ipFilter.Title = txtTitle.Text;
                 ipFilter.State = cbState.Checked;
-                ipFilter.IpAddress= txtIpAddress.Text;
+                ipFilter.IpAddress = txtIpAddress.Text;
                 if (ddlIpFilterType_New.SelectedIndex == 0)
                     ipFilter.BlackList = true;
                 else
@@ -306,9 +298,9 @@ public partial class Admin_adminUserControls_IpFilter : UserControl
                 ent.SaveChanges();
                 Logger.Add(26, 0, ipFilter.Id, 1);
                 MessageBox.Show(MessageType.Success, AdminResource.msgSaved);
-            }    
+            }
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
             ExceptionManager.ManageException(exception);
         }

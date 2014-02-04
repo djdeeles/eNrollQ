@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -11,7 +10,7 @@ using eNroll.Helpers;
 
 public partial class admin_addNewBanner : UserControl
 {
-    Entities _ent = new Entities();
+    private readonly Entities _ent = new Entities();
 
     protected override void OnInit(EventArgs e)
     {
@@ -83,81 +82,6 @@ public partial class admin_addNewBanner : UserControl
             ExceptionManager.ManageException(exception);
         }
     }
-
-    #region add
-    protected void BtnSaveClick(object sender, EventArgs eventArgs)
-    {
-        try
-        {
-            var banner = new Banners();
-            banner.bannerName = txtAd.Text;
-            banner.bannerUrl = txtUrl.Text;
-            banner.bannerFileTypeId = Convert.ToInt32(ddlDosyaTipi.SelectedValue);
-            banner.bannerHeight = Convert.ToInt32(txtHeight.Text);
-            banner.bannerWidth = Convert.ToInt32(txtWidth.Text);
-            if (ddlDosyaTipi.SelectedValue == "2")
-                banner.bannerSource = txtPath.Text + txtCliktag.Text;
-            else
-                banner.bannerSource = txtPath.Text;
-            banner.CreatedTime = DateTime.Now;
-            banner.UpdatedTime = DateTime.Now;
-            _ent.AddToBanners(banner);
-            _ent.SaveChanges();
-
-            Logger.Add(9, 1, banner.bannersId, 1);
-
-            gvBanners.DataBind();
-            foreach (Control ct in vAdd.Controls)
-            {
-                if (ct is TextBox)
-                    (ct as TextBox).Text = string.Empty;
-            }
-            MessageBox.Show(MessageType.Success, AdminResource.msgSaved);
-            mvBanner.SetActiveView(vList);
-        }
-        catch (Exception exception)
-        {
-            ExceptionManager.ManageException(exception);
-        }
-    }
-
-    protected void BtnCancelClick(object sender, EventArgs eventArgs)
-    {
-        mvBanner.SetActiveView(vList);
-    }
-    #endregion
-
-    #region edit
-    protected void BtEditSaveClick(object sender, EventArgs eventArgs)
-    {
-        try
-        {
-            var bannerId = Convert.ToInt32(HiddenFieldBannerId.Value);
-            var banner = _ent.Banners.First(p => p.bannersId == bannerId);
-            banner.bannerName = txteAd.Text;
-            banner.bannerUrl = txteUrl.Text;
-            banner.bannerHeight = Convert.ToInt32(txteHeight.Text);
-            banner.bannerWidth = Convert.ToInt32(txteWidth.Text);
-            banner.UpdatedTime = DateTime.Now;
-            _ent.SaveChanges();
-
-            Logger.Add(9, 1, banner.bannersId, 3);
-
-            gvBanners.DataBind();
-            mvBanner.SetActiveView(vList);
-            MessageBox.Show(MessageType.Success, AdminResource.msgUpdated);
-        }
-        catch (Exception exception)
-        {
-            ExceptionManager.ManageException(exception);
-        }
-    }
-
-    protected void BtnEditCancelClick(object sender, EventArgs eventArgs)
-    {
-        mvBanner.SetActiveView(vList);
-    }
-    #endregion
 
     protected void GvBannersRowDataBound(object sender, GridViewRowEventArgs e)
     {
@@ -299,4 +223,82 @@ public partial class admin_addNewBanner : UserControl
         HiddenFieldBannerId.Value = string.Empty;
     }
 
+    #region add
+
+    protected void BtnSaveClick(object sender, EventArgs eventArgs)
+    {
+        try
+        {
+            var banner = new Banners();
+            banner.bannerName = txtAd.Text;
+            banner.bannerUrl = txtUrl.Text;
+            banner.bannerFileTypeId = Convert.ToInt32(ddlDosyaTipi.SelectedValue);
+            banner.bannerHeight = Convert.ToInt32(txtHeight.Text);
+            banner.bannerWidth = Convert.ToInt32(txtWidth.Text);
+            if (ddlDosyaTipi.SelectedValue == "2")
+                banner.bannerSource = txtPath.Text + txtCliktag.Text;
+            else
+                banner.bannerSource = txtPath.Text;
+            banner.CreatedTime = DateTime.Now;
+            banner.UpdatedTime = DateTime.Now;
+            _ent.AddToBanners(banner);
+            _ent.SaveChanges();
+
+            Logger.Add(9, 1, banner.bannersId, 1);
+
+            gvBanners.DataBind();
+            foreach (Control ct in vAdd.Controls)
+            {
+                if (ct is TextBox)
+                    (ct as TextBox).Text = string.Empty;
+            }
+            MessageBox.Show(MessageType.Success, AdminResource.msgSaved);
+            mvBanner.SetActiveView(vList);
+        }
+        catch (Exception exception)
+        {
+            ExceptionManager.ManageException(exception);
+        }
+    }
+
+    protected void BtnCancelClick(object sender, EventArgs eventArgs)
+    {
+        mvBanner.SetActiveView(vList);
+    }
+
+    #endregion
+
+    #region edit
+
+    protected void BtEditSaveClick(object sender, EventArgs eventArgs)
+    {
+        try
+        {
+            var bannerId = Convert.ToInt32(HiddenFieldBannerId.Value);
+            var banner = _ent.Banners.First(p => p.bannersId == bannerId);
+            banner.bannerName = txteAd.Text;
+            banner.bannerUrl = txteUrl.Text;
+            banner.bannerHeight = Convert.ToInt32(txteHeight.Text);
+            banner.bannerWidth = Convert.ToInt32(txteWidth.Text);
+            banner.UpdatedTime = DateTime.Now;
+            _ent.SaveChanges();
+
+            Logger.Add(9, 1, banner.bannersId, 3);
+
+            gvBanners.DataBind();
+            mvBanner.SetActiveView(vList);
+            MessageBox.Show(MessageType.Success, AdminResource.msgUpdated);
+        }
+        catch (Exception exception)
+        {
+            ExceptionManager.ManageException(exception);
+        }
+    }
+
+    protected void BtnEditCancelClick(object sender, EventArgs eventArgs)
+    {
+        mvBanner.SetActiveView(vList);
+    }
+
+    #endregion
 }

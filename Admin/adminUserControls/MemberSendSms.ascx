@@ -1,12 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MemberSendSms.ascx.cs"
-    Inherits="eNroll.Admin.adminUserControls.MemberSendSms" %>
+            Inherits="eNroll.Admin.adminUserControls.MemberSendSms" %>
 <%@ Import Namespace="Resources" %>
 <asp:MultiView runat="server" ID="mvAuth">
     <asp:View ID="vAuth" runat="server">
         <table>
             <tr>
                 <td style="width: 165px;">
-                    <%=AdminResource.lbJobName %>
+                    <%= AdminResource.lbJobName %>
                 </td>
                 <td style="width: 10px;">
                     :
@@ -14,29 +14,29 @@
                 <td>
                     <asp:TextBox runat="server" ID="tbJobName" Width="200px" />
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbJobName"
-                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
+                                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
                 </td>
             </tr>
             <tr>
                 <td>
-                    <%=AdminResource.lbSendTime%>
+                    <%= AdminResource.lbSendTime %>
                 </td>
                 <td>
                     :
                 </td>
                 <td>
                     <telerik:RadDatePicker ID="dpSmsSendDate" MaxDate="01-01-2200" MinDate="01-01-1900"
-                        runat="server" ZIndex="30001" Width="100px" />
+                                           runat="server" ZIndex="30001" Width="100px" />
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="dpSmsSendDate"
-                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
+                                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
                     <telerik:RadTimePicker runat="server" ID="tpSmsSendTime" Width="100px" />
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tpSmsSendTime"
-                        ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
+                                                ErrorMessage="!" ForeColor="Red" ValidationGroup="g1" Display="Dynamic" />
                 </td>
             </tr>
             <tr>
                 <td valign="top">
-                    <%=AdminResource.lbContent%>
+                    <%= AdminResource.lbContent %>
                 </td>
                 <td valign="top">
                     :
@@ -49,7 +49,7 @@
         <table>
             <tr>
                 <td>
-                    <%=AdminResource.lbAddInfoToContent%>
+                    <%= AdminResource.lbAddInfoToContent %>
                 </td>
                 <td>
                     :
@@ -57,15 +57,15 @@
                 <td>
                     <select id="editorOptions" onchange="modulekle();">
                         <option value="">
-                            <%=AdminResource.lbChoose %></option>
+                            <%= AdminResource.lbChoose %></option>
                         <option value="%%name%%">
-                            <%=AdminResource.lbName%></option>
+                            <%= AdminResource.lbName %></option>
                         <option value="%%surname%%">
-                            <%=AdminResource.lbSurname%></option>
+                            <%= AdminResource.lbSurname %></option>
                         <option value="%%generaldebt%%">
-                            <%=AdminResource.lbGeneralDebt%></option>
+                            <%= AdminResource.lbGeneralDebt %></option>
                         <option value="%%clubnumber%%">
-                            <%=AdminResource.lbClubNumber%></option>
+                            <%= AdminResource.lbClubNumber %></option>
                     </select>
                 </td>
             </tr>
@@ -77,7 +77,7 @@
         </table>
         <br />
         <asp:Button runat="server" ID="btSendReport" CssClass="SaveCancelBtn" ValidationGroup="g1"
-            OnClick="BtnSendSmsClick" />
+                    OnClick="BtnSendSmsClick" />
         <asp:HiddenField runat="server" ID="hfSqlQuery" />
     </asp:View>
     <asp:View ID="vNotAuth" runat="server">

@@ -11,7 +11,7 @@ namespace eNroll.Admin.adminUserControls
 {
     public partial class LatestUpdatesManagement : UserControl
     {
-        Entities _entities = new Entities();
+        private readonly Entities _entities = new Entities();
 
         protected override void OnInit(EventArgs e)
         {

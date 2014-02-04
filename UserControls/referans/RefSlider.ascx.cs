@@ -9,9 +9,9 @@ public partial class UserControls_RefSlider : UserControl
     {
         string refLogoCode = "";
         var ent = new Entities();
-        IQueryable<RefLogos> refLogoList = ent.RefLogos.Where(p => p.state == true &&
-                                                                   p.languageId ==
-                                                                   EnrollContext.Current.WorkingLanguage.LanguageId);
+        var refLogoList = ent.RefLogos.Where(p => p.state == true &&
+                                                  p.languageId ==
+                                                  EnrollContext.Current.WorkingLanguage.LanguageId);
         refLogoCode = "<div id='refsliderdiv'><ul id='refslider' class='logosliderskin' >";
         foreach (RefLogos i in refLogoList)
         {

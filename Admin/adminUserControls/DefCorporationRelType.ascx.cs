@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Enroll.Managers;
@@ -11,14 +9,20 @@ using eNroll.Helpers;
 
 namespace eNroll.Admin.adminUserControls
 {
-    public partial class DefCorporationRelType : System.Web.UI.UserControl
+    public partial class DefCorporationRelType : UserControl
     {
+        #region Proccess enum
+
         public enum Proccess
         {
             Save = 1,
             Update = 2
         }
-        Entities _entities = new Entities();
+
+        #endregion
+
+        private readonly Entities _entities = new Entities();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             BindRelTypes(lbCorporationRelationType);
@@ -44,7 +48,7 @@ namespace eNroll.Admin.adminUserControls
         protected void BtSaveRelType_OnClick(object sender, EventArgs e)
         {
             var relType = new FoundationRelType();
-            SaveUpdateRelType(relType, Proccess.Save); 
+            SaveUpdateRelType(relType, Proccess.Save);
         }
 
         protected void BtUpdateRelType_OnClick(object sender, EventArgs e)
@@ -71,7 +75,6 @@ namespace eNroll.Admin.adminUserControls
                 ExceptionManager.ManageException(exception);
                 MessageBox.Show(MessageType.Error, AdminResource.lbErrorOccurred);
             }
-
         }
 
 
@@ -109,7 +112,8 @@ namespace eNroll.Admin.adminUserControls
             try
             {
                 tbEditRelType.Text = string.Empty;
-                if (listBox != null && listBox.SelectedItem != null && !string.IsNullOrWhiteSpace(listBox.SelectedItem.Value))
+                if (listBox != null && listBox.SelectedItem != null &&
+                    !string.IsNullOrWhiteSpace(listBox.SelectedItem.Value))
                 {
                     hfSelectedRelType.Value = Crypto.Encrypt(listBox.SelectedItem.Value);
                     var relTypeId = Convert.ToInt32(listBox.SelectedItem.Value);
@@ -152,7 +156,8 @@ namespace eNroll.Admin.adminUserControls
                     else
                     {
                         MessageBox.Show(MessageType.Warning, string.Format("{0} {1}",
-                            tbNewRelType.Text, AdminResource.AlreadyExistInSystem));
+                                                                           tbNewRelType.Text,
+                                                                           AdminResource.AlreadyExistInSystem));
                     }
                 }
                 else if (proccess == Proccess.Update)
@@ -170,7 +175,8 @@ namespace eNroll.Admin.adminUserControls
                     else
                     {
                         MessageBox.Show(MessageType.Warning, string.Format("{0} {1}",
-                            tbEditRelType.Text, AdminResource.AlreadyExistInSystem));
+                                                                           tbEditRelType.Text,
+                                                                           AdminResource.AlreadyExistInSystem));
                     }
                 }
             }
@@ -179,8 +185,8 @@ namespace eNroll.Admin.adminUserControls
                 ExceptionManager.ManageException(exception);
                 MessageBox.Show(MessageType.Error, AdminResource.lbErrorOccurred);
             }
-
         }
+
         public void ClearForm()
         {
             tbEditRelType.Text = string.Empty;
@@ -196,9 +202,11 @@ namespace eNroll.Admin.adminUserControls
             try
             {
                 if (id != -1)
-                    foundationRelType = _entities.FoundationRelType.FirstOrDefault(p => p.Name.ToLower() == text.ToLower() && p.Id != id);
+                    foundationRelType =
+                        _entities.FoundationRelType.FirstOrDefault(p => p.Name.ToLower() == text.ToLower() && p.Id != id);
                 else
-                    foundationRelType = _entities.FoundationRelType.FirstOrDefault(p => p.Name.ToLower() == text.ToLower());
+                    foundationRelType =
+                        _entities.FoundationRelType.FirstOrDefault(p => p.Name.ToLower() == text.ToLower());
 
                 if (foundationRelType != null) return true;
             }
@@ -208,6 +216,5 @@ namespace eNroll.Admin.adminUserControls
             }
             return false;
         }
-
     }
 }

@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Enroll.Managers;
 using Resources;
-using Telerik.Web.UI;
 using eNroll.App_Data;
 using eNroll.Helpers;
 
 namespace eNroll.Admin.adminUserControls
 {
-    public partial class MemberSendSms : System.Web.UI.UserControl
+    public partial class MemberSendSms : UserControl
     {
-        Entities _entities = new Entities();
-        public string MembersSqlQuery = string.Empty;
+        private readonly Entities _entities = new Entities();
         public SqlConnection Conn;
+        public string MembersSqlQuery = string.Empty;
         private List<Users> _users;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -30,7 +27,7 @@ namespace eNroll.Admin.adminUserControls
             else
             {
                 mvAuth.SetActiveView(vNotAuth);
-            } 
+            }
         }
 
         public void GetMembers()
@@ -40,7 +37,6 @@ namespace eNroll.Admin.adminUserControls
 
         protected void BtnSendSmsClick(object sender, EventArgs e)
         {
-
             var ileriTarihli = false;
             var savedSuccessfuly = false;
             var tarih = string.Empty;
@@ -77,16 +73,14 @@ namespace eNroll.Admin.adminUserControls
 
             if (savedSuccessfuly)
             {
-                lblUyari.Text = ileriTarihli ? 
-                    string.Format(AdminResource.lbSmsTaskSavedInfo, tarih) : 
-                    string.Format(AdminResource.lbSmsTaskCreated);
+                lblUyari.Text = ileriTarihli
+                                    ? string.Format(AdminResource.lbSmsTaskSavedInfo, tarih)
+                                    : string.Format(AdminResource.lbSmsTaskCreated);
             }
             else
             {
                 lblUyari.Text = string.Format(AdminResource.lbErrorOccurred);
             }
-
-
         }
     }
 }

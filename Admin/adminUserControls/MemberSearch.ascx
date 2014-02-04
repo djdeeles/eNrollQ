@@ -1,14 +1,15 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MemberSearch.ascx.cs"
-    Inherits="eNroll.Admin.adminUserControls.MemberSearch" %>
-<%@ Register Src="~/Admin/adminUserControls/MemberSendEmail.ascx" TagName="SendMail"
-    TagPrefix="uc1" %>
-<%@ Register Src="~/Admin/adminUserControls/MemberSendSms.ascx" TagName="SendSms"
-    TagPrefix="uc1" %>
-<%@ Register Src="~/Admin/adminUserControls/MemberAddEdit.ascx" TagName="MemberAddEdit"
-    TagPrefix="uc1" %>
-<%@ Register Src="~/Admin/adminUserControls/MemberFinanceManager.ascx" TagName="MemberFinanceManager"
-    TagPrefix="uc1" %>
+            Inherits="eNroll.Admin.adminUserControls.MemberSearch" %>
 <%@ Import Namespace="Resources" %>
+<%@ Import Namespace="eNroll.Helpers" %>
+<%@ Register Src="~/Admin/adminUserControls/MemberSendEmail.ascx" TagName="SendMail"
+             TagPrefix="uc1" %>
+<%@ Register Src="~/Admin/adminUserControls/MemberSendSms.ascx" TagName="SendSms"
+             TagPrefix="uc1" %>
+<%@ Register Src="~/Admin/adminUserControls/MemberAddEdit.ascx" TagName="MemberAddEdit"
+             TagPrefix="uc1" %>
+<%@ Register Src="~/Admin/adminUserControls/MemberFinanceManager.ascx" TagName="MemberFinanceManager"
+             TagPrefix="uc1" %>
 <asp:MultiView runat="server" ID="mvAuthoriztn">
     <asp:View runat="server" ID="vAuth">
         <asp:MultiView ID="mvMemberSearch" runat="server" ActiveViewIndex="0">
@@ -18,13 +19,13 @@
                     <table style="width: 100%;">
                         <thead>
                             <th colspan="3" class="UstBar">
-                                <%=AdminResource.lbPersonalInfo %>
+                                <%= AdminResource.lbPersonalInfo %>
                             </th>
                         </thead>
                         <tbody>
                             <tr>
                                 <td width="100px">
-                                    <%=Resources.Resource.lbName%>
+                                    <%= Resources.Resource.lbName %>
                                 </td>
                                 <td width="10px">
                                     :
@@ -35,7 +36,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=Resources.Resource.lbSurname%>
+                                    <%= Resources.Resource.lbSurname %>
                                 </td>
                                 <td>
                                     :
@@ -46,7 +47,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=Resources.Resource.lbEmail%>
+                                    <%= Resources.Resource.lbEmail %>
                                 </td>
                                 <td>
                                     :
@@ -57,7 +58,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%= Resources.Resource.lbGender%>
+                                    <%= Resources.Resource.lbGender %>
                                 </td>
                                 <td>
                                     :
@@ -68,7 +69,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%= Resources.Resource.lbBloodType%>
+                                    <%= Resources.Resource.lbBloodType %>
                                 </td>
                                 <td>
                                     :
@@ -79,7 +80,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%= Resources.Resource.lbMaritalStatus%>
+                                    <%= Resources.Resource.lbMaritalStatus %>
                                 </td>
                                 <td>
                                     :
@@ -90,7 +91,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%= Resources.Resource.lbBirthPlace%>
+                                    <%= Resources.Resource.lbBirthPlace %>
                                 </td>
                                 <td>
                                     :
@@ -106,13 +107,13 @@
                     <table style="width: 100%;">
                         <thead>
                             <th colspan="3" class="UstBar">
-                                <%=AdminResource.lbMembershipInfo%>
+                                <%= AdminResource.lbMembershipInfo %>
                             </th>
                         </thead>
                         <tbody>
                             <tr>
                                 <td width="100px">
-                                    <%=Resources.Resource.lbMemberNumber %>
+                                    <%= Resources.Resource.lbMemberNumber %>
                                 </td>
                                 <td width="10px">
                                     :
@@ -124,7 +125,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=Resources.Resource.lbSpecialNumber %>
+                                    <%= Resources.Resource.lbSpecialNumber %>
                                 </td>
                                 <td>
                                     :
@@ -136,7 +137,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=Resources.Resource.lbRelationType %>
+                                    <%= Resources.Resource.lbRelationType %>
                                 </td>
                                 <td>
                                     :
@@ -147,20 +148,20 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=Resources.Resource.lbTerm %>
+                                    <%= Resources.Resource.lbTerm %>
                                 </td>
                                 <td>
                                     :
                                 </td>
                                 <td>
                                     <telerik:RadMonthYearPicker ID="dpTerm" runat="server" MaxDate="01-2200" MinDate="01-1900"
-                                        Width="100px">
+                                                                Width="100px">
                                         <DateInput DateFormat="yyyy" DisplayDateFormat="yyyy">
                                         </DateInput>
                                     </telerik:RadMonthYearPicker>
                                     &nbsp;-&nbsp;
                                     <telerik:RadMonthYearPicker ID="dpTerm2" runat="server" MaxDate="01-2200" MinDate="01-1900"
-                                        Width="100px">
+                                                                Width="100px">
                                         <DateInput DateFormat="yyyy" DisplayDateFormat="yyyy">
                                         </DateInput>
                                     </telerik:RadMonthYearPicker>
@@ -168,24 +169,24 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=Resources.Resource.lbEnterDate %>
+                                    <%= Resources.Resource.lbEnterDate %>
                                 </td>
                                 <td>
                                     :
                                 </td>
                                 <td>
                                     <telerik:RadDatePicker ID="dpMembershipDate" MaxDate="01-01-2200" MinDate="01-01-1900"
-                                        runat="server" ZIndex="30001" Width="100px">
+                                                           runat="server" ZIndex="30001" Width="100px">
                                     </telerik:RadDatePicker>
                                     &nbsp;-&nbsp;
                                     <telerik:RadDatePicker ID="dpMembershipDate2" MaxDate="01-01-2200" MinDate="01-01-1900"
-                                        runat="server" ZIndex="30001" Width="100px">
+                                                           runat="server" ZIndex="30001" Width="100px">
                                     </telerik:RadDatePicker>
                                 </td>
                             </tr> 
                             <tr>
                                 <td>
-                                    <%=AdminResource.lbMemberState%>
+                                    <%= AdminResource.lbMemberState %>
                                 </td>
                                 <td>
                                     :
@@ -196,7 +197,7 @@
                             </tr>
                             <tr>
                                 <td>    
-                                    <%=AdminResource.lbMemberType%>
+                                    <%= AdminResource.lbMemberType %>
                                 </td>
                                 <td>
                                     :
@@ -207,7 +208,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=AdminResource.lbAutoPaymentOrder%>
+                                    <%= AdminResource.lbAutoPaymentOrder %>
                                 </td>
                                 <td>
                                     :
@@ -218,7 +219,7 @@
                             </tr>
                             <tr>
                                 <td valign="top">
-                                    <%=AdminResource.lbAdminNote %>
+                                    <%= AdminResource.lbAdminNote %>
                                 </td>
                                 <td valign="top">
                                     :
@@ -234,37 +235,37 @@
                     <table style="width: 100%;">
                         <thead>
                             <th colspan="3" class="UstBar">
-                                <%=AdminResource.lbWorkInfo%>
+                                <%= AdminResource.lbWorkInfo %>
                             </th>
                         </thead>
                         <tbody>
                             <tr>
                                 <td width="100px">
-                                    <%= Resources.Resource.lbCountry%>
+                                    <%= Resources.Resource.lbCountry %>
                                 </td>
                                 <td width="10px">
                                     :
                                 </td>
                                 <td>
                                     <asp:DropDownList runat="server" ID="ddlWorkCountry" AutoPostBack="true" Width="200px"
-                                        OnSelectedIndexChanged="ddlWorkCountry_OnSelectedIndexChanged" />
+                                                      OnSelectedIndexChanged="ddlWorkCountry_OnSelectedIndexChanged" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <%= Resources.Resource.lbCity%>
+                                    <%= Resources.Resource.lbCity %>
                                 </td>
                                 <td>
                                     :
                                 </td>
                                 <td>
                                     <asp:DropDownList runat="server" ID="ddlWorkCity" AutoPostBack="true" Width="200px"
-                                        OnSelectedIndexChanged="ddlWorkCity_OnSelectedIndexChanged" />
+                                                      OnSelectedIndexChanged="ddlWorkCity_OnSelectedIndexChanged" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <%= Resources.Resource.lbTown%>
+                                    <%= Resources.Resource.lbTown %>
                                 </td>
                                 <td>
                                     :
@@ -275,7 +276,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%= Resources.Resource.lbJobSector%>
+                                    <%= Resources.Resource.lbJobSector %>
                                 </td>
                                 <td>
                                     :
@@ -286,7 +287,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%= Resources.Resource.lbJob%>
+                                    <%= Resources.Resource.lbJob %>
                                 </td>
                                 <td>
                                     :
@@ -297,7 +298,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%= Resources.Resource.lbWorkTitle%>
+                                    <%= Resources.Resource.lbWorkTitle %>
                                 </td>
                                 <td>
                                     :
@@ -308,7 +309,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%= Resources.Resource.lbWorkCorporation%>
+                                    <%= Resources.Resource.lbWorkCorporation %>
                                 </td>
                                 <td>
                                     :
@@ -324,37 +325,37 @@
                     <table style="width: 100%;">
                         <thead>
                             <th colspan="3" class="UstBar">
-                                <%=AdminResource.lbHomeInfo%>
+                                <%= AdminResource.lbHomeInfo %>
                             </th>
                         </thead>
                         <tbody>
                             <tr>
                                 <td width="100px">
-                                    <%= Resources.Resource.lbCountry%>
+                                    <%= Resources.Resource.lbCountry %>
                                 </td>
                                 <td width="10px">
                                     :
                                 </td>
                                 <td>
                                     <asp:DropDownList runat="server" ID="ddlHomeCountry" Width="200px" AutoPostBack="true"
-                                        OnSelectedIndexChanged="ddlHomeCountry_OnSelectedIndexChanged" />
+                                                      OnSelectedIndexChanged="ddlHomeCountry_OnSelectedIndexChanged" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <%= Resources.Resource.lbCity%>
+                                    <%= Resources.Resource.lbCity %>
                                 </td>
                                 <td>
                                     :
                                 </td>
                                 <td>
                                     <asp:DropDownList runat="server" ID="ddlHomeCity" AutoPostBack="true" Width="200px"
-                                        OnSelectedIndexChanged="ddlHomeCity_OnSelectedIndexChanged" />
+                                                      OnSelectedIndexChanged="ddlHomeCity_OnSelectedIndexChanged" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <%= Resources.Resource.lbTown%>
+                                    <%= Resources.Resource.lbTown %>
                                 </td>
                                 <td>
                                     :
@@ -370,13 +371,13 @@
                     <table style="width: 100%;">
                         <thead>
                             <th colspan="3" class="UstBar">
-                                <%=AdminResource.lbEducationInfo%>
+                                <%= AdminResource.lbEducationInfo %>
                             </th>
                         </thead>
                         <tbody>
                             <tr>
                                 <td width="100px">
-                                    <%=Resources.Resource.lbLastSchool %>
+                                    <%= Resources.Resource.lbLastSchool %>
                                 </td>
                                 <td width="10px">
                                     :
@@ -387,20 +388,20 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=AdminResource.lbGraduation%>
+                                    <%= AdminResource.lbGraduation %>
                                 </td>
                                 <td>
                                     :
                                 </td>
                                 <td>
                                     <telerik:RadMonthYearPicker ID="dpLastSchoolGraduateDate" runat="server" MaxDate="01-2200"
-                                        Width="80px" MinDate="01-1900">
+                                                                Width="80px" MinDate="01-1900">
                                         <DateInput DateFormat="yyyy" DisplayDateFormat="yyyy">
                                         </DateInput>
                                     </telerik:RadMonthYearPicker>
                                     &nbsp;-&nbsp;
                                     <telerik:RadMonthYearPicker ID="dpLastSchoolGraduateDate2" runat="server" MaxDate="01-2200"
-                                        Width="80px" MinDate="01-1900">
+                                                                Width="80px" MinDate="01-1900">
                                         <DateInput DateFormat="yyyy" DisplayDateFormat="yyyy">
                                         </DateInput>
                                     </telerik:RadMonthYearPicker>
@@ -413,13 +414,13 @@
                     <table style="width: 100%;">
                         <thead>
                             <th colspan="3" class="UstBar">
-                                <%=AdminResource.lbOtherInfo%>
+                                <%= AdminResource.lbOtherInfo %>
                             </th>
                         </thead>
                         <tbody>
                             <tr>
                                 <td width="100px">
-                                    <%=AdminResource.lbDecease %>
+                                    <%= AdminResource.lbDecease %>
                                 </td>
                                 <td width="10px">
                                     :
@@ -430,18 +431,18 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <%=AdminResource.lbDeceaseDate %>
+                                    <%= AdminResource.lbDeceaseDate %>
                                 </td>
                                 <td>
                                     :
                                 </td>
                                 <td>
                                     <telerik:RadDatePicker ID="dpDeceaseDate" MaxDate="01-01-2200" MinDate="01-01-1900"
-                                        runat="server" ZIndex="30001" Width="100px" Enabled="False">
+                                                           runat="server" ZIndex="30001" Width="100px" Enabled="False">
                                     </telerik:RadDatePicker>
                                     &nbsp;-&nbsp;
                                     <telerik:RadDatePicker ID="dpDeceaseDate2" MaxDate="01-01-2200" MinDate="01-01-1900"
-                                        runat="server" ZIndex="30001" Width="100px" Enabled="False">
+                                                           runat="server" ZIndex="30001" Width="100px" Enabled="False">
                                     </telerik:RadDatePicker>
                                 </td>
                             </tr>
@@ -455,14 +456,14 @@
                             <td>
                                 <asp:Button runat="server" ID="btSearch" CssClass="SaveCancelBtn" OnClick="BtSearchClick" />
                                 <asp:Button runat="server" ID="btClearSearchCriterias" CssClass="SaveCancelBtn" Visible="False"
-                                    OnClick="BtClearSearchCriteriasClick" />
+                                            OnClick="BtClearSearchCriteriasClick" />
                                 <asp:Literal runat="server" ID="ltResults" Visible="False" />
                             </td>
                         </tr>
                         <tr style="display: none;">
                             <td>
                                 <asp:TextBox runat="server" TextMode="MultiLine" ID="tbSqlQueryOutput" Width="700px"
-                                    Height="96px"></asp:TextBox>
+                                             Height="96px"></asp:TextBox>
                             </td>
                         </tr>
                     </table>
@@ -474,7 +475,7 @@
                             <td>
                                 <asp:Button runat="server" ID="btShowResults" CssClass="SaveCancelBtn" OnClick="BtShowResultsClick" />
                                 <asp:Button runat="server" ID="btDownloadUsersExcelList" CssClass="SaveCancelBtn"
-                                    OnClick="BtDownloadUsersExcelList" />
+                                            OnClick="BtDownloadUsersExcelList" />
                                 <asp:Button runat="server" ID="btSendEmail" CssClass="SaveCancelBtn" OnClick="BtSendEmailClick" />
                                 <asp:Button runat="server" ID="btSendSms" CssClass="SaveCancelBtn" OnClick="BtSendSmsClick" />
                                 <asp:Button runat="server" ID="btFinanceManager" CssClass="SaveCancelBtn" OnClick="BtFinanceManagerClick" />
@@ -484,12 +485,12 @@
                 </div>
                 <div style="float: left; width: 100%">
                     <asp:GridView ID="gVMembers" runat="server" Visible="True" AutoGenerateColumns="False" CssClass="GridViewStyle"
-                        OnRowDataBound="gVMembers_OnRowDataBound" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                        SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-                        SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
-                        EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
-                        DataKeyNames="uId" CellPadding="4" Width="100%" PageSize="15" ForeColor="#333333"
-                        GridLines="None" AllowSorting="False">
+                                  OnRowDataBound="gVMembers_OnRowDataBound" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                                  SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                                  SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
+                                  EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
+                                  DataKeyNames="uId" CellPadding="4" Width="100%" PageSize="15" ForeColor="#333333"
+                                  GridLines="None" AllowSorting="False">
                         <EmptyDataTemplate>
                             <%= AdminResource.lbNoRecord %>
                         </EmptyDataTemplate>
@@ -500,11 +501,12 @@
                                         <tr>
                                             <td>
                                                 <asp:ImageButton ID="imgBtnEdit" runat="server" ImageUrl="~/Admin/images/icon/edit.png"
-                                                    OnClick="ImgBtnMemberEditClick" CommandArgument='<%#Eval("uId") %>' />
+                                                                 OnClick="ImgBtnMemberEditClick" CommandArgument='<%#Eval
+                                                                                                   ("uId") %>' />
                                             </td>
                                             <td>
                                                 <asp:ImageButton ID="imgBtnMemberDelete" runat="server" ImageUrl="~/Admin/images/icon/cop.png"
-                                                    CommandArgument='<%#Eval("uId") %>' OnClick="ImgBtnMemberDeleteClick" />
+                                                                 CommandArgument='<%#Eval("uId") %>' OnClick="ImgBtnMemberDeleteClick" />
                                             </td>
                                         </tr>
                                     </table>
@@ -514,37 +516,37 @@
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-Width="75" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
-                                    <%#Eval("fMembershipNo")%>
+                                    <%#Eval("fMembershipNo") %>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-Width="75" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
-                                    <%#string.Format("{0} {1}",Eval("uName"),Eval("uSurname") )%>
+                                    <%#                string.Format("{0} {1}", Eval("uName"), Eval("uSurname")) %>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
                             </asp:TemplateField>
                             <asp:BoundField DataField="uEmail" SortExpression="uEmail" HeaderStyle-HorizontalAlign="Left"
-                                ItemStyle-HorizontalAlign="Left">
+                                            ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:TemplateField ItemStyle-Width="75" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>
-                                    <%#eNroll.Helpers.EnrollMembershipHelper.GetMembershipType(Eval("fMembershipType").ToString())%>
+                                    <%#                EnrollMembershipHelper.GetMembershipType(Eval("fMembershipType").ToString()) %>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Left" Width="75px" />
                             </asp:TemplateField>
                             <asp:CheckBoxField DataField="isAdmin" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Justify"
-                                ItemStyle-Width="50">
+                                               ItemStyle-Width="50">
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Justify" Width="50px" />
                             </asp:CheckBoxField>
                             <asp:CheckBoxField DataField="uState" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Justify"
-                                ItemStyle-Width="50">
+                                               ItemStyle-Width="50">
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Justify" Width="50px" />
                             </asp:CheckBoxField>
@@ -555,7 +557,7 @@
             <asp:View ID="vEditMember" runat="server">
                 <uc1:MemberAddEdit runat="server" ID="cMemberAddEdit" />
                 <asp:Button runat="server" OnClick="BtBackToSearchPageClick" CssClass="SaveCancelBtn"
-                    ID="btBackToSearchPage" />
+                            ID="btBackToSearchPage" />
             </asp:View>
             <asp:View ID="vSendEmail" runat="server">
                 <uc1:SendMail runat="server" ID="cSendMail" />

@@ -64,7 +64,7 @@ public partial class UserControls_duyuru_NoticeList : UserControl
                             currentLink.NavigateUrl = currentLink.NavigateUrl.Replace("/Notices.aspx?", "/duyurular-");
                         }
                         currentLink.NavigateUrl = currentLink.NavigateUrl.Replace("noticelistpage=", "");
-                        currentLink.NavigateUrl = currentLink.NavigateUrl.Replace("&", ""); 
+                        currentLink.NavigateUrl = currentLink.NavigateUrl.Replace("&", "");
                     }
                 }
             }

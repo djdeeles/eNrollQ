@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_SliderImageList"
-    CodeBehind="SliderImageList.ascx.cs" %>
+            CodeBehind="SliderImageList.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <asp:MultiView runat="server" ID="mvAuth">
     <asp:View runat="server">
@@ -15,7 +15,7 @@
                     <td>
                         <asp:TextBox ID="txtName" runat="server" Width="300px" MaxLength="200"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rf" runat="server" ControlToValidate="txtName" ErrorMessage="Başlık boş bırakılamaz."
-                            ValidationGroup="vldGroup1">(!)</asp:RequiredFieldValidator>
+                                                    ValidationGroup="vldGroup1">(!)</asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -42,8 +42,8 @@
                                         }
                                     </script>
                                     <telerik:RadWindow runat="server" Width="600px" Height="350px" VisibleStatusbar="false"
-                                        ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
-                                        Modal="true" Behaviors="Close,Move,Resize,Maximize">
+                                                       ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
+                                                       Modal="true" Behaviors="Close,Move,Resize,Maximize">
                                     </telerik:RadWindow>
                                 </td>
                             </tr>
@@ -81,7 +81,7 @@
                     </td>
                     <td>
                         <asp:Button ID="btnSave" runat="server" CssClass="SaveCancelBtn" ValidationGroup="vldGroup1"
-                            OnClick="btnSaveUpdateSliderImage" />
+                                    OnClick="btnSaveUpdateSliderImage" />
                         <asp:Button ID="btnCancel" runat="server" CssClass="SaveCancelBtn" OnClick="btnCancelSliderImage" />
                     </td>
                 </tr>
@@ -108,12 +108,12 @@
                 <tr>
                     <td>
                         <asp:GridView ID="gVRef" runat="server" AutoGenerateColumns="False" CssClass="GridViewStyle"
-                            PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
-                            SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
-                            SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
-                            SelectedRowStyle="selected" DataKeyNames="id" DataSourceID="EntityDataSource1"
-                            AllowSorting="True" CellPadding="4" OnRowDataBound="GridView1_RowDataBound" Width="100%"
-                            AllowPaging="True" PageSize="15" ForeColor="#333333" GridLines="None">
+                                      PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" SortedAscendingHeaderStyle-CssClass="sortasc-header"
+                                      SortedDescendingHeaderStyle-CssClass="sortdesc-header" SortedAscendingCellStyle-CssClass="sortasc"
+                                      SortedDescendingCellStyle-CssClass="sortdesc" EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty"
+                                      SelectedRowStyle="selected" DataKeyNames="id" DataSourceID="EntityDataSource1"
+                                      AllowSorting="True" CellPadding="4" OnRowDataBound="GridView1_RowDataBound" Width="100%"
+                                      AllowPaging="True" PageSize="15" ForeColor="#333333" GridLines="None">
                             <EmptyDataTemplate>
                                 <%= AdminResource.lbNoRecord %>
                             </EmptyDataTemplate>
@@ -124,11 +124,12 @@
                                             <tr>
                                                 <td>
                                                     <asp:ImageButton ID="imgBtnEdit" runat="server" ImageUrl="~/Admin/images/icon/edit.png"
-                                                        OnClick="imgBtnEdit_Click" CommandArgument='<%#Bind("id") %>' />
+                                                                     OnClick="imgBtnEdit_Click" CommandArgument='<%#Bind
+                                                                                                   ("id") %>' />
                                                 </td>
                                                 <td>
                                                     <asp:ImageButton ID="imgBtnDelete" ImageUrl="~/Admin/images/icon/cop.png" runat="server"
-                                                        CommandArgument='<%#Bind("id") %>' OnClick="imgBtnDelete_Click" />
+                                                                     CommandArgument='<%#Bind("id") %>' OnClick="imgBtnDelete_Click" />
                                                 </td>
                                             </tr>
                                         </table>
@@ -151,8 +152,8 @@
                             </Columns>
                         </asp:GridView>
                         <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=Entities"
-                            DefaultContainerName="Entities" EntitySetName="RefLogos" EntityTypeFilter=""
-                            Select="">
+                                              DefaultContainerName="Entities" EntitySetName="RefLogos" EntityTypeFilter=""
+                                              Select="">
                         </asp:EntityDataSource>
                     </td>
                 </tr>

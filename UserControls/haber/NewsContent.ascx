@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="UserControls_NewsContent"
-    CodeBehind="NewsContent.ascx.cs" %>
+            CodeBehind="NewsContent.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <h1>
     <asp:Label ID="lblBaslik" runat="server" />

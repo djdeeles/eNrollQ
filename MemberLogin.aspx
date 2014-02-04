@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    CodeBehind="MemberLogin.aspx.cs" Inherits="eNroll.MemberLogin" %>
+         CodeBehind="MemberLogin.aspx.cs" Inherits="eNroll.MemberLogin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -7,7 +7,7 @@
             <td valign="top">
                 <fieldset style="border: 1px solid #ccc;">
                     <legend><b>
-                        <%=Resources.Resource.lbMemberLogin%></b> </legend>
+                                <%= Resources.Resource.lbMemberLogin %></b> </legend>
                     <asp:Panel runat="server" DefaultButton="btnLogin">
                         <table cellpadding="3" cellspacing="0" border="0" width="100%">
                             <tr>
@@ -20,7 +20,7 @@
                                 <td>
                                     <asp:TextBox ID="TextBoxUserName" runat="server" Width="180px"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxUserName"
-                                        ForeColor="Red" ValidationGroup="vldGroup1">!</asp:RequiredFieldValidator>
+                                                                ForeColor="Red" ValidationGroup="vldGroup1">!</asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -33,7 +33,7 @@
                                 <td>
                                     <asp:TextBox ID="TextBoxPassword" runat="server" TextMode="Password" Width="180px"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBoxPassword"
-                                        ForeColor="Red" ValidationGroup="vldGroup1">!</asp:RequiredFieldValidator>
+                                                                ForeColor="Red" ValidationGroup="vldGroup1">!</asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -43,7 +43,7 @@
                                 </td>
                                 <td>
                                     <telerik:RadCaptcha ID="RadCaptcha1" runat="server" EnableRefreshImage="False" ImageStorageLocation="Cache"
-                                        ValidationGroup="vldGroup1">
+                                                        ValidationGroup="vldGroup1">
                                         <CaptchaImage Width="185" Height="35" />
                                     </telerik:RadCaptcha>
                                 </td>
@@ -64,7 +64,7 @@
                                 </td>
                                 <td>
                                     <asp:Button ID="btnLogin" CssClass="button" runat="server" OnClick="BtnLoginClick"
-                                        ValidationGroup="vldGroup1" />
+                                                ValidationGroup="vldGroup1" />
                                 </td>
                             </tr>
                             <tr>
@@ -86,7 +86,7 @@
             <td valign="top">
                 <fieldset style="border: 1px solid #ccc; height: 150px;">
                     <legend><b>
-                        <%=Resources.Resource.lbPasswordReminder%></b> </legend>
+                                <%= Resources.Resource.lbPasswordReminder %></b> </legend>
                     <asp:Panel runat="server" DefaultButton="btnSendPwd">
                         <table cellpadding="3" cellspacing="0" border="0" width="100%">
                             <tr>
@@ -99,7 +99,7 @@
                                 <td>
                                     <asp:TextBox ID="tbUserName_" runat="server" Width="180px"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbUserName_"
-                                        ForeColor="Red" ValidationGroup="vldGroup2">!</asp:RequiredFieldValidator>
+                                                                ForeColor="Red" ValidationGroup="vldGroup2">!</asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -110,7 +110,7 @@
                                 </td>
                                 <td>
                                     <asp:Button ID="btnSendPwd" CssClass="button" runat="server" ValidationGroup="vldGroup2"
-                                        OnClick="BtnSendPwdClick" />
+                                                OnClick="BtnSendPwdClick" />
                                 </td>
                             </tr>
                             <tr>

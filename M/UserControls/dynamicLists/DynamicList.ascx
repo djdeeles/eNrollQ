@@ -11,13 +11,22 @@
                 <tr>
                     <td>
                         <asp:Image ID="Image2" runat="server" Width="125px" CssClass="contentimage" 
-                            ImageUrl='<%#(Eval("ThumbnailPath").ToString() != "" ? 
-                            Eval("ThumbnailPath").ToString() : "../../../App_Themes/mainTheme/images/noimage.png") %>' GenerateEmptyAlternateText="True" />
+                                   ImageUrl='<%#(Eval("ThumbnailPath")
+                                                                                                    .
+                                                                                                    ToString
+                                                                                                    () !=
+                                                                                                ""
+                                                                                                    ? Eval
+                                                                                                          ("ThumbnailPath")
+                                                                                                          .
+                                                                                                          ToString
+                                                                                                          ()
+                                                                                                    : "../../../App_Themes/mainTheme/images/noimage.png") %>' GenerateEmptyAlternateText="True" />
                         <div class="listname">
-                            <%#Eval("Title")%>
+                            <%#Eval("Title") %>
                         </div> 
                         <div class="listbrief">
-                            <%#Eval("Description")%>
+                            <%#Eval("Description") %>
                         </div>
                     </td>
                 </tr>
@@ -53,4 +62,4 @@
             OnClick="BtOrderbyUpdatedTimeClick" />
 <asp:Button runat="server" ID="btOrderbyAscDesc" CssClass="buttonactive" data-corners="false"
             OnClick="BtOrderbyAscDescClick" />
-<asp:HiddenField runat="server" ID="hfOrderBy" /> 
+<asp:HiddenField runat="server" ID="hfOrderBy" />

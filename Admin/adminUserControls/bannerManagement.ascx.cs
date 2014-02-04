@@ -10,7 +10,7 @@ using eNroll.Helpers;
 
 public partial class admin_bannerManagement : UserControl
 {
-    Entities ent = new Entities();
+    private readonly Entities ent = new Entities();
 
     protected override void OnInit(EventArgs e)
     {
@@ -70,8 +70,8 @@ public partial class admin_bannerManagement : UserControl
     {
         DropDownListAlan.DataSource = string.Empty;
         DropDownListAlan.DataBind();
-        IQueryable<BannerLocation> ReklamAlanlari = from p in ent.BannerLocation
-                                                    select p;
+        var ReklamAlanlari = from p in ent.BannerLocation
+                             select p;
         if (ReklamAlanlari.Count() != 0)
         {
             foreach (BannerLocation item in ReklamAlanlari)
@@ -91,8 +91,8 @@ public partial class admin_bannerManagement : UserControl
         {
             DropDownListAlan.DataSource = string.Empty;
             DropDownListAlan.DataBind();
-            IQueryable<Banners> Reklamlar = from p in ent.Banners
-                                            select p;
+            var Reklamlar = from p in ent.Banners
+                            select p;
             if (Reklamlar.Count() != 0)
             {
                 foreach (Banners item in Reklamlar)
@@ -115,7 +115,8 @@ public partial class admin_bannerManagement : UserControl
     {
         try
         {
-            EntityDataSourceBannerManagement.Where = " it.languageId=" + EnrollAdminContext.Current.DataLanguage.LanguageId.ToString();
+            EntityDataSourceBannerManagement.Where = " it.languageId=" +
+                                                     EnrollAdminContext.Current.DataLanguage.LanguageId.ToString();
             EntityDataSourceBannerManagement.OrderBy = "it.bannerStartDate";
             gvBanners.DataSourceID = "EntityDataSourceBannerManagement";
             gvBanners.DataBind();
@@ -232,7 +233,6 @@ public partial class admin_bannerManagement : UserControl
             {
                 ExceptionManager.ManageException(exception);
             }
-
         }
     }
 
@@ -247,7 +247,7 @@ public partial class admin_bannerManagement : UserControl
         {
             foreach (GridViewRow row in gvBanners.Rows)
             {
-                var lblId = (Label)row.FindControl("lblId");
+                var lblId = (Label) row.FindControl("lblId");
                 Banners myBanner = ent.Banners.Where("it.bannersId=" + lblId.Text).First();
                 lblId.Text = myBanner.bannerName;
             }
@@ -341,7 +341,7 @@ public partial class admin_bannerManagement : UserControl
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var myMastDelete = (ImageButton)e.Row.FindControl("LinkButtonSil");
+                var myMastDelete = (ImageButton) e.Row.FindControl("LinkButtonSil");
                 myMastDelete.OnClientClick = " return confirm('" + AdminResource.lbDeletingQuestion + "'); ";
             }
         }

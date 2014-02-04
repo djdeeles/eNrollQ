@@ -12,8 +12,7 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_NewsList : UserControl
 {
-
-    Entities entities = new Entities();
+    private readonly Entities entities = new Entities();
 
     protected override void OnInit(EventArgs e)
     {
@@ -108,7 +107,7 @@ public partial class Admin_adminUserControls_NewsList : UserControl
             oEntities.SaveChanges();
 
             GridView1.DataBind();
-            MessageBox.Show(MessageType.Success, Resources.AdminResource.msgDeleted);
+            MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
         }
         catch (Exception exception)
         {
@@ -136,7 +135,6 @@ public partial class Admin_adminUserControls_NewsList : UserControl
 
     protected void btnSaveUpdateNews(object sender, EventArgs e)
     {
-
         try
         {
             if (String.IsNullOrEmpty(hdnId.Value)) //insert
@@ -150,7 +148,7 @@ public partial class Admin_adminUserControls_NewsList : UserControl
 
                 Logger.Add(3, 0, oNews.newsId, 1);
 
-                MessageBox.Show(MessageType.Success, Resources.AdminResource.msgSaved);
+                MessageBox.Show(MessageType.Success, AdminResource.msgSaved);
             }
             else //update
             {
@@ -159,11 +157,10 @@ public partial class Admin_adminUserControls_NewsList : UserControl
                 entities.SaveChanges();
                 Logger.Add(3, 0, oNews.newsId, 3);
 
-                MessageBox.Show(MessageType.Success,Resources.AdminResource.msgUpdated);
+                MessageBox.Show(MessageType.Success, AdminResource.msgUpdated);
             }
 
             GridView1.DataBind();
-
         }
         catch (Exception exception)
         {
@@ -180,7 +177,7 @@ public partial class Admin_adminUserControls_NewsList : UserControl
         try
         {
             var entities = new Entities();
-            var oDetailsFck = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+            var oDetailsFck = ((RadEditor) Rtb1.FindControl("RadEditor1"));
             news.header = txtHeader.Text;
             news.brief = txtBrief.Text;
             news.details = oDetailsFck.Content;
@@ -199,7 +196,7 @@ public partial class Admin_adminUserControls_NewsList : UserControl
                 var i = ImageHelper.ResizeImage(orj, new Size(150, 150));
                 var thumbName = Guid.NewGuid().ToString("N").Substring(1, 8) + ".jpg";
                 var dest = Server.MapPath("../FileManager/thumbnails/" + thumbName);
-                ImageHelper.SaveJpeg(dest, (Bitmap)i, 75);
+                ImageHelper.SaveJpeg(dest, (Bitmap) i, 75);
                 news.thumbnailPath = "~/FileManager/thumbnails/" + thumbName;
                 news.imagePath = txtImage.Text;
             }
@@ -236,7 +233,7 @@ public partial class Admin_adminUserControls_NewsList : UserControl
         {
             hdnId.Value = btn.CommandArgument;
             var newsId = Convert.ToInt32(btn.CommandArgument);
-            var oNews = entities.News.First(p=>p.newsId == newsId);
+            var oNews = entities.News.First(p => p.newsId == newsId);
             GetDataProccess(oNews);
             pnlNewList.Visible = false;
             pnlNewsEdit.Visible = true;
@@ -246,7 +243,7 @@ public partial class Admin_adminUserControls_NewsList : UserControl
     public void GetDataProccess(News news)
     {
         txtHeader.Text = news.header;
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
         txtBrief.Text = news.brief;
         radEditor.Content = news.details;
         if (news.manset != null) cbManset.Checked = news.manset.Value;
@@ -258,7 +255,7 @@ public partial class Admin_adminUserControls_NewsList : UserControl
     public void ClearFormInputs()
     {
         txtHeader.Text = string.Empty;
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
         txtBrief.Text = string.Empty;
         radEditor.Content = string.Empty;
         cbManset.Checked = false;

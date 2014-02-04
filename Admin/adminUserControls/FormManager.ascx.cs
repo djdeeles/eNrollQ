@@ -14,7 +14,7 @@ namespace eNroll.Admin.adminUserControls
 {
     public partial class FormManager : UserControl
     {
-        Entities _entities = new Entities();
+        private readonly Entities _entities = new Entities();
         public int FormId = 0;
 
         protected override void OnInit(EventArgs e)
@@ -205,12 +205,12 @@ namespace eNroll.Admin.adminUserControls
 
                     FormContents formContents = _entities.FormContents.First(p => p.Id == id);
 
-                    var v = (GridView)sender;
-                    var tbName = (TextBox)gvFormContents.Rows[v.EditIndex].FindControl("tbFormContentName");
+                    var v = (GridView) sender;
+                    var tbName = (TextBox) gvFormContents.Rows[v.EditIndex].FindControl("tbFormContentName");
                     formContents.FieldName = tbName.Text;
 
 
-                    var tbOrderId = (TextBox)gvFormContents.Rows[v.EditIndex].FindControl("tbOrderId");
+                    var tbOrderId = (TextBox) gvFormContents.Rows[v.EditIndex].FindControl("tbOrderId");
                     int orderNo = Convert.ToInt32(tbOrderId.Text);
 
                     //sıra numarası güncellendiyse
@@ -249,14 +249,14 @@ namespace eNroll.Admin.adminUserControls
                 else if (e.CommandName == "AddNewOption")
                 {
                     string commandArgs = e.CommandArgument.ToString();
-                    string[] data = commandArgs.Split('|');
+                    var data = commandArgs.Split('|');
                     int rowIndex = Convert.ToInt32(data[0]);
                     int contentId = Convert.ToInt32(data[1]);
                     var imgBtnAddNewOption =
-                        (ImageButton)gvFormContents.Rows[rowIndex].FindControl("imgBtnAddNewOption");
-                    var txtNewOption = (TextBox)gvFormContents.Rows[rowIndex].FindControl("txtNewOption");
-                    var btnSaveOption = (Button)gvFormContents.Rows[rowIndex].FindControl("btnSaveOption");
-                    var btnCancelOption = (Button)gvFormContents.Rows[rowIndex].FindControl("btnCancelOption");
+                        (ImageButton) gvFormContents.Rows[rowIndex].FindControl("imgBtnAddNewOption");
+                    var txtNewOption = (TextBox) gvFormContents.Rows[rowIndex].FindControl("txtNewOption");
+                    var btnSaveOption = (Button) gvFormContents.Rows[rowIndex].FindControl("btnSaveOption");
+                    var btnCancelOption = (Button) gvFormContents.Rows[rowIndex].FindControl("btnCancelOption");
                     imgBtnAddNewOption.Visible = true;
                     txtNewOption.Visible = true;
                     btnSaveOption.Visible = true;
@@ -268,10 +268,10 @@ namespace eNroll.Admin.adminUserControls
                     int rowIndex = Convert.ToInt32(e.CommandArgument.ToString());
 
                     var imgBtnAddNewOption =
-                        (ImageButton)gvFormContents.Rows[rowIndex].FindControl("imgBtnAddNewOption");
-                    var txtNewOption = (TextBox)gvFormContents.Rows[rowIndex].FindControl("txtNewOption");
-                    var btnSaveOption = (Button)gvFormContents.Rows[rowIndex].FindControl("btnSaveOption");
-                    var btnCancelOption = (Button)gvFormContents.Rows[rowIndex].FindControl("btnCancelOption");
+                        (ImageButton) gvFormContents.Rows[rowIndex].FindControl("imgBtnAddNewOption");
+                    var txtNewOption = (TextBox) gvFormContents.Rows[rowIndex].FindControl("txtNewOption");
+                    var btnSaveOption = (Button) gvFormContents.Rows[rowIndex].FindControl("btnSaveOption");
+                    var btnCancelOption = (Button) gvFormContents.Rows[rowIndex].FindControl("btnCancelOption");
 
                     imgBtnAddNewOption.Visible = true;
                     txtNewOption.Visible = false;
@@ -281,15 +281,15 @@ namespace eNroll.Admin.adminUserControls
                 else if (e.CommandName == "SaveAddNewOption")
                 {
                     string commandArgs = e.CommandArgument.ToString();
-                    string[] data = commandArgs.Split('|');
+                    var data = commandArgs.Split('|');
                     int rowIndex = Convert.ToInt32(data[0]);
                     int contentId = Convert.ToInt32(data[1]);
 
                     var imgBtnAddNewOption =
-                        (ImageButton)gvFormContents.Rows[rowIndex].FindControl("imgBtnAddNewOption");
-                    var txtNewOption = (TextBox)gvFormContents.Rows[rowIndex].FindControl("txtNewOption");
-                    var btnSaveOption = (Button)gvFormContents.Rows[rowIndex].FindControl("btnSaveOption");
-                    var btnCancelOption = (Button)gvFormContents.Rows[rowIndex].FindControl("btnCancelOption");
+                        (ImageButton) gvFormContents.Rows[rowIndex].FindControl("imgBtnAddNewOption");
+                    var txtNewOption = (TextBox) gvFormContents.Rows[rowIndex].FindControl("txtNewOption");
+                    var btnSaveOption = (Button) gvFormContents.Rows[rowIndex].FindControl("btnSaveOption");
+                    var btnCancelOption = (Button) gvFormContents.Rows[rowIndex].FindControl("btnCancelOption");
 
                     var options = new FormContentOptions();
                     options.Value = txtNewOption.Text;
@@ -321,8 +321,8 @@ namespace eNroll.Admin.adminUserControls
             {
                 if (e != null && e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    var deleteBtn = (ImageButton)e.Row.FindControl("gvFormContentsSil");
-                    var addOptionBtn = (ImageButton)e.Row.FindControl("imgBtnAddNewOption");
+                    var deleteBtn = (ImageButton) e.Row.FindControl("gvFormContentsSil");
+                    var addOptionBtn = (ImageButton) e.Row.FindControl("imgBtnAddNewOption");
                     if (deleteBtn != null)
                     {
                         deleteBtn.OnClientClick =
@@ -331,8 +331,8 @@ namespace eNroll.Admin.adminUserControls
                     }
                     addOptionBtn.ToolTip = AdminResource.lbAddProperty;
 
-                    var btnSaveOption = (Button)e.Row.FindControl("btnSaveOption");
-                    var btnCancelOption = (Button)e.Row.FindControl("btnCancelOption");
+                    var btnSaveOption = (Button) e.Row.FindControl("btnSaveOption");
+                    var btnCancelOption = (Button) e.Row.FindControl("btnCancelOption");
                     btnSaveOption.Text = AdminResource.lbAdd;
                     btnCancelOption.Text = AdminResource.lbCancel;
                 }
@@ -464,9 +464,9 @@ namespace eNroll.Admin.adminUserControls
 
                 Forms form = _entities.Forms.First(p => p.Id == id);
 
-                var v = (GridView)sender;
-                var tbName = (TextBox)gvForms.Rows[v.EditIndex].FindControl("tbFormName");
-                var tbEmailAddress = (TextBox)gvForms.Rows[v.EditIndex].FindControl("tbEmailAddress");
+                var v = (GridView) sender;
+                var tbName = (TextBox) gvForms.Rows[v.EditIndex].FindControl("tbFormName");
+                var tbEmailAddress = (TextBox) gvForms.Rows[v.EditIndex].FindControl("tbEmailAddress");
 
                 form.Name = tbName.Text;
                 form.EmailAddress = tbEmailAddress.Text;
@@ -485,7 +485,7 @@ namespace eNroll.Admin.adminUserControls
             {
                 if (e != null && e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    var deleteBtn = (ImageButton)e.Row.FindControl("lbFormSil");
+                    var deleteBtn = (ImageButton) e.Row.FindControl("lbFormSil");
                     if (deleteBtn != null)
                     {
                         deleteBtn.OnClientClick =
@@ -545,7 +545,7 @@ namespace eNroll.Admin.adminUserControls
             try
             {
                 if (ViewState["formId"] != null) ViewState.Remove("formId");
-                var lbFormSec = (LinkButton)sender;
+                var lbFormSec = (LinkButton) sender;
                 int formId = Convert.ToInt32(lbFormSec.CommandArgument);
                 hfFormId.Value = lbFormSec.CommandArgument;
                 ViewState.Add("formId", formId);

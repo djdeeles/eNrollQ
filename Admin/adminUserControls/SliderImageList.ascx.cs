@@ -10,8 +10,7 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_SliderImageList : UserControl
 {
-
-    Entities oEntities = new Entities();
+    private readonly Entities oEntities = new Entities();
 
     protected override void OnInit(EventArgs e)
     {
@@ -41,7 +40,6 @@ public partial class Admin_adminUserControls_SliderImageList : UserControl
         btnSave.Text = AdminResource.lbSave;
         btnCancel.Text = AdminResource.lbCancel;
         imgBtnImageSelect.Text = AdminResource.lbImageSelect;
-
     }
 
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -74,10 +72,9 @@ public partial class Admin_adminUserControls_SliderImageList : UserControl
             }
             oEntities.SaveChanges();
 
-            MessageBox.Show(MessageType.Success,AdminResource.msgDeleted);
+            MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
 
             gVRef.DataBind();
-
         }
         catch (Exception exception)
         {
@@ -93,7 +90,6 @@ public partial class Admin_adminUserControls_SliderImageList : UserControl
 
     protected void btnSaveUpdateSliderImage(object sender, EventArgs e)
     {
-
         try
         {
             RefLogos oRefLogos;
@@ -117,14 +113,14 @@ public partial class Admin_adminUserControls_SliderImageList : UserControl
 
                 if (oRefLogos != null) Logger.Add(7, 0, oRefLogos.id, 3);
 
-                MessageBox.Show(MessageType.Success,AdminResource.msgUpdated);
+                MessageBox.Show(MessageType.Success, AdminResource.msgUpdated);
             }
 
             gVRef.DataBind();
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
-            ExceptionManager.ManageException(exception);    
+            ExceptionManager.ManageException(exception);
         }
 
         pnlList.Visible = true;
@@ -155,12 +151,10 @@ public partial class Admin_adminUserControls_SliderImageList : UserControl
     {
         pnlList.Visible = false;
         pnlEdit.Visible = true;
-
     }
 
     protected void imgBtnEdit_Click(object sender, ImageClickEventArgs e)
     {
-
         try
         {
             var btnEdit = sender as ImageButton;
@@ -176,14 +170,13 @@ public partial class Admin_adminUserControls_SliderImageList : UserControl
                 }
             }
         }
-        catch(Exception exception)
+        catch (Exception exception)
         {
             ExceptionManager.ManageException(exception);
         }
 
         pnlList.Visible = false;
         pnlEdit.Visible = true;
-
     }
 
     private void GetDataProccess(RefLogos reflogos)

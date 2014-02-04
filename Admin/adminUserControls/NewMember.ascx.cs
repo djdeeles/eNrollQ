@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
-using System.Net.Mail;
-using System.Text;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Enroll.Managers;
 using Resources;
 using eNroll.App_Data;
@@ -15,11 +10,12 @@ using eNroll.Helpers;
 
 namespace eNroll.Admin.adminUserControls
 {
-    public partial class NewMember : System.Web.UI.UserControl
+    public partial class NewMember : UserControl
     {
         public static MemberInfo _newMember = new MemberInfo();
 
-        Entities _entities = new Entities();
+        private readonly Entities _entities = new Entities();
+
         protected override void OnInit(EventArgs e)
         {
             if (RoleControl.YetkiAlaniKontrol(HttpContext.Current.User.Identity.Name, 29))
@@ -33,9 +29,9 @@ namespace eNroll.Admin.adminUserControls
 
             Session["currentPath"] = AdminResource.lbNewMember;
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
                 ClearPersonalInfo();
@@ -56,118 +52,13 @@ namespace eNroll.Admin.adminUserControls
                 mvCreateMember.SetActiveView(vPersonalDetail);
             }
         }
-          
-        #region generete password
-        [WebMethod]
-        public static string GeneratePassword()
-        {
-            var password = Guid.NewGuid().ToString("N");
-            return password.Substring(0, 8);
-        }
-        #endregion
-
-        #region clear form inputs
-        private void ClearPersonalInfo()
-        {
-            tbName.Text = string.Empty;
-            tbSurname.Text = string.Empty;
-            tbEPosta.Text = string.Empty;
-            tbParola.Text = string.Empty;
-            tbTC.Text = string.Empty;
-            EnrollMembershipHelper.DataBindDdlGender(_newMember, ddlGender);
-            ddlGender.SelectedIndex = 0;
-            EnrollMembershipHelper.DataBindDdlMaritalStatus(_newMember, ddlMaritalStatus);
-            ddlMaritalStatus.SelectedIndex = 0;
-            tbMaidenName.Text = string.Empty;
-            dpMarriageDate = null;
-            trMaidenName.Attributes.Add("class", "hideaboutgender");
-            trMarriageDate.Attributes.Add("class", "hideaboutgender");
-            EnrollMembershipHelper.DataBindDDlBloodType(_newMember, ddlBloodType);
-            ddlBloodType.SelectedIndex = 0;
-            dpBirthDate = null;
-            tbBirthPlace.Text = string.Empty;
-            tbGsmNo.Text = string.Empty;
-            tbLastSchool.Text = string.Empty;
-            dpLastSchoolGraduateDate.SelectedDate = null;
-            tbMemberFoundation.Text = string.Empty;
-            lbError.Text = string.Empty;
-        }
-        private void ClearHomeInfo()
-        {
-            EnrollMembershipHelper.BindDdlCountries(ddlHomeCountry, ddlHomeCity, ddlHomeTown, EnrollMembershipHelper.GetCountries());
-            hfHomeCountry.Value = null;
-            hfHomeCity.Value = null;
-            hfHomeTown.Value = null;
-
-            tbHomeAddress.Text = string.Empty;
-            tbHomeZipCode.Text = string.Empty;
-            tbHomePhone.Text = string.Empty;
-
-        }
-        private void ClearJobInfo()
-        {
-            EnrollMembershipHelper.BindDdlCountries(ddlWorkCountry, ddlWorkCity, ddlWorkTown, EnrollMembershipHelper.GetCountries());
-            hfWorkCountry.Value = null;
-            hfWorkCity.Value = null;
-            hfWorkTown.Value = null;
-
-            tbWorkAddress.Text = string.Empty;
-            tbWorkZipCode.Text = string.Empty;
-            tbWorkPhone.Text = string.Empty;
-            tbWorkFax.Text = string.Empty;
-            tbWorkTitle.Text = string.Empty;
-            tbWorkCorparation.Text = string.Empty;
-
-            EnrollMembershipHelper.DataBindDDlSectorsJobs(_newMember, ddlJobSectors, ddlJobs);
-            ddlJobSectors.SelectedIndex = 0;
-            ddlJobs.SelectedIndex = 0;
-        }
-        private void ClearMembershipInfo()
-        {
-            EnrollMembershipHelper.DataBindDdlMembershipRelType(ddlMembershipRelType);
-            ddlMembershipRelType.SelectedIndex = 0;
-            tbMembershipNumber.Text = string.Empty;
-            cbIsTermLider.Checked = false;
-            tbSpecialNumber.Text = string.Empty;
-            dpTerm.SelectedDate = null;
-            dpMembershipDate.SelectedDate = null;
-        }
-        #endregion
-
-        #region OnSelectedIndexChanged countries cities towns
-
-        //Home
-        protected void ddlHomeCountry_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            hfHomeCountry.Value = ddlHomeCountry.SelectedIndex > 0 ? ddlHomeCountry.SelectedItem.Value : string.Empty;
-            EnrollMembershipHelper.BindDdlCities(ddlHomeCity, ddlHomeTown, EnrollMembershipHelper.GetCities(hfHomeCountry.Value));
-        }
-        protected void ddlHomeCity_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            hfHomeCity.Value = ddlHomeCity.SelectedIndex > 0 ? ddlHomeCity.SelectedItem.Value : string.Empty;
-            EnrollMembershipHelper.BindDdlTowns(ddlHomeTown, EnrollMembershipHelper.GetTowns(hfHomeCountry.Value, hfHomeCity.Value));
-        }
-
-        //Work
-        protected void ddlWorkCountry_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            hfWorkCountry.Value = ddlWorkCountry.SelectedIndex > 0 ? ddlWorkCountry.SelectedItem.Value : string.Empty;
-            EnrollMembershipHelper.BindDdlCities(ddlWorkCity, ddlWorkTown, EnrollMembershipHelper.GetCities(hfWorkCountry.Value));
-        }
-        protected void ddlWorkCity_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            hfWorkCity.Value = ddlWorkCity.SelectedIndex > 0 ? ddlWorkCity.SelectedItem.Value : string.Empty;
-            EnrollMembershipHelper.BindDdlTowns(ddlWorkTown, EnrollMembershipHelper.GetTowns(hfWorkCountry.Value, hfWorkCity.Value));
-        }
-
-        #endregion
 
         protected void BtnSavePersonalInfoClick(object sender, EventArgs e)
         {
             try
             {
                 string email = tbEPosta.Text;
-                List<Users> users = _entities.Users.Where(p => p.EMail == email).ToList();
+                var users = _entities.Users.Where(p => p.EMail == email).ToList();
                 if (users.Count == 0 && tbParola.Text != string.Empty)
                 {
                     _newMember.Users.EMail = email;
@@ -206,11 +97,11 @@ namespace eNroll.Admin.adminUserControls
 
                     if (dpLastSchoolGraduateDate.SelectedDate != null)
                     {
-                        _newMember.UserGeneral.LastSchoolGraduateDate = Convert.ToDateTime("01.01." + dpLastSchoolGraduateDate.SelectedDate.Value.Year.ToString());
+                        _newMember.UserGeneral.LastSchoolGraduateDate =
+                            Convert.ToDateTime("01.01." + dpLastSchoolGraduateDate.SelectedDate.Value.Year.ToString());
                     }
                     _newMember.UserGeneral.PhotoUrl = null;
                     mvCreateMember.SetActiveView(vMemberInfo);
-
                 }
                 else if (email.Any())
                 {
@@ -222,8 +113,8 @@ namespace eNroll.Admin.adminUserControls
                 ExceptionManager.ManageException(exception);
                 MessageBox.Show(MessageType.jAlert, Resource.msgError);
             }
-
         }
+
         protected void BtnSaveMemberInfoClick(object sender, EventArgs e)
         {
             try
@@ -249,6 +140,7 @@ namespace eNroll.Admin.adminUserControls
 
             mvCreateMember.SetActiveView(vHomeDetail);
         }
+
         protected void BtnSaveHomeInfoClick(object sender, EventArgs e)
         {
             try
@@ -272,6 +164,7 @@ namespace eNroll.Admin.adminUserControls
                 ltNewMemberResult.Text = Resource.msgError;
             }
         }
+
         protected void BtnSaveJobInfoClick(object sender, EventArgs e)
         {
             try
@@ -301,7 +194,7 @@ namespace eNroll.Admin.adminUserControls
                     _newMember.UserGeneral.JobSectorNo = Convert.ToInt32(ddlJobSectors.SelectedItem.Value);
                 }
 
-                var u = new Users(); 
+                var u = new Users();
                 u = _newMember.Users;
                 _entities.AddToUsers(u);
                 _entities.SaveChanges();
@@ -330,7 +223,7 @@ namespace eNroll.Admin.adminUserControls
                 userFinance.AutoPay = false;
                 _entities.AddToUserFinance(userFinance);
                 _entities.SaveChanges();
-                 
+
                 ClearPersonalInfo();
                 ClearHomeInfo();
                 ClearJobInfo();
@@ -346,18 +239,139 @@ namespace eNroll.Admin.adminUserControls
                 MessageBox.Show(MessageType.jAlert, Resource.msgError);
             }
         }
+
         protected void BtnMemberInfoGoBackClick(object sender, EventArgs e)
         {
             mvCreateMember.SetActiveView(vPersonalDetail);
         }
+
         protected void BtnHomeInfoGoBackClick(object sender, EventArgs e)
         {
             mvCreateMember.SetActiveView(vMemberInfo);
         }
+
         protected void BtnJobInfoGoBackClick(object sender, EventArgs e)
         {
             mvCreateMember.SetActiveView(vHomeDetail);
         }
 
+        #region generete password
+
+        [WebMethod]
+        public static string GeneratePassword()
+        {
+            var password = Guid.NewGuid().ToString("N");
+            return password.Substring(0, 8);
+        }
+
+        #endregion
+
+        #region clear form inputs
+
+        private void ClearPersonalInfo()
+        {
+            tbName.Text = string.Empty;
+            tbSurname.Text = string.Empty;
+            tbEPosta.Text = string.Empty;
+            tbParola.Text = string.Empty;
+            tbTC.Text = string.Empty;
+            EnrollMembershipHelper.DataBindDdlGender(_newMember, ddlGender);
+            ddlGender.SelectedIndex = 0;
+            EnrollMembershipHelper.DataBindDdlMaritalStatus(_newMember, ddlMaritalStatus);
+            ddlMaritalStatus.SelectedIndex = 0;
+            tbMaidenName.Text = string.Empty;
+            dpMarriageDate = null;
+            trMaidenName.Attributes.Add("class", "hideaboutgender");
+            trMarriageDate.Attributes.Add("class", "hideaboutgender");
+            EnrollMembershipHelper.DataBindDDlBloodType(_newMember, ddlBloodType);
+            ddlBloodType.SelectedIndex = 0;
+            dpBirthDate = null;
+            tbBirthPlace.Text = string.Empty;
+            tbGsmNo.Text = string.Empty;
+            tbLastSchool.Text = string.Empty;
+            dpLastSchoolGraduateDate.SelectedDate = null;
+            tbMemberFoundation.Text = string.Empty;
+            lbError.Text = string.Empty;
+        }
+
+        private void ClearHomeInfo()
+        {
+            EnrollMembershipHelper.BindDdlCountries(ddlHomeCountry, ddlHomeCity, ddlHomeTown,
+                                                    EnrollMembershipHelper.GetCountries());
+            hfHomeCountry.Value = null;
+            hfHomeCity.Value = null;
+            hfHomeTown.Value = null;
+
+            tbHomeAddress.Text = string.Empty;
+            tbHomeZipCode.Text = string.Empty;
+            tbHomePhone.Text = string.Empty;
+        }
+
+        private void ClearJobInfo()
+        {
+            EnrollMembershipHelper.BindDdlCountries(ddlWorkCountry, ddlWorkCity, ddlWorkTown,
+                                                    EnrollMembershipHelper.GetCountries());
+            hfWorkCountry.Value = null;
+            hfWorkCity.Value = null;
+            hfWorkTown.Value = null;
+
+            tbWorkAddress.Text = string.Empty;
+            tbWorkZipCode.Text = string.Empty;
+            tbWorkPhone.Text = string.Empty;
+            tbWorkFax.Text = string.Empty;
+            tbWorkTitle.Text = string.Empty;
+            tbWorkCorparation.Text = string.Empty;
+
+            EnrollMembershipHelper.DataBindDDlSectorsJobs(_newMember, ddlJobSectors, ddlJobs);
+            ddlJobSectors.SelectedIndex = 0;
+            ddlJobs.SelectedIndex = 0;
+        }
+
+        private void ClearMembershipInfo()
+        {
+            EnrollMembershipHelper.DataBindDdlMembershipRelType(ddlMembershipRelType);
+            ddlMembershipRelType.SelectedIndex = 0;
+            tbMembershipNumber.Text = string.Empty;
+            cbIsTermLider.Checked = false;
+            tbSpecialNumber.Text = string.Empty;
+            dpTerm.SelectedDate = null;
+            dpMembershipDate.SelectedDate = null;
+        }
+
+        #endregion
+
+        #region OnSelectedIndexChanged countries cities towns
+
+        //Home
+        protected void ddlHomeCountry_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            hfHomeCountry.Value = ddlHomeCountry.SelectedIndex > 0 ? ddlHomeCountry.SelectedItem.Value : string.Empty;
+            EnrollMembershipHelper.BindDdlCities(ddlHomeCity, ddlHomeTown,
+                                                 EnrollMembershipHelper.GetCities(hfHomeCountry.Value));
+        }
+
+        protected void ddlHomeCity_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            hfHomeCity.Value = ddlHomeCity.SelectedIndex > 0 ? ddlHomeCity.SelectedItem.Value : string.Empty;
+            EnrollMembershipHelper.BindDdlTowns(ddlHomeTown,
+                                                EnrollMembershipHelper.GetTowns(hfHomeCountry.Value, hfHomeCity.Value));
+        }
+
+        //Work
+        protected void ddlWorkCountry_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            hfWorkCountry.Value = ddlWorkCountry.SelectedIndex > 0 ? ddlWorkCountry.SelectedItem.Value : string.Empty;
+            EnrollMembershipHelper.BindDdlCities(ddlWorkCity, ddlWorkTown,
+                                                 EnrollMembershipHelper.GetCities(hfWorkCountry.Value));
+        }
+
+        protected void ddlWorkCity_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            hfWorkCity.Value = ddlWorkCity.SelectedIndex > 0 ? ddlWorkCity.SelectedItem.Value : string.Empty;
+            EnrollMembershipHelper.BindDdlTowns(ddlWorkTown,
+                                                EnrollMembershipHelper.GetTowns(hfWorkCountry.Value, hfWorkCity.Value));
+        }
+
+        #endregion
     }
 }

@@ -51,7 +51,6 @@
     <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
@@ -69,13 +68,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.SmoExtended.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -87,14 +82,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Telerik.Web.UI, Version=2013.2.717.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Web.UI, Version=2013.3.1114.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\RCAJAX\2013.2.717.40\Telerik.Web.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Web.UI.Skins, Version=2013.2.717.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\RCAJAX\2013.2.717.40\Telerik.Web.UI.Skins.dll</HintPath>
+      <HintPath>lib\RCAJAX\2013.3.1114.40\Telerik.Web.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -102,13 +92,8 @@
     <Content Include="Admin\adminUserControls\addNewBanner.ascx" />
     <Content Include="Admin\adminUserControls\BackupRestore.ascx" />
     <Content Include="Admin\adminUserControls\bannerManagement.ascx" />
-    <Content Include="Admin\adminUserControls\CorporationInvoicement.ascx" />
     <Content Include="Admin\adminUserControls\DefTax.ascx" />
-    <Content Include="Admin\adminUserControls\CorporationFinanceLogs.ascx" />
-    <Content Include="Admin\adminUserControls\DefServiceType.ascx" />
-    <Content Include="Admin\adminUserControls\CorporationFinanceManager.ascx" />
-    <Content Include="Admin\adminUserControls\CorporationSearch.ascx" />
-    <Content Include="Admin\adminUserControls\CorporationAddEdit.ascx" />
+    <Content Include="Admin\adminUserControls\IntroLightBox.ascx" />
     <Content Include="Admin\adminUserControls\RandomFields.ascx" />
     <Content Include="Admin\adminUserControls\DefDues.ascx" />
     <Content Include="Admin\adminUserControls\DefCurrency.ascx" />
@@ -157,6 +142,7 @@
     <Content Include="Admin\adminUserControls\UserRoles.ascx" />
     <Content Include="Admin\adminUserControls\Users.ascx" />
     <Content Include="Admin\Content.aspx" />
+    <Content Include="Admin\MultipleFileSelector.aspx" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\EditContent.aspx" />
     <Content Include="Admin\enrollDestek.aspx" />
@@ -338,6 +324,7 @@
     <Content Include="App_Themes\mainTheme\images\default\sprite_y.png" />
     <Content Include="App_Themes\mainTheme\images\dot.png" />
     <Content Include="App_Themes\mainTheme\images\hata.png" />
+    <Content Include="App_Themes\mainTheme\images\left.png" />
     <Content Include="App_Themes\mainTheme\images\login\back.jpg" />
     <Content Include="App_Themes\mainTheme\images\login\language.png" />
     <Content Include="App_Themes\mainTheme\images\login\panel.png" />
@@ -348,8 +335,8 @@
     <Content Include="App_Themes\mainTheme\images\ok.png" />
     <Content Include="App_Themes\mainTheme\images\prevnext.png" />
     <Content Include="App_Themes\mainTheme\images\q.png" />
+    <Content Include="App_Themes\mainTheme\images\right.png" />
     <Content Include="App_Themes\mainTheme\images\vid.png" />
-    <Content Include="App_Themes\mainTheme\js\memberProfile.js" />
     <Content Include="App_Themes\mainTheme\js\jqFancyTransitions.js" />
     <Content Include="App_Themes\mainTheme\js\jquery.jcarousel.js" />
     <Content Include="App_Themes\mainTheme\js\jquery.prettyPhoto.js" />
@@ -562,13 +549,6 @@
     <Compile Include="Admin\adminUserControls\bannerManagement.ascx.designer.cs">
       <DependentUpon>bannerManagement.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\adminUserControls\CorporationInvoicement.ascx.cs">
-      <DependentUpon>CorporationInvoicement.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\adminUserControls\CorporationInvoicement.ascx.designer.cs">
-      <DependentUpon>CorporationInvoicement.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\adminUserControls\DefTax.ascx.cs">
       <DependentUpon>DefTax.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -576,40 +556,12 @@
     <Compile Include="Admin\adminUserControls\DefTax.ascx.designer.cs">
       <DependentUpon>DefTax.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\adminUserControls\CorporationFinanceLogs.ascx.cs">
-      <DependentUpon>CorporationFinanceLogs.ascx</DependentUpon>
+    <Compile Include="Admin\adminUserControls\IntroLightBox.ascx.cs">
+      <DependentUpon>IntroLightBox.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\adminUserControls\CorporationFinanceLogs.ascx.designer.cs">
-      <DependentUpon>CorporationFinanceLogs.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\adminUserControls\DefServiceType.ascx.cs">
-      <DependentUpon>DefServiceType.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\adminUserControls\DefServiceType.ascx.designer.cs">
-      <DependentUpon>DefServiceType.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\adminUserControls\CorporationFinanceManager.ascx.cs">
-      <DependentUpon>CorporationFinanceManager.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\adminUserControls\CorporationFinanceManager.ascx.designer.cs">
-      <DependentUpon>CorporationFinanceManager.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\adminUserControls\CorporationSearch.ascx.cs">
-      <DependentUpon>CorporationSearch.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\adminUserControls\CorporationSearch.ascx.designer.cs">
-      <DependentUpon>CorporationSearch.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\adminUserControls\CorporationAddEdit.ascx.cs">
-      <DependentUpon>CorporationAddEdit.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\adminUserControls\CorporationAddEdit.ascx.designer.cs">
-      <DependentUpon>CorporationAddEdit.ascx</DependentUpon>
+    <Compile Include="Admin\adminUserControls\IntroLightBox.ascx.designer.cs">
+      <DependentUpon>IntroLightBox.ascx</DependentUpon>
     </Compile>
     <Compile Include="Admin\adminUserControls\RandomFields.ascx.cs">
       <DependentUpon>RandomFields.ascx</DependentUpon>
@@ -946,6 +898,13 @@
     </Compile>
     <Compile Include="Admin\Content.aspx.designer.cs">
       <DependentUpon>Content.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MultipleFileSelector.aspx.cs">
+      <DependentUpon>MultipleFileSelector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MultipleFileSelector.aspx.designer.cs">
+      <DependentUpon>MultipleFileSelector.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

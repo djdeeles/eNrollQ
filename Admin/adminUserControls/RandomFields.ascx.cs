@@ -11,7 +11,8 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_RandomFields : UserControl
 {
-    Entities _entities = new Entities();
+    private readonly Entities _entities = new Entities();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (RoleControl.YetkiAlaniKontrol(HttpContext.Current.User.Identity.Name, 37))
@@ -27,7 +28,8 @@ public partial class Admin_adminUserControls_RandomFields : UserControl
         gvRandomFields.Columns[1].HeaderText = AdminResource.lbFieldName;
         gvRandomFields.Columns[2].HeaderText = AdminResource.lbState;
 
-        EntityDataSource1.Where = string.Format(" it.languageId={0} ",EnrollAdminContext.Current.DataLanguage.LanguageId.ToString());
+        EntityDataSource1.Where = string.Format(" it.languageId={0} ",
+                                                EnrollAdminContext.Current.DataLanguage.LanguageId.ToString());
 
         btNewRandomField.Text = AdminResource.lbNewRandomField;
         imBtSave.Text = AdminResource.lbSave;
@@ -42,13 +44,13 @@ public partial class Admin_adminUserControls_RandomFields : UserControl
     protected void ImBtSaveClick(object sender, EventArgs eventArgs)
     {
         try
-        { 
+        {
             if (!string.IsNullOrWhiteSpace(hdnId.Value))
             {
                 var customerRandomId = Convert.ToInt32(hdnId.Value);
 
                 var customerRandom = _entities.Customer_Random.FirstOrDefault(p => p.Id == customerRandomId);
-                if (customerRandom!=null)
+                if (customerRandom != null)
                 {
                     SetDataProccess(customerRandom);
                     _entities.SaveChanges();
@@ -60,7 +62,7 @@ public partial class Admin_adminUserControls_RandomFields : UserControl
 
                     pnlRandomFieldEdit.Visible = false;
                     pnlNewList.Visible = true;
-                    ClearFormInputs();   
+                    ClearFormInputs();
                 }
                 else
                 {
@@ -79,13 +81,11 @@ public partial class Admin_adminUserControls_RandomFields : UserControl
                 Logger.Add(37, 1, customerRandom.Id, 1);
                 gvRandomFields.DataBind();
                 MessageBox.Show(MessageType.Success, AdminResource.msgSaved);
-                
+
                 pnlRandomFieldEdit.Visible = false;
                 pnlNewList.Visible = true;
-                ClearFormInputs();   
+                ClearFormInputs();
             }
-
-
         }
         catch (Exception exception)
         {
@@ -131,24 +131,24 @@ public partial class Admin_adminUserControls_RandomFields : UserControl
             hdnId.Value = btn.CommandArgument;
             var id = Convert.ToInt32(hdnId.Value);
             var randomField = _entities.Customer_Random.FirstOrDefault(p => p.Id == id);
-            if(randomField!=null)
+            if (randomField != null)
             {
                 hdnId.Value = btn.CommandArgument;
-                GetDataProccess(randomField); 
+                GetDataProccess(randomField);
                 pnlNewList.Visible = false;
-                pnlRandomFieldEdit.Visible = true;    
+                pnlRandomFieldEdit.Visible = true;
             }
             else
             {
                 MessageBox.Show(MessageType.Warning, AdminResource.msgAnErrorOccurred);
-            } 
+            }
         }
     }
-     
+
     private void GetDataProccess(Customer_Random data)
     {
-        var radEditorContent = ((RadEditor)Rtb1.FindControl("RadEditor1"));
-        var radEditorSummary = ((RadEditor)Rtb2.FindControl("RadEditor1"));
+        var radEditorContent = ((RadEditor) Rtb1.FindControl("RadEditor1"));
+        var radEditorSummary = ((RadEditor) Rtb2.FindControl("RadEditor1"));
         radEditorContent.Content = data.Text;
         radEditorSummary.Content = data.Summary;
         txtHeader.Text = data.Title;
@@ -157,8 +157,8 @@ public partial class Admin_adminUserControls_RandomFields : UserControl
 
     private void SetDataProccess(Customer_Random data)
     {
-        var radEditorContent = ((RadEditor)Rtb1.FindControl("RadEditor1"));
-        var radEditorSummary = ((RadEditor)Rtb2.FindControl("RadEditor1"));
+        var radEditorContent = ((RadEditor) Rtb1.FindControl("RadEditor1"));
+        var radEditorSummary = ((RadEditor) Rtb2.FindControl("RadEditor1"));
         data.Text = radEditorContent.Content;
         data.Summary = radEditorSummary.Content;
         data.Title = txtHeader.Text;
@@ -170,8 +170,8 @@ public partial class Admin_adminUserControls_RandomFields : UserControl
     {
         hdnId.Value = null;
         txtHeader.Text = string.Empty;
-        var radEditorContent = ((RadEditor)Rtb1.FindControl("RadEditor1"));
-        var radEditorSummary = ((RadEditor)Rtb2.FindControl("RadEditor1"));
+        var radEditorContent = ((RadEditor) Rtb1.FindControl("RadEditor1"));
+        var radEditorSummary = ((RadEditor) Rtb2.FindControl("RadEditor1"));
         radEditorContent.Content = string.Empty;
         radEditorSummary.Content = string.Empty;
         cbState.Checked = false;
@@ -187,11 +187,10 @@ public partial class Admin_adminUserControls_RandomFields : UserControl
 
     protected void gvRandomFields_OnRowDataBound(object sender, GridViewRowEventArgs e)
     {
-        var imgBtnDelete = (ImageButton)e.Row.FindControl("imgBtnDelete");
-        if(imgBtnDelete!=null)
+        var imgBtnDelete = (ImageButton) e.Row.FindControl("imgBtnDelete");
+        if (imgBtnDelete != null)
         {
-            imgBtnDelete.OnClientClick = "return confirm('"+AdminResource.lbDeletingQuestion+"');";
+            imgBtnDelete.OnClientClick = "return confirm('" + AdminResource.lbDeletingQuestion + "');";
         }
     }
-
 }

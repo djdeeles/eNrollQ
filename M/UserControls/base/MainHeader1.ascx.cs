@@ -18,7 +18,7 @@ public partial class M_UserControls_MainHeader1 : UserControl
             {
                 var Lt = new Literal();
                 Lt.Text = string.Format("<a href='{0}'><img src='{1}' style='max-width:100%;'></img></a>",
-                    "../../m/Default.aspx", oInfo.header2Path.Replace("~/", "../"));
+                                        "../../m/Default.aspx", oInfo.header2Path.Replace("~/", "../"));
                 Panel1.Controls.Add(Lt);
             }
             if (oInfo.header2Type == 2)

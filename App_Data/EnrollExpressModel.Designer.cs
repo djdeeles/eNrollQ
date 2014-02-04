@@ -77,12 +77,6 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserFoundation_FoundationRelType", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Users), "UserFoundation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserFoundation), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_Users", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Users), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__UserRole__UserId__4E53A1AA", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Users), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserRole), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_CorporationUser_Corporations", "Corporations", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Corporations), "CorporationUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.CorporationUser), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_CorporationFinance_Corporations", "Corporations", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Corporations), "CorporationFinance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.CorporationFinance), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_CorporationAddress_Corporations", "Corporations", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Corporations), "CorporationAddress", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.CorporationAddress), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_CorporationDuesLog_Corporations", "Corporations", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Corporations), "CorporationDuesLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.CorporationDuesLog), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_CorporationDuesLog_DuesPaymentTypes", "DuesPaymentTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.DuesPaymentTypes), "CorporationDuesLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.CorporationDuesLog), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_CorporationDuesLog_Users", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Users), "CorporationDuesLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.CorporationDuesLog), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_System_menu_TemplatePages", "TemplatePages", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.TemplatePages), "System_menu", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.System_menu), true)]
 
 #endregion
@@ -1258,86 +1252,6 @@ namespace eNroll.App_Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Corporations> Corporations
-        {
-            get
-            {
-                if ((_Corporations == null))
-                {
-                    _Corporations = base.CreateObjectSet<Corporations>("Corporations");
-                }
-                return _Corporations;
-            }
-        }
-        private ObjectSet<Corporations> _Corporations;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<CorporationUser> CorporationUser
-        {
-            get
-            {
-                if ((_CorporationUser == null))
-                {
-                    _CorporationUser = base.CreateObjectSet<CorporationUser>("CorporationUser");
-                }
-                return _CorporationUser;
-            }
-        }
-        private ObjectSet<CorporationUser> _CorporationUser;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<CorporationFinance> CorporationFinance
-        {
-            get
-            {
-                if ((_CorporationFinance == null))
-                {
-                    _CorporationFinance = base.CreateObjectSet<CorporationFinance>("CorporationFinance");
-                }
-                return _CorporationFinance;
-            }
-        }
-        private ObjectSet<CorporationFinance> _CorporationFinance;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<CorporationAddress> CorporationAddress
-        {
-            get
-            {
-                if ((_CorporationAddress == null))
-                {
-                    _CorporationAddress = base.CreateObjectSet<CorporationAddress>("CorporationAddress");
-                }
-                return _CorporationAddress;
-            }
-        }
-        private ObjectSet<CorporationAddress> _CorporationAddress;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<CorporationDuesLog> CorporationDuesLog
-        {
-            get
-            {
-                if ((_CorporationDuesLog == null))
-                {
-                    _CorporationDuesLog = base.CreateObjectSet<CorporationDuesLog>("CorporationDuesLog");
-                }
-                return _CorporationDuesLog;
-            }
-        }
-        private ObjectSet<CorporationDuesLog> _CorporationDuesLog;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<TaxTypes> TaxTypes
         {
             get
@@ -1354,22 +1268,6 @@ namespace eNroll.App_Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<ServiceTypes> ServiceTypes
-        {
-            get
-            {
-                if ((_ServiceTypes == null))
-                {
-                    _ServiceTypes = base.CreateObjectSet<ServiceTypes>("ServiceTypes");
-                }
-                return _ServiceTypes;
-            }
-        }
-        private ObjectSet<ServiceTypes> _ServiceTypes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<System_menu> System_menu
         {
             get
@@ -1382,6 +1280,22 @@ namespace eNroll.App_Data
             }
         }
         private ObjectSet<System_menu> _System_menu;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<IntroLightBox> IntroLightBox
+        {
+            get
+            {
+                if ((_IntroLightBox == null))
+                {
+                    _IntroLightBox = base.CreateObjectSet<IntroLightBox>("IntroLightBox");
+                }
+                return _IntroLightBox;
+            }
+        }
+        private ObjectSet<IntroLightBox> _IntroLightBox;
 
         #endregion
 
@@ -1948,46 +1862,6 @@ namespace eNroll.App_Data
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Corporations EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCorporations(Corporations corporations)
-        {
-            base.AddObject("Corporations", corporations);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CorporationUser EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCorporationUser(CorporationUser corporationUser)
-        {
-            base.AddObject("CorporationUser", corporationUser);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CorporationFinance EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCorporationFinance(CorporationFinance corporationFinance)
-        {
-            base.AddObject("CorporationFinance", corporationFinance);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CorporationAddress EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCorporationAddress(CorporationAddress corporationAddress)
-        {
-            base.AddObject("CorporationAddress", corporationAddress);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CorporationDuesLog EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCorporationDuesLog(CorporationDuesLog corporationDuesLog)
-        {
-            base.AddObject("CorporationDuesLog", corporationDuesLog);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the TaxTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToTaxTypes(TaxTypes taxTypes)
@@ -1996,19 +1870,19 @@ namespace eNroll.App_Data
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the ServiceTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToServiceTypes(ServiceTypes serviceTypes)
-        {
-            base.AddObject("ServiceTypes", serviceTypes);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the System_menu EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToSystem_menu(System_menu system_menu)
         {
             base.AddObject("System_menu", system_menu);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the IntroLightBox EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToIntroLightBox(IntroLightBox introLightBox)
+        {
+            base.AddObject("IntroLightBox", introLightBox);
         }
 
         #endregion
@@ -3695,1651 +3569,6 @@ namespace eNroll.App_Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserGeneral>("Enroll.DataModels.FK_UserGeneral_WorkCities", "UserGeneral", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Enroll.DataModels", Name="CorporationAddress")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class CorporationAddress : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new CorporationAddress object.
-        /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="corporationId">Initial value of the CorporationId property.</param>
-        /// <param name="createdTime">Initial value of the CreatedTime property.</param>
-        /// <param name="updatedTime">Initial value of the UpdatedTime property.</param>
-        public static CorporationAddress CreateCorporationAddress(global::System.Int32 id, global::System.Int32 corporationId, global::System.DateTime createdTime, global::System.DateTime updatedTime)
-        {
-            CorporationAddress corporationAddress = new CorporationAddress();
-            corporationAddress.Id = id;
-            corporationAddress.CorporationId = corporationId;
-            corporationAddress.CreatedTime = createdTime;
-            corporationAddress.UpdatedTime = updatedTime;
-            return corporationAddress;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 CorporationId
-        {
-            get
-            {
-                return _CorporationId;
-            }
-            set
-            {
-                OnCorporationIdChanging(value);
-                ReportPropertyChanging("CorporationId");
-                _CorporationId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CorporationId");
-                OnCorporationIdChanged();
-            }
-        }
-        private global::System.Int32 _CorporationId;
-        partial void OnCorporationIdChanging(global::System.Int32 value);
-        partial void OnCorporationIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Title
-        {
-            get
-            {
-                return _Title;
-            }
-            set
-            {
-                OnTitleChanging(value);
-                ReportPropertyChanging("Title");
-                _Title = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Title");
-                OnTitleChanged();
-            }
-        }
-        private global::System.String _Title;
-        partial void OnTitleChanging(global::System.String value);
-        partial void OnTitleChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Description
-        {
-            get
-            {
-                return _Description;
-            }
-            set
-            {
-                OnDescriptionChanging(value);
-                ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Description");
-                OnDescriptionChanged();
-            }
-        }
-        private global::System.String _Description;
-        partial void OnDescriptionChanging(global::System.String value);
-        partial void OnDescriptionChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CountryId
-        {
-            get
-            {
-                return _CountryId;
-            }
-            set
-            {
-                OnCountryIdChanging(value);
-                ReportPropertyChanging("CountryId");
-                _CountryId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CountryId");
-                OnCountryIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _CountryId;
-        partial void OnCountryIdChanging(Nullable<global::System.Int32> value);
-        partial void OnCountryIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CityId
-        {
-            get
-            {
-                return _CityId;
-            }
-            set
-            {
-                OnCityIdChanging(value);
-                ReportPropertyChanging("CityId");
-                _CityId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CityId");
-                OnCityIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _CityId;
-        partial void OnCityIdChanging(Nullable<global::System.Int32> value);
-        partial void OnCityIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> TownId
-        {
-            get
-            {
-                return _TownId;
-            }
-            set
-            {
-                OnTownIdChanging(value);
-                ReportPropertyChanging("TownId");
-                _TownId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TownId");
-                OnTownIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _TownId;
-        partial void OnTownIdChanging(Nullable<global::System.Int32> value);
-        partial void OnTownIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String DetailedAddress
-        {
-            get
-            {
-                return _DetailedAddress;
-            }
-            set
-            {
-                OnDetailedAddressChanging(value);
-                ReportPropertyChanging("DetailedAddress");
-                _DetailedAddress = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("DetailedAddress");
-                OnDetailedAddressChanged();
-            }
-        }
-        private global::System.String _DetailedAddress;
-        partial void OnDetailedAddressChanging(global::System.String value);
-        partial void OnDetailedAddressChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String ZipCode
-        {
-            get
-            {
-                return _ZipCode;
-            }
-            set
-            {
-                OnZipCodeChanging(value);
-                ReportPropertyChanging("ZipCode");
-                _ZipCode = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ZipCode");
-                OnZipCodeChanged();
-            }
-        }
-        private global::System.String _ZipCode;
-        partial void OnZipCodeChanging(global::System.String value);
-        partial void OnZipCodeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Email
-        {
-            get
-            {
-                return _Email;
-            }
-            set
-            {
-                OnEmailChanging(value);
-                ReportPropertyChanging("Email");
-                _Email = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Email");
-                OnEmailChanged();
-            }
-        }
-        private global::System.String _Email;
-        partial void OnEmailChanging(global::System.String value);
-        partial void OnEmailChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Phone
-        {
-            get
-            {
-                return _Phone;
-            }
-            set
-            {
-                OnPhoneChanging(value);
-                ReportPropertyChanging("Phone");
-                _Phone = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Phone");
-                OnPhoneChanged();
-            }
-        }
-        private global::System.String _Phone;
-        partial void OnPhoneChanging(global::System.String value);
-        partial void OnPhoneChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Fax
-        {
-            get
-            {
-                return _Fax;
-            }
-            set
-            {
-                OnFaxChanging(value);
-                ReportPropertyChanging("Fax");
-                _Fax = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Fax");
-                OnFaxChanged();
-            }
-        }
-        private global::System.String _Fax;
-        partial void OnFaxChanging(global::System.String value);
-        partial void OnFaxChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Web
-        {
-            get
-            {
-                return _Web;
-            }
-            set
-            {
-                OnWebChanging(value);
-                ReportPropertyChanging("Web");
-                _Web = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Web");
-                OnWebChanged();
-            }
-        }
-        private global::System.String _Web;
-        partial void OnWebChanging(global::System.String value);
-        partial void OnWebChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime CreatedTime
-        {
-            get
-            {
-                return _CreatedTime;
-            }
-            set
-            {
-                OnCreatedTimeChanging(value);
-                ReportPropertyChanging("CreatedTime");
-                _CreatedTime = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CreatedTime");
-                OnCreatedTimeChanged();
-            }
-        }
-        private global::System.DateTime _CreatedTime;
-        partial void OnCreatedTimeChanging(global::System.DateTime value);
-        partial void OnCreatedTimeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime UpdatedTime
-        {
-            get
-            {
-                return _UpdatedTime;
-            }
-            set
-            {
-                OnUpdatedTimeChanging(value);
-                ReportPropertyChanging("UpdatedTime");
-                _UpdatedTime = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("UpdatedTime");
-                OnUpdatedTimeChanged();
-            }
-        }
-        private global::System.DateTime _UpdatedTime;
-        partial void OnUpdatedTimeChanging(global::System.DateTime value);
-        partial void OnUpdatedTimeChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_CorporationAddress_Corporations", "Corporations")]
-        public Corporations Corporations
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationAddress_Corporations", "Corporations").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationAddress_Corporations", "Corporations").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Corporations> CorporationsReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationAddress_Corporations", "Corporations");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationAddress_Corporations", "Corporations", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Enroll.DataModels", Name="CorporationDuesLog")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class CorporationDuesLog : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new CorporationDuesLog object.
-        /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="corporationId">Initial value of the CorporationId property.</param>
-        /// <param name="createdUser">Initial value of the CreatedUser property.</param>
-        /// <param name="createdTime">Initial value of the CreatedTime property.</param>
-        /// <param name="updatedTime">Initial value of the UpdatedTime property.</param>
-        /// <param name="amount">Initial value of the Amount property.</param>
-        /// <param name="logType">Initial value of the LogType property.</param>
-        /// <param name="isInvoiced">Initial value of the IsInvoiced property.</param>
-        public static CorporationDuesLog CreateCorporationDuesLog(global::System.Int32 id, global::System.Int32 corporationId, global::System.Int32 createdUser, global::System.DateTime createdTime, global::System.DateTime updatedTime, global::System.Decimal amount, global::System.Int32 logType, global::System.Boolean isInvoiced)
-        {
-            CorporationDuesLog corporationDuesLog = new CorporationDuesLog();
-            corporationDuesLog.Id = id;
-            corporationDuesLog.CorporationId = corporationId;
-            corporationDuesLog.CreatedUser = createdUser;
-            corporationDuesLog.CreatedTime = createdTime;
-            corporationDuesLog.UpdatedTime = updatedTime;
-            corporationDuesLog.Amount = amount;
-            corporationDuesLog.LogType = logType;
-            corporationDuesLog.IsInvoiced = isInvoiced;
-            return corporationDuesLog;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 CorporationId
-        {
-            get
-            {
-                return _CorporationId;
-            }
-            set
-            {
-                OnCorporationIdChanging(value);
-                ReportPropertyChanging("CorporationId");
-                _CorporationId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CorporationId");
-                OnCorporationIdChanged();
-            }
-        }
-        private global::System.Int32 _CorporationId;
-        partial void OnCorporationIdChanging(global::System.Int32 value);
-        partial void OnCorporationIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> PaymentDate
-        {
-            get
-            {
-                return _PaymentDate;
-            }
-            set
-            {
-                OnPaymentDateChanging(value);
-                ReportPropertyChanging("PaymentDate");
-                _PaymentDate = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PaymentDate");
-                OnPaymentDateChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _PaymentDate;
-        partial void OnPaymentDateChanging(Nullable<global::System.DateTime> value);
-        partial void OnPaymentDateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String ReceiptNo
-        {
-            get
-            {
-                return _ReceiptNo;
-            }
-            set
-            {
-                OnReceiptNoChanging(value);
-                ReportPropertyChanging("ReceiptNo");
-                _ReceiptNo = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ReceiptNo");
-                OnReceiptNoChanged();
-            }
-        }
-        private global::System.String _ReceiptNo;
-        partial void OnReceiptNoChanging(global::System.String value);
-        partial void OnReceiptNoChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> ReceiptDate
-        {
-            get
-            {
-                return _ReceiptDate;
-            }
-            set
-            {
-                OnReceiptDateChanging(value);
-                ReportPropertyChanging("ReceiptDate");
-                _ReceiptDate = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ReceiptDate");
-                OnReceiptDateChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _ReceiptDate;
-        partial void OnReceiptDateChanging(Nullable<global::System.DateTime> value);
-        partial void OnReceiptDateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> PaymentTypeId
-        {
-            get
-            {
-                return _PaymentTypeId;
-            }
-            set
-            {
-                OnPaymentTypeIdChanging(value);
-                ReportPropertyChanging("PaymentTypeId");
-                _PaymentTypeId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PaymentTypeId");
-                OnPaymentTypeIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _PaymentTypeId;
-        partial void OnPaymentTypeIdChanging(Nullable<global::System.Int32> value);
-        partial void OnPaymentTypeIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String ProvisionNo
-        {
-            get
-            {
-                return _ProvisionNo;
-            }
-            set
-            {
-                OnProvisionNoChanging(value);
-                ReportPropertyChanging("ProvisionNo");
-                _ProvisionNo = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ProvisionNo");
-                OnProvisionNoChanged();
-            }
-        }
-        private global::System.String _ProvisionNo;
-        partial void OnProvisionNoChanging(global::System.String value);
-        partial void OnProvisionNoChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 CreatedUser
-        {
-            get
-            {
-                return _CreatedUser;
-            }
-            set
-            {
-                OnCreatedUserChanging(value);
-                ReportPropertyChanging("CreatedUser");
-                _CreatedUser = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CreatedUser");
-                OnCreatedUserChanged();
-            }
-        }
-        private global::System.Int32 _CreatedUser;
-        partial void OnCreatedUserChanging(global::System.Int32 value);
-        partial void OnCreatedUserChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime CreatedTime
-        {
-            get
-            {
-                return _CreatedTime;
-            }
-            set
-            {
-                OnCreatedTimeChanging(value);
-                ReportPropertyChanging("CreatedTime");
-                _CreatedTime = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CreatedTime");
-                OnCreatedTimeChanged();
-            }
-        }
-        private global::System.DateTime _CreatedTime;
-        partial void OnCreatedTimeChanging(global::System.DateTime value);
-        partial void OnCreatedTimeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime UpdatedTime
-        {
-            get
-            {
-                return _UpdatedTime;
-            }
-            set
-            {
-                OnUpdatedTimeChanging(value);
-                ReportPropertyChanging("UpdatedTime");
-                _UpdatedTime = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("UpdatedTime");
-                OnUpdatedTimeChanged();
-            }
-        }
-        private global::System.DateTime _UpdatedTime;
-        partial void OnUpdatedTimeChanging(global::System.DateTime value);
-        partial void OnUpdatedTimeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Decimal Amount
-        {
-            get
-            {
-                return _Amount;
-            }
-            set
-            {
-                OnAmountChanging(value);
-                ReportPropertyChanging("Amount");
-                _Amount = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Amount");
-                OnAmountChanged();
-            }
-        }
-        private global::System.Decimal _Amount;
-        partial void OnAmountChanging(global::System.Decimal value);
-        partial void OnAmountChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Service
-        {
-            get
-            {
-                return _Service;
-            }
-            set
-            {
-                OnServiceChanging(value);
-                ReportPropertyChanging("Service");
-                _Service = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Service");
-                OnServiceChanged();
-            }
-        }
-        private global::System.String _Service;
-        partial void OnServiceChanging(global::System.String value);
-        partial void OnServiceChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 LogType
-        {
-            get
-            {
-                return _LogType;
-            }
-            set
-            {
-                OnLogTypeChanging(value);
-                ReportPropertyChanging("LogType");
-                _LogType = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("LogType");
-                OnLogTypeChanged();
-            }
-        }
-        private global::System.Int32 _LogType;
-        partial void OnLogTypeChanging(global::System.Int32 value);
-        partial void OnLogTypeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean IsInvoiced
-        {
-            get
-            {
-                return _IsInvoiced;
-            }
-            set
-            {
-                OnIsInvoicedChanging(value);
-                ReportPropertyChanging("IsInvoiced");
-                _IsInvoiced = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IsInvoiced");
-                OnIsInvoicedChanged();
-            }
-        }
-        private global::System.Boolean _IsInvoiced;
-        partial void OnIsInvoicedChanging(global::System.Boolean value);
-        partial void OnIsInvoicedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Note
-        {
-            get
-            {
-                return _Note;
-            }
-            set
-            {
-                OnNoteChanging(value);
-                ReportPropertyChanging("Note");
-                _Note = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Note");
-                OnNoteChanged();
-            }
-        }
-        private global::System.String _Note;
-        partial void OnNoteChanging(global::System.String value);
-        partial void OnNoteChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_CorporationDuesLog_Corporations", "Corporations")]
-        public Corporations Corporations
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationDuesLog_Corporations", "Corporations").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationDuesLog_Corporations", "Corporations").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Corporations> CorporationsReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationDuesLog_Corporations", "Corporations");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationDuesLog_Corporations", "Corporations", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_CorporationDuesLog_DuesPaymentTypes", "DuesPaymentTypes")]
-        public DuesPaymentTypes DuesPaymentTypes
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DuesPaymentTypes>("Enroll.DataModels.FK_CorporationDuesLog_DuesPaymentTypes", "DuesPaymentTypes").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DuesPaymentTypes>("Enroll.DataModels.FK_CorporationDuesLog_DuesPaymentTypes", "DuesPaymentTypes").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<DuesPaymentTypes> DuesPaymentTypesReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DuesPaymentTypes>("Enroll.DataModels.FK_CorporationDuesLog_DuesPaymentTypes", "DuesPaymentTypes");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DuesPaymentTypes>("Enroll.DataModels.FK_CorporationDuesLog_DuesPaymentTypes", "DuesPaymentTypes", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_CorporationDuesLog_Users", "Users")]
-        public Users Users
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Users>("Enroll.DataModels.FK_CorporationDuesLog_Users", "Users").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Users>("Enroll.DataModels.FK_CorporationDuesLog_Users", "Users").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Users> UsersReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Users>("Enroll.DataModels.FK_CorporationDuesLog_Users", "Users");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Users>("Enroll.DataModels.FK_CorporationDuesLog_Users", "Users", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Enroll.DataModels", Name="CorporationFinance")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class CorporationFinance : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new CorporationFinance object.
-        /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="corporationId">Initial value of the CorporationId property.</param>
-        /// <param name="dept">Initial value of the Dept property.</param>
-        public static CorporationFinance CreateCorporationFinance(global::System.Int32 id, global::System.Int32 corporationId, global::System.Decimal dept)
-        {
-            CorporationFinance corporationFinance = new CorporationFinance();
-            corporationFinance.Id = id;
-            corporationFinance.CorporationId = corporationId;
-            corporationFinance.Dept = dept;
-            return corporationFinance;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 CorporationId
-        {
-            get
-            {
-                return _CorporationId;
-            }
-            set
-            {
-                OnCorporationIdChanging(value);
-                ReportPropertyChanging("CorporationId");
-                _CorporationId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CorporationId");
-                OnCorporationIdChanged();
-            }
-        }
-        private global::System.Int32 _CorporationId;
-        partial void OnCorporationIdChanging(global::System.Int32 value);
-        partial void OnCorporationIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Decimal Dept
-        {
-            get
-            {
-                return _Dept;
-            }
-            set
-            {
-                OnDeptChanging(value);
-                ReportPropertyChanging("Dept");
-                _Dept = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Dept");
-                OnDeptChanged();
-            }
-        }
-        private global::System.Decimal _Dept;
-        partial void OnDeptChanging(global::System.Decimal value);
-        partial void OnDeptChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_CorporationFinance_Corporations", "Corporations")]
-        public Corporations Corporations
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationFinance_Corporations", "Corporations").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationFinance_Corporations", "Corporations").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Corporations> CorporationsReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationFinance_Corporations", "Corporations");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationFinance_Corporations", "Corporations", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Enroll.DataModels", Name="Corporations")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class Corporations : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new Corporations object.
-        /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="taxNo">Initial value of the TaxNo property.</param>
-        /// <param name="taxDept">Initial value of the TaxDept property.</param>
-        /// <param name="createdTime">Initial value of the CreatedTime property.</param>
-        /// <param name="updatedTime">Initial value of the UpdatedTime property.</param>
-        /// <param name="state">Initial value of the State property.</param>
-        public static Corporations CreateCorporations(global::System.Int32 id, global::System.String name, global::System.String taxNo, global::System.String taxDept, global::System.DateTime createdTime, global::System.DateTime updatedTime, global::System.Boolean state)
-        {
-            Corporations corporations = new Corporations();
-            corporations.Id = id;
-            corporations.Name = name;
-            corporations.TaxNo = taxNo;
-            corporations.TaxDept = taxDept;
-            corporations.CreatedTime = createdTime;
-            corporations.UpdatedTime = updatedTime;
-            corporations.State = state;
-            return corporations;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
-            }
-        }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Description
-        {
-            get
-            {
-                return _Description;
-            }
-            set
-            {
-                OnDescriptionChanging(value);
-                ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Description");
-                OnDescriptionChanged();
-            }
-        }
-        private global::System.String _Description;
-        partial void OnDescriptionChanging(global::System.String value);
-        partial void OnDescriptionChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String TaxNo
-        {
-            get
-            {
-                return _TaxNo;
-            }
-            set
-            {
-                OnTaxNoChanging(value);
-                ReportPropertyChanging("TaxNo");
-                _TaxNo = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("TaxNo");
-                OnTaxNoChanged();
-            }
-        }
-        private global::System.String _TaxNo;
-        partial void OnTaxNoChanging(global::System.String value);
-        partial void OnTaxNoChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String TaxDept
-        {
-            get
-            {
-                return _TaxDept;
-            }
-            set
-            {
-                OnTaxDeptChanging(value);
-                ReportPropertyChanging("TaxDept");
-                _TaxDept = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("TaxDept");
-                OnTaxDeptChanged();
-            }
-        }
-        private global::System.String _TaxDept;
-        partial void OnTaxDeptChanging(global::System.String value);
-        partial void OnTaxDeptChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ContactAddressId
-        {
-            get
-            {
-                return _ContactAddressId;
-            }
-            set
-            {
-                OnContactAddressIdChanging(value);
-                ReportPropertyChanging("ContactAddressId");
-                _ContactAddressId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ContactAddressId");
-                OnContactAddressIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _ContactAddressId;
-        partial void OnContactAddressIdChanging(Nullable<global::System.Int32> value);
-        partial void OnContactAddressIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> InvoiceAddressId
-        {
-            get
-            {
-                return _InvoiceAddressId;
-            }
-            set
-            {
-                OnInvoiceAddressIdChanging(value);
-                ReportPropertyChanging("InvoiceAddressId");
-                _InvoiceAddressId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("InvoiceAddressId");
-                OnInvoiceAddressIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _InvoiceAddressId;
-        partial void OnInvoiceAddressIdChanging(Nullable<global::System.Int32> value);
-        partial void OnInvoiceAddressIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime CreatedTime
-        {
-            get
-            {
-                return _CreatedTime;
-            }
-            set
-            {
-                OnCreatedTimeChanging(value);
-                ReportPropertyChanging("CreatedTime");
-                _CreatedTime = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CreatedTime");
-                OnCreatedTimeChanged();
-            }
-        }
-        private global::System.DateTime _CreatedTime;
-        partial void OnCreatedTimeChanging(global::System.DateTime value);
-        partial void OnCreatedTimeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime UpdatedTime
-        {
-            get
-            {
-                return _UpdatedTime;
-            }
-            set
-            {
-                OnUpdatedTimeChanging(value);
-                ReportPropertyChanging("UpdatedTime");
-                _UpdatedTime = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("UpdatedTime");
-                OnUpdatedTimeChanged();
-            }
-        }
-        private global::System.DateTime _UpdatedTime;
-        partial void OnUpdatedTimeChanging(global::System.DateTime value);
-        partial void OnUpdatedTimeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean State
-        {
-            get
-            {
-                return _State;
-            }
-            set
-            {
-                OnStateChanging(value);
-                ReportPropertyChanging("State");
-                _State = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("State");
-                OnStateChanged();
-            }
-        }
-        private global::System.Boolean _State;
-        partial void OnStateChanging(global::System.Boolean value);
-        partial void OnStateChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_CorporationUser_Corporations", "CorporationUser")]
-        public EntityCollection<CorporationUser> CorporationUser
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CorporationUser>("Enroll.DataModels.FK_CorporationUser_Corporations", "CorporationUser");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CorporationUser>("Enroll.DataModels.FK_CorporationUser_Corporations", "CorporationUser", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_CorporationFinance_Corporations", "CorporationFinance")]
-        public EntityCollection<CorporationFinance> CorporationFinance
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CorporationFinance>("Enroll.DataModels.FK_CorporationFinance_Corporations", "CorporationFinance");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CorporationFinance>("Enroll.DataModels.FK_CorporationFinance_Corporations", "CorporationFinance", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_CorporationAddress_Corporations", "CorporationAddress")]
-        public EntityCollection<CorporationAddress> CorporationAddress
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CorporationAddress>("Enroll.DataModels.FK_CorporationAddress_Corporations", "CorporationAddress");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CorporationAddress>("Enroll.DataModels.FK_CorporationAddress_Corporations", "CorporationAddress", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_CorporationDuesLog_Corporations", "CorporationDuesLog")]
-        public EntityCollection<CorporationDuesLog> CorporationDuesLog
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CorporationDuesLog>("Enroll.DataModels.FK_CorporationDuesLog_Corporations", "CorporationDuesLog");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CorporationDuesLog>("Enroll.DataModels.FK_CorporationDuesLog_Corporations", "CorporationDuesLog", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Enroll.DataModels", Name="CorporationUser")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class CorporationUser : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new CorporationUser object.
-        /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="corporationId">Initial value of the CorporationId property.</param>
-        /// <param name="userId">Initial value of the UserId property.</param>
-        public static CorporationUser CreateCorporationUser(global::System.Int32 id, global::System.Int32 corporationId, global::System.Int32 userId)
-        {
-            CorporationUser corporationUser = new CorporationUser();
-            corporationUser.Id = id;
-            corporationUser.CorporationId = corporationId;
-            corporationUser.UserId = userId;
-            return corporationUser;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 CorporationId
-        {
-            get
-            {
-                return _CorporationId;
-            }
-            set
-            {
-                OnCorporationIdChanging(value);
-                ReportPropertyChanging("CorporationId");
-                _CorporationId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CorporationId");
-                OnCorporationIdChanged();
-            }
-        }
-        private global::System.Int32 _CorporationId;
-        partial void OnCorporationIdChanging(global::System.Int32 value);
-        partial void OnCorporationIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 UserId
-        {
-            get
-            {
-                return _UserId;
-            }
-            set
-            {
-                OnUserIdChanging(value);
-                ReportPropertyChanging("UserId");
-                _UserId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("UserId");
-                OnUserIdChanged();
-            }
-        }
-        private global::System.Int32 _UserId;
-        partial void OnUserIdChanging(global::System.Int32 value);
-        partial void OnUserIdChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_CorporationUser_Corporations", "Corporations")]
-        public Corporations Corporations
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationUser_Corporations", "Corporations").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationUser_Corporations", "Corporations").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Corporations> CorporationsReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationUser_Corporations", "Corporations");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Corporations>("Enroll.DataModels.FK_CorporationUser_Corporations", "Corporations", value);
                 }
             }
         }
@@ -7755,28 +5984,6 @@ namespace eNroll.App_Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserDuesLog>("Enroll.DataModels.FK_DuesPayment_DuesPaymentTypes", "UserDuesLog", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_CorporationDuesLog_DuesPaymentTypes", "CorporationDuesLog")]
-        public EntityCollection<CorporationDuesLog> CorporationDuesLog
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CorporationDuesLog>("Enroll.DataModels.FK_CorporationDuesLog_DuesPaymentTypes", "CorporationDuesLog");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CorporationDuesLog>("Enroll.DataModels.FK_CorporationDuesLog_DuesPaymentTypes", "CorporationDuesLog", value);
                 }
             }
         }
@@ -11782,6 +9989,293 @@ namespace eNroll.App_Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Enroll.DataModels", Name="IntroLightBox")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class IntroLightBox : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new IntroLightBox object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="title">Initial value of the Title property.</param>
+        /// <param name="link">Initial value of the Link property.</param>
+        /// <param name="type">Initial value of the Type property.</param>
+        /// <param name="cookieExpireTime">Initial value of the CookieExpireTime property.</param>
+        /// <param name="state">Initial value of the State property.</param>
+        /// <param name="createdTime">Initial value of the CreatedTime property.</param>
+        /// <param name="updatedTime">Initial value of the UpdatedTime property.</param>
+        public static IntroLightBox CreateIntroLightBox(global::System.Int32 id, global::System.String title, global::System.String link, global::System.Int32 type, global::System.Int32 cookieExpireTime, global::System.Boolean state, global::System.DateTime createdTime, global::System.DateTime updatedTime)
+        {
+            IntroLightBox introLightBox = new IntroLightBox();
+            introLightBox.Id = id;
+            introLightBox.Title = title;
+            introLightBox.Link = link;
+            introLightBox.Type = type;
+            introLightBox.CookieExpireTime = cookieExpireTime;
+            introLightBox.State = state;
+            introLightBox.CreatedTime = createdTime;
+            introLightBox.UpdatedTime = updatedTime;
+            return introLightBox;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Link
+        {
+            get
+            {
+                return _Link;
+            }
+            set
+            {
+                OnLinkChanging(value);
+                ReportPropertyChanging("Link");
+                _Link = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Link");
+                OnLinkChanged();
+            }
+        }
+        private global::System.String _Link;
+        partial void OnLinkChanging(global::System.String value);
+        partial void OnLinkChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Type
+        {
+            get
+            {
+                return _Type;
+            }
+            set
+            {
+                OnTypeChanging(value);
+                ReportPropertyChanging("Type");
+                _Type = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Type");
+                OnTypeChanged();
+            }
+        }
+        private global::System.Int32 _Type;
+        partial void OnTypeChanging(global::System.Int32 value);
+        partial void OnTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Width
+        {
+            get
+            {
+                return _Width;
+            }
+            set
+            {
+                OnWidthChanging(value);
+                ReportPropertyChanging("Width");
+                _Width = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Width");
+                OnWidthChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Width;
+        partial void OnWidthChanging(Nullable<global::System.Int32> value);
+        partial void OnWidthChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Height
+        {
+            get
+            {
+                return _Height;
+            }
+            set
+            {
+                OnHeightChanging(value);
+                ReportPropertyChanging("Height");
+                _Height = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Height");
+                OnHeightChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Height;
+        partial void OnHeightChanging(Nullable<global::System.Int32> value);
+        partial void OnHeightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CookieExpireTime
+        {
+            get
+            {
+                return _CookieExpireTime;
+            }
+            set
+            {
+                OnCookieExpireTimeChanging(value);
+                ReportPropertyChanging("CookieExpireTime");
+                _CookieExpireTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CookieExpireTime");
+                OnCookieExpireTimeChanged();
+            }
+        }
+        private global::System.Int32 _CookieExpireTime;
+        partial void OnCookieExpireTimeChanging(global::System.Int32 value);
+        partial void OnCookieExpireTimeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean State
+        {
+            get
+            {
+                return _State;
+            }
+            set
+            {
+                OnStateChanging(value);
+                ReportPropertyChanging("State");
+                _State = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("State");
+                OnStateChanged();
+            }
+        }
+        private global::System.Boolean _State;
+        partial void OnStateChanging(global::System.Boolean value);
+        partial void OnStateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime CreatedTime
+        {
+            get
+            {
+                return _CreatedTime;
+            }
+            set
+            {
+                OnCreatedTimeChanging(value);
+                ReportPropertyChanging("CreatedTime");
+                _CreatedTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedTime");
+                OnCreatedTimeChanged();
+            }
+        }
+        private global::System.DateTime _CreatedTime;
+        partial void OnCreatedTimeChanging(global::System.DateTime value);
+        partial void OnCreatedTimeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime UpdatedTime
+        {
+            get
+            {
+                return _UpdatedTime;
+            }
+            set
+            {
+                OnUpdatedTimeChanging(value);
+                ReportPropertyChanging("UpdatedTime");
+                _UpdatedTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UpdatedTime");
+                OnUpdatedTimeChanged();
+            }
+        }
+        private global::System.DateTime _UpdatedTime;
+        partial void OnUpdatedTimeChanging(global::System.DateTime value);
+        partial void OnUpdatedTimeChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="Enroll.DataModels", Name="IpFilterList")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -15649,111 +14143,6 @@ namespace eNroll.App_Data
         private Nullable<global::System.DateTime> _UpdatedTime;
         partial void OnUpdatedTimeChanging(Nullable<global::System.DateTime> value);
         partial void OnUpdatedTimeChanged();
-
-        #endregion
-
-    
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Enroll.DataModels", Name="ServiceTypes")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class ServiceTypes : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new ServiceTypes object.
-        /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        public static ServiceTypes CreateServiceTypes(global::System.Int32 id)
-        {
-            ServiceTypes serviceTypes = new ServiceTypes();
-            serviceTypes.Id = id;
-            return serviceTypes;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
-            }
-        }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Description
-        {
-            get
-            {
-                return _Description;
-            }
-            set
-            {
-                OnDescriptionChanging(value);
-                ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Description");
-                OnDescriptionChanged();
-            }
-        }
-        private global::System.String _Description;
-        partial void OnDescriptionChanging(global::System.String value);
-        partial void OnDescriptionChanged();
 
         #endregion
 
@@ -23051,28 +21440,6 @@ namespace eNroll.App_Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserRole>("Enroll.DataModels.FK__UserRole__UserId__4E53A1AA", "UserRole", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_CorporationDuesLog_Users", "CorporationDuesLog")]
-        public EntityCollection<CorporationDuesLog> CorporationDuesLog
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CorporationDuesLog>("Enroll.DataModels.FK_CorporationDuesLog_Users", "CorporationDuesLog");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CorporationDuesLog>("Enroll.DataModels.FK_CorporationDuesLog_Users", "CorporationDuesLog", value);
                 }
             }
         }

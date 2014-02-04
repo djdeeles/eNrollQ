@@ -273,6 +273,15 @@ public partial class Admin_adminUserControls_GalleryManager {
     protected global::System.Web.UI.WebControls.Button btnNewImage;
     
     /// <summary>
+    /// btnNewMultipleImage control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button btnNewMultipleImage;
+    
+    /// <summary>
     /// vvYeniPhoto control.
     /// </summary>
     /// <remarks>
@@ -370,6 +379,78 @@ public partial class Admin_adminUserControls_GalleryManager {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Button btnCancelPhoto;
+    
+    /// <summary>
+    /// vvYeniMultiplePhoto control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.View vvYeniMultiplePhoto;
+    
+    /// <summary>
+    /// Panel1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Panel Panel1;
+    
+    /// <summary>
+    /// FileExplorer1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::Telerik.Web.UI.RadFileExplorer FileExplorer1;
+    
+    /// <summary>
+    /// hfSelectedFiles control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.HiddenField hfSelectedFiles;
+    
+    /// <summary>
+    /// cbMultiFilesState control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.CheckBox cbMultiFilesState;
+    
+    /// <summary>
+    /// cbUseFilesName control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.CheckBox cbUseFilesName;
+    
+    /// <summary>
+    /// BtnSaveMultiplePhoto control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button BtnSaveMultiplePhoto;
+    
+    /// <summary>
+    /// BtnCancelMultiplePhoto control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button BtnCancelMultiplePhoto;
     
     /// <summary>
     /// gvPhotos control.

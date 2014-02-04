@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -14,13 +13,15 @@ using eNroll.Helpers;
 
 namespace eNroll.Admin.adminUserControls
 {
-    public partial class ScheduledJobs : System.Web.UI.UserControl
+    public partial class ScheduledJobs : UserControl
     {
-        Entities _entities = new Entities();
+        private readonly Entities _entities = new Entities();
+
         protected override void OnInit(EventArgs e)
         {
             CheckCulture();
             Session["currentPath"] = AdminResource.lbScheduledJobs;
+
             #region Resources
 
             btCancelEditTask.Text = AdminResource.lbCancel;
@@ -39,7 +40,7 @@ namespace eNroll.Admin.adminUserControls
         {
             if (RoleControl.YetkiAlaniKontrol(HttpContext.Current.User.Identity.Name, 31))
             {
-                mvAuthoriztn.ActiveViewIndex = 0; 
+                mvAuthoriztn.ActiveViewIndex = 0;
                 if (!IsPostBack) mvScheduledJobs.SetActiveView(vGridViewScheduledJobs);
             }
             else
@@ -47,7 +48,38 @@ namespace eNroll.Admin.adminUserControls
                 mvAuthoriztn.ActiveViewIndex = 1;
             }
         }
+
+        protected void gVSchduledJobs_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            var btnShowMail = e.Row.FindControl("imgBtnShowMail") as ImageButton;
+            if (btnShowMail != null) btnShowMail.AlternateText = AdminResource.lbShowMail;
+
+            var btnDelete = e.Row.FindControl("imgBtnTaskDelete") as ImageButton;
+            if (btnDelete != null)
+                btnDelete.OnClientClick = "return confirm('" + AdminResource.lbDeletingQuestion + "') ";
+        }
+
+        protected string HaveTaskReport(string data)
+        {
+            var result = string.Empty;
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(data))
+                {
+                    var taskId = Convert.ToInt32(data);
+                    var taskReport = _entities.EmailReport.FirstOrDefault(p => p.taskId == taskId);
+                    result = taskReport == null ? "style='display:none;'" : string.Empty;
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return result;
+        }
+
         #region set page culture
+
         public static void CheckCulture()
         {
             var ent = new EnrollAdminContext();
@@ -58,8 +90,11 @@ namespace eNroll.Admin.adminUserControls
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureName);
             Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureName);
         }
+
         #endregion
+
         #region Bind Task For Edit
+
         public void ShowTaskForEdit(int taskId)
         {
             try
@@ -67,44 +102,43 @@ namespace eNroll.Admin.adminUserControls
                 var task = _entities.Task.FirstOrDefault(p => p.taskId == taskId);
                 if (task != null)
                 {
-
-                    var hfTaskId = (HiddenField)cEditTask.FindControl("hfTaskId");
+                    var hfTaskId = (HiddenField) cEditTask.FindControl("hfTaskId");
                     hfTaskId.Value = taskId.ToString();
 
-                    var btSendReport = (Button)cEditTask.FindControl("btSendReport");
+                    var btSendReport = (Button) cEditTask.FindControl("btSendReport");
                     btSendReport.Visible = false;
 
-                    var btUpdateTask = (Button)cEditTask.FindControl("btUpdateTask");
+                    var btUpdateTask = (Button) cEditTask.FindControl("btUpdateTask");
                     btUpdateTask.Visible = true;
 
-                    var ddlMailTemplates = (DropDownList)cEditTask.FindControl("ddlMailTemplates");
+                    var ddlMailTemplates = (DropDownList) cEditTask.FindControl("ddlMailTemplates");
                     EnrollMembershipHelper.BindDDlMailTemplates(ddlMailTemplates);
 
-                    var tbMailSubject = (TextBox)cEditTask.FindControl("tbMailSubject");
+                    var tbMailSubject = (TextBox) cEditTask.FindControl("tbMailSubject");
                     tbMailSubject.Text = task.Subject;
 
-                    var tbJobName = (TextBox)cEditTask.FindControl("tbJobName");
+                    var tbJobName = (TextBox) cEditTask.FindControl("tbJobName");
                     tbJobName.Text = task.Name;
 
-                    var rbSendReport = (RadioButtonList)cEditTask.FindControl("rbSendReport");
+                    var rbSendReport = (RadioButtonList) cEditTask.FindControl("rbSendReport");
                     EnrollMembershipHelper.BindRbSendReport(rbSendReport);
                     rbSendReport.SelectedIndex = task.mailReadInfo != null && task.mailReadInfo.Value ? 0 : 1;
 
                     #region date-time
-                    var dpMailSendDate = (RadDatePicker)cEditTask.FindControl("dpMailSendDate");
+
+                    var dpMailSendDate = (RadDatePicker) cEditTask.FindControl("dpMailSendDate");
                     if (task.StartDate != null)
                         dpMailSendDate.SelectedDate = Convert.ToDateTime(task.StartDate.Value);
 
-                    var tpMailSendTime = (RadTimePicker)cEditTask.FindControl("tpMailSendTime");
+                    var tpMailSendTime = (RadTimePicker) cEditTask.FindControl("tpMailSendTime");
                     if (task.StartDate != null)
                         tpMailSendTime.SelectedDate = Convert.ToDateTime(task.StartDate.Value);
 
                     #endregion
 
                     var cRtbMailContent = cEditTask.FindControl("RtbMailContent");
-                    var rtb = ((RadEditor)cRtbMailContent.FindControl("RadEditor1"));
+                    var rtb = ((RadEditor) cRtbMailContent.FindControl("RadEditor1"));
                     rtb.Content = task.Content;
-
                 }
             }
             catch (Exception exception)
@@ -112,9 +146,11 @@ namespace eNroll.Admin.adminUserControls
                 ExceptionManager.ManageException(exception);
             }
         }
+
         #endregion
 
         #region EditClick, DeleteClick, CancelClick
+
         protected void ImgBtnMemberEditClick(object sender, ImageClickEventArgs e)
         {
             var btnEdit = sender as ImageButton;
@@ -144,8 +180,8 @@ namespace eNroll.Admin.adminUserControls
                     MessageBox.Show(MessageType.Error, AdminResource.msgAnErrorOccurred);
                 }
             }
-
         }
+
         protected void ImgBtnTaskDeleteClick(object sender, ImageClickEventArgs e)
         {
             var btnDelete = sender as ImageButton;
@@ -178,42 +214,14 @@ namespace eNroll.Admin.adminUserControls
                 }
             }
         }
+
         protected void BtCancelEditTaskClick(object sender, EventArgs e)
         {
             cEditTask.ClearFormInputs();
             btCancelEditTask.Visible = false;
             mvScheduledJobs.SetActiveView(vGridViewScheduledJobs);
         }
+
         #endregion
-        
-        protected void gVSchduledJobs_OnRowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            var btnShowMail = e.Row.FindControl("imgBtnShowMail") as ImageButton;
-            if (btnShowMail != null) btnShowMail.AlternateText = AdminResource.lbShowMail;
-
-            var btnDelete = e.Row.FindControl("imgBtnTaskDelete") as ImageButton;
-            if (btnDelete != null) btnDelete.OnClientClick = "return confirm('" + AdminResource.lbDeletingQuestion + "') ";
-        }
-
-        protected string HaveTaskReport(string data)
-        {
-            var result = string.Empty;
-            try
-            {
-                if (!string.IsNullOrWhiteSpace(data))
-                {
-                    var taskId = Convert.ToInt32(data);
-                    var taskReport = _entities.EmailReport.FirstOrDefault(p => p.taskId == taskId);
-                    result = taskReport == null ? "style='display:none;'" : string.Empty;
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
-            return result;
-        }
-
     }
 }

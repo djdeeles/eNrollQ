@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Enroll.Managers;
@@ -11,14 +9,20 @@ using eNroll.Helpers;
 
 namespace eNroll.Admin.adminUserControls
 {
-    public partial class DefBloodType : System.Web.UI.UserControl
+    public partial class DefBloodType : UserControl
     {
+        #region Proccess enum
+
         public enum Proccess
         {
             Save = 1,
             Update = 2
         }
-        Entities _entities = new Entities();
+
+        #endregion
+
+        private readonly Entities _entities = new Entities();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             BindBloodTypes(lbBloodType);
@@ -72,7 +76,6 @@ namespace eNroll.Admin.adminUserControls
                 ExceptionManager.ManageException(exception);
                 MessageBox.Show(MessageType.Error, AdminResource.lbErrorOccurred);
             }
-             
         }
 
 
@@ -90,7 +93,7 @@ namespace eNroll.Admin.adminUserControls
                         _entities.DeleteObject(bloodType);
                         _entities.SaveChanges();
                         lbBloodType.DataBind();
-                        MessageBox.Show(MessageType.Success,AdminResource.msgDeleted);
+                        MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
                     }
                 }
                 else
@@ -110,7 +113,8 @@ namespace eNroll.Admin.adminUserControls
             try
             {
                 tbEditBloodType.Text = string.Empty;
-                if (listBox != null && listBox.SelectedItem != null && !string.IsNullOrWhiteSpace(listBox.SelectedItem.Value))
+                if (listBox != null && listBox.SelectedItem != null &&
+                    !string.IsNullOrWhiteSpace(listBox.SelectedItem.Value))
                 {
                     hfSelectedBloodType.Value = Crypto.Encrypt(listBox.SelectedItem.Value);
                     var bloodTypeId = Convert.ToInt32(listBox.SelectedItem.Value);
@@ -156,13 +160,12 @@ namespace eNroll.Admin.adminUserControls
                 ExceptionManager.ManageException(exception);
                 MessageBox.Show(MessageType.Error, AdminResource.lbErrorOccurred);
             }
-
         }
+
         public void ClearForm()
         {
             tbEditBloodType.Text = string.Empty;
             tbNewBloodType.Text = string.Empty;
         }
-
     }
 }

@@ -7,7 +7,7 @@
     <tr>
         <td>
             <asp:ListView ID="ListView1" runat="server" GroupItemCount="5" DataSourceID="EntityDataSource1"
-                GroupPlaceholderID="groupPlaceHolder" ItemPlaceholderID="itemPlaceHolder">
+                          GroupPlaceholderID="groupPlaceHolder" ItemPlaceholderID="itemPlaceHolder">
                 <LayoutTemplate>
                     <asp:PlaceHolder ID="groupPlaceHolder" runat="server"></asp:PlaceHolder>
                 </LayoutTemplate>
@@ -15,17 +15,18 @@
                     <asp:PlaceHolder runat="server" ID="itemPlaceHolder"></asp:PlaceHolder>
                 </GroupTemplate>
                 <ItemTemplate>
-                    <a href="/m/albumdetay-<%#Eval("photoAlbumId") %>-1">
+                    <a href="/m/albumdetay-<%#Eval(
+                                                  "photoAlbumId") %>-1">
                         <table width="100%" border="0" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td>
                                     <asp:Image ID="Image1" runat="server" Width="130px" ImageUrl='<%#Eval("photoAlbumId") %>'
-                                        CssClass="contentimage" OnDataBinding="imgAlbum_DataBinding" />
+                                               CssClass="contentimage" OnDataBinding="imgAlbum_DataBinding" />
                                     <div class="listname">
-                                        <%#Eval("albumName")%>
+                                        <%#Eval("albumName") %>
                                     </div>
                                     <div class="listbrief">
-                                        <%#Eval("albumNote")%>
+                                        <%#Eval("albumNote") %>
                                     </div>
                                 </td>
                             </tr>
@@ -39,27 +40,27 @@
 </table>
 <% if (DataPager1.TotalRowCount > 9)
    { %>
-<asp:DataPager ID="DataPager1" runat="server" PagedControlID="ListView1" PageSize="9"
-    OnLoad="DataPager1_Init" QueryStringField="albumpage">
-    <Fields>
-        <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True" ShowNextPageButton="False"
-            ShowPreviousPageButton="True" FirstPageText="First" LastPageText="Last" NextPageText="Next"
-            PreviousPageText="Previous" />
-        <asp:NumericPagerField />
-        <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True" ShowNextPageButton="True"
-            ShowPreviousPageButton="False" FirstPageText="First" LastPageText="Last" NextPageText="Next"
-            PreviousPageText="Previous" />
-    </Fields>
-</asp:DataPager>
+    <asp:DataPager ID="DataPager1" runat="server" PagedControlID="ListView1" PageSize="9"
+                   OnLoad="DataPager1_Init" QueryStringField="albumpage">
+        <Fields>
+            <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True" ShowNextPageButton="False"
+                                        ShowPreviousPageButton="True" FirstPageText="First" LastPageText="Last" NextPageText="Next"
+                                        PreviousPageText="Previous" />
+            <asp:NumericPagerField />
+            <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True" ShowNextPageButton="True"
+                                        ShowPreviousPageButton="False" FirstPageText="First" LastPageText="Last" NextPageText="Next"
+                                        PreviousPageText="Previous" />
+        </Fields>
+    </asp:DataPager>
 <% } %>
 <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=Entities"
-    DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="Def_photoAlbum"
-    Where="it.languageId=@languageId and it.photoAlbumCategoryId=@categoryid and it.State=True">
+                      DefaultContainerName="Entities" EnableFlattening="False" EntitySetName="Def_photoAlbum"
+                      Where="it.languageId=@languageId and it.photoAlbumCategoryId=@categoryid and it.State=True">
     <WhereParameters>
         <asp:ControlParameter Name="languageId" ControlID="HiddenField1" PropertyName="Value"
-            DbType="Int32" />
+                              DbType="Int32" />
         <asp:ControlParameter ControlID="HiddenField2" Name="categoryid" PropertyName="Value"
-            DbType="Int32" />
+                              DbType="Int32" />
     </WhereParameters>
 </asp:EntityDataSource>
 <asp:HiddenField ID="HiddenField1" runat="server" />

@@ -11,7 +11,7 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_EmailList : UserControl
 {
-    Entities _entities = new Entities();
+    private readonly Entities _entities = new Entities();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -67,7 +67,7 @@ public partial class Admin_adminUserControls_EmailList : UserControl
 
     protected void imgBtnDelete_Click(object sender, ImageClickEventArgs e)
     {
-        var myButton = (ImageButton)sender;
+        var myButton = (ImageButton) sender;
         DeletingProccess(myButton.CommandArgument);
         GridEmails.DataBind();
     }
@@ -75,7 +75,7 @@ public partial class Admin_adminUserControls_EmailList : UserControl
     protected void DeletingProccess(string id)
     {
         try
-        { 
+        {
             EmailList email = _entities.EmailList.Where("it.id=" + id).FirstOrDefault();
 
             Logger.Add(19, 0, email.id, 2);
@@ -97,7 +97,7 @@ public partial class Admin_adminUserControls_EmailList : UserControl
         {
             if (e != null && e.Row.RowType == DataControlRowType.DataRow)
             {
-                var btnDelete = (ImageButton)e.Row.FindControl("btnDelete");
+                var btnDelete = (ImageButton) e.Row.FindControl("btnDelete");
                 if (btnDelete != null)
                     btnDelete.OnClientClick = " return confirm('" + AdminResource.lbDeletingQuestion + "'); ";
             }
@@ -119,7 +119,7 @@ public partial class Admin_adminUserControls_EmailList : UserControl
 
             Logger.Add(19, 0, emailList.id, 3);
 
-            MessageBox.Show(MessageType.Success,AdminResource.msgUpdated);
+            MessageBox.Show(MessageType.Success, AdminResource.msgUpdated);
         }
     }
 }

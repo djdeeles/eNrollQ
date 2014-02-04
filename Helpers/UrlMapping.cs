@@ -19,7 +19,6 @@ public class UrlMapping : IHttpModule
     }
 
     #endregion
-    
 
     private void context_BeginRequest(object sender, EventArgs e)
     {
@@ -28,13 +27,15 @@ public class UrlMapping : IHttpModule
             var newUrl = new StringBuilder();
             string path = HttpContext.Current.Request.RawUrl;
             var fileName = Path.GetFileName(path);
-            
 
-            if (fileName != null && !path.ToLower().Contains(string.Format("/filemanager")) && !path.ToLower().Contains(string.Format("/admin")))
+
+            if (fileName != null && !path.ToLower().Contains(string.Format("/filemanager")) &&
+                !path.ToLower().Contains(string.Format("/admin")))
             {
-                string[] parcalar = fileName.Split('-');
+                var parcalar = fileName.Split('-');
 
                 #region Mobile
+
                 if (path.Contains("/m/sayfa-r-"))
                 {
                     if (parcalar.Count() > 3)
@@ -176,9 +177,9 @@ public class UrlMapping : IHttpModule
                     string searchText = string.Empty;
                     for (int i = 1; i < parcalar.Length; i++)
                     {
-                        searchText += parcalar[i] +" ";
+                        searchText += parcalar[i] + " ";
                     }
-                    searchText = searchText.TrimEnd(' ').ToString();
+                    searchText = searchText.TrimEnd(' ');
                     newUrl.AppendFormat("~/m/SearchResults.aspx?key={0}", searchText);
                     HttpContext.Current.RewritePath(newUrl.ToString(), true);
                 }
@@ -207,7 +208,7 @@ public class UrlMapping : IHttpModule
                 }
                     #endregion
 
-                #region Desktop
+                    #region Desktop
 
                 else if (path.Contains("/sayfa-r-"))
                 {
@@ -230,7 +231,7 @@ public class UrlMapping : IHttpModule
                     newUrl.AppendFormat("~/DynamicContent.aspx?id={0}", parcalar[1]);
                     HttpContext.Current.RewritePath(newUrl.ToString(), true);
                 }
-                
+
                 else if (path.Contains("/listeler-"))
                 {
                     if (parcalar.Count() > 2)
@@ -340,7 +341,7 @@ public class UrlMapping : IHttpModule
                     {
                         searchText += parcalar[i] + " ";
                     }
-                    searchText = searchText.TrimEnd(' ').ToString();
+                    searchText = searchText.TrimEnd(' ');
                     newUrl.AppendFormat("~/SearchResults.aspx?key={0}", searchText);
                     HttpContext.Current.RewritePath(newUrl.ToString(), true);
                 }

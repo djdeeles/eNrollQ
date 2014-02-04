@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Admin_adminUserControls_TagEditor"
-    CodeBehind="TagEditor.ascx.cs" %>
+            CodeBehind="TagEditor.ascx.cs" %>
 <%@ Import Namespace="Resources" %>
 <asp:MultiView runat="server" ID="mvAuth">
     <asp:View runat="server">
@@ -13,13 +13,13 @@
             <tr>
                 <td colspan="2">
                     <asp:GridView ID="gvTagValues" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                        CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                        SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
-                        SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
-                        EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
-                        PageSize="15" AllowPaging="True" DataKeyNames="id" DataSourceID="edsTagValues"
-                        ForeColor="#333333" GridLines="None" OnRowDataBound="gvTagValues_RowDataBound"
-                        Width="100%" BorderStyle="None">
+                                  CssClass="GridViewStyle" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                                  SortedAscendingHeaderStyle-CssClass="sortasc-header" SortedDescendingHeaderStyle-CssClass="sortdesc-header"
+                                  SortedAscendingCellStyle-CssClass="sortasc" SortedDescendingCellStyle-CssClass="sortdesc"
+                                  EditRowStyle-CssClass="edit" EmptyDataRowStyle-CssClass="empty" SelectedRowStyle="selected"
+                                  PageSize="15" AllowPaging="True" DataKeyNames="id" DataSourceID="edsTagValues"
+                                  ForeColor="#333333" GridLines="None" OnRowDataBound="gvTagValues_RowDataBound"
+                                  Width="100%" BorderStyle="None">
                         <EmptyDataTemplate>
                             <%= AdminResource.lbNoRecord %>
                         </EmptyDataTemplate>
@@ -27,15 +27,15 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <asp:ImageButton ID="btnEdit" runat="server" CausesValidation="False" ImageUrl="~/Admin/images/icon/edit.png"
-                                        CommandName="Edit" />
+                                                     CommandName="Edit" />
                                     <asp:ImageButton ID="btnDelete" runat="server" CausesValidation="False" ImageUrl="~/Admin/images/icon/cop.png"
-                                        CommandName="Delete" />
+                                                     CommandName="Delete" />
                                 </ItemTemplate>
                                 <EditItemTemplate>
                                     <asp:ImageButton ID="btnUpdate" runat="server" CausesValidation="True" ImageUrl="~/Admin/images/icon/save.png"
-                                        CommandName="Update" />
+                                                     CommandName="Update" />
                                     <asp:ImageButton ID="btnCancel" runat="server" CausesValidation="False" ImageUrl="~/Admin/images/icon/cancel.png"
-                                        CommandName="Cancel" />
+                                                     CommandName="Cancel" />
                                 </EditItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="75px" />
                                 <ItemStyle Width="75px" HorizontalAlign="Left" />
@@ -55,8 +55,8 @@
                         </Columns>
                     </asp:GridView>
                     <asp:EntityDataSource ID="edsTagValues" runat="server" ConnectionString="name=Entities"
-                        DefaultContainerName="Entities" EnableDelete="True" EnableFlattening="False"
-                        EnableUpdate="True" EntitySetName="EnrollHtmlTagValues" Where="it.htmlTagId=@htmlTag">
+                                          DefaultContainerName="Entities" EnableDelete="True" EnableFlattening="False"
+                                          EnableUpdate="True" EntitySetName="EnrollHtmlTagValues" Where="it.htmlTagId=@htmlTag">
                         <WhereParameters>
                             <asp:QueryStringParameter DbType="Int32" Name="htmlTag" QueryStringField="htmlTag" />
                         </WhereParameters>
@@ -70,19 +70,19 @@
                             <tr>
                                 <td>
                                     <asp:DropDownList ID="ddlAttList" runat="server" Font-Bold="True" Font-Names="Calibri"
-                                        Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlAttList_SelectedIndexChanged">
+                                                      Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlAttList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </td>
                                 <td>
                                     <telerik:RadColorPicker ID="ColorPicker" ShowIcon="True" Enabled="True" EnableCustomColor="True"
-                                        runat="server">
+                                                            runat="server">
                                     </telerik:RadColorPicker>
                                 </td>
                                 <td>
                                     <asp:DropDownList ID="ddlCssAttValues" runat="server" Visible="False" Width="150px">
                                     </asp:DropDownList>
                                     <telerik:RadTextBox ID="txtAttValue" runat="server" Font-Bold="False" Font-Names="Calibri"
-                                        Width="150px" />
+                                                        Width="150px" />
                                 </td>
                                 <td>
                                     <asp:DropDownList ID="ddlUzunluk" runat="server" Visible="False" Width="50">
@@ -92,7 +92,7 @@
                                 </td>
                                 <td>
                                     <asp:Button ID="ibtnGozat" runat="server" CssClass="ImageSelectBtn" Visible="False"
-                                        OnClientClick="OpenFileExplorerDialog(); return false;" />
+                                                OnClientClick="OpenFileExplorerDialog(); return false;" />
                                     <script type="text/javascript">
                                         function OpenFileExplorerDialog() {
                                             selectedFile = $find("<%= txtAttValue.ClientID %>");
@@ -101,8 +101,8 @@
                                         }
                                     </script>
                                     <telerik:RadWindow runat="server" Width="600px" Height="400px" VisibleStatusbar="false"
-                                        ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
-                                        Modal="true" Behaviors="Close,Move,Resize,Maximize">
+                                                       ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow"
+                                                       Modal="true" Behaviors="Close,Move,Resize,Maximize">
                                     </telerik:RadWindow>
                                 </td>
                                 <td style="width: 50px;">
@@ -115,8 +115,8 @@
                             <tr>
                                 <td colspan="6">
                                     <asp:RangeValidator ID="rwTxtAttValue" runat="server" ForeColor="Red" ControlToValidate="txtAttValue"
-                                        Enabled="False" Type="Integer" ValidationGroup="attValue" MaximumValue="100"
-                                        MinimumValue="0">!</asp:RangeValidator>
+                                                        Enabled="False" Type="Integer" ValidationGroup="attValue" MaximumValue="100"
+                                                        MinimumValue="0">!</asp:RangeValidator>
                                 </td>
                             </tr>
                         </table>

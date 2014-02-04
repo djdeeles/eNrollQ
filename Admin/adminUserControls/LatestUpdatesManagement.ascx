@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LatestUpdatesManagement.ascx.cs"
-    Inherits="eNroll.Admin.adminUserControls.LatestUpdatesManagement" %>
+            Inherits="eNroll.Admin.adminUserControls.LatestUpdatesManagement" %>
 <%@ Import Namespace="Resources" %>
 <asp:MultiView ID="MultiView2" runat="server">
     <asp:View ID="View3" runat="server">
@@ -31,7 +31,7 @@
                                         <td align="left">
                                             <asp:TextBox runat="server" onkeydown="return onlyNumber(event);" ID="tbMaxCount"> </asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="g1"
-                                                ErrorMessage="!" ForeColor="Red" ControlToValidate="tbMaxCount" />
+                                                                        ErrorMessage="!" ForeColor="Red" ControlToValidate="tbMaxCount" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -42,7 +42,7 @@
                                     <tr>
                                         <td colspan="3">
                                             <asp:Button ID="ImageButtonKaydet" runat="server" CssClass="SaveCancelBtn" OnClick="ImageButtonKaydet_Click"
-                                                ValidationGroup="g1" />
+                                                        ValidationGroup="g1" />
                                         </td>
                                     </tr>
                                 </table>

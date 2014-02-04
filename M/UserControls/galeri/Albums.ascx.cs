@@ -24,32 +24,36 @@ public partial class M_Albums : UserControl
         Def_photoAlbumCategory category = null;
         int lang = EnrollContext.Current.WorkingLanguage.LanguageId;
         if (!String.IsNullOrEmpty(Request.QueryString["categoryid"]))
-        {  
+        {
             if (IsPostBack)
             {
                 #region AlbumId yi session dan alıyoruz
+
                 // sayfa postback olmuşsa yeni yüklenirken AlbumId değerini Session nesnesinden alırız
-                if (Session["listItemshfCategoryId"] != null && !string.IsNullOrWhiteSpace(Session["listItemshfCategoryId"].ToString()))
+                if (Session["listItemshfCategoryId"] != null &&
+                    !string.IsNullOrWhiteSpace(Session["listItemshfCategoryId"].ToString()))
                 {
                     CategoryId = Convert.ToInt32(Session["listItemshfCategoryId"]);
                     HiddenField1.Value = Session["listItemshfCategoryId"].ToString();
                 }
+
                 #endregion
             }
             else
             {
                 #region query string ten varsa albumid değerini alıyoruz
+
                 try
                 {
                     CategoryId = Convert.ToInt32(Request.QueryString["categoryid"]);
                     Session["listItemshfCategoryId"] = CategoryId;
                     HiddenField1.Value = CategoryId.ToString();
-
                 }
                 catch (Exception exception)
                 {
                     ExceptionManager.ManageException(exception);
                 }
+
                 #endregion
             }
         }
@@ -79,12 +83,14 @@ public partial class M_Albums : UserControl
 
             #endregion
 
-            EntityDataSource1.Where = string.Format("it.languageId={0} and it.photoAlbumCategoryId={1} and it.State=True", lang, CategoryId);
+            EntityDataSource1.Where =
+                string.Format("it.languageId={0} and it.photoAlbumCategoryId={1} and it.State=True", lang, CategoryId);
             ListView1.DataBind();
 
             Session["listItemshfCategoryId"] = CategoryId;
 
-            if (Session["listItemPageIndex"] == null || string.IsNullOrWhiteSpace(Session["listItemPageIndex"].ToString()))
+            if (Session["listItemPageIndex"] == null ||
+                string.IsNullOrWhiteSpace(Session["listItemPageIndex"].ToString()))
             {
                 Session["listItemPageIndex"] = 1;
             }
@@ -163,7 +169,7 @@ public partial class M_Albums : UserControl
                             else
                             {
                                 currentLink.NavigateUrl = currentLink.NavigateUrl.Replace(Request.Url.PathAndQuery,
-                                                                                          "../../albumler-"+CategoryId);
+                                                                                          "../../albumler-" + CategoryId);
                             }
                         }
                         else

@@ -194,13 +194,13 @@ public partial class Admin_adminUserControls_FileManager : UserControl
         {
             if (hdnActiveDirectory.Value != WebConfigurationManager.AppSettings["UserFilesPath"])
             {
-                if (Directory.GetFiles(Server.MapPath(hdnActiveDirectory.Value)).Length>0 ||
+                if (Directory.GetFiles(Server.MapPath(hdnActiveDirectory.Value)).Length > 0 ||
                     Directory.GetDirectories(Server.MapPath(hdnActiveDirectory.Value)).Length > 0)
                 {
                     MessageBox.Show(MessageType.Warning, AdminResource.lbDirectoryDeleteFailed);
                     return;
                 }
-                    
+
                 Directory.Delete(Server.MapPath(hdnActiveDirectory.Value));
                 LoadTreeview();
             }

@@ -16,7 +16,7 @@ public partial class UserControls_base_Sitemappath : UserControl
             id = Convert.ToInt32(Request.QueryString["id"]);
             System_menu current = ent.System_menu.Where(p => p.menuId == id).First();
             string asd = getParent(current.MasterId.Value);
-            string[] pathList = asd.Split('|');
+            var pathList = asd.Split('|');
             string txt = string.Empty;
             foreach (string path in pathList.Reverse())
             {

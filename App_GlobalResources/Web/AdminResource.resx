@@ -1994,4 +1994,49 @@
   <data name="AlreadyExistInSystem" xml:space="preserve">
     <value>already exist in system.</value>
   </data>
+  <data name="lbIntroLightBox" xml:space="preserve">
+    <value>Intro Message</value>
+  </data>
+  <data name="lbShowTime" xml:space="preserve">
+    <value>Show Time</value>
+  </data>
+  <data name="lbHour" xml:space="preserve">
+    <value>Hour</value>
+  </data>
+  <data name="lbRepeatDisplayTimeout" xml:space="preserve">
+    <value>Repeat Display Timeout</value>
+  </data>
+  <data name="lbTakePayments" xml:space="preserve">
+    <value>Take Payment</value>
+  </data>
+  <data name="lbSaleInvoice" xml:space="preserve">
+    <value>Sale Invoice</value>
+  </data>
+  <data name="lbAddToBeInvoicingService" xml:space="preserve">
+    <value>Work will be invoiced Entry</value>
+  </data>
+  <data name="lbTax" xml:space="preserve">
+    <value>TAX</value>
+  </data>
+  <data name="lbConfirmContinueToInvoice" xml:space="preserve">
+    <value>The service will be invoiced. Do you want to continue?</value>
+  </data>
+  <data name="lbPurchaseInvoice" xml:space="preserve">
+    <value>Purchase invoice</value>
+  </data>
+  <data name="lbPaymentType5" xml:space="preserve">
+    <value>Cheque</value>
+  </data>
+  <data name="lbInvoices" xml:space="preserve">
+    <value>Invoices</value>
+  </data>
+  <data name="lbInvoiceNumber" xml:space="preserve">
+    <value>Invoice Number</value>
+  </data>
+  <data name="lbbtnNewMultipleImage" xml:space="preserve">
+    <value>New Multiple Files</value>
+  </data>
+  <data name="lbUseFilesName" xml:space="preserve">
+    <value>Use files own name.</value>
+  </data>
 </root>

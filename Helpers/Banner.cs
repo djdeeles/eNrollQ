@@ -4,13 +4,12 @@ using System.Web.UI.WebControls;
 using eNroll.App_Data;
 
 /// <summary>
-///   Summary description for Banner
+/// 	Summary description for Banner
 /// </summary>
 public class SiteBanner
 {
     public void BannerGetir(Panel pnl, int locationId)
     {
-
         var ent = new Entities();
         BannerManagement bman =
             ent.BannerManagement.OrderBy(p => Guid.NewGuid()).FirstOrDefault(

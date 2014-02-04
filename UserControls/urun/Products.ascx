@@ -25,9 +25,9 @@
                         </a>
                         <div style="float: left; margin: 6px; width: 110px;">
                             <a href="urundetay-<%#                                        Eval("ProductId") %>-<%#                                        UrlMapping.cevir(Eval("Name").ToString()) %>">
-                                <%#                Eval("Name").ToString().Replace('"', ' ').Replace("'", "") %>
+                                <%#                                        Eval("Name").ToString().Replace('"', ' ').Replace("'", "") %>
                             </a>
-                            <%#                GetPrice(Convert.ToInt32(Eval("ProductId"))) %>
+                            <%#                                        GetPrice(Convert.ToInt32(Eval("ProductId"))) %>
                         </div>
                     </div>
                 </ItemTemplate>

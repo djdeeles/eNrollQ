@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq; 
-using System.Web; 
+using System.Linq;
+using System.Web;
 using Enroll.Managers;
-using eNroll.App_Data; 
+using eNroll.App_Data;
 
 public class RoleControl
 {
     public static Entities _entities = new Entities();
+
     public static bool YetkiAlaniKontrol(string email, int yetkiAlaniId)
     {
         bool durum = false;
@@ -112,5 +113,4 @@ public class RoleControl
 
         return list;
     }
-     
 }

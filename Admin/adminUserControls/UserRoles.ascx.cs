@@ -11,8 +11,8 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_UserRoles : UserControl
 {
-    public List<int> UserActiveAuthAreaIds = new List<int>();
     private readonly Entities _entities = new Entities();
+    public List<int> UserActiveAuthAreaIds = new List<int>();
 
     protected override void OnInit(EventArgs e)
     {
@@ -143,7 +143,7 @@ public partial class Admin_adminUserControls_UserRoles : UserControl
     private void RolYetkiAlanlariniKaydet(CheckBoxList yetkiAlanlari, Roles roller)
     {
         var roles = _entities.Roles.First(p => p.RoleName == roller.RoleName && p.State == roller.State);
-        List<RoleAuthAreas> ryaList = _entities.RoleAuthAreas.Where(p => p.RoleId == roles.Id).ToList();
+        var ryaList = _entities.RoleAuthAreas.Where(p => p.RoleId == roles.Id).ToList();
         foreach (RoleAuthAreas rya in ryaList)
         {
             _entities.RoleAuthAreas.DeleteObject(rya);
@@ -178,7 +178,10 @@ public partial class Admin_adminUserControls_UserRoles : UserControl
         if (e.CommandName == "Guncelle")
         {
             var id = Convert.ToInt32(e.CommandArgument);
-            if (!EnrollMembershipHelper.IsAuthForThisProcess(id, EnrollMembershipHelper.GetUserIdFromEmail(HttpContext.Current.User.Identity.Name)))
+            if (
+                !EnrollMembershipHelper.IsAuthForThisProcess(id,
+                                                             EnrollMembershipHelper.GetUserIdFromEmail(
+                                                                 HttpContext.Current.User.Identity.Name)))
             {
                 MessageBox.Show(MessageType.Warning, AdminResource.msgNoAuth);
                 return;
@@ -193,19 +196,22 @@ public partial class Admin_adminUserControls_UserRoles : UserControl
             int id = Convert.ToInt32(e.CommandArgument);
             var roleAuthAreaCount = RoleControl.RoleActiveAuthAreaIds(id);
             var userRoleAuthAreaCount = RoleControl.RoleActiveAuthAreaIds();
-            if (!EnrollMembershipHelper.IsAuthForThisProcess(id, EnrollMembershipHelper.GetUserIdFromEmail(HttpContext.Current.User.Identity.Name)))
+            if (
+                !EnrollMembershipHelper.IsAuthForThisProcess(id,
+                                                             EnrollMembershipHelper.GetUserIdFromEmail(
+                                                                 HttpContext.Current.User.Identity.Name)))
             {
                 MessageBox.Show(MessageType.Warning, AdminResource.msgNoAuth);
                 return;
             }
             Roles rol = _entities.Roles.First(p => p.Id == id);
-            List<RoleAuthAreas> ryaList = _entities.RoleAuthAreas.Where(p => p.RoleId == rol.Id).ToList();
+            var ryaList = _entities.RoleAuthAreas.Where(p => p.RoleId == rol.Id).ToList();
             foreach (RoleAuthAreas rya in ryaList)
             {
                 _entities.RoleAuthAreas.DeleteObject(rya);
                 _entities.SaveChanges();
             }
-            List<UserRole> userRoleList = _entities.UserRole.Where(p => p.RoleId == rol.Id).ToList();
+            var userRoleList = _entities.UserRole.Where(p => p.RoleId == rol.Id).ToList();
             foreach (UserRole role in userRoleList)
             {
                 _entities.UserRole.DeleteObject(role);
@@ -228,13 +234,13 @@ public partial class Admin_adminUserControls_UserRoles : UserControl
         HiddenFieldId.Value = rol.Id.ToString();
         YetkiAlalariniVer(CheckBoxListYetkiAlanlari);
         var ryaList = _entities.RoleAuthAreas.Where(p => p.RoleId == rol.Id).ToList();
-         
+
         foreach (var rya in ryaList)
-        { 
+        {
             for (var i = 0; i <= CheckBoxListYetkiAlanlari.Items.Count - 1; i++)
             {
                 if (CheckBoxListYetkiAlanlari.Items[i].Value == rya.AuthAreaId.ToString())
-                { 
+                {
                     CheckBoxListYetkiAlanlari.Items[i].Selected = true;
                 }
             }

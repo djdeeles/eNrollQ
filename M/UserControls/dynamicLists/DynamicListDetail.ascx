@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DynamicListDetail.ascx.cs"
-    Inherits="M_UserControls_DynamicListDetail" %>
+            Inherits="M_UserControls_DynamicListDetail" %>
 <%@ Import Namespace="Resources" %>
 <h1>
     <asp:Label ID="lblBaslik" runat="server" /></h1>

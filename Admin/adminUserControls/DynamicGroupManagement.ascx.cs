@@ -11,7 +11,7 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_DynamicListManagement : UserControl
 {
-    Entities oEntities = new Entities();
+    private readonly Entities oEntities = new Entities();
 
     protected override void OnInit(EventArgs e)
     {
@@ -48,7 +48,7 @@ public partial class Admin_adminUserControls_DynamicListManagement : UserControl
 
     private void GetDataProccess()
     {
-        int menuId = Convert.ToInt32(hdnMenuId.Value); 
+        int menuId = Convert.ToInt32(hdnMenuId.Value);
         var oMenu = oEntities.System_menu.FirstOrDefault(p => p.menuId == menuId);
 
         if (oMenu != null)

@@ -11,7 +11,8 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_StaticField : UserControl
 {
-    Entities _entities = new Entities();
+    private readonly Entities _entities = new Entities();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (RoleControl.YetkiAlaniKontrol(HttpContext.Current.User.Identity.Name, 16))
@@ -39,14 +40,14 @@ public partial class Admin_adminUserControls_StaticField : UserControl
 
     private void GetDataProccess(Customer_Special data)
     {
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
         radEditor.Content = data.text;
         txtHeader.Text = data.header;
     }
 
     private void SetDataProccess(Customer_Special data)
     {
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
         data.text = radEditor.Content;
         data.header = txtHeader.Text;
         data.UpdatedTime = DateTime.Now;
@@ -78,8 +79,6 @@ public partial class Admin_adminUserControls_StaticField : UserControl
                 pnlNewList.Visible = true;
                 ClearFormInputs();
             }
-
-
         }
         catch (Exception exception)
         {

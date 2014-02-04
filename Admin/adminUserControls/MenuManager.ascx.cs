@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -15,7 +13,7 @@ using eNroll.Helpers;
 
 public partial class Admin_adminUserControls_MenuManager : UserControl
 {
-    Entities _entities = new Entities();
+    private readonly Entities _entities = new Entities();
 
     protected override void OnInit(EventArgs e)
     {
@@ -57,7 +55,7 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
                 LoadTree();
                 hdnActiveMenuId.Value = "0";
                 MenuleriVer(RadTreeViewMenuler);
-                var panel = (Panel)Rtb1.FindControl("ChooseTemplate");
+                var panel = (Panel) Rtb1.FindControl("ChooseTemplate");
                 panel.Visible = true;
 
 
@@ -119,20 +117,18 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
                 imgBtnMenuImageSelect.Text = AdminResource.lbImageSelect;
                 imgBtnMenuImageHover.Text = AdminResource.lbImageSelect;
                 imgBtnImageSelect.Text = AdminResource.lbImageSelect;
-
-                
             }
             catch (Exception exception)
             {
                 ExceptionManager.ManageException(exception);
             }
         }
-        
-        
+
+
         ddlThemas.Items.Clear();
         ddlThemas.DataBind();
         ddlThemas.Items.Insert(0, new ListItem(AdminResource.lbDefault, ""));
-        
+
         BtnDeleteItem.OnClientClick = "return confirm('" + AdminResource.comfirmDeleteMenu + "');";
 
         btnShowDynamicFieldManager.Text = AdminResource.lbDynamicFields;
@@ -219,8 +215,12 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
             {
                 var menuKaynakId = Convert.ToInt32(node.Value);
                 var menuHedefId = Convert.ToInt32(e.DestDragNode.Value);
-                System_menu menuHedef = (menuHedefId != 0 ? _entities.System_menu.First(p => p.menuId == menuHedefId) : null);
-                System_menu menuKaynak = (menuKaynakId != 0 ? _entities.System_menu.First(p => p.menuId == menuKaynakId) : null);
+                System_menu menuHedef = (menuHedefId != 0
+                                             ? _entities.System_menu.First(p => p.menuId == menuHedefId)
+                                             : null);
+                System_menu menuKaynak = (menuKaynakId != 0
+                                              ? _entities.System_menu.First(p => p.menuId == menuKaynakId)
+                                              : null);
 
                 if (menuKaynak != null)
                 {
@@ -238,29 +238,41 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
                             {
                                 UpdateInMasterNode(0, menuKaynak, menuHedef);
                             }
-                            else if (menuHedef.menuIndex > menuKaynak.menuIndex && dropPosition == RadTreeViewDropPosition.Above)
+                            else if (menuHedef.menuIndex > menuKaynak.menuIndex &&
+                                     dropPosition == RadTreeViewDropPosition.Above)
                             {
-                                menuHedefId = Convert.ToInt32(RadTreeViewMenuler.Nodes[e.DestDragNode.Index - 1].Value);
-                                menuHedef = (menuHedefId != 0 ? _entities.System_menu.First(p => p.menuId == menuHedefId) : null);
+                                menuHedefId =
+                                    Convert.ToInt32(RadTreeViewMenuler.Nodes[e.DestDragNode.Index - 1].Value);
+                                menuHedef = (menuHedefId != 0
+                                                 ? _entities.System_menu.First(p => p.menuId == menuHedefId)
+                                                 : null);
                                 UpdateInMasterNode(1, menuKaynak, menuHedef);
                             }
-                            else if (menuHedef.menuIndex > menuKaynak.menuIndex && dropPosition == RadTreeViewDropPosition.Below)
+                            else if (menuHedef.menuIndex > menuKaynak.menuIndex &&
+                                     dropPosition == RadTreeViewDropPosition.Below)
                             {
                                 UpdateInMasterNode(1, menuKaynak, menuHedef);
                             }
-                            else if (menuHedef.menuIndex < menuKaynak.menuIndex && dropPosition == RadTreeViewDropPosition.Above)
+                            else if (menuHedef.menuIndex < menuKaynak.menuIndex &&
+                                     dropPosition == RadTreeViewDropPosition.Above)
                             {
                                 UpdateInMasterNode(1, menuKaynak, menuHedef);
                             }
-                            else if (menuHedef.menuIndex < menuKaynak.menuIndex && dropPosition == RadTreeViewDropPosition.Below)
+                            else if (menuHedef.menuIndex < menuKaynak.menuIndex &&
+                                     dropPosition == RadTreeViewDropPosition.Below)
                             {
-                                menuHedefId = Convert.ToInt32(RadTreeViewMenuler.Nodes[e.DestDragNode.Index + 1].Value);
-                                menuHedef = (menuHedefId != 0 ? _entities.System_menu.First(p => p.menuId == menuHedefId) : null);
+                                menuHedefId =
+                                    Convert.ToInt32(
+                                        RadTreeViewMenuler.Nodes[e.DestDragNode.Index + 1].Value);
+                                menuHedef = (menuHedefId != 0
+                                                 ? _entities.System_menu.First(
+                                                     p => p.menuId == menuHedefId)
+                                                 : null);
                                 UpdateInMasterNode(1, menuKaynak, menuHedef);
                             }
                         }
-                        #endregion
-                        #region farklı dizin
+                            #endregion
+                            #region farklı dizin
 
                         else
                         {
@@ -283,13 +295,14 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
                     else
                     {
                         #region root dizin
+
                         UpdateOverFirstNode(menuKaynak);
+
                         #endregion
                     }
 
                     MenuleriVer(RadTreeViewMenuler);
                 }
-
             }
             MenuleriVer(RadTreeViewMenuler);
         }
@@ -318,20 +331,23 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
             case 0: // over
 
                 #region eski menü elemanların sıralarını düzenle
+
                 menuList = _entities.System_menu.Where(p =>
-                    p.MasterId == menuKaynakUstMenuId &&
-                    p.languageId == languageId &&
-                    p.location == lokasyonId &&
-                    p.menuIndex > menuKaynakSiraNo).ToList();
+                                                       p.MasterId == menuKaynakUstMenuId &&
+                                                       p.languageId == languageId &&
+                                                       p.location == lokasyonId &&
+                                                       p.menuIndex > menuKaynakSiraNo).ToList();
                 foreach (System_menu item in menuList)
                 {
                     item.menuIndex -= 1;
                     _entities.SaveChanges();
                 }
+
                 #endregion
+
                 var count = _entities.System_menu.Count(p => p.MasterId == destMenu.menuId &&
-                                                                 p.languageId == languageId &&
-                                                                 p.location == lokasyonId);
+                                                             p.languageId == languageId &&
+                                                             p.location == lokasyonId);
                 if (destMenu != null) sourceMenu.MasterId = destMenu.menuId;
                 sourceMenu.menuIndex = (count + 1);
                 _entities.SaveChanges();
@@ -340,8 +356,11 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
 
                 if (menuHedefSiraNo > menuKaynakSiraNo)
                 {
-                    menuList = _entities.System_menu.Where(p => p.MasterId == menuHedefUstMenuId && p.languageId == languageId &&
-                        p.location == lokasyonId && p.menuIndex > menuKaynakSiraNo && p.menuIndex <= menuHedefSiraNo).ToList();
+                    menuList =
+                        _entities.System_menu.Where(
+                            p => p.MasterId == menuHedefUstMenuId && p.languageId == languageId &&
+                                 p.location == lokasyonId && p.menuIndex > menuKaynakSiraNo &&
+                                 p.menuIndex <= menuHedefSiraNo).ToList();
 
                     foreach (var item in menuList)
                     {
@@ -353,12 +372,12 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
                 else if (menuHedefSiraNo < menuKaynakSiraNo)
                 {
                     menuList = _entities.System_menu.Where(p =>
-                    p.MasterId == menuHedefUstMenuId &&
-                    p.languageId == languageId &&
-                    p.location == lokasyonId &&
-                    p.menuIndex < menuKaynakSiraNo &&
-                    p.menuIndex >= menuHedefSiraNo
-                    ).ToList();
+                                                           p.MasterId == menuHedefUstMenuId &&
+                                                           p.languageId == languageId &&
+                                                           p.location == lokasyonId &&
+                                                           p.menuIndex < menuKaynakSiraNo &&
+                                                           p.menuIndex >= menuHedefSiraNo
+                        ).ToList();
 
                     foreach (System_menu item in menuList)
                     {
@@ -394,17 +413,20 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
             case 0: // over
 
                 #region diğer elemanların sıralarını düzenle
+
                 menuList = _entities.System_menu.Where(p =>
-                    p.MasterId == menuKaynakUstMenuId &&
-                    p.languageId == languageId &&
-                    p.location == lokasyonId &&
-                    p.menuIndex > menuKaynakSiraNo).ToList();
+                                                       p.MasterId == menuKaynakUstMenuId &&
+                                                       p.languageId == languageId &&
+                                                       p.location == lokasyonId &&
+                                                       p.menuIndex > menuKaynakSiraNo).ToList();
                 foreach (System_menu item in menuList)
                 {
                     item.menuIndex -= 1;
                     _entities.SaveChanges();
                 }
+
                 #endregion
+
                 int itemCount = _entities.System_menu.Count(p => p.MasterId == destMenu.menuId &&
                                                                  p.languageId == languageId &&
                                                                  p.location == lokasyonId);
@@ -417,30 +439,37 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
 
                 break;
             case 1: // above  
+
                 #region eski menüdeki diğer elemanların sıralarını düzenle
+
                 menuList = _entities.System_menu.Where(p =>
-                    p.MasterId == menuKaynakUstMenuId &&
-                    p.languageId == languageId &&
-                    p.location == lokasyonId &&
-                    p.menuIndex > menuKaynakSiraNo).ToList();
+                                                       p.MasterId == menuKaynakUstMenuId &&
+                                                       p.languageId == languageId &&
+                                                       p.location == lokasyonId &&
+                                                       p.menuIndex > menuKaynakSiraNo).ToList();
                 foreach (System_menu item in menuList)
                 {
                     item.menuIndex -= 1;
                     _entities.SaveChanges();
                 }
+
                 #endregion
+
                 #region yeni menüdeki diğer elemanların sıralarını düzenle
+
                 menuList = _entities.System_menu.Where(p =>
-                    p.MasterId == menuHedefUstMenuId &&
-                    p.languageId == languageId &&
-                    p.location == lokasyonId &&
-                    p.menuIndex >= menuHedefSiraNo).ToList();
+                                                       p.MasterId == menuHedefUstMenuId &&
+                                                       p.languageId == languageId &&
+                                                       p.location == lokasyonId &&
+                                                       p.menuIndex >= menuHedefSiraNo).ToList();
                 foreach (System_menu item in menuList)
                 {
                     item.menuIndex += 1;
                     _entities.SaveChanges();
                 }
+
                 #endregion
+
                 var count = _entities.System_menu.Count(p => p.MasterId == menuHedefUstMenuId &&
                                                              p.languageId == languageId &&
                                                              p.location == lokasyonId &&
@@ -454,43 +483,53 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
 
                 break;
             case 2: // belowk 
+
                 #region eski menüdeki diğer elemanların sıralarını düzenle
+
                 menuList = _entities.System_menu.Where(p =>
-                    p.MasterId == menuKaynakUstMenuId &&
-                    p.languageId == languageId &&
-                    p.location == lokasyonId &&
-                    p.menuIndex > menuKaynakSiraNo).ToList();
+                                                       p.MasterId == menuKaynakUstMenuId &&
+                                                       p.languageId == languageId &&
+                                                       p.location == lokasyonId &&
+                                                       p.menuIndex > menuKaynakSiraNo).ToList();
                 foreach (System_menu item in menuList)
                 {
                     item.menuIndex -= 1;
                     _entities.SaveChanges();
                 }
+
                 #region yeni menüdeki diğer elemanların sıralarını düzenle
+
                 count = _entities.System_menu.Where(p =>
-                    p.MasterId == menuHedefUstMenuId &&
-                    p.languageId == languageId &&
-                    p.location == lokasyonId &&
-                    p.menuIndex <= menuHedefSiraNo).Count();
+                                                    p.MasterId == menuHedefUstMenuId &&
+                                                    p.languageId == languageId &&
+                                                    p.location == lokasyonId &&
+                                                    p.menuIndex <= menuHedefSiraNo).Count();
                 if (destMenu != null)
                 {
                     sourceMenu.MasterId = destMenu.MasterId;
                     sourceMenu.menuIndex = (count + 1);
                     _entities.SaveChanges();
                 }
+
                 #endregion
+
                 #endregion
+
                 #region yeni menüdeki diğer elemanların sıralarını düzenle
+
                 menuList = _entities.System_menu.Where(p =>
-                    p.MasterId == menuHedefUstMenuId &&
-                    p.languageId == languageId &&
-                    p.location == lokasyonId &&
-                    p.menuIndex > menuHedefSiraNo).ToList();
+                                                       p.MasterId == menuHedefUstMenuId &&
+                                                       p.languageId == languageId &&
+                                                       p.location == lokasyonId &&
+                                                       p.menuIndex > menuHedefSiraNo).ToList();
                 foreach (System_menu item in menuList)
                 {
                     item.menuIndex += 1;
                     _entities.SaveChanges();
                 }
+
                 #endregion
+
                 count = _entities.System_menu.Count(p => p.MasterId == menuHedefUstMenuId &&
                                                          p.languageId == languageId &&
                                                          p.location == lokasyonId &&
@@ -515,20 +554,27 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
         var menuKaynakSiraNo = sourceMenu.menuIndex;
 
         List<System_menu> menuList;
+
         #region eski menüdeki diğer elemanların sıralarını düzenle
+
         menuList = _entities.System_menu.Where(p =>
-            p.MasterId == menuKaynakUstMenuId &&
-            p.languageId == languageId &&
-            p.location == lokasyonId &&
-            p.menuIndex > menuKaynakSiraNo).ToList();
+                                               p.MasterId == menuKaynakUstMenuId &&
+                                               p.languageId == languageId &&
+                                               p.location == lokasyonId &&
+                                               p.menuIndex > menuKaynakSiraNo).ToList();
         foreach (System_menu item in menuList)
         {
             item.menuIndex -= 1;
             _entities.SaveChanges();
         }
+
         #endregion
 
-        var count = _entities.System_menu.Count(p => p.MasterId == 0 && p.languageId == languageId && p.location == lokasyonId && p.menuId != sourceMenu.menuId);
+        var count =
+            _entities.System_menu.Count(
+                p =>
+                p.MasterId == 0 && p.languageId == languageId && p.location == lokasyonId &&
+                p.menuId != sourceMenu.menuId);
 
         sourceMenu.menuIndex = count + 1;
         sourceMenu.MasterId = 0;
@@ -536,15 +582,15 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
     }
 
     private void LoadTree()
-    { 
-        var node = new TreeNode("Kök Menü", "Enroll_RootMenuItem"); 
+    {
+        var node = new TreeNode("Kök Menü", "Enroll_RootMenuItem");
         GenerateTreenode(0, node.ChildNodes);
-        hdnParentId.Value = "0"; 
+        hdnParentId.Value = "0";
     }
 
     private void ResetEditPanel()
     {
-        var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
         txtName.Text = "";
         txtKeys.Text = "";
         txtUrl.Text = "";
@@ -583,11 +629,11 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
 
     private List<System_menu> GetChildNodeList(Int32 masterId)
     {
-        List<System_menu> oList =
+        var oList =
             _entities.System_menu.Where("it.MasterId=" + masterId.ToString() + " and it.languageId=" +
-                                      EnrollAdminContext.Current.DataLanguage.LanguageId.ToString() +
-                                      " and it.location=" +
-                                      hdnLocationId.Value + " order by it.menuIndex").ToList();
+                                        EnrollAdminContext.Current.DataLanguage.LanguageId.ToString() +
+                                        " and it.location=" +
+                                        hdnLocationId.Value + " order by it.menuIndex").ToList();
         return oList;
     }
 
@@ -612,13 +658,12 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
             ddlThemas.SelectedIndex = 0;
             if (!string.IsNullOrEmpty(oMenu.thema.ToString()))
             {
-                
                 if (ddlThemas.Items.Count > 0)
                 {
                     var i = 0;
                     foreach (ListItem item in ddlThemas.Items)
                     {
-                        if (oMenu.thema!=null && item.Value == oMenu.thema.ToString())
+                        if (oMenu.thema != null && item.Value == oMenu.thema.ToString())
                         {
                             ddlThemas.SelectedIndex = i;
                             break;
@@ -628,7 +673,6 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
                 }
             }
             btnShowDynamicFieldManager.Visible = true;
-
         }
         catch (Exception exception)
         {
@@ -643,71 +687,6 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
         pnlEdit.Visible = true;
         btnShowDynamicFieldManager.Visible = false;
     }
-
-    #region AddNew or Delete item
-
-    protected void BtnAddNewItemClick(object sender, EventArgs eventArgs)
-    {
-        InsertMode();
-        txtMenuImage.Text = "";
-        txtMenuImageHover.Text = "";
-    }
-    protected void BtnDeleteItemClick(object sender, EventArgs eventArgs)
-    {
-        try
-        {
-            if (hdnActiveMenuId.Value != "0")
-            {
-                System_menu oMenu = _entities.System_menu.Where("it.menuId=" + hdnActiveMenuId.Value).First();
-
-                // menülere bağlı dynamic alanların referanslarını siliyoruz
-                var dynamicReferenceList = _entities.Customer_Dynamic_Reference.Where(p => p.MenuId == oMenu.menuId).ToList();
-                foreach (var customerDynamicReference in dynamicReferenceList)
-                {
-                    _entities.DeleteObject(customerDynamicReference);
-                    _entities.SaveChanges();
-                }
-
-                int control = _entities.System_menu.Where("it.MasterId=" + hdnActiveMenuId.Value).Count();
-                if (control > 0)
-                {
-                    List<System_menu> altmenu =
-                        _entities.System_menu.Where("it.MasterId=" + hdnActiveMenuId.Value).ToList();
-                    foreach (System_menu i in altmenu)
-                    {
-                        // alt menülere bağlı dynamic alanların referanslarını siliyoruz
-                        var subMenuDynamicReferenceList = _entities.Customer_Dynamic_Reference.Where(p => p.MenuId == i.menuId).ToList();
-                        foreach (var subMenuDynamicReferance in subMenuDynamicReferenceList)
-                        {
-                            _entities.DeleteObject(subMenuDynamicReferance);
-                            _entities.SaveChanges();
-                        }
-
-                        _entities.DeleteObject(i);
-                    }
-                }
-                _entities.DeleteObject(oMenu);
-                _entities.SaveChanges();
-
-                Logger.Add(2, 0, oMenu.menuId, 2);
-
-                MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
-
-                //geçici
-                LoadTree();
-                hdnActiveMenuId.Value = "0";
-                MenuleriVer(RadTreeViewMenuler);
-
-                ResetEditPanel();
-            }
-        }
-        catch (Exception exception)
-        {
-            ExceptionManager.ManageException(exception);
-        }
-    }
-
-    #endregion
 
     protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -762,7 +741,7 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
                     ddlType.SelectedValue = "2";
                     MultiView1.ActiveViewIndex = 1;
                     txtHeader.Text = menu.brief;
-                    var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+                    var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
                     radEditor.Content = menu.Details;
                     txtKeys.Text = menu.keywords;
                     txtImage.Text = menu.masterImage;
@@ -817,7 +796,7 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
                     menu.url = txtUrl.Text;
                     break;
                 case "2": //sayfa
-                    var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
+                    var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
                     menu.type = "2";
                     menu.brief = txtHeader.Text;
                     menu.Details = radEditor.Content;
@@ -825,7 +804,7 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
                     menu.masterImage = txtImage.Text;
                     if (ddlThemas.SelectedIndex > 0) menu.thema = Convert.ToInt32(ddlThemas.SelectedValue);
                     menu.isHideToMenu = chkisHideToMenu.Checked;
-                    menu.isHideMenuName = chkisHideName.Checked; 
+                    menu.isHideMenuName = chkisHideName.Checked;
                     break;
                 case "3": // site dışı url
                     menu.type = "3";
@@ -872,14 +851,12 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
         GetDynamicFieldDatas();
         pnlDynamicField.Visible = true;
         pnlMenu.Visible = false;
-
     }
 
     protected void btEditCancelDynamicMenu_Click(object sender, EventArgs e)
     {
         pnlDynamicField.Visible = false;
         pnlMenu.Visible = true;
-
     }
 
     private void GetDynamicFieldDatas()
@@ -910,7 +887,6 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
             }
         }
     }
-
 
 
     private void UpdateRefData(System_menu menu, Entities entities)
@@ -1064,7 +1040,7 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
     {
         try
         {
-            var oList = (DropDownList)sender;
+            var oList = (DropDownList) sender;
             oList.Items.Insert(0, new ListItem(AdminResource.lbChoose));
         }
         catch (Exception exception)
@@ -1096,8 +1072,6 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
         {
             ExceptionManager.ManageException(exception);
         }
-
-
     }
 
     #endregion
@@ -1118,8 +1092,8 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
                 oMenu.location = Convert.ToInt32(hdnLocationId.Value);
                 oMenu.CreatedTime = DateTime.Now;
                 oMenu.UpdatedTime = DateTime.Now;
-                 
-                _entities.AddToSystem_menu(oMenu);  
+
+                _entities.AddToSystem_menu(oMenu);
 
                 SetDataProccess(oMenu);
                 Logger.Add(2, 0, oMenu.menuId, 1);
@@ -1130,9 +1104,9 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
                 SetDataProccess(oMenu);
                 _entities.SaveChanges();
                 if (oMenu != null) Logger.Add(2, 0, oMenu.menuId, 3);
-            } 
+            }
             _entities.SaveChanges();
-             
+
             //başlangıç sayfası ayarları
             if (ddlType.SelectedValue == "2")
             {
@@ -1145,7 +1119,8 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
                 {
                     oSystemLanguage.startupMenuId = Convert.ToInt32(oMenu.menuId);
                 }
-                else if (oSystemLanguage != null && (oMenu != null && oMenu.menuId == Convert.ToDecimal(oSystemLanguage.startupMenuId)))
+                else if (oSystemLanguage != null &&
+                         (oMenu != null && oMenu.menuId == Convert.ToDecimal(oSystemLanguage.startupMenuId)))
                 {
                     oSystemLanguage.startupMenuId = 0; //hiç bir menu set edilmez.
                 }
@@ -1169,5 +1144,72 @@ public partial class Admin_adminUserControls_MenuManager : UserControl
     }
 
     #endregion
-     
+
+    #region AddNew or Delete item
+
+    protected void BtnAddNewItemClick(object sender, EventArgs eventArgs)
+    {
+        InsertMode();
+        txtMenuImage.Text = "";
+        txtMenuImageHover.Text = "";
+    }
+
+    protected void BtnDeleteItemClick(object sender, EventArgs eventArgs)
+    {
+        try
+        {
+            if (hdnActiveMenuId.Value != "0")
+            {
+                System_menu oMenu = _entities.System_menu.Where("it.menuId=" + hdnActiveMenuId.Value).First();
+
+                // menülere bağlı dynamic alanların referanslarını siliyoruz
+                var dynamicReferenceList =
+                    _entities.Customer_Dynamic_Reference.Where(p => p.MenuId == oMenu.menuId).ToList();
+                foreach (var customerDynamicReference in dynamicReferenceList)
+                {
+                    _entities.DeleteObject(customerDynamicReference);
+                    _entities.SaveChanges();
+                }
+
+                int control = _entities.System_menu.Where("it.MasterId=" + hdnActiveMenuId.Value).Count();
+                if (control > 0)
+                {
+                    var altmenu =
+                        _entities.System_menu.Where("it.MasterId=" + hdnActiveMenuId.Value).ToList();
+                    foreach (System_menu i in altmenu)
+                    {
+                        // alt menülere bağlı dynamic alanların referanslarını siliyoruz
+                        var subMenuDynamicReferenceList =
+                            _entities.Customer_Dynamic_Reference.Where(p => p.MenuId == i.menuId).ToList();
+                        foreach (var subMenuDynamicReferance in subMenuDynamicReferenceList)
+                        {
+                            _entities.DeleteObject(subMenuDynamicReferance);
+                            _entities.SaveChanges();
+                        }
+
+                        _entities.DeleteObject(i);
+                    }
+                }
+                _entities.DeleteObject(oMenu);
+                _entities.SaveChanges();
+
+                Logger.Add(2, 0, oMenu.menuId, 2);
+
+                MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
+
+                //geçici
+                LoadTree();
+                hdnActiveMenuId.Value = "0";
+                MenuleriVer(RadTreeViewMenuler);
+
+                ResetEditPanel();
+            }
+        }
+        catch (Exception exception)
+        {
+            ExceptionManager.ManageException(exception);
+        }
+    }
+
+    #endregion
 }

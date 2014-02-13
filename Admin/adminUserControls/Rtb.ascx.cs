@@ -16,7 +16,7 @@ public partial class adminUserControls_Rtb : UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        RadEditor1.AutoResizeHeight = true;
+        RadEditor1.AutoResizeHeight = false;
         RssList = _entities.Rss.Where(p => p.Language == EnrollAdminContext.Current.DataLanguage.LanguageId).ToList();
         FormList =
             _entities.Forms.Where(p => p.LanguageId == EnrollAdminContext.Current.DataLanguage.LanguageId).ToList();

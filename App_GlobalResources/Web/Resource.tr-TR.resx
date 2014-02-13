@@ -801,4 +801,10 @@
   <data name="lbRandomField" xml:space="preserve">
     <value>Müşteri Görüşleri;</value>
   </data>
+  <data name="lbAttachments" xml:space="preserve">
+    <value>Eklentiler</value>
+  </data>
+  <data name="lbDownloadAll" xml:space="preserve">
+    <value>Tümünü indirmek için tıklayınız.</value>
+  </data>
 </root>

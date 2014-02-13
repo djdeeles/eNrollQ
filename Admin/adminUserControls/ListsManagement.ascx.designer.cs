@@ -31,13 +31,13 @@ namespace eNroll.Admin.adminUserControls {
         protected global::System.Web.UI.WebControls.MultiView mvLists;
         
         /// <summary>
-        /// View1 control.
+        /// vAddListBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
+        protected global::System.Web.UI.WebControls.View vAddListBtn;
         
         /// <summary>
         /// btnAddNew control.
@@ -49,13 +49,13 @@ namespace eNroll.Admin.adminUserControls {
         protected global::System.Web.UI.WebControls.Button btnAddNew;
         
         /// <summary>
-        /// View2 control.
+        /// vAddList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2;
+        protected global::System.Web.UI.WebControls.View vAddList;
         
         /// <summary>
         /// lblUyariBos control.
@@ -121,13 +121,13 @@ namespace eNroll.Admin.adminUserControls {
         protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
-        /// View3 control.
+        /// vEditList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View3;
+        protected global::System.Web.UI.WebControls.View vEditList;
         
         /// <summary>
         /// txtNameEdit control.
@@ -319,6 +319,24 @@ namespace eNroll.Admin.adminUserControls {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
         
         /// <summary>
+        /// dpDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDatePicker dpDate;
+        
+        /// <summary>
+        /// RequiredFieldValidator8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator8;
+        
+        /// <summary>
         /// txtImage control.
         /// </summary>
         /// <remarks>
@@ -418,6 +436,24 @@ namespace eNroll.Admin.adminUserControls {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
         
         /// <summary>
+        /// dpDateEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDatePicker dpDateEdit;
+        
+        /// <summary>
+        /// RequiredFieldValidator9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator9;
+        
+        /// <summary>
         /// txtImageEdit control.
         /// </summary>
         /// <remarks>
@@ -445,6 +481,51 @@ namespace eNroll.Admin.adminUserControls {
         protected global::adminUserControls_Rtb RtbEdit;
         
         /// <summary>
+        /// dtlistAttachments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtlistAttachments;
+        
+        /// <summary>
+        /// tbAtthcmtTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox tbAtthcmtTitle;
+        
+        /// <summary>
+        /// RequiredFieldValidator7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
+        
+        /// <summary>
+        /// btnNewAtthcmnt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNewAtthcmnt;
+        
+        /// <summary>
+        /// btnAddAtthcmnt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddAtthcmnt;
+        
+        /// <summary>
         /// cbListDataStateEdit control.
         /// </summary>
         /// <remarks>
@@ -470,6 +551,15 @@ namespace eNroll.Admin.adminUserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnListDataEditCancel;
+        
+        /// <summary>
+        /// ExplorerWindow2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadWindow ExplorerWindow2;
         
         /// <summary>
         /// HiddenField1 control.

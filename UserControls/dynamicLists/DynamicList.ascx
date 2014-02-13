@@ -25,12 +25,18 @@
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#Bind("Id") %>' Text='<%#Eval("Title") %>'
                                OnDataBinding="HyperLink1_DataBinding"></asp:HyperLink>
             </div>
+            <div class="listdate">
+                <%#Convert.ToDateTime(Eval("Date")).ToShortDateString()%>
+            </div>
             <div class="listbrief">
                 <%#Eval("Description") %>
             </div>
             <div class="listcontinue">
                 <asp:HyperLink ID="HyperLink2" runat="server" Text='<%#Resource.details %>' NavigateUrl='<%#Bind("Id") %>'
                                OnDataBinding="HyperLink1_DataBinding"></asp:HyperLink>
+            </div>
+            <div class="listattachment">
+                <%#GetAttachments(Eval("Id").ToString()) %>
             </div>
         </div>
     </ItemTemplate>
@@ -60,8 +66,8 @@
     <%= Resource.lbSort %>:&nbsp;
     <asp:Button runat="server" ID="btOrderbyTitle" CssClass="button"  ViewStateMode="Enabled"
                 OnClick="BtOrderbyTitleClick" />
-    <asp:Button runat="server" ID="btOrderbyUpdatedTime" CssClass="button"
-                OnClick="BtOrderbyUpdatedTimeClick" />
+    <asp:Button runat="server" ID="btOrderbyDate" CssClass="button"
+                OnClick="BtOrderbyDateClick" />
     <asp:Button runat="server" ID="btOrderbyAscDesc" CssClass="buttonactive"
                 OnClick="BtOrderbyAscDescClick" />
 </div>

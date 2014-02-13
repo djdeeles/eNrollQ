@@ -29,11 +29,14 @@ public partial class UserControls_DynamicDataList : UserControl
                                                                                                          ["id"]))).
                     FirstOrDefault();
 
-                oDynamic.Customer_Dynamic_GroupReference.Load();
-                hdnGroupId.Value = oDynamic.Customer_Dynamic_Group.groupId.ToString();
+                if (oDynamic != null)
+                {
+                    oDynamic.Customer_Dynamic_GroupReference.Load();
+                    hdnGroupId.Value = oDynamic.Customer_Dynamic_Group.groupId.ToString();
 
-                lblDetails.Text = oDynamic.details;
-                SetHeaders(oDynamic, oGeneralInfo);
+                    lblDetails.Text = oDynamic.details;
+                    SetHeaders(oDynamic, oGeneralInfo);
+                }
             }
             else
             {

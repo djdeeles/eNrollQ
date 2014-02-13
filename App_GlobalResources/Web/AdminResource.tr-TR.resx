@@ -2039,4 +2039,13 @@
   <data name="lbUseFilesName" xml:space="preserve">
     <value>Dosyaların kendi adları kullanılsın.</value>
   </data>
+  <data name="lbAttachments" xml:space="preserve">
+    <value>Eklentiler</value>
+  </data>
+  <data name="lbNewAttachment" xml:space="preserve">
+    <value>Yeni Eklenti</value>
+  </data>
+  <data name="lbAddAttachment" xml:space="preserve">
+    <value>Eklenti Ekle</value>
+  </data>
 </root>

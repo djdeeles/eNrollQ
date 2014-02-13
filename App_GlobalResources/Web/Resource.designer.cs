@@ -358,6 +358,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attachments.
+        /// </summary>
+        internal static string lbAttachments {
+            get {
+                return ResourceManager.GetString("lbAttachments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto Payment Order.
         /// </summary>
         internal static string lbAutoPaymentOrder {
@@ -570,6 +579,15 @@ namespace Resources {
         internal static string lbDesc {
             get {
                 return ResourceManager.GetString("lbDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to downlaod all..
+        /// </summary>
+        internal static string lbDownloadAll {
+            get {
+                return ResourceManager.GetString("lbDownloadAll", resourceCulture);
             }
         }
         

@@ -38,10 +38,12 @@ namespace eNroll.Admin.adminUserControls
                 }
                 if (!IsPostBack)
                 {
-                    mvLists.SetActiveView(View1);
+                    mvLists.SetActiveView(vAddListBtn);
                     gvListData.Visible = false;
                 }
 
+                btnNewAtthcmnt.Text = AdminResource.lbChoose;
+                btnAddAtthcmnt.Text = AdminResource.lbAdd;
                 btnAddNew.Text = AdminResource.lbNewList;
                 cbState.Text = AdminResource.lbActive;
                 cbStateEdit.Text = AdminResource.lbActive;
@@ -61,8 +63,9 @@ namespace eNroll.Admin.adminUserControls
                 gvListData.Columns[0].HeaderText = AdminResource.lbActions;
                 gvListData.Columns[1].HeaderText = AdminResource.lbTitle;
                 gvListData.Columns[2].HeaderText = AdminResource.lbDesc;
-                gvListData.Columns[3].HeaderText = AdminResource.lbPhoto;
-                gvListData.Columns[4].HeaderText = AdminResource.lbState;
+                gvListData.Columns[3].HeaderText = AdminResource.lbDate;
+                gvListData.Columns[4].HeaderText = AdminResource.lbPhoto;
+                gvListData.Columns[5].HeaderText = AdminResource.lbState;
 
                 btnAddListData.Text = AdminResource.lbNewListItem;
                 BtnListDataSave.Text = AdminResource.lbSave;
@@ -142,7 +145,7 @@ namespace eNroll.Admin.adminUserControls
             {
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    var myMastDelete = (ImageButton) e.Row.FindControl("LinkButtonSil");
+                    var myMastDelete = (ImageButton)e.Row.FindControl("LinkButtonSil");
                     myMastDelete.OnClientClick = " return confirm('" + AdminResource.lbDeletingQuestion + "'); ";
                 }
             }
@@ -158,7 +161,11 @@ namespace eNroll.Admin.adminUserControls
             {
                 HiddenFieldListId.Value = e.CommandArgument.ToString();
                 ListeGuncelleCommand();
-                mvLists.SetActiveView(View3);
+                
+                mvLists.SetActiveView(vEditList);
+                gvLists.Visible = false;
+                mvListData.Visible = false;
+                gvListData.Visible = false;
             }
             else if (e.CommandName == "Sil")
             {
@@ -186,7 +193,10 @@ namespace eNroll.Admin.adminUserControls
         // btn add new click
         protected void BtnAddNewClick(object sender, EventArgs e)
         {
-            mvLists.SetActiveView(View2);
+            mvLists.SetActiveView(vAddList);
+            mvListData.Visible = false;
+            gvLists.Visible = false;
+            gvListData.Visible = false;
         }
 
         // Save
@@ -209,7 +219,8 @@ namespace eNroll.Admin.adminUserControls
                 Temizle();
                 ShowLists();
                 MessageBox.Show(MessageType.Success, AdminResource.msgSaved);
-                mvLists.SetActiveView(View1);
+                mvLists.SetActiveView(vAddListBtn);
+                gvLists.Visible = true;
             }
             catch (Exception exception)
             {
@@ -220,7 +231,8 @@ namespace eNroll.Admin.adminUserControls
         //Save cancel
         protected void BtnCancelClick(object sender, EventArgs e)
         {
-            mvLists.SetActiveView(View1);
+            mvLists.SetActiveView(vAddListBtn);
+            gvLists.Visible = true;
             Temizle();
             HiddenFieldListId.Value = string.Empty;
         }
@@ -250,14 +262,16 @@ namespace eNroll.Admin.adminUserControls
                 Temizle();
                 ShowLists();
                 MessageBox.Show(MessageType.Success, AdminResource.msgUpdated);
-                mvLists.SetActiveView(View1);
+                mvLists.SetActiveView(vAddListBtn);
+                gvLists.Visible = true;
             }
         }
 
         // Edit cancel
         protected void BtnEditCancelClick(object sender, EventArgs e)
         {
-            mvLists.SetActiveView(View1);
+            mvLists.SetActiveView(vAddListBtn);
+            gvLists.Visible = false;
             HiddenFieldListId.Value = string.Empty;
             Temizle();
         }
@@ -276,13 +290,19 @@ namespace eNroll.Admin.adminUserControls
                 txtListDataTitleEdit.Text = listData.Title;
                 txtListDataDescEdit.Text = listData.Description;
                 txtImageEdit.Text = listData.Image;
-                var editor = ((RadEditor) RtbEdit.FindControl("RadEditor1"));
+                dpDateEdit.SelectedDate = listData.Date;
+                var editor = ((RadEditor)RtbEdit.FindControl("RadEditor1"));
                 editor.Content = listData.Detail;
                 if (listData.State != null)
-                    cbListDataStateEdit.Checked = (bool) listData.State;
+                    cbListDataStateEdit.Checked = (bool)listData.State;
 
-                mvListData.Visible = true;
+                BindDtlistAttachments(id);
+
+                mvLists.Visible = false;
+                gvLists.Visible = false;
                 mvListData.SetActiveView(vEditListData);
+                gvListData.Visible = false;
+
             }
             else if (e.CommandName == "Sil")
             {
@@ -303,7 +323,7 @@ namespace eNroll.Admin.adminUserControls
             {
                 if (e != null && e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    var deleteBtn = (ImageButton) e.Row.FindControl("lbSil");
+                    var deleteBtn = (ImageButton)e.Row.FindControl("lbSil");
                     if (deleteBtn != null)
                     {
                         deleteBtn.OnClientClick =
@@ -322,7 +342,7 @@ namespace eNroll.Admin.adminUserControls
         {
             try
             {
-                var lbListSec = (LinkButton) sender;
+                var lbListSec = (LinkButton)sender;
                 HiddenFieldListId.Value = lbListSec.CommandArgument;
                 gvListData.DataSourceID = "EntityDataSourceListData";
                 EntityDataSourceListData.WhereParameters.Clear();
@@ -345,7 +365,10 @@ namespace eNroll.Admin.adminUserControls
         // btn add new click
         protected void BtnAddListDataClick(object sender, EventArgs e)
         {
+            mvLists.Visible = false;
             mvListData.SetActiveView(vAddListData);
+            gvLists.Visible = false;
+            gvListData.Visible = false;
         }
 
         //save
@@ -360,10 +383,12 @@ namespace eNroll.Admin.adminUserControls
                     listData.ListId = listId;
                     listData.Title = txtListDataTitle.Text;
                     listData.Description = txtListDataDesc.Text;
-                    listData.Detail = ((RadEditor) Rtb.FindControl("RadEditor1")).Content;
+                    listData.Detail = ((RadEditor)Rtb.FindControl("RadEditor1")).Content;
                     listData.State = cbListDataState.Checked;
                     listData.CreatedTime = DateTime.Now;
                     listData.UpdatedTime = DateTime.Now;
+                    if (dpDate.SelectedDate != null)
+                        listData.Date = Convert.ToDateTime(dpDate.SelectedDate.Value.ToShortDateString());
                     listData.LanguageId = EnrollAdminContext.Current.DataLanguage.LanguageId;
 
                     #region save image
@@ -374,7 +399,7 @@ namespace eNroll.Admin.adminUserControls
                         Image i = ImageHelper.ResizeImage(orj, new Size(150, 150));
                         string thumbName = Guid.NewGuid().ToString("N").Substring(1, 8) + ".jpg";
                         string dest = Server.MapPath("../FileManager/thumbnails/" + thumbName);
-                        var isphotoSaved = ImageHelper.SaveJpeg(dest, (Bitmap) i, 75);
+                        var isphotoSaved = ImageHelper.SaveJpeg(dest, (Bitmap)i, 75);
                         if (isphotoSaved)
                         {
                             listData.ThumbnailPath = "~/FileManager/thumbnails/" + thumbName;
@@ -396,12 +421,27 @@ namespace eNroll.Admin.adminUserControls
 
                     _ent.AddToListData(listData);
                     _ent.SaveChanges();
-
-                    Logger.Add(25, 2, listData.Id, 1);
-
+                     
                     BindListData();
-                    mvListData.SetActiveView(vAddListDataBtn);
+
                     Temizle();
+
+                    HiddenFieldListDataId.Value = listData.Id.ToString();
+                    txtListDataTitleEdit.Text = listData.Title;
+                    txtListDataDescEdit.Text = listData.Description;
+                    txtImageEdit.Text = listData.Image;
+                    var editor = ((RadEditor)RtbEdit.FindControl("RadEditor1"));
+                    editor.Content = listData.Detail;
+                    if (listData.State != null)
+                        cbListDataStateEdit.Checked = (bool)listData.State;
+                     
+                    mvLists.Visible = true;
+                    mvLists.SetActiveView(vAddListBtn);
+                    mvListData.Visible = true;
+                    mvListData.SetActiveView(vAddListDataBtn);
+                    gvLists.Visible = true;
+                    gvListData.Visible = true;
+
                 }
             }
             catch (Exception exception)
@@ -415,6 +455,13 @@ namespace eNroll.Admin.adminUserControls
         {
             BindListData();
             Temizle();
+
+            mvLists.Visible = true;
+            mvLists.SetActiveView(vAddListBtn);
+            mvListData.Visible = true;
+            mvListData.SetActiveView(vAddListDataBtn);
+            gvLists.Visible = true;
+            gvListData.Visible = true;
         }
 
         //Update
@@ -429,9 +476,10 @@ namespace eNroll.Admin.adminUserControls
                     listData.Title = txtListDataTitleEdit.Text;
                     listData.Description = txtListDataDescEdit.Text;
                     listData.State = cbListDataStateEdit.Checked;
-                    listData.Detail = ((RadEditor) RtbEdit.FindControl("RadEditor1")).Content;
+                    listData.Detail = ((RadEditor)RtbEdit.FindControl("RadEditor1")).Content;
                     listData.UpdatedTime = DateTime.Now;
-
+                    if (dpDateEdit.SelectedDate != null)
+                        listData.Date = Convert.ToDateTime(dpDateEdit.SelectedDate.Value.ToShortDateString());
                     #region update image
 
                     // resim değiştiyse update yapılır
@@ -447,7 +495,7 @@ namespace eNroll.Admin.adminUserControls
                         string thumbName = Guid.NewGuid().ToString("N").Substring(1, 8) + ".jpg";
                         string dest = Server.MapPath("../FileManager/thumbnails/" + thumbName);
 
-                        var isphotoSaved = ImageHelper.SaveJpeg(dest, (Bitmap) i, 75);
+                        var isphotoSaved = ImageHelper.SaveJpeg(dest, (Bitmap)i, 75);
                         if (isphotoSaved)
                         {
                             listData.ThumbnailPath = "~/FileManager/thumbnails/" + thumbName;
@@ -472,8 +520,15 @@ namespace eNroll.Admin.adminUserControls
                     Logger.Add(25, 2, listData.Id, 3);
                 }
                 BindListData();
-                mvListData.SetActiveView(vAddListDataBtn);
+                
                 Temizle();
+
+                mvLists.Visible = true;
+                mvLists.SetActiveView(vAddListBtn);
+                mvListData.Visible = true;
+                mvListData.SetActiveView(vAddListDataBtn);
+                gvLists.Visible = true;
+                gvListData.Visible = true;
             }
             catch (Exception exception)
             {
@@ -486,6 +541,13 @@ namespace eNroll.Admin.adminUserControls
         {
             BindListData();
             Temizle();
+
+            mvLists.Visible = true;
+            mvLists.SetActiveView(vAddListBtn);
+            mvListData.Visible = true;
+            mvListData.SetActiveView(vAddListDataBtn);
+            gvLists.Visible = true;
+            gvListData.Visible = true;
         }
 
         //bind gridview listData with selected listId
@@ -508,7 +570,7 @@ namespace eNroll.Admin.adminUserControls
             txtName.Text = string.Empty;
             txtDesc.Text = string.Empty;
             txtImage.Text = string.Empty;
-            var radEditor = ((RadEditor) Rtb.FindControl("RadEditor1"));
+            var radEditor = ((RadEditor)Rtb.FindControl("RadEditor1"));
             radEditor.Content = string.Empty;
             cbState.Checked = false;
             txtListDataTitle.Text = string.Empty;
@@ -521,10 +583,125 @@ namespace eNroll.Admin.adminUserControls
             txtListDataTitleEdit.Text = string.Empty;
             txtListDataDescEdit.Text = string.Empty;
             cbListDataStateEdit.Checked = false;
-            radEditor = ((RadEditor) RtbEdit.FindControl("RadEditor1"));
+            radEditor = ((RadEditor)RtbEdit.FindControl("RadEditor1"));
             radEditor.Content = string.Empty;
         }
 
         #endregion
+
+        public void BindDtlistAttachments(int listDataId)
+        {
+            try
+            {
+                var attchmnts = _ent.ListDataAttachments.Where(p => p.ListDataId == listDataId);
+
+                dtlistAttachments.DataSource = attchmnts;
+                dtlistAttachments.DataBind();
+            }
+            catch (Exception exception)
+            {
+                ExceptionManager.ManageException(exception);
+            }
+        }
+        protected void DtlistAttachmentsItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            try
+            {
+                var deleteButton = e.Item.FindControl("ImgBtnDeleteAttach") as ImageButton;
+                if (deleteButton != null)
+                {
+                    deleteButton.OnClientClick = "return confirm('" + AdminResource.lbDeletingQuestion + "')";
+                    deleteButton.ToolTip = AdminResource.lbDelete;
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionManager.ManageException(exception);
+            }
+        }
+
+        protected void ImgBtnDeleteAttachClick(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                var lblid = (ImageButton)sender;
+                var id = Convert.ToInt32(lblid.CommandArgument);
+                var p = _ent.ListDataAttachments.FirstOrDefault(x => x.Id == id);
+                string thumbToDel = "";
+                if (p != null)
+                {
+                    thumbToDel = p.Thumbnail;
+                    _ent.DeleteObject(p);
+                    _ent.SaveChanges();
+
+                    if (!String.IsNullOrEmpty(thumbToDel))
+                    {
+                        ImageHelper.DeleteImage(Server.MapPath("../" + thumbToDel.Replace("~/", "")));
+                    }
+                }
+                var listId = Convert.ToInt32(HiddenFieldListDataId.Value);
+                BindDtlistAttachments(listId);
+                gvListData.DataBind();
+            }
+            catch (Exception exception)
+            {
+                ExceptionManager.ManageException(exception);
+            }
+        }
+
+
+        protected void BtnAddAtthcmntClick(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(tbAtthcmtTitle.Text))
+            {
+                try
+                { 
+                    var listDataId = Convert.ToInt32(HiddenFieldListDataId.Value);
+                    var listData = _ent.ListData.FirstOrDefault(x => x.Id == listDataId);
+                    
+                    if(listData!=null)
+                    {
+                        
+                        var listDataAttachment = new ListDataAttachments();
+
+                        var temp = tbAtthcmtTitle.Text.Split('.');
+                        var tempFileName = temp[0].Split('/');
+                        var title = tempFileName[tempFileName.Length - 1];
+                        var fileExtention = temp[temp.Length - 1];
+                        if (fileExtention == "jpeg" || fileExtention == "jpg" || fileExtention == "png" || fileExtention == "bmp" )
+                        {
+                            var orj = new Bitmap(Server.MapPath(tbAtthcmtTitle.Text.Replace("~", "..")));
+                            var i = ImageHelper.ResizeImage(orj, new Size(150, 150));
+                            var thumbName = Guid.NewGuid().ToString("N").Substring(1, 8) + ".jpg";
+                            var dest = Server.MapPath("../FileManager/thumbnails/" + thumbName);
+                            ImageHelper.SaveJpeg(dest, (Bitmap)i, 75);
+                            listDataAttachment.Thumbnail = "~/FileManager/thumbnails/" + thumbName;
+                        }
+                        else
+                        {
+                            listDataAttachment.Thumbnail = string.Empty;
+                        }
+
+                        listDataAttachment.Title = title;
+                        listDataAttachment.ListDataId = listData.Id;
+                        listDataAttachment.Attachment = tbAtthcmtTitle.Text; 
+                        listDataAttachment.CreatedTime = DateTime.Now;
+                        listDataAttachment.UpdatedTime = DateTime.Now;
+                        listDataAttachment.FileType = fileExtention;
+
+                        _ent.AddToListDataAttachments(listDataAttachment);
+                        _ent.SaveChanges();
+
+                        tbAtthcmtTitle.Text = string.Empty;
+                        BindDtlistAttachments(listDataId);
+                    }
+                     
+                }
+                catch (Exception exception)
+                {
+                    ExceptionManager.ManageException(exception);
+                }
+            }
+        }
     }
 }

@@ -16,6 +16,9 @@ public class ZipLibrary
         ZipFileName = zipFileName;
     }
 
+    /// <summary>
+    /// ZipFile yapsındaki Files nesnesi dışarıdan yollanan klasör yolu ile doldurulur ve zip olarak indirilir.
+    /// </summary>
     public void ZipFolder(string directoryPath, string folderMap)
     {
         Files = new List<ZipFile>();
@@ -24,6 +27,27 @@ public class ZipLibrary
         foreach (var file in GetDirectories(directoryPath, folderMap))
         {
             Stream stream = new MemoryStream(File.ReadAllBytes(Path.GetFullPath(file.Path)));
+            package.AddStream(stream, file.Name);
+            stream.Close();
+        }
+
+        SendZipToClient(memStream);
+
+        memStream.Close();
+        package.Close(true);
+    }
+
+
+    /// <summary>
+    /// ZipFile yapsındaki Files nesnesi dışarıdan "path&name" alanları doldurulark gönderilirse zip indirilir.
+    /// </summary>
+    public void ZipFile()
+    { 
+        var memStream = new MemoryStream();
+        var package = ZipPackage.Create(memStream);
+        foreach (var file in Files)
+        {
+            Stream stream = new MemoryStream(File.ReadAllBytes(file.Path));
             package.AddStream(stream, file.Name);
             stream.Close();
         }

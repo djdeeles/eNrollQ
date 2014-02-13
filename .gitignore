@@ -5,10 +5,9 @@
 *.pydevproject
 .project
 .metadata
-bin/
 tmp/
+FileManager/Thumbnails/*
 *.tmp
-*.bak
 *.swp
 *~.nib
 local.properties

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Enroll.Managers;
@@ -107,7 +108,7 @@ public partial class UserControls_DynamicList : UserControl
 
     protected void HyperLink1_DataBinding(object sender, EventArgs e)
     {
-        var myHyper = (HyperLink) sender;
+        var myHyper = (HyperLink)sender;
         int listDataId = Convert.ToInt32(myHyper.NavigateUrl);
         ListData listData = _entities.ListData.First(p => p.Id == listDataId);
         myHyper.NavigateUrl = "../../listedetay-" + listDataId + "-" + UrlMapping.cevir(listData.Title);
@@ -119,9 +120,9 @@ public partial class UserControls_DynamicList : UserControl
         OrderBy();
     }
 
-    protected void BtOrderbyUpdatedTimeClick(object sender, EventArgs e)
+    protected void BtOrderbyDateClick(object sender, EventArgs e)
     {
-        Session["OrderByColumn"] = string.Format("it.UpdatedTime");
+        Session["OrderByColumn"] = string.Format("it.Date");
         OrderBy();
     }
 
@@ -146,7 +147,7 @@ public partial class UserControls_DynamicList : UserControl
         if (Session["OrderByColumn"] == null ||
             string.IsNullOrWhiteSpace(Session["OrderByColumn"].ToString()))
         {
-            Session["OrderByColumn"] = string.Format("it.UpdatedTime");
+            Session["OrderByColumn"] = string.Format("it.Date");
         }
 
         SetOrderByButtonText();
@@ -160,12 +161,12 @@ public partial class UserControls_DynamicList : UserControl
         if (Session["OrderByColumn"].ToString() == "it.Title")
         {
             btOrderbyTitle.CssClass = "buttonactive";
-            btOrderbyUpdatedTime.CssClass = "button";
+            btOrderbyDate.CssClass = "button";
         }
-        else if (Session["OrderByColumn"].ToString() == "it.UpdatedTime")
+        else if (Session["OrderByColumn"].ToString() == "it.Date")
         {
             btOrderbyTitle.CssClass = "button";
-            btOrderbyUpdatedTime.CssClass = "buttonactive";
+            btOrderbyDate.CssClass = "buttonactive";
         }
     }
 
@@ -179,7 +180,7 @@ public partial class UserControls_DynamicList : UserControl
             btOrderbyAscDesc.Text = Resource.lbDesc;
 
         btOrderbyTitle.Text = Resource.lbByTitle;
-        btOrderbyUpdatedTime.Text = Resource.lbByDate;
+        btOrderbyDate.Text = Resource.lbByDate;
     }
 
     public bool IsOrderByAscSelected()
@@ -194,7 +195,7 @@ public partial class UserControls_DynamicList : UserControl
 
     protected void DataPager1_Init(object sender, EventArgs e)
     {
-        _localizations.ChangeDataPager((DataPager) sender);
+        _localizations.ChangeDataPager((DataPager)sender);
     }
 
     protected void Page_PreRender(object sender, EventArgs e)
@@ -210,7 +211,7 @@ public partial class UserControls_DynamicList : UserControl
             {
                 if (c is HyperLink)
                 {
-                    var currentLink = (HyperLink) c;
+                    var currentLink = (HyperLink)c;
                     if ((!string.IsNullOrEmpty(Request.Url.AbsolutePath)) && (!string.IsNullOrEmpty(Request.Url.Query)))
                     {
                         if (Request.Url.AbsolutePath != "/Lists.aspx")
@@ -243,4 +244,61 @@ public partial class UserControls_DynamicList : UserControl
     }
 
     #endregion
+
+    protected string GetAttachments(string id)
+    {
+        var stringBuilder = new StringBuilder();
+        try
+        {
+            var listDataId = Convert.ToInt32(id);
+            var listData = _entities.ListData.FirstOrDefault(p => p.Id == listDataId);
+            if (listData != null)
+            {
+                var listDataAttachments = _entities.ListDataAttachments.Where(p => p.ListDataId == listData.Id).ToList();
+                if (listDataAttachments.Count > 0)
+                {
+
+                    foreach (var attachment in listDataAttachments)
+                    {
+                        var fileType = attachment.FileType.Replace(" ", "").ToLower();
+
+                        var attachmntDownloadLink = string.Format("<a href='{0}' title='{1}' download='{1}' ><img alt='{1}' src='{2}' /></a>",
+                                attachment.Attachment.Replace("~/",""), attachment.Title + "." + fileType, "{0}");
+
+                        if (fileType == "jpeg" || fileType == "jpg" || fileType == "bmp" ||
+                            fileType == "png")
+                        {
+                            attachmntDownloadLink = string.Format(attachmntDownloadLink, "App_Themes/mainTheme/images/downloadicons/image.png");
+                        }
+                        else if (fileType == "zip" || fileType == "rar")
+                        {
+                            attachmntDownloadLink = string.Format(attachmntDownloadLink, "App_Themes/mainTheme/images/downloadicons/zip.png");
+                        }
+                        else if (fileType == "doc" || fileType == "docx" || fileType == "xls" ||
+                            fileType == "xlsx" || fileType == "ppt" || fileType == "pptx" ||
+                            fileType == "txt" || fileType == "rtf")
+                        {
+                            attachmntDownloadLink = string.Format(attachmntDownloadLink, "App_Themes/mainTheme/images/downloadicons/doc.png");
+                        }
+                        else if (fileType == "pdf")
+                        {
+                            attachmntDownloadLink = string.Format(attachmntDownloadLink, "App_Themes/mainTheme/images/downloadicons/pdf.png");
+                        }
+                        else
+                        {
+                            attachmntDownloadLink = string.Format(attachmntDownloadLink, "App_Themes/mainTheme/images/downloadicons/none.png");
+                        }
+
+                        stringBuilder.Append(attachmntDownloadLink);
+                    }
+                }
+            }
+        }
+        catch (Exception exception)
+        {
+            ExceptionManager.ManageException(exception);
+        }
+
+        return stringBuilder.ToString();
+    }
 }

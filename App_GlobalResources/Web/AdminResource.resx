@@ -2039,4 +2039,13 @@
   <data name="lbUseFilesName" xml:space="preserve">
     <value>Use files own name.</value>
   </data>
+  <data name="lbAttachments" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="lbNewAttachment" xml:space="preserve">
+    <value>New Attachment</value>
+  </data>
+  <data name="lbAddAttachment" xml:space="preserve">
+    <value>Add Attachment</value>
+  </data>
 </root>

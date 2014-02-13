@@ -147,7 +147,7 @@ public partial class UserControls_base_SiteMapGenerator : UserControl
         }
 
         #endregion
-
+         
         #region SMListDatas
 
         var listDatas = ent.ListData.Where(p => p.State == true).ToList();

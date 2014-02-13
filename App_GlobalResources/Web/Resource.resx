@@ -801,4 +801,10 @@
   <data name="lbRandomField" xml:space="preserve">
     <value>Testimonials;</value>
   </data>
+  <data name="lbAttachments" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="lbDownloadAll" xml:space="preserve">
+    <value>Click to downlaod all.</value>
+  </data>
 </root>

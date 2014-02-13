@@ -142,6 +142,7 @@
     <Content Include="Admin\adminUserControls\UserRoles.ascx" />
     <Content Include="Admin\adminUserControls\Users.ascx" />
     <Content Include="Admin\Content.aspx" />
+    <Content Include="Admin\images\noimage.png" />
     <Content Include="Admin\MultipleFileSelector.aspx" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\EditContent.aspx" />
@@ -323,6 +324,11 @@
     <Content Include="App_Themes\mainTheme\images\default\sprite_x.png" />
     <Content Include="App_Themes\mainTheme\images\default\sprite_y.png" />
     <Content Include="App_Themes\mainTheme\images\dot.png" />
+    <Content Include="App_Themes\mainTheme\images\downloadicons\doc.png" />
+    <Content Include="App_Themes\mainTheme\images\downloadicons\image.png" />
+    <Content Include="App_Themes\mainTheme\images\downloadicons\none.png" />
+    <Content Include="App_Themes\mainTheme\images\downloadicons\pdf.png" />
+    <Content Include="App_Themes\mainTheme\images\downloadicons\zip.png" />
     <Content Include="App_Themes\mainTheme\images\hata.png" />
     <Content Include="App_Themes\mainTheme\images\left.png" />
     <Content Include="App_Themes\mainTheme\images\login\back.jpg" />

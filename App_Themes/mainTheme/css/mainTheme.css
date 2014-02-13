@@ -121,10 +121,20 @@ border-radius: 6px; box-shadow: 0 0 6px #dfdfdf; cursor: default;  float: left; 
 .listitem { float: left; background-color:#fff; -moz-border-radius: 5px; -moz-box-shadow: 0 0 4px #ebebeb; -webkit-border-radius: 5px; -webkit-box-shadow: 0 0 4px #ebebeb; border: 1px solid #ebebeb; border-radius: 5px; box-shadow: 0 0 6px #ebebeb; margin: 0px 0px 15px 0px; width: 97%; padding: 10px; }
 .listimage { float: left; min-height: 50px; max-height: 125px; margin: 0 10px 5px 0; overflow: hidden; width: 150px; }
 .listname { font-size: 15px; font-weight: bold; margin: 0px 10px 5px 0px; text-align: left; }
+.listdate { font-size: 10px; margin: 0px 10px 5px 0px; text-align: left; }
 .listbrief { text-align: left; }
 .listbrief img { max-width: 350px; }
 .listcontinue { float: right; margin: 10px 10px 10px 0px; text-align: right; width: 150px; font-style: italic; }
+.listattachment { float:left; margin: 10px 10px 10px 0px; }
 /* Listeler  */
+/* Liste Detay  */
+.attachments { width: 100%; float:left; margin-top: 15px; }
+.attachments .title{ float:left; font-size: 15px; font-weight: bold; }
+.attachments .items{ float:left; width: 100%; margin:5px 0; }
+.attachments .item { float:left; border:1px solid #ccc; max-width: 100px; max-height: 75px; margin-right: 5px; padding:5px; text-align: center; }
+.attachments .item:hover { background-color: #ddd; }
+.attachments .item img { max-width: 100px; max-height: 100px; vertical-align: middle; }
+/* Liste Detay  */
 
 /* Anket */
 #anket { text-decoration: none; }

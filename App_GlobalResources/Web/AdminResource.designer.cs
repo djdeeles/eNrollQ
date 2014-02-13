@@ -160,6 +160,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Attachment.
+        /// </summary>
+        internal static string lbAddAttachment {
+            get {
+                return ResourceManager.GetString("lbAddAttachment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Dept.
         /// </summary>
         internal static string lbAddDept {
@@ -408,6 +417,15 @@ namespace Resources {
         internal static string lbAnsver {
             get {
                 return ResourceManager.GetString("lbAnsver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attachments.
+        /// </summary>
+        internal static string lbAttachments {
+            get {
+                return ResourceManager.GetString("lbAttachments", resourceCulture);
             }
         }
         
@@ -2946,6 +2964,15 @@ namespace Resources {
         internal static string lbNewAlbum {
             get {
                 return ResourceManager.GetString("lbNewAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Attachment.
+        /// </summary>
+        internal static string lbNewAttachment {
+            get {
+                return ResourceManager.GetString("lbNewAttachment", resourceCulture);
             }
         }
         

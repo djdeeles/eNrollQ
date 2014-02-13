@@ -23,8 +23,7 @@
                                Text='<%#Eval("header") %>' OnDataBinding="HyperLink1_DataBinding"></asp:HyperLink>
             </div>
             <div class="newslistdate">
-                <%#                Convert.ToDateTime(Eval("enterDate")).ToShortDateString() + " " +
-                Convert.ToDateTime(Eval("enterDate")).ToShortTimeString() %>
+                <%#Convert.ToDateTime(Eval("enterDate")).ToShortDateString() %>
             </div>
             <div class="newslistbrief">
                 <%#Eval("brief") %>

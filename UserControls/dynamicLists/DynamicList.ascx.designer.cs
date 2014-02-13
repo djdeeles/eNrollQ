@@ -48,13 +48,13 @@ public partial class UserControls_DynamicList {
     protected global::System.Web.UI.WebControls.Button btOrderbyTitle;
     
     /// <summary>
-    /// btOrderbyUpdatedTime control.
+    /// btOrderbyDate control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Button btOrderbyUpdatedTime;
+    protected global::System.Web.UI.WebControls.Button btOrderbyDate;
     
     /// <summary>
     /// btOrderbyAscDesc control.

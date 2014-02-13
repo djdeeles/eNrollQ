@@ -23,9 +23,14 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_LatestUpdates_AuthAreas", "AuthAreas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.AuthAreas), "LatestUpdates", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.LatestUpdates), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__BannerMan__banne__31B762FC", "BannerLocation", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.BannerLocation), "BannerManagement", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.BannerManagement), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__BannerMan__banne__32AB8735", "Banners", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Banners), "BannerManagement", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.BannerManagement), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_BloodTypes", "BloodTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.BloodTypes), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_Cities_Countries", "Countries", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Countries), "Cities", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.Cities), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_Towns_Cities", "Cities", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Cities), "Towns", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.Towns), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_HomeCities", "Cities", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Cities), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_WorkCities", "Cities", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Cities), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_Towns_Countries", "Countries", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Countries), "Towns", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.Towns), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_HomeCountries", "Countries", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Countries), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_WorkCountries", "Countries", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Countries), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__Customer___Dynam__3493CFA7", "Customer_Dynamic", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Customer_Dynamic), "Customer_Dynamic_Reference", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.Customer_Dynamic_Reference), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__Customer___group__339FAB6E", "Customer_Dynamic_Group", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Customer_Dynamic_Group), "Customer_Dynamic", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.Customer_Dynamic), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__Def_photo__langu__3587F3E0", "System_language", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.System_language), "Def_photoAlbum", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.Def_photoAlbum), true)]
@@ -33,6 +38,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__PhotoAlbu__photo__42E1EEFE", "Def_photoAlbum", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Def_photoAlbum), "PhotoAlbum", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.PhotoAlbum), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__Def_photo__langu__37703C52", "System_language", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.System_language), "Def_photoAlbumCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.Def_photoAlbumCategory), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__Products__Produc__45BE5BA9", "Def_ProductCategories", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Def_ProductCategories), "Products", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.Products), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_DuesPayment_DuesPaymentTypes", "DuesPaymentTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.DuesPaymentTypes), "UserDuesLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserDuesLog), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_EmailReport_Task", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Task), "EmailReport", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.EmailReport), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__EnrollCss__cssAt__395884C4", "EnrollCssAttributes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.EnrollCssAttributes), "EnrollCssAttributeValues", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.EnrollCssAttributeValues), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__EnrollCss__cssVa__3864608B", "EnrollCssAttributeValueTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.EnrollCssAttributeValueTypes), "EnrollCssAttributes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.EnrollCssAttributes), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__EnrollHtm__cssAt__3B40CD36", "EnrollCssAttributes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.EnrollCssAttributes), "EnrollHtmlPanelValues", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.EnrollHtmlPanelValues), true)]
@@ -44,6 +51,9 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__FaqCatego__langu__40058253", "System_language", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.System_language), "FaqCategories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.FaqCategories), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_FormContentOptions_FormContents", "FormContents", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.FormContents), "FormContentOptions", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.FormContentOptions), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_FormContents_Forms", "Forms", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Forms), "FormContents", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.FormContents), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserFoundation_FoundationRelType1", "FoundationRelType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.FoundationRelType), "UserFoundation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserFoundation), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_Jobs", "Jobs", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Jobs), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_JobSectors", "JobSectors", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.JobSectors), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_ListData_Lists", "Lists", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Lists), "ListData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.ListData), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__News__languageId__40F9A68C", "System_language", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.System_language), "News", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.News), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__Notices__languag__41EDCAC5", "System_language", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.System_language), "Notices", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.Notices), true)]
@@ -55,29 +65,20 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__SiteSlide__langu__4A8310C6", "System_language", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.System_language), "SiteSlideShow", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.SiteSlideShow), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__Survey__language__4B7734FF", "System_language", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.System_language), "Survey", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.Survey), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__Survey_Op__surve__4C6B5938", "Survey", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Survey), "Survey_Option", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.Survey_Option), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__Videos__category__4F47C5E3", "VideoCategories", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.VideoCategories), "Videos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.Videos), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_EmailReport_Task", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Task), "EmailReport", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.EmailReport), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_DuesPayment_DuesPaymentTypes", "DuesPaymentTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.DuesPaymentTypes), "UserDuesLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserDuesLog), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserDuesLog_UserDuesLog", "UserDuesLog", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.UserDuesLog), "UserDuesLog1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.UserDuesLog), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_BloodTypes", "BloodTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.BloodTypes), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_HomeCities", "Cities", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Cities), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_WorkCities", "Cities", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Cities), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_HomeCountries", "Countries", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Countries), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_WorkCountries", "Countries", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Countries), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserFoundation_FoundationRelType1", "FoundationRelType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.FoundationRelType), "UserFoundation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserFoundation), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_Jobs", "Jobs", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Jobs), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_JobSectors", "JobSectors", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.JobSectors), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_System_Logs_Users", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Users), "System_Logs", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.System_Logs), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_System_menu_TemplatePages", "TemplatePages", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.TemplatePages), "System_menu", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.System_menu), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_HomeTowns", "Towns", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Towns), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_WorkTowns", "Towns", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.Towns), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_DuesPayment_Users", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Users), "UserDuesLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserDuesLog), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_DuesPayment_Users1", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Users), "UserDuesLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserDuesLog), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserDuesLog_UserDuesLog", "UserDuesLog", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.UserDuesLog), "UserDuesLog1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.UserDuesLog), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserEmails_Users", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Users), "UserEmails", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserEmails), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserFinance_Users", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Users), "UserFinance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserFinance), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserFoundation_FoundationRelType", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Users), "UserFoundation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserFoundation), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_UserGeneral_Users", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Users), "UserGeneral", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserGeneral), true)]
 [assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__UserRole__UserId__4E53A1AA", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.Users), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.UserRole), true)]
-[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_System_menu_TemplatePages", "TemplatePages", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.TemplatePages), "System_menu", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.System_menu), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK__Videos__category__4F47C5E3", "VideoCategories", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(eNroll.App_Data.VideoCategories), "Videos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.Videos), true)]
+[assembly: EdmRelationshipAttribute("Enroll.DataModels", "FK_listDataAttachments_ListData", "ListData", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(eNroll.App_Data.ListData), "ListDataAttachments", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(eNroll.App_Data.ListDataAttachments), true)]
 
 #endregion
 
@@ -128,6 +129,22 @@ namespace eNroll.App_Data
         #endregion
     
         #region ObjectSet Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<MailTemplates> MailTemplates
+        {
+            get
+            {
+                if ((_MailTemplates == null))
+                {
+                    _MailTemplates = base.CreateObjectSet<MailTemplates>("MailTemplates");
+                }
+                return _MailTemplates;
+            }
+        }
+        private ObjectSet<MailTemplates> _MailTemplates;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -244,6 +261,22 @@ namespace eNroll.App_Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Currency> Currency
+        {
+            get
+            {
+                if ((_Currency == null))
+                {
+                    _Currency = base.CreateObjectSet<Currency>("Currency");
+                }
+                return _Currency;
+            }
+        }
+        private ObjectSet<Currency> _Currency;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Customer_Dynamic> Customer_Dynamic
         {
             get
@@ -288,6 +321,22 @@ namespace eNroll.App_Data
             }
         }
         private ObjectSet<Customer_Dynamic_Reference> _Customer_Dynamic_Reference;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Customer_Random> Customer_Random
+        {
+            get
+            {
+                if ((_Customer_Random == null))
+                {
+                    _Customer_Random = base.CreateObjectSet<Customer_Random>("Customer_Random");
+                }
+                return _Customer_Random;
+            }
+        }
+        private ObjectSet<Customer_Random> _Customer_Random;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -356,6 +405,38 @@ namespace eNroll.App_Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<DuesPaymentTypes> DuesPaymentTypes
+        {
+            get
+            {
+                if ((_DuesPaymentTypes == null))
+                {
+                    _DuesPaymentTypes = base.CreateObjectSet<DuesPaymentTypes>("DuesPaymentTypes");
+                }
+                return _DuesPaymentTypes;
+            }
+        }
+        private ObjectSet<DuesPaymentTypes> _DuesPaymentTypes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<DuesTypes> DuesTypes
+        {
+            get
+            {
+                if ((_DuesTypes == null))
+                {
+                    _DuesTypes = base.CreateObjectSet<DuesTypes>("DuesTypes");
+                }
+                return _DuesTypes;
+            }
+        }
+        private ObjectSet<DuesTypes> _DuesTypes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<EmailList> EmailList
         {
             get
@@ -368,6 +449,22 @@ namespace eNroll.App_Data
             }
         }
         private ObjectSet<EmailList> _EmailList;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<EmailReport> EmailReport
+        {
+            get
+            {
+                if ((_EmailReport == null))
+                {
+                    _EmailReport = base.CreateObjectSet<EmailReport>("EmailReport");
+                }
+                return _EmailReport;
+            }
+        }
+        private ObjectSet<EmailReport> _EmailReport;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -596,6 +693,38 @@ namespace eNroll.App_Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<FoundationRelType> FoundationRelType
+        {
+            get
+            {
+                if ((_FoundationRelType == null))
+                {
+                    _FoundationRelType = base.CreateObjectSet<FoundationRelType>("FoundationRelType");
+                }
+                return _FoundationRelType;
+            }
+        }
+        private ObjectSet<FoundationRelType> _FoundationRelType;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<IntroLightBox> IntroLightBox
+        {
+            get
+            {
+                if ((_IntroLightBox == null))
+                {
+                    _IntroLightBox = base.CreateObjectSet<IntroLightBox>("IntroLightBox");
+                }
+                return _IntroLightBox;
+            }
+        }
+        private ObjectSet<IntroLightBox> _IntroLightBox;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<IpFilterList> IpFilterList
         {
             get
@@ -688,22 +817,6 @@ namespace eNroll.App_Data
             }
         }
         private ObjectSet<Lists> _Lists;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<MailTemplates> MailTemplates
-        {
-            get
-            {
-                if ((_MailTemplates == null))
-                {
-                    _MailTemplates = base.CreateObjectSet<MailTemplates>("MailTemplates");
-                }
-                return _MailTemplates;
-            }
-        }
-        private ObjectSet<MailTemplates> _MailTemplates;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -964,6 +1077,54 @@ namespace eNroll.App_Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<System_menu> System_menu
+        {
+            get
+            {
+                if ((_System_menu == null))
+                {
+                    _System_menu = base.CreateObjectSet<System_menu>("System_menu");
+                }
+                return _System_menu;
+            }
+        }
+        private ObjectSet<System_menu> _System_menu;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Task> Task
+        {
+            get
+            {
+                if ((_Task == null))
+                {
+                    _Task = base.CreateObjectSet<Task>("Task");
+                }
+                return _Task;
+            }
+        }
+        private ObjectSet<Task> _Task;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<TaxTypes> TaxTypes
+        {
+            get
+            {
+                if ((_TaxTypes == null))
+                {
+                    _TaxTypes = base.CreateObjectSet<TaxTypes>("TaxTypes");
+                }
+                return _TaxTypes;
+            }
+        }
+        private ObjectSet<TaxTypes> _TaxTypes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<TemplatePages> TemplatePages
         {
             get
@@ -996,118 +1157,6 @@ namespace eNroll.App_Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<UserRole> UserRole
-        {
-            get
-            {
-                if ((_UserRole == null))
-                {
-                    _UserRole = base.CreateObjectSet<UserRole>("UserRole");
-                }
-                return _UserRole;
-            }
-        }
-        private ObjectSet<UserRole> _UserRole;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<VideoCategories> VideoCategories
-        {
-            get
-            {
-                if ((_VideoCategories == null))
-                {
-                    _VideoCategories = base.CreateObjectSet<VideoCategories>("VideoCategories");
-                }
-                return _VideoCategories;
-            }
-        }
-        private ObjectSet<VideoCategories> _VideoCategories;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Videos> Videos
-        {
-            get
-            {
-                if ((_Videos == null))
-                {
-                    _Videos = base.CreateObjectSet<Videos>("Videos");
-                }
-                return _Videos;
-            }
-        }
-        private ObjectSet<Videos> _Videos;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Task> Task
-        {
-            get
-            {
-                if ((_Task == null))
-                {
-                    _Task = base.CreateObjectSet<Task>("Task");
-                }
-                return _Task;
-            }
-        }
-        private ObjectSet<Task> _Task;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<EmailReport> EmailReport
-        {
-            get
-            {
-                if ((_EmailReport == null))
-                {
-                    _EmailReport = base.CreateObjectSet<EmailReport>("EmailReport");
-                }
-                return _EmailReport;
-            }
-        }
-        private ObjectSet<EmailReport> _EmailReport;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<DuesPaymentTypes> DuesPaymentTypes
-        {
-            get
-            {
-                if ((_DuesPaymentTypes == null))
-                {
-                    _DuesPaymentTypes = base.CreateObjectSet<DuesPaymentTypes>("DuesPaymentTypes");
-                }
-                return _DuesPaymentTypes;
-            }
-        }
-        private ObjectSet<DuesPaymentTypes> _DuesPaymentTypes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<DuesTypes> DuesTypes
-        {
-            get
-            {
-                if ((_DuesTypes == null))
-                {
-                    _DuesTypes = base.CreateObjectSet<DuesTypes>("DuesTypes");
-                }
-                return _DuesTypes;
-            }
-        }
-        private ObjectSet<DuesTypes> _DuesTypes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<UserDuesLog> UserDuesLog
         {
             get
@@ -1120,38 +1169,6 @@ namespace eNroll.App_Data
             }
         }
         private ObjectSet<UserDuesLog> _UserDuesLog;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Currency> Currency
-        {
-            get
-            {
-                if ((_Currency == null))
-                {
-                    _Currency = base.CreateObjectSet<Currency>("Currency");
-                }
-                return _Currency;
-            }
-        }
-        private ObjectSet<Currency> _Currency;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<FoundationRelType> FoundationRelType
-        {
-            get
-            {
-                if ((_FoundationRelType == null))
-                {
-                    _FoundationRelType = base.CreateObjectSet<FoundationRelType>("FoundationRelType");
-                }
-                return _FoundationRelType;
-            }
-        }
-        private ObjectSet<FoundationRelType> _FoundationRelType;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1220,6 +1237,22 @@ namespace eNroll.App_Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<UserRole> UserRole
+        {
+            get
+            {
+                if ((_UserRole == null))
+                {
+                    _UserRole = base.CreateObjectSet<UserRole>("UserRole");
+                }
+                return _UserRole;
+            }
+        }
+        private ObjectSet<UserRole> _UserRole;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Users> Users
         {
             get
@@ -1236,70 +1269,62 @@ namespace eNroll.App_Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Customer_Random> Customer_Random
+        public ObjectSet<VideoCategories> VideoCategories
         {
             get
             {
-                if ((_Customer_Random == null))
+                if ((_VideoCategories == null))
                 {
-                    _Customer_Random = base.CreateObjectSet<Customer_Random>("Customer_Random");
+                    _VideoCategories = base.CreateObjectSet<VideoCategories>("VideoCategories");
                 }
-                return _Customer_Random;
+                return _VideoCategories;
             }
         }
-        private ObjectSet<Customer_Random> _Customer_Random;
+        private ObjectSet<VideoCategories> _VideoCategories;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<TaxTypes> TaxTypes
+        public ObjectSet<Videos> Videos
         {
             get
             {
-                if ((_TaxTypes == null))
+                if ((_Videos == null))
                 {
-                    _TaxTypes = base.CreateObjectSet<TaxTypes>("TaxTypes");
+                    _Videos = base.CreateObjectSet<Videos>("Videos");
                 }
-                return _TaxTypes;
+                return _Videos;
             }
         }
-        private ObjectSet<TaxTypes> _TaxTypes;
+        private ObjectSet<Videos> _Videos;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<System_menu> System_menu
+        public ObjectSet<ListDataAttachments> ListDataAttachments
         {
             get
             {
-                if ((_System_menu == null))
+                if ((_ListDataAttachments == null))
                 {
-                    _System_menu = base.CreateObjectSet<System_menu>("System_menu");
+                    _ListDataAttachments = base.CreateObjectSet<ListDataAttachments>("ListDataAttachments");
                 }
-                return _System_menu;
+                return _ListDataAttachments;
             }
         }
-        private ObjectSet<System_menu> _System_menu;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<IntroLightBox> IntroLightBox
-        {
-            get
-            {
-                if ((_IntroLightBox == null))
-                {
-                    _IntroLightBox = base.CreateObjectSet<IntroLightBox>("IntroLightBox");
-                }
-                return _IntroLightBox;
-            }
-        }
-        private ObjectSet<IntroLightBox> _IntroLightBox;
+        private ObjectSet<ListDataAttachments> _ListDataAttachments;
 
         #endregion
 
         #region AddTo Methods
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the MailTemplates EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMailTemplates(MailTemplates mailTemplates)
+        {
+            base.AddObject("MailTemplates", mailTemplates);
+        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the AuthAreas EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -1358,6 +1383,14 @@ namespace eNroll.App_Data
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Currency EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCurrency(Currency currency)
+        {
+            base.AddObject("Currency", currency);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Customer_Dynamic EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToCustomer_Dynamic(Customer_Dynamic customer_Dynamic)
@@ -1379,6 +1412,14 @@ namespace eNroll.App_Data
         public void AddToCustomer_Dynamic_Reference(Customer_Dynamic_Reference customer_Dynamic_Reference)
         {
             base.AddObject("Customer_Dynamic_Reference", customer_Dynamic_Reference);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Customer_Random EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCustomer_Random(Customer_Random customer_Random)
+        {
+            base.AddObject("Customer_Random", customer_Random);
         }
     
         /// <summary>
@@ -1414,11 +1455,35 @@ namespace eNroll.App_Data
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the DuesPaymentTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDuesPaymentTypes(DuesPaymentTypes duesPaymentTypes)
+        {
+            base.AddObject("DuesPaymentTypes", duesPaymentTypes);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the DuesTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDuesTypes(DuesTypes duesTypes)
+        {
+            base.AddObject("DuesTypes", duesTypes);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the EmailList EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToEmailList(EmailList emailList)
         {
             base.AddObject("EmailList", emailList);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the EmailReport EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToEmailReport(EmailReport emailReport)
+        {
+            base.AddObject("EmailReport", emailReport);
         }
     
         /// <summary>
@@ -1534,6 +1599,22 @@ namespace eNroll.App_Data
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the FoundationRelType EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToFoundationRelType(FoundationRelType foundationRelType)
+        {
+            base.AddObject("FoundationRelType", foundationRelType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the IntroLightBox EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToIntroLightBox(IntroLightBox introLightBox)
+        {
+            base.AddObject("IntroLightBox", introLightBox);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the IpFilterList EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToIpFilterList(IpFilterList ipFilterList)
@@ -1579,14 +1660,6 @@ namespace eNroll.App_Data
         public void AddToLists(Lists lists)
         {
             base.AddObject("Lists", lists);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the MailTemplates EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToMailTemplates(MailTemplates mailTemplates)
-        {
-            base.AddObject("MailTemplates", mailTemplates);
         }
     
         /// <summary>
@@ -1718,6 +1791,30 @@ namespace eNroll.App_Data
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the System_menu EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSystem_menu(System_menu system_menu)
+        {
+            base.AddObject("System_menu", system_menu);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Task EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTask(Task task)
+        {
+            base.AddObject("Task", task);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the TaxTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTaxTypes(TaxTypes taxTypes)
+        {
+            base.AddObject("TaxTypes", taxTypes);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the TemplatePages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToTemplatePages(TemplatePages templatePages)
@@ -1734,83 +1831,11 @@ namespace eNroll.App_Data
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the UserRole EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToUserRole(UserRole userRole)
-        {
-            base.AddObject("UserRole", userRole);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the VideoCategories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToVideoCategories(VideoCategories videoCategories)
-        {
-            base.AddObject("VideoCategories", videoCategories);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Videos EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToVideos(Videos videos)
-        {
-            base.AddObject("Videos", videos);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Task EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToTask(Task task)
-        {
-            base.AddObject("Task", task);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the EmailReport EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToEmailReport(EmailReport emailReport)
-        {
-            base.AddObject("EmailReport", emailReport);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the DuesPaymentTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToDuesPaymentTypes(DuesPaymentTypes duesPaymentTypes)
-        {
-            base.AddObject("DuesPaymentTypes", duesPaymentTypes);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the DuesTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToDuesTypes(DuesTypes duesTypes)
-        {
-            base.AddObject("DuesTypes", duesTypes);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the UserDuesLog EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToUserDuesLog(UserDuesLog userDuesLog)
         {
             base.AddObject("UserDuesLog", userDuesLog);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Currency EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCurrency(Currency currency)
-        {
-            base.AddObject("Currency", currency);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the FoundationRelType EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToFoundationRelType(FoundationRelType foundationRelType)
-        {
-            base.AddObject("FoundationRelType", foundationRelType);
         }
     
         /// <summary>
@@ -1846,6 +1871,14 @@ namespace eNroll.App_Data
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the UserRole EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUserRole(UserRole userRole)
+        {
+            base.AddObject("UserRole", userRole);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToUsers(Users users)
@@ -1854,40 +1887,92 @@ namespace eNroll.App_Data
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Customer_Random EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the VideoCategories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToCustomer_Random(Customer_Random customer_Random)
+        public void AddToVideoCategories(VideoCategories videoCategories)
         {
-            base.AddObject("Customer_Random", customer_Random);
+            base.AddObject("VideoCategories", videoCategories);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the TaxTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Videos EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToTaxTypes(TaxTypes taxTypes)
+        public void AddToVideos(Videos videos)
         {
-            base.AddObject("TaxTypes", taxTypes);
+            base.AddObject("Videos", videos);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the System_menu EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the ListDataAttachments EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToSystem_menu(System_menu system_menu)
+        public void AddToListDataAttachments(ListDataAttachments listDataAttachments)
         {
-            base.AddObject("System_menu", system_menu);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the IntroLightBox EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToIntroLightBox(IntroLightBox introLightBox)
-        {
-            base.AddObject("IntroLightBox", introLightBox);
+            base.AddObject("ListDataAttachments", listDataAttachments);
         }
 
         #endregion
 
         #region Function Imports
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="dilId">No Metadata Documentation available.</param>
+        /// <param name="arananKelime">No Metadata Documentation available.</param>
+        public ObjectResult<Customer_Random> SP_Customer_Random(Nullable<global::System.Int32> dilId, global::System.String arananKelime)
+        {
+            ObjectParameter dilIdParameter;
+            if (dilId.HasValue)
+            {
+                dilIdParameter = new ObjectParameter("DilId", dilId);
+            }
+            else
+            {
+                dilIdParameter = new ObjectParameter("DilId", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter arananKelimeParameter;
+            if (arananKelime != null)
+            {
+                arananKelimeParameter = new ObjectParameter("ArananKelime", arananKelime);
+            }
+            else
+            {
+                arananKelimeParameter = new ObjectParameter("ArananKelime", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<Customer_Random>("SP_Customer_Random", dilIdParameter, arananKelimeParameter);
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="dilId">No Metadata Documentation available.</param>
+        /// <param name="arananKelime">No Metadata Documentation available.</param>
+        public ObjectResult<Customer_Random> SP_Customer_Random(Nullable<global::System.Int32> dilId, global::System.String arananKelime, MergeOption mergeOption)
+        {
+            ObjectParameter dilIdParameter;
+            if (dilId.HasValue)
+            {
+                dilIdParameter = new ObjectParameter("DilId", dilId);
+            }
+            else
+            {
+                dilIdParameter = new ObjectParameter("DilId", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter arananKelimeParameter;
+            if (arananKelime != null)
+            {
+                arananKelimeParameter = new ObjectParameter("ArananKelime", arananKelime);
+            }
+            else
+            {
+                arananKelimeParameter = new ObjectParameter("ArananKelime", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<Customer_Random>("SP_Customer_Random", mergeOption, dilIdParameter, arananKelimeParameter);
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2247,66 +2332,6 @@ namespace eNroll.App_Data
             }
     
             return base.ExecuteFunction<System_menu>("SP_System_menuSearch", mergeOption, dilIdParameter, arananKelimeParameter);
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        /// <param name="dilId">No Metadata Documentation available.</param>
-        /// <param name="arananKelime">No Metadata Documentation available.</param>
-        public ObjectResult<Customer_Random> SP_Customer_Random(Nullable<global::System.Int32> dilId, global::System.String arananKelime)
-        {
-            ObjectParameter dilIdParameter;
-            if (dilId.HasValue)
-            {
-                dilIdParameter = new ObjectParameter("DilId", dilId);
-            }
-            else
-            {
-                dilIdParameter = new ObjectParameter("DilId", typeof(global::System.Int32));
-            }
-    
-            ObjectParameter arananKelimeParameter;
-            if (arananKelime != null)
-            {
-                arananKelimeParameter = new ObjectParameter("ArananKelime", arananKelime);
-            }
-            else
-            {
-                arananKelimeParameter = new ObjectParameter("ArananKelime", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<Customer_Random>("SP_Customer_Random", dilIdParameter, arananKelimeParameter);
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        /// <param name="mergeOption"></param>
-        /// <param name="dilId">No Metadata Documentation available.</param>
-        /// <param name="arananKelime">No Metadata Documentation available.</param>
-        public ObjectResult<Customer_Random> SP_Customer_Random(Nullable<global::System.Int32> dilId, global::System.String arananKelime, MergeOption mergeOption)
-        {
-            ObjectParameter dilIdParameter;
-            if (dilId.HasValue)
-            {
-                dilIdParameter = new ObjectParameter("DilId", dilId);
-            }
-            else
-            {
-                dilIdParameter = new ObjectParameter("DilId", typeof(global::System.Int32));
-            }
-    
-            ObjectParameter arananKelimeParameter;
-            if (arananKelime != null)
-            {
-                arananKelimeParameter = new ObjectParameter("ArananKelime", arananKelime);
-            }
-            else
-            {
-                arananKelimeParameter = new ObjectParameter("ArananKelime", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<Customer_Random>("SP_Customer_Random", mergeOption, dilIdParameter, arananKelimeParameter);
         }
 
         #endregion
@@ -6009,17 +6034,17 @@ namespace eNroll.App_Data
         /// <param name="title">Initial value of the Title property.</param>
         /// <param name="date">Initial value of the Date property.</param>
         /// <param name="amount">Initial value of the Amount property.</param>
-        /// <param name="state">Initial value of the State property.</param>
         /// <param name="uniqe">Initial value of the Uniqe property.</param>
-        public static DuesTypes CreateDuesTypes(global::System.Int32 id, global::System.String title, global::System.DateTime date, global::System.Decimal amount, global::System.Boolean state, global::System.Boolean uniqe)
+        /// <param name="state">Initial value of the State property.</param>
+        public static DuesTypes CreateDuesTypes(global::System.Int32 id, global::System.String title, global::System.DateTime date, global::System.Decimal amount, global::System.Boolean uniqe, global::System.Boolean state)
         {
             DuesTypes duesTypes = new DuesTypes();
             duesTypes.Id = id;
             duesTypes.Title = title;
             duesTypes.Date = date;
             duesTypes.Amount = amount;
-            duesTypes.State = state;
             duesTypes.Uniqe = uniqe;
+            duesTypes.State = state;
             return duesTypes;
         }
 
@@ -6155,30 +6180,6 @@ namespace eNroll.App_Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Boolean State
-        {
-            get
-            {
-                return _State;
-            }
-            set
-            {
-                OnStateChanging(value);
-                ReportPropertyChanging("State");
-                _State = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("State");
-                OnStateChanged();
-            }
-        }
-        private global::System.Boolean _State;
-        partial void OnStateChanging(global::System.Boolean value);
-        partial void OnStateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.Boolean Uniqe
         {
             get
@@ -6197,6 +6198,30 @@ namespace eNroll.App_Data
         private global::System.Boolean _Uniqe;
         partial void OnUniqeChanging(global::System.Boolean value);
         partial void OnUniqeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean State
+        {
+            get
+            {
+                return _State;
+            }
+            set
+            {
+                OnStateChanging(value);
+                ReportPropertyChanging("State");
+                _State = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("State");
+                OnStateChanged();
+            }
+        }
+        private global::System.Boolean _State;
+        partial void OnStateChanging(global::System.Boolean value);
+        partial void OnStateChanged();
 
         #endregion
 
@@ -10867,14 +10892,16 @@ namespace eNroll.App_Data
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="listId">Initial value of the ListId property.</param>
         /// <param name="languageId">Initial value of the LanguageId property.</param>
+        /// <param name="date">Initial value of the Date property.</param>
         /// <param name="createdTime">Initial value of the CreatedTime property.</param>
         /// <param name="updatedTime">Initial value of the UpdatedTime property.</param>
-        public static ListData CreateListData(global::System.Int32 id, global::System.Int32 listId, global::System.Int32 languageId, global::System.DateTime createdTime, global::System.DateTime updatedTime)
+        public static ListData CreateListData(global::System.Int32 id, global::System.Int32 listId, global::System.Int32 languageId, global::System.DateTime date, global::System.DateTime createdTime, global::System.DateTime updatedTime)
         {
             ListData listData = new ListData();
             listData.Id = id;
             listData.ListId = listId;
             listData.LanguageId = languageId;
+            listData.Date = date;
             listData.CreatedTime = createdTime;
             listData.UpdatedTime = updatedTime;
             return listData;
@@ -11108,6 +11135,30 @@ namespace eNroll.App_Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.DateTime CreatedTime
         {
             get
@@ -11190,6 +11241,305 @@ namespace eNroll.App_Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Lists>("Enroll.DataModels.FK_ListData_Lists", "Lists", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_listDataAttachments_ListData", "ListDataAttachments")]
+        public EntityCollection<ListDataAttachments> ListDataAttachments
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ListDataAttachments>("Enroll.DataModels.FK_listDataAttachments_ListData", "ListDataAttachments");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ListDataAttachments>("Enroll.DataModels.FK_listDataAttachments_ListData", "ListDataAttachments", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Enroll.DataModels", Name="ListDataAttachments")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ListDataAttachments : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ListDataAttachments object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="listDataId">Initial value of the ListDataId property.</param>
+        /// <param name="attachment">Initial value of the Attachment property.</param>
+        /// <param name="createdTime">Initial value of the CreatedTime property.</param>
+        /// <param name="updatedTime">Initial value of the UpdatedTime property.</param>
+        /// <param name="fileType">Initial value of the FileType property.</param>
+        public static ListDataAttachments CreateListDataAttachments(global::System.Int32 id, global::System.Int32 listDataId, global::System.String attachment, global::System.DateTime createdTime, global::System.DateTime updatedTime, global::System.String fileType)
+        {
+            ListDataAttachments listDataAttachments = new ListDataAttachments();
+            listDataAttachments.Id = id;
+            listDataAttachments.ListDataId = listDataId;
+            listDataAttachments.Attachment = attachment;
+            listDataAttachments.CreatedTime = createdTime;
+            listDataAttachments.UpdatedTime = updatedTime;
+            listDataAttachments.FileType = fileType;
+            return listDataAttachments;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ListDataId
+        {
+            get
+            {
+                return _ListDataId;
+            }
+            set
+            {
+                OnListDataIdChanging(value);
+                ReportPropertyChanging("ListDataId");
+                _ListDataId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ListDataId");
+                OnListDataIdChanged();
+            }
+        }
+        private global::System.Int32 _ListDataId;
+        partial void OnListDataIdChanging(global::System.Int32 value);
+        partial void OnListDataIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Attachment
+        {
+            get
+            {
+                return _Attachment;
+            }
+            set
+            {
+                OnAttachmentChanging(value);
+                ReportPropertyChanging("Attachment");
+                _Attachment = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Attachment");
+                OnAttachmentChanged();
+            }
+        }
+        private global::System.String _Attachment;
+        partial void OnAttachmentChanging(global::System.String value);
+        partial void OnAttachmentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Thumbnail
+        {
+            get
+            {
+                return _Thumbnail;
+            }
+            set
+            {
+                OnThumbnailChanging(value);
+                ReportPropertyChanging("Thumbnail");
+                _Thumbnail = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Thumbnail");
+                OnThumbnailChanged();
+            }
+        }
+        private global::System.String _Thumbnail;
+        partial void OnThumbnailChanging(global::System.String value);
+        partial void OnThumbnailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime CreatedTime
+        {
+            get
+            {
+                return _CreatedTime;
+            }
+            set
+            {
+                OnCreatedTimeChanging(value);
+                ReportPropertyChanging("CreatedTime");
+                _CreatedTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedTime");
+                OnCreatedTimeChanged();
+            }
+        }
+        private global::System.DateTime _CreatedTime;
+        partial void OnCreatedTimeChanging(global::System.DateTime value);
+        partial void OnCreatedTimeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime UpdatedTime
+        {
+            get
+            {
+                return _UpdatedTime;
+            }
+            set
+            {
+                OnUpdatedTimeChanging(value);
+                ReportPropertyChanging("UpdatedTime");
+                _UpdatedTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UpdatedTime");
+                OnUpdatedTimeChanged();
+            }
+        }
+        private global::System.DateTime _UpdatedTime;
+        partial void OnUpdatedTimeChanging(global::System.DateTime value);
+        partial void OnUpdatedTimeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String FileType
+        {
+            get
+            {
+                return _FileType;
+            }
+            set
+            {
+                OnFileTypeChanging(value);
+                ReportPropertyChanging("FileType");
+                _FileType = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FileType");
+                OnFileTypeChanged();
+            }
+        }
+        private global::System.String _FileType;
+        partial void OnFileTypeChanging(global::System.String value);
+        partial void OnFileTypeChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_listDataAttachments_ListData", "ListData")]
+        public ListData ListData
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ListData>("Enroll.DataModels.FK_listDataAttachments_ListData", "ListData").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ListData>("Enroll.DataModels.FK_listDataAttachments_ListData", "ListData").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<ListData> ListDataReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ListData>("Enroll.DataModels.FK_listDataAttachments_ListData", "ListData");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ListData>("Enroll.DataModels.FK_listDataAttachments_ListData", "ListData", value);
                 }
             }
         }
@@ -12547,6 +12897,30 @@ namespace eNroll.App_Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean mainPhoto
+        {
+            get
+            {
+                return _mainPhoto;
+            }
+            set
+            {
+                OnmainPhotoChanging(value);
+                ReportPropertyChanging("mainPhoto");
+                _mainPhoto = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("mainPhoto");
+                OnmainPhotoChanged();
+            }
+        }
+        private global::System.Boolean _mainPhoto;
+        partial void OnmainPhotoChanging(global::System.Boolean value);
+        partial void OnmainPhotoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public Nullable<global::System.DateTime> CreatedTime
@@ -12615,30 +12989,6 @@ namespace eNroll.App_Data
         private Nullable<global::System.Boolean> _State;
         partial void OnStateChanging(Nullable<global::System.Boolean> value);
         partial void OnStateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean mainPhoto
-        {
-            get
-            {
-                return _mainPhoto;
-            }
-            set
-            {
-                OnmainPhotoChanging(value);
-                ReportPropertyChanging("mainPhoto");
-                _mainPhoto = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("mainPhoto");
-                OnmainPhotoChanged();
-            }
-        }
-        private global::System.Boolean _mainPhoto;
-        partial void OnmainPhotoChanging(global::System.Boolean value);
-        partial void OnmainPhotoChanged();
 
         #endregion
 
@@ -17635,6 +17985,33 @@ namespace eNroll.App_Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String name
@@ -17679,33 +18056,6 @@ namespace eNroll.App_Data
         private global::System.String _Details;
         partial void OnDetailsChanging(global::System.String value);
         partial void OnDetailsChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 id
-        {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                if (_id != value)
-                {
-                    OnidChanging(value);
-                    ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id");
-                    OnidChanged();
-                }
-            }
-        }
-        private global::System.Int32 _id;
-        partial void OnidChanging(global::System.Int32 value);
-        partial void OnidChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -18446,82 +18796,6 @@ namespace eNroll.App_Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_UserDuesLog_UserDuesLog", "UserDuesLog1")]
-        public UserDuesLog UserDuesLog1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog1").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog1").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<UserDuesLog> UserDuesLog1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog1");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog1", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_UserDuesLog_UserDuesLog", "UserDuesLog")]
-        public UserDuesLog UserDuesLog2
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<UserDuesLog> UserDuesLog2Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_DuesPayment_Users", "Users")]
         public Users Users
         {
@@ -18588,6 +18862,82 @@ namespace eNroll.App_Data
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Users>("Enroll.DataModels.FK_DuesPayment_Users1", "Users", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_UserDuesLog_UserDuesLog", "UserDuesLog1")]
+        public UserDuesLog UserDuesLog1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog1").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog1").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<UserDuesLog> UserDuesLog1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog1", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Enroll.DataModels", "FK_UserDuesLog_UserDuesLog", "UserDuesLog")]
+        public UserDuesLog UserDuesLog2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<UserDuesLog> UserDuesLog2Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserDuesLog>("Enroll.DataModels.FK_UserDuesLog_UserDuesLog", "UserDuesLog", value);
                 }
             }
         }

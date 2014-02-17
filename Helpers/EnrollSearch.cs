@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Web;
 using Resources;
 using eNroll.App_Data;
 
@@ -53,15 +54,15 @@ namespace Enroll.WebParts
         public static List<Search> GetSearchList(string ArananKelime)
         {
             var ent = new Entities();
-            SearchList = new List<Search>();
-            int DilId = EnrollContext.Current.WorkingLanguage.LanguageId;
-            var menuResult = ent.SP_System_menuSearch(DilId, ArananKelime).ToList();
-            var newsResult = ent.SP_NewsSearch(DilId, ArananKelime).ToList();
-            var noticesResult = ent.SP_NoticesSearch(DilId, ArananKelime).ToList();
-            var eventResult = ent.SP_EventsSearch(DilId, ArananKelime).ToList();
-            var productResult = ent.SP_ProductsSearch(DilId, ArananKelime).ToList();
-            var dynamicListResult = ent.SP_ListDataSearch(DilId, ArananKelime).ToList();
-            var customerRandomResult = ent.SP_Customer_Random(DilId, ArananKelime).ToList();
+            SearchList = new List<Search>(); 
+            var dilId = EnrollContext.Current.WorkingLanguage.LanguageId;
+            var menuResult = ent.SP_System_menuSearch(dilId, ArananKelime).ToList();
+            var newsResult = ent.SP_NewsSearch(dilId, ArananKelime).ToList();
+            var noticesResult = ent.SP_NoticesSearch(dilId, ArananKelime).ToList();
+            var eventResult = ent.SP_EventsSearch(dilId, ArananKelime).ToList();
+            var productResult = ent.SP_ProductsSearch(dilId, ArananKelime).ToList();
+            var dynamicListResult = ent.SP_ListDataSearch(dilId, ArananKelime).ToList();
+            var customerRandomResult = ent.SP_Customer_Random(dilId, ArananKelime).ToList();
             foreach (System_menu m in menuResult)
             {
                 string details = HtmlRemoval.StripTagsRegexCompiled(m.Details);

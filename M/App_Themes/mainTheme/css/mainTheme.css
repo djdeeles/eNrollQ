@@ -34,6 +34,15 @@ background-color: #ededed; -moz-border-radius: 5px; -webkit-border-radius: 5px; 
 .listbrief { text-align: left;  font-size: 1em; font-weight: normal; }
 /* İçerik Listeleme */
 
+/* Eklentiler  */
+.attachments { width: 100%; margin-top: 15px; }
+.attachments .title{ width: 100%; font-size: 1.5em; font-weight: bold; }
+.attachments .items{ width: 100%; margin:5px 0; display:table;}
+.attachments .item { float:left; border:1px solid #ccc; max-width: 150px; max-height: 100px; margin-right: 5px; padding:5px; text-align: center; }
+.attachments .item:hover { background-color: #ddd; }
+.attachments .item img { max-width: 150px; max-height: 100px; vertical-align: middle; }
+/* Liste Detay  */
+
 /* Galeri */
 .gallery { list-style: none; padding: 0; margin: 0; }
 .gallery:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }

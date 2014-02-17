@@ -209,6 +209,8 @@
                                 <%= item.Name %></option>
                     <% }
                        }%>
+                    <option value="[DynamicListMainPage[">
+                        <%= AdminResource.lbLatestLists %></option>
                     <% if (LList != null)
                        {
                            foreach (var item in LList)

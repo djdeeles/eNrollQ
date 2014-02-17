@@ -2048,4 +2048,7 @@
   <data name="lbAddAttachment" xml:space="preserve">
     <value>Eklenti Ekle</value>
   </data>
+  <data name="lbLatestLists" xml:space="preserve">
+    <value>En güncel liste içeriği</value>
+  </data>
 </root>

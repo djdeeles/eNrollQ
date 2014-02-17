@@ -34,8 +34,7 @@ public partial class UserControls_haber_MansetScroller : UserControl
                                           imgUrl, UrlMapping.AltCevir(mansetHaber.header)) +
                                       string.Format(
                                           "<span class='mansetheader'>{0}</span><span class='mansetdate'>{1}</span>",
-                                          mansetHaber.header, mansetHaber.enterDate.Value.ToShortDateString() + " " +
-                                                              mansetHaber.enterDate.Value.ToShortTimeString()) +
+                                          mansetHaber.header, mansetHaber.enterDate.Value.ToShortDateString()) +
                                       string.Format("<p class='mansetsummery'>{0}",
                                                     HtmlRemoval.StripTagsRegexCompiled(mansetHaber.brief)) +
                                       string.Format(

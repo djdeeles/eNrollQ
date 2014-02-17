@@ -28,6 +28,7 @@ public partial class UserControls_DynamicListDetail : UserControl
                     Response.Redirect("~/404.aspx");
                 header = lData.Title;
                 lblBaslik.Text = header;
+                lbDate.Text = lData.Date.ToShortDateString();
                 lblYazi.Text = lData.Detail;
                 if (!String.IsNullOrEmpty(lData.Image))
                 {
@@ -37,81 +38,9 @@ public partial class UserControls_DynamicListDetail : UserControl
                 {
                     Image1.Visible = false;
                 }
+                 
+                GenerateDownloadAttachmentsHtml();
 
-                var stringBuilder = new StringBuilder();
-                var listDataAttachmentsImages = ent.ListDataAttachments.Where(p => p.ListDataId == ListDataId &&
-                    (p.FileType == "jpeg" || p.FileType == "jpg" || p.FileType == "bmp" || p.FileType == "png")).ToList();
-                if (listDataAttachmentsImages.Count > 0)
-                {
-                    stringBuilder.AppendFormat("<span class='title'>{0}</span><span class='items'>",
-                                               Resources.Resource.lbAttachments);
-                    lbDownloadAll.Text = Resources.Resource.lbDownloadAll;
-                    foreach (var attachment in listDataAttachmentsImages)
-                    {
-                        var fileType = attachment.FileType.Replace(" ", "").ToLower();
-
-                        var attachmntDownloadLink = string.Format("<a href='{0}' title='{1}' download='{1}' >" +
-                            "<span class='item'><img alt='{1}' src='{2}' /></span></a>",
-                            attachment.Attachment.Replace("~/", ""),
-                            attachment.Title + "." + fileType, attachment.Thumbnail.Replace("~/", ""));
-
-                        stringBuilder.Append(attachmntDownloadLink);
-                    }
-                }
-
-                var listDataAttachmentsOther = ent.ListDataAttachments.Where(p => p.ListDataId == ListDataId &&
-                    p.FileType != "jpeg" && p.FileType != "jpg" && p.FileType != "bmp" && p.FileType != "png").ToList();
-                if (listDataAttachmentsOther.Count > 0)
-                {
-                    if (listDataAttachmentsImages.Count == 0)
-                    {
-                        stringBuilder.AppendFormat("<span class='title'>{0}</span><span class='items'>",
-                                               Resources.Resource.lbAttachments);
-                    }
-
-                    lbDownloadAll.Text = Resources.Resource.lbDownloadAll;
-                    foreach (var attachment in listDataAttachmentsOther)
-                    {
-                        var fileType = attachment.FileType.Replace(" ", "").ToLower();
-
-                        var attachmntDownloadLink = string.Format("<a href='{0}' title='{1}' download='{1}' >" +
-                                                                  "<span class='item'><img alt='{1}' src='{2}' /></span>" +
-                                                                  "</a>",
-                                                                  attachment.Attachment.Replace("~/", ""),
-                                                                  attachment.Title + "." + fileType, "{0}");
-
-                        if (fileType == "zip" || fileType == "rar")
-                        {
-                            attachmntDownloadLink = string.Format(attachmntDownloadLink, "App_Themes/mainTheme/images/downloadicons/zip.png");
-                        }
-                        else if (fileType == "doc" || fileType == "docx" || fileType == "xls" ||
-                            fileType == "xlsx" || fileType == "ppt" || fileType == "pptx" ||
-                            fileType == "txt" || fileType == "rtf")
-                        {
-                            attachmntDownloadLink = string.Format(attachmntDownloadLink, "App_Themes/mainTheme/images/downloadicons/doc.png");
-                        }
-                        else if (fileType == "pdf")
-                        {
-                            attachmntDownloadLink = string.Format(attachmntDownloadLink, "App_Themes/mainTheme/images/downloadicons/pdf.png");
-                        }
-                        else
-                        {
-                            attachmntDownloadLink = string.Format(attachmntDownloadLink, "App_Themes/mainTheme/images/downloadicons/none.png");
-                        }
-
-                        stringBuilder.Append(attachmntDownloadLink);
-                    }
-                }
-
-                if (listDataAttachmentsImages.Count != 0 && listDataAttachmentsOther.Count != 0)
-                {
-                    stringBuilder.Append("</span><br/>");
-                    ltAttachments.Text = stringBuilder.ToString();
-                }
-                else
-                {
-                    lbDownloadAll.Visible = false;
-                }
             }
 
             int lang = EnrollContext.Current.WorkingLanguage.LanguageId;
@@ -125,6 +54,84 @@ public partial class UserControls_DynamicListDetail : UserControl
             hfPageIndex.Value = Session["listItemPageIndex"].ToString();
         }
         else hfPageIndex.Value = "1";
+    }
+
+    private void GenerateDownloadAttachmentsHtml()
+    {
+        var stringBuilder = new StringBuilder();
+        var listDataAttachmentsImages = _entities.ListDataAttachments.Where(p => p.ListDataId == ListDataId &&
+            (p.FileType == "jpeg" || p.FileType == "jpg" || p.FileType == "bmp" || p.FileType == "png")).ToList();
+        if (listDataAttachmentsImages.Count > 0)
+        {
+            stringBuilder.AppendFormat("<span class='title'>{0}</span><span class='items'>",
+                                       Resources.Resource.lbAttachments);
+            lbDownloadAll.Text = Resources.Resource.lbDownloadAll;
+            foreach (var attachment in listDataAttachmentsImages)
+            {
+                var fileType = attachment.FileType.Replace(" ", "").ToLower();
+
+                var attachmntDownloadLink = string.Format("<a href='{0}' title='{1}' download='{1}' >" +
+                    "<span class='item'><img alt='{1}' src='{2}' /></span></a>",
+                    attachment.Attachment.Replace("~/", ""),
+                    attachment.Title + "." + fileType, attachment.Thumbnail.Replace("~/", ""));
+
+                stringBuilder.Append(attachmntDownloadLink);
+            }
+        }
+
+        var listDataAttachmentsOther = _entities.ListDataAttachments.Where(p => p.ListDataId == ListDataId &&
+            p.FileType != "jpeg" && p.FileType != "jpg" && p.FileType != "bmp" && p.FileType != "png").ToList();
+        if (listDataAttachmentsOther.Count > 0)
+        {
+            if (listDataAttachmentsImages.Count == 0)
+            {
+                stringBuilder.AppendFormat("<span class='title'>{0}</span><span class='items'>",
+                                       Resources.Resource.lbAttachments);
+            }
+
+            lbDownloadAll.Text = Resources.Resource.lbDownloadAll;
+            foreach (var attachment in listDataAttachmentsOther)
+            {
+                var fileType = attachment.FileType.Replace(" ", "").ToLower();
+
+                var attachmntDownloadLink = string.Format("<a href='{0}' title='{1}' download='{1}' >" +
+                                                          "<span class='item'><img alt='{1}' src='{2}' /></span>" +
+                                                          "</a>",
+                                                          attachment.Attachment.Replace("~/", ""),
+                                                          attachment.Title + "." + fileType, "{0}");
+
+                if (fileType == "zip" || fileType == "rar")
+                {
+                    attachmntDownloadLink = string.Format(attachmntDownloadLink, "App_Themes/mainTheme/images/downloadicons/zip.png");
+                }
+                else if (fileType == "doc" || fileType == "docx" || fileType == "xls" ||
+                    fileType == "xlsx" || fileType == "ppt" || fileType == "pptx" ||
+                    fileType == "txt" || fileType == "rtf")
+                {
+                    attachmntDownloadLink = string.Format(attachmntDownloadLink, "App_Themes/mainTheme/images/downloadicons/doc.png");
+                }
+                else if (fileType == "pdf")
+                {
+                    attachmntDownloadLink = string.Format(attachmntDownloadLink, "App_Themes/mainTheme/images/downloadicons/pdf.png");
+                }
+                else
+                {
+                    attachmntDownloadLink = string.Format(attachmntDownloadLink, "App_Themes/mainTheme/images/downloadicons/none.png");
+                }
+
+                stringBuilder.Append(attachmntDownloadLink);
+            }
+        }
+
+        if (listDataAttachmentsImages.Count != 0 || listDataAttachmentsOther.Count != 0)
+        {
+            stringBuilder.Append("</span><br/>");
+            ltAttachments.Text = stringBuilder.ToString();
+        }
+        else
+        {
+            lbDownloadAll.Visible = false;
+        }
     }
 
     protected void btnDownloadAll_OnClick(object sender, EventArgs e)

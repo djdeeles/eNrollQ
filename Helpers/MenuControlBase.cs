@@ -172,6 +172,10 @@ namespace Enroll.BaseObjects
                             dynamicForm.FormId = Convert.ToInt32(menuData[1]);
                         }
                         PlaceHolder1.Controls.Add(dynamicForm);
+                        break;			
+                    case "DynamicListMainPage":
+                        Control tempDynamicListMainPage = LoadControl("~/UserControls/dynamicLists/DynamicListMainPage.ascx");
+                        PlaceHolder1.Controls.Add(tempDynamicListMainPage);
                         break;
                     case "List":
                         var dynamicList =
@@ -320,6 +324,10 @@ namespace Enroll.BaseObjects
                             dynamicForm.FormId = Convert.ToInt32(menuPlace[1]);
                         }
                         PlaceHolder1.Controls.Add(dynamicForm);
+                        break;			
+                    case "DynamicListMainPage":
+                        Control DynamicListMainPage = LoadControl("~/m/UserControls/dynamicLists/DynamicListMainPage.ascx");
+                        PlaceHolder1.Controls.Add(DynamicListMainPage);
                         break;
                     case "List":
                         var dynamicList =

@@ -2048,4 +2048,7 @@
   <data name="lbAddAttachment" xml:space="preserve">
     <value>Add Attachment</value>
   </data>
+  <data name="lbLatestLists" xml:space="preserve">
+    <value>Latest List Content</value>
+  </data>
 </root>

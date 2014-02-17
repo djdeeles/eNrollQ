@@ -273,16 +273,16 @@
                                         <td>:
                                         </td>
                                         <td>
-                                            <telerik:RadTextBox ID="txtImage" runat="server" Width="400px"/>
-                                            <asp:Button ID="btnImageSelect" runat="server" CssClass="ImageSelectBtn" OnClientClick="OpenFileExplorerDialog(); return false;" />
+                                            <telerik:RadTextBox ID="txtImage" runat="server" Width="400px" />
+                                            <asp:Button ID="btnImageSelect" runat="server" CssClass="ImageSelectBtn" OnClientClick="OpenFileExplorerDialogAddImage(); return false;" />
                                             <script type="text/javascript">
-                                                function OpenFileExplorerDialog() {
+                                                function OpenFileExplorerDialogAddImage() {
                                                     selectedFile = $find("<%= txtImage.ClientID %>");
                                                     var wnd = $find("<%= ExplorerWindow.ClientID %>");
                                                     wnd.show();
                                                 }
                                             </script>
-                                        </td> 
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td valign="top">
@@ -291,7 +291,7 @@
                                         <td valign="top">:
                                         </td>
                                         <td>
-                                            <uc1:Rtb ID="Rtb" runat="server" /> 
+                                            <uc1:Rtb ID="Rtb" runat="server" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -301,7 +301,7 @@
                                         <td valign="top">:
                                         </td>
                                         <td>
-                                             <b>Eklenti ekleme işlemini, liste elemanını ekledikten sonra, liste elemanı düzenleme sayfasından yapabilirsiniz.</b>
+                                            <b>Eklenti ekleme işlemini, liste elemanını ekledikten sonra, liste elemanı düzenleme sayfasından yapabilirsiniz.</b>
                                         </td>
                                     </tr>
                                     <tr>
@@ -317,7 +317,7 @@
                                     <tr>
                                         <td></td>
                                         <td></td>
-                                        <td> 
+                                        <td>
                                             <asp:Button ID="BtnListDataSave" runat="server" CssClass="SaveCancelBtn" OnClick="BtnListDataSaveClick"
                                                 ValidationGroup="vg1" />
                                             <asp:Button ID="BtnListDataCancel" runat="server" CssClass="SaveCancelBtn" OnClick="BtnListDataCancelClick" />
@@ -376,10 +376,10 @@
                                         <td>:
                                         </td>
                                         <td>
-                                            <telerik:RadTextBox ID="txtImageEdit" runat="server" Width="400px"/> 
-                                            <asp:Button ID="btnImageSelectEdit" runat="server" CssClass="ImageSelectBtn" OnClientClick="OpenFileExplorerDialog(); return false;" />
+                                            <telerik:RadTextBox ID="txtImageEdit" runat="server" Width="400px" />
+                                            <asp:Button ID="btnImageSelectEdit" runat="server" CssClass="ImageSelectBtn" OnClientClick="OpenFileExplorerDialog1(); return false;" />
                                             <script type="text/javascript">
-                                                function OpenFileExplorerDialog() {
+                                                function OpenFileExplorerDialog1() {
                                                     selectedFile = $find("<%= txtImageEdit.ClientID %>");
                                                     var wnd = $find("<%= ExplorerWindow.ClientID %>");
                                                     wnd.show();
@@ -433,10 +433,16 @@
                                             <telerik:RadTextBox ID="tbAtthcmtTitle" runat="server" Width="400px" />
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="tbAtthcmtTitle"
                                                 ForeColor="Red" ValidationGroup="groupImg" ErrorMessage="!" />
-                                            <asp:Button ID="btnNewAtthcmnt" runat="server" CssClass="ImageSelectBtn" OnClientClick="OpenFileExplorerDialog(); return false;" />
+                                            <asp:Button ID="btnNewAtthcmnt" runat="server" CssClass="ImageSelectBtn" OnClientClick="OpenFileExplorerDialog2(); return false;" />
                                             <asp:Button ID="btnAddAtthcmnt" ValidationGroup="groupImg" runat="server" CssClass="SaveCancelBtn"
                                                 OnClick="BtnAddAtthcmntClick" />
-
+                                            <script type="text/javascript">
+                                                function OpenFileExplorerDialog2() {
+                                                    selectedFile = $find("<%= tbAtthcmtTitle.ClientID %>");
+                                                    var wnd = $find("<%= ExplorerWindow.ClientID %>");
+                                                    wnd.show();
+                                                }
+                                            </script>
                                         </td>
                                     </tr>
                                     <tr>
@@ -447,28 +453,16 @@
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="cbListDataStateEdit" Checked="False" runat="server" />
-                                        </td> 
+                                        </td>
                                     </tr>
-                                    <tr> 
+                                    <tr>
                                         <td colspan="3">
                                             <asp:Button ID="BtnListDataEditSave" runat="server" CssClass="SaveCancelBtn" OnClick="BtnListDataEditSaveClick"
                                                 ValidationGroup="vg2" />
                                             <asp:Button ID="BtnListDataEditCancel" runat="server" CssClass="SaveCancelBtn" OnClick="BtnListDataEditCancelClick" />
                                         </td>
                                     </tr>
-                                </table>
-
-                                <telerik:RadWindow runat="server" Width="600px" Height="600px" VisibleStatusbar="false"
-                                    ShowContentDuringLoad="false" NavigateUrl="../FileSelector.aspx" ID="ExplorerWindow2"
-                                    Modal="true" Behaviors="Close,Move,Resize,Maximize">
-                                </telerik:RadWindow>
-                                <script type="text/javascript">
-                                    function OpenFileExplorerDialog() {
-                                        selectedFile = $find("<%= tbAtthcmtTitle.ClientID %>");
-                                        var wnd = $find("<%= ExplorerWindow2.ClientID %>");
-                                        wnd.show();
-                                    }
-                                </script>
+                                </table> 
                             </asp:Panel>
                             <asp:HiddenField ID="HiddenField1" runat="server" />
                         </asp:View>
@@ -514,7 +508,7 @@
                             </asp:BoundField>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                      <%#Convert.ToDateTime(Eval("Date").ToString()).ToShortDateString() %>
+                                    <%#Convert.ToDateTime(Eval("Date").ToString()).ToShortDateString() %>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" Width="50px" />
                                 <ItemStyle Width="50px" HorizontalAlign="Left" />

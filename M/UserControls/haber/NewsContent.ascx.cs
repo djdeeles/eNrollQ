@@ -20,8 +20,7 @@ public partial class M_UserControls_NewsContent : UserControl
                 header = haber.header;
                 if (haber.enterDate != null)
                 {
-                    lbDate.Text = haber.enterDate.Value.ToShortDateString() + " " +
-                                  haber.enterDate.Value.ToShortTimeString();
+                    lbDate.Text = haber.enterDate.Value.ToShortDateString();
                 }
                 lblBaslik.Text = header;
                 lblYazi.Text = haber.details;

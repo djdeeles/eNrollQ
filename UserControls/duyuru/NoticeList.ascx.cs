@@ -15,7 +15,7 @@ public partial class UserControls_duyuru_NoticeList : UserControl
         if (!IsPostBack)
         {
             HiddenField1.Value = EnrollContext.Current.WorkingLanguage.LanguageId.ToString();
-            HiddenField2.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00.000").ToString();
+            HiddenField2.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00.000").ToShortDateString();
 
             int lang = EnrollContext.Current.WorkingLanguage.LanguageId;
             SiteGeneralInfo site = ent.SiteGeneralInfo.FirstOrDefault(p => p.languageId == lang);

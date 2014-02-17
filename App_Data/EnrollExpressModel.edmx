@@ -2345,15 +2345,15 @@
             <Parameter Name="DilId" Mode="In" Type="Int32" />
             <Parameter Name="ArananKelime" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_System_menuSearch" EntitySet="System_menu" ReturnType="Collection(Enroll.DataModels.System_menu)">
-            <Parameter Name="DilId" Mode="In" Type="Int32" />
-            <Parameter Name="ArananKelime" Mode="In" Type="String" />
-          </FunctionImport>
           <EntitySet Name="ListDataAttachments" EntityType="Enroll.DataModels.ListDataAttachments" />
           <AssociationSet Name="FK_listDataAttachments_ListData" Association="Enroll.DataModels.FK_listDataAttachments_ListData">
             <End Role="ListData" EntitySet="ListData" />
             <End Role="ListDataAttachments" EntitySet="ListDataAttachments" />
           </AssociationSet>
+          <FunctionImport Name="SP_System_menuSearch" EntitySet="System_menu" ReturnType="Collection(Enroll.DataModels.System_menu)">
+            <Parameter Name="DilId" Mode="In" Type="Int32" />
+            <Parameter Name="ArananKelime" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="MailTemplates">
           <Key>
@@ -4143,6 +4143,60 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SP_System_menuSearch_Result">
+          <Property Type="Int32" Name="menuId" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="300" />
+          <Property Type="Int32" Name="MasterId" Nullable="true" />
+          <Property Type="String" Name="brief" Nullable="true" />
+          <Property Type="String" Name="Details" Nullable="true" />
+          <Property Type="Int32" Name="menuIndex" Nullable="true" />
+          <Property Type="String" Name="url" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="type" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="location" Nullable="true" />
+          <Property Type="Int32" Name="languageId" Nullable="true" />
+          <Property Type="Boolean" Name="state" Nullable="true" />
+          <Property Type="String" Name="keywords" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="isShowDyna" Nullable="true" />
+          <Property Type="String" Name="dynaDisplayText" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="dynaDisplayType" Nullable="true" />
+          <Property Type="String" Name="masterImage" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="thema" Nullable="true" />
+          <Property Type="Boolean" Name="isShowChildMenus" Nullable="true" />
+          <Property Type="Int32" Name="subMenuShowType" Nullable="true" />
+          <Property Type="Boolean" Name="isHideToMenu" Nullable="true" />
+          <Property Type="Boolean" Name="isHideMenuName" Nullable="true" />
+          <Property Type="String" Name="menuImage" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="menuImageHover" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_System_menuSearch_Result1">
+          <Property Type="Int32" Name="menuId" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="300" />
+          <Property Type="Int32" Name="MasterId" Nullable="true" />
+          <Property Type="String" Name="brief" Nullable="true" />
+          <Property Type="String" Name="Details" Nullable="true" />
+          <Property Type="Int32" Name="menuIndex" Nullable="true" />
+          <Property Type="String" Name="url" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="type" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="location" Nullable="true" />
+          <Property Type="Int32" Name="languageId" Nullable="true" />
+          <Property Type="Boolean" Name="state" Nullable="true" />
+          <Property Type="String" Name="keywords" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="isShowDyna" Nullable="true" />
+          <Property Type="String" Name="dynaDisplayText" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="dynaDisplayType" Nullable="true" />
+          <Property Type="String" Name="masterImage" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="thema" Nullable="true" />
+          <Property Type="Boolean" Name="isShowChildMenus" Nullable="true" />
+          <Property Type="Int32" Name="subMenuShowType" Nullable="true" />
+          <Property Type="Boolean" Name="isHideToMenu" Nullable="true" />
+          <Property Type="Boolean" Name="isHideMenuName" Nullable="true" />
+          <Property Type="String" Name="menuImage" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="menuImageHover" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedTime" Nullable="true" Precision="23" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5141,7 +5195,6 @@
           <FunctionImportMapping FunctionImportName="SP_NewsSearch" FunctionName="Enroll.DataModels.Store.SP_NewsSearch" />
           <FunctionImportMapping FunctionImportName="SP_NoticesSearch" FunctionName="Enroll.DataModels.Store.SP_NoticesSearch" />
           <FunctionImportMapping FunctionImportName="SP_ProductsSearch" FunctionName="Enroll.DataModels.Store.SP_ProductsSearch" />
-          <FunctionImportMapping FunctionImportName="SP_System_menuSearch" FunctionName="Enroll.DataModels.Store.SP_System_menuSearch" />
           <EntitySetMapping Name="ListDataAttachments">
             <EntityTypeMapping TypeName="Enroll.DataModels.ListDataAttachments">
               <MappingFragment StoreEntitySet="ListDataAttachments">
@@ -5156,6 +5209,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_System_menuSearch" FunctionName="Enroll.DataModels.Store.SP_System_menuSearch">
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

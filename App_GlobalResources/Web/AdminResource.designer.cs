@@ -2473,6 +2473,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Latest List Content.
+        /// </summary>
+        internal static string lbLatestLists {
+            get {
+                return ResourceManager.GetString("lbLatestLists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Latest Updates.
         /// </summary>
         internal static string lbLatestUpdates {

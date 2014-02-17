@@ -20,7 +20,7 @@ public partial class UserControls_SearchControl : UserControl
         if ((searchText.Text != string.Empty) ||
             (searchText.Text != Resource.lbSearchInSite || (searchText.Text != null)))
         {
-            string aranacakKelime = EnrollSearch.QueryStringeCevir(searchText.Text);
+            string aranacakKelime = EnrollSearch.QueryStringeCevir(searchText.Text); 
             if (aranacakKelime.Length > 2)
             {
                 Response.Redirect("ara-" + aranacakKelime, false);

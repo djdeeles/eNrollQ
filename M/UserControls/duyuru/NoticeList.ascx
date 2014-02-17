@@ -16,8 +16,7 @@
                             <%#                                        Eval("header") %>
                         </div>
                         <div class="listdate">
-                            <%#                                        Convert.ToDateTime(Eval("startDate")).ToShortDateString() + " " +
-                                        Convert.ToDateTime(Eval("startDate")).ToShortTimeString() %>
+                            <%#                                        Convert.ToDateTime(Eval("startDate")).ToShortDateString()  %>
                         </div>
                         <div class="listbrief">
                             <%#Eval("description") %>

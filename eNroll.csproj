@@ -368,6 +368,7 @@
     <Content Include="M\RandomField.aspx" />
     <Content Include="M\Rss.aspx" />
     <Content Include="M\UserControls\dinamikAlanlar\RandomField.ascx" />
+    <Content Include="M\UserControls\dynamicLists\DynamicListMainPage.ascx" />
     <Content Include="M\UserControls\rss\Rss.ascx" />
     <Content Include="NewMember.aspx" />
     <Content Include="RandomField.aspx" />
@@ -456,6 +457,7 @@
     <Content Include="SiteMap.aspx" />
     <Content Include="SiteMapGenerator.aspx" />
     <Content Include="SSS.aspx" />
+    <Content Include="test.aspx" />
     <Content Include="UserControls\anket\Survey.ascx" />
     <Content Include="UserControls\banner\Banner.ascx" />
     <Content Include="UserControls\banner\Banner2.ascx" />
@@ -493,6 +495,7 @@
     <Content Include="UserControls\duyuru\NoticeContent.ascx" />
     <Content Include="UserControls\duyuru\NoticeList.ascx" />
     <Content Include="UserControls\duyuru\NoticeScroller.ascx" />
+    <Content Include="UserControls\dynamicLists\DynamicListMainPage.ascx" />
     <Content Include="UserControls\ebultenAbonelik\EmailAdd.ascx" />
     <Content Include="UserControls\etkinlik\Calendar.ascx" />
     <Content Include="UserControls\etkinlik\EventList.ascx" />
@@ -1206,6 +1209,13 @@
     <Compile Include="M\UserControls\dinamikAlanlar\RandomField.ascx.designer.cs">
       <DependentUpon>RandomField.ascx</DependentUpon>
     </Compile>
+    <Compile Include="M\UserControls\dynamicLists\DynamicListMainPage.ascx.cs">
+      <DependentUpon>DynamicListMainPage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="M\UserControls\dynamicLists\DynamicListMainPage.ascx.designer.cs">
+      <DependentUpon>DynamicListMainPage.ascx</DependentUpon>
+    </Compile>
     <Compile Include="M\UserControls\rss\Rss.ascx.cs">
       <DependentUpon>Rss.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1805,6 +1815,13 @@
     <Compile Include="SSS.aspx.designer.cs">
       <DependentUpon>SSS.aspx</DependentUpon>
     </Compile>
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\anket\Survey.ascx.cs">
       <DependentUpon>Survey.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2056,6 +2073,13 @@
     </Compile>
     <Compile Include="UserControls\duyuru\NoticeScroller.ascx.designer.cs">
       <DependentUpon>NoticeScroller.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\dynamicLists\DynamicListMainPage.ascx.cs">
+      <DependentUpon>DynamicListMainPage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\dynamicLists\DynamicListMainPage.ascx.designer.cs">
+      <DependentUpon>DynamicListMainPage.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ebultenAbonelik\EmailAdd.ascx.cs">
       <DependentUpon>EmailAdd.ascx</DependentUpon>

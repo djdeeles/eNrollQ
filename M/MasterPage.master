@@ -25,7 +25,7 @@
         <uc4:Analytics_ runat="server" />
     </head>
     <body style="direction: <%= Resources.Resource.PageDirection %>">
-        <form id="form1" runat="server">
+        <form id="form1" runat="server" >
             <telerik:RadScriptManager ID="RadScriptManager_M" ScriptMode="Auto" EnableCdn="false"
                                       runat="server" />
             <div data-role="page">

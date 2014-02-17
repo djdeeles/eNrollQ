@@ -280,7 +280,12 @@ public partial class admin_adminUserControls_ProductManager : UserControl
                 var img = ent.Product_Images.Where("it.Products.productId=" + id);
                 foreach (var item in img)
                 {
+                    var thumbnail = item.Thumbnail;
                     ent.DeleteObject(item);
+                    if (!String.IsNullOrEmpty(thumbnail))
+                    {
+                        ImageHelper.DeleteImage(Server.MapPath("../" + thumbnail.Replace("~/", "")));
+                    }
                 }
 
                 Logger.Add(8, 2, p.ProductId, 2);
@@ -314,7 +319,7 @@ public partial class admin_adminUserControls_ProductManager : UserControl
             DataList1.DataSource = null;
             DataList1.DataBind();
 
-            var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
+            var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
             radEditor.Content = string.Empty;
             CheckBoxActiveEdit.Checked = false;
             CheckBoxVitrinEdit.Checked = false;
@@ -332,7 +337,7 @@ public partial class admin_adminUserControls_ProductManager : UserControl
         txtNameInsert.Text = string.Empty;
         LoadTree(TreeView3Insert);
         MultiView2.SetActiveView(View4);
-        var radEditor = ((RadEditor) Rtb2.FindControl("RadEditor1"));
+        var radEditor = ((RadEditor)Rtb2.FindControl("RadEditor1"));
         radEditor.Content = string.Empty;
         cbActiveInsert.Checked = false;
         cbVitrinInsert.Checked = false;
@@ -347,7 +352,7 @@ public partial class admin_adminUserControls_ProductManager : UserControl
         {
             Products p = ent.Products.First(x => x.ProductId == ProductId);
             TextBoxNameEdit.Text = p.Name;
-            var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
+            var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
             radEditor.Content = p.Description;
             mvKat.SetActiveView(vLabel);
             LabelKategoriEdit.Text = p.Def_ProductCategories.Name;
@@ -361,7 +366,7 @@ public partial class admin_adminUserControls_ProductManager : UserControl
             {
                 TextBoxPriceEdit.Text = p.Price.Value.ToString("N");
             }
-            CheckBoxActiveEdit.Checked = (Boolean) p.State;
+            CheckBoxActiveEdit.Checked = (Boolean)p.State;
             CheckBoxVitrinEdit.Checked = p.Vitrin.Value;
             var rst = from x in ent.Products
                       join i in ent.Product_Images
@@ -398,7 +403,7 @@ public partial class admin_adminUserControls_ProductManager : UserControl
             {
                 var query = from x in ent.Product_Images
                             where x.Products.ProductId == ProductId
-                            select new {x.ProductImageId, x.Thumbnail, x.MainImage};
+                            select new { x.ProductImageId, x.Thumbnail, x.MainImage };
                 DataList1.DataSource = query;
                 DataList1.DataBind();
             }
@@ -443,7 +448,7 @@ public partial class admin_adminUserControls_ProductManager : UserControl
             Products product = ent.Products.First(p => p.ProductId == productId);
             product.languageId = Convert.ToInt32(EnrollAdminContext.Current.DataLanguage.LanguageId);
             product.Name = TextBoxNameEdit.Text;
-            var radEditor = ((RadEditor) Rtb1.FindControl("RadEditor1"));
+            var radEditor = ((RadEditor)Rtb1.FindControl("RadEditor1"));
             product.Description = radEditor.Content;
             product.ProductCategoryId = productCategoryId;
             if (!string.IsNullOrEmpty(TextBoxPriceEdit.Text) && ddlPriceCurrencyEdit.SelectedIndex != 0)
@@ -545,7 +550,7 @@ public partial class admin_adminUserControls_ProductManager : UserControl
                 var product = new Products();
                 var mainPic = new Product_Images();
                 product.Name = txtNameInsert.Text;
-                var radEditor = ((RadEditor) Rtb2.FindControl("RadEditor1"));
+                var radEditor = ((RadEditor)Rtb2.FindControl("RadEditor1"));
                 product.Description = radEditor.Content;
                 product.languageId = Convert.ToInt32(EnrollAdminContext.Current.DataLanguage.LanguageId);
                 product.ProductCategoryId = ProductCategoryId;
@@ -577,7 +582,7 @@ public partial class admin_adminUserControls_ProductManager : UserControl
                     Image i = ImageHelper.ResizeImage(orj, new Size(150, 150));
                     string thumbName = Guid.NewGuid().ToString("N").Substring(1, 8) + ".jpg";
                     string dest = Server.MapPath("../FileManager/thumbnails/" + thumbName);
-                    ImageHelper.SaveJpeg(dest, (Bitmap) i, 75);
+                    ImageHelper.SaveJpeg(dest, (Bitmap)i, 75);
                     mainPic.ProductImage = tbImageText.Text;
                     mainPic.Thumbnail = "~/FileManager/thumbnails/" + thumbName;
                     mainPic.ProductId = product.ProductId;
@@ -656,7 +661,7 @@ public partial class admin_adminUserControls_ProductManager : UserControl
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var myMastDelete = (ImageButton) e.Row.FindControl("btnDeleteProduct");
+                var myMastDelete = (ImageButton)e.Row.FindControl("btnDeleteProduct");
                 myMastDelete.OnClientClick = " return confirm('" + AdminResource.lbDeletingQuestion + "'); ";
             }
         }
@@ -758,9 +763,11 @@ public partial class admin_adminUserControls_ProductManager : UserControl
                 var pimg = ent.Product_Images.Where(x => x.ProductId == urun.ProductId).ToList();
                 foreach (var img in pimg)
                 {
-                    if (!string.IsNullOrWhiteSpace(img.Thumbnail))
-                        ImageHelper.DeleteImage(Server.MapPath(img.Thumbnail.Replace("~", "..")));
+                    var thumbnail = img.Thumbnail;
                     ent.DeleteObject(img);
+                    if (!string.IsNullOrWhiteSpace(thumbnail))
+                        ImageHelper.DeleteImage(Server.MapPath(thumbnail.Replace("~", "..")));
+
                 }
                 ent.DeleteObject(urun);
             }
@@ -820,9 +827,10 @@ public partial class admin_adminUserControls_ProductManager : UserControl
                     var pimg = ent.Product_Images.Where(x => x.ProductId == urun.ProductId).ToList();
                     foreach (var img in pimg)
                     {
-                        if (!string.IsNullOrWhiteSpace(img.Thumbnail))
-                            ImageHelper.DeleteImage(Server.MapPath(img.Thumbnail.Replace("~", "..")));
+                        var thumbnail = img.Thumbnail;
                         ent.DeleteObject(img);
+                        if (!string.IsNullOrWhiteSpace(thumbnail))
+                            ImageHelper.DeleteImage(Server.MapPath(thumbnail.Replace("~", ".."))); 
                     }
                     ent.DeleteObject(urun);
                 }
@@ -901,7 +909,7 @@ public partial class admin_adminUserControls_ProductManager : UserControl
                 Image i = ImageHelper.ResizeImage(orj, new Size(150, 150));
                 string thumbName = Guid.NewGuid().ToString("N").Substring(1, 8) + ".jpg";
                 string dest = Server.MapPath("../FileManager/thumbnails/" + thumbName);
-                ImageHelper.SaveJpeg(dest, (Bitmap) i, 75);
+                ImageHelper.SaveJpeg(dest, (Bitmap)i, 75);
 
                 img.Thumbnail = "~/FileManager/thumbnails/" + thumbName;
                 img.ProductId = p.ProductId;
@@ -926,7 +934,7 @@ public partial class admin_adminUserControls_ProductManager : UserControl
         {
             try
             {
-                var lblid = (ImageButton) sender;
+                var lblid = (ImageButton)sender;
                 int id = Convert.ToInt32(lblid.CommandArgument);
                 Product_Images p = ent.Product_Images.Where(x => x.ProductImageId == id).First();
                 string thumbToDel = "";
@@ -956,7 +964,7 @@ public partial class admin_adminUserControls_ProductManager : UserControl
     {
         try
         {
-            var lb = (LinkButton) sender;
+            var lb = (LinkButton)sender;
             int productId = Convert.ToInt32(HiddenField1ProductIdEdit.Value);
             int id = Convert.ToInt32(lb.CommandArgument);
             var clearMainImage = ent.Product_Images.Where(p => p.ProductId == productId).ToList();
@@ -999,7 +1007,7 @@ public partial class admin_adminUserControls_ProductManager : UserControl
         {
             var query = from x in ent.Product_Images
                         where x.Products.ProductId == productId
-                        select new {x.ProductImageId, x.Thumbnail, x.MainImage};
+                        select new { x.ProductImageId, x.Thumbnail, x.MainImage };
             if (query.Any())
             {
                 var haveMainImage = query.Where(p => p.MainImage == true).ToList();

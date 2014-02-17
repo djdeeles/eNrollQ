@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DynamicListMainPage.ascx.cs" Inherits="eNroll.UserControls.dynamicLists.DynamicListMainPage" %>
+<asp:Literal ID="ltDynamicList" runat="server"/>

@@ -20,8 +20,7 @@ public partial class M_UserControls_duyuru_NewsContent : UserControl
                 lblYazi.Text = duyuru.details;
                 if (duyuru.startDate != null)
                 {
-                    lbDate.Text = duyuru.startDate.Value.ToShortDateString() + " " +
-                                  duyuru.startDate.Value.ToShortTimeString();
+                    lbDate.Text = duyuru.startDate.Value.ToShortDateString();
                 }
                 string img = duyuru.imagePath.Replace("~", "");
                 if (!String.IsNullOrEmpty(img))

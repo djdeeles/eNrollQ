@@ -71,7 +71,7 @@ namespace eNroll.Admin.adminUserControls
                 BtnListDataSave.Text = AdminResource.lbSave;
                 BtnListDataCancel.Text = AdminResource.lbCancel;
                 BtnListDataEditSave.Text = AdminResource.lbSave;
-                BtnListDataEditCancel.Text = AdminResource.lbCancel;
+                BtnListDataEditCancel.Text = AdminResource.lbClose;
 
                 btnImageSelect.Text = AdminResource.lbImageSelect;
                 btnImageSelectEdit.Text = AdminResource.lbImageSelect;
@@ -175,11 +175,33 @@ namespace eNroll.Admin.adminUserControls
                 var listDatas = _ent.ListData.Where(p => p.ListId == listId).ToList();
                 foreach (var data in listDatas)
                 {
-                    _ent.DeleteObject(data);
+                    if(data!=null)
+                    {
+                        var listDataId = data.Id;
+                        var dataImageThumbnail = data.ThumbnailPath;
+                        var dataAttachments = _ent.ListDataAttachments.Where(p => p.ListDataId == listDataId);
+                        foreach (var attachment in dataAttachments)
+                        {
+                            var thumbnail = attachment.Thumbnail;
+                            _ent.DeleteObject(attachment); 
+                            if (!String.IsNullOrEmpty(thumbnail))
+                            {
+                                ImageHelper.DeleteImage(Server.MapPath("../" + thumbnail.Replace("~/", "")));
+                            }
+                        }
+                        _ent.DeleteObject(data);
+                        if (!String.IsNullOrEmpty(dataImageThumbnail))
+                        {
+                            ImageHelper.DeleteImage(Server.MapPath("../" + dataImageThumbnail.Replace("~/", "")));
+                        }   
+                    }
                 }
                 _ent.SaveChanges();
                 _ent.DeleteObject(list);
                 _ent.SaveChanges();
+
+                BindListData();
+
                 Logger.Add(25, 1, listId, 2);
                 ShowLists();
                 MessageBox.Show(MessageType.Success, AdminResource.msgDeleted);
@@ -308,8 +330,23 @@ namespace eNroll.Admin.adminUserControls
             {
                 int id = int.Parse(e.CommandArgument.ToString());
                 var listData = _ent.ListData.First(p => p.Id == id);
-
+                var listDataThumbnail = listData.ThumbnailPath;
+                var listDataId = listData.Id;
+                var dataAttachments = _ent.ListDataAttachments.Where(p => p.ListDataId == listDataId);
+                foreach (var attachment in dataAttachments)
+                {
+                    var thumbnail = attachment.Thumbnail;
+                    _ent.DeleteObject(attachment);
+                    if (!String.IsNullOrEmpty(thumbnail))
+                    {
+                        ImageHelper.DeleteImage(Server.MapPath("../" + thumbnail.Replace("~/", "")));
+                    }
+                }
                 _ent.DeleteObject(listData);
+                if (!String.IsNullOrEmpty(listDataThumbnail))
+                {
+                    ImageHelper.DeleteImage(Server.MapPath("../" + listDataThumbnail.Replace("~/", "")));
+                }
                 _ent.SaveChanges();
 
                 Logger.Add(25, 2, listData.Id, 2);
